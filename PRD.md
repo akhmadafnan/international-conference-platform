@@ -7,7 +7,7 @@
 **Owner:** Product Owner / Conference Organizer  
 **Purpose:** Define the product to be built before domain/data/technical implementation begins.
 
-**Product Owner Review Progress:** Part 1 — product identity/scale/recurrence/V1-vs-future **APPROVED**; Part 2 — actor model/multi-role/edition scope **APPROVED**, with ORCID policy amendment **APPROVED on 2026-09-23**.
+**Product Owner Review Progress:** Part 1 — product identity/scale/recurrence/V1-vs-future **APPROVED**; Part 2 — actor model/multi-role/edition scope + optional ORCID **APPROVED**; Part 3 — Progressive/Hybrid Authentication Model **APPROVED on 2026-09-23**.
 
 ---
 
@@ -210,38 +210,73 @@ Detailed permission matrices remain Phase 0 work.
 
 ---
 
-## 9. Open Product Decision — Authentication / Registration
+## 9. Authentication / Registration — Approved Progressive/Hybrid Model
 
-**OPEN-001**
+**Decision:** Progressive/Hybrid Account Model.
 
-Earlier product intent included registration without login, while benchmark analysis showed advantages of an authenticated workspace.
+### Participant entry
 
-Options requiring analysis:
-
-### Option A — Full account
 ```text
-Create account
-→ verify/login
-→ dashboard
-→ submission
+Register / Submit
+→ provide email
+→ verify email
+→ create/activate participant workspace
+→ complete profile
+→ join conference edition
+→ use relevant participant/author workflow
 ```
 
-### Option B — Secure no-login management
-```text
-Submit/registration
-→ verified email
-→ secure link/code
-→ manage record
-```
+Participant password is **not required at initial registration**. Verified email provides the initial low-friction access path. Secure email link/code may be used for normal participant sign-in.
 
-### Option C — Progressive/hybrid
-```text
-Low-friction registration
-→ verified email
-→ workspace/account activated when needed
-```
+### Account strengthening
 
-Do not implement authentication until this is accepted.
+A participant account may later support stronger credentials such as:
+- password;
+- passkey;
+- multi-factor authentication.
+
+Exact technical mechanism/provider is an architecture decision, not locked by this PRD.
+
+### Reuse across editions
+
+The same account is reused across conference editions. Edition membership, roles, and historical snapshots remain edition-specific.
+
+### Co-authors
+
+A co-author/contributor does not need an account merely to be listed on a submission.
+
+### Reviewer
+
+A Reviewer must use an authenticated account before accessing assigned manuscripts, confidential comments, recommendations, or review workspace.
+
+### Privileged internal roles
+
+Privileged internal users require stronger authentication than ordinary participant access. Roles such as Super Admin, Conference Admin, Finance, Academic Decision Authority, and Publication administration must be designed for MFA/strong-auth enforcement.
+
+### Recovery and sensitive account changes
+
+Front Office may guide and escalate authentication problems but must not perform informal account takeover or identity recovery.
+
+Account recovery and sensitive changes such as primary email replacement require controlled verification/re-authentication workflows.
+
+### Identity separation
+
+Authentication identity is distinct from scholarly identity. ORCID remains optional and is never used as the required login identity.
+
+### Approved principles
+
+1. Workspace-managing participants have reusable accounts.
+2. Initial participant registration does not require a password.
+3. Email verification is required for participant account activation/access.
+4. Secure email link/code is an accepted participant access pattern.
+5. Account security may be strengthened with password/passkey/MFA.
+6. Account is reusable across editions.
+7. Co-author/contributor account remains optional.
+8. Reviewer requires authenticated account access.
+9. Privileged internal roles require stronger authentication/MFA readiness.
+10. Front Office cannot perform informal recovery/account takeover.
+11. Recovery and primary-email changes are sensitive workflows.
+12. Scholarly identity and ORCID remain separate from login identity.
 
 ---
 

@@ -118,12 +118,16 @@ Review recommendations
 
 No automatic majority-vote rule is assumed.
 
-## Future publication review
+## Publication Review baseline
 
 The post-presentation full-paper Publication Review uses this same architecture.
 
-Still open:
-- default publication-review mode;
-- minimum reviewer count;
-- formal vs advisory assignment mix;
-- publisher/proceedings/OJS requirements.
+### V1 default
+- default anonymity mode: **double-anonymous**;
+- exact reviewer minimum/target: edition/publication-policy configurable;
+- formal vs advisory assignment mix: configurable;
+- publisher/proceedings/OJS requirements may add stricter constraints.
+
+Double-anonymous remains a default, not a global hardcoded rule. Authorized stage/assignment overrides must follow documented edition policy and preserve identity isolation.
+
+Publication Review outcomes feed an authorized Publication/Academic Decision Authority rather than an automatic majority-vote rule.

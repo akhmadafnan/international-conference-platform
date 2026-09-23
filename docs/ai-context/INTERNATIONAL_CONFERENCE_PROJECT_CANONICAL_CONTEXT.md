@@ -52,12 +52,18 @@ Not just a website, upload form, or OJS front-end.
 - Project → Phase → Epic → Ticket;
 - no implementation before Definition of Ready.
 
-## Important open decision
+## Authentication / registration
 
-Authentication/registration is not locked:
-- full account;
-- secure token/no-login;
-- progressive/hybrid.
+Progressive/Hybrid Account Model is accepted:
+- participant workspace uses verified email;
+- password is not mandatory at initial participant registration;
+- secure email link/code may support normal participant access;
+- account is reusable across editions;
+- co-author account is optional;
+- reviewer requires authenticated account;
+- privileged internal roles require stronger-auth/MFA readiness;
+- FO cannot perform informal recovery/account takeover;
+- ORCID remains separate from login identity.
 
 ## Benchmark lessons
 

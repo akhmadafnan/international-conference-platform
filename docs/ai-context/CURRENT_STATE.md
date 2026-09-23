@@ -1,6 +1,6 @@
 # Current Project State
 
-**State ID:** ICP-STATE-20260923-03  
+**State ID:** ICP-STATE-20260923-04  
 **Status:** PHASE 0 IN PROGRESS  
 **Implementation authorization:** NOT GRANTED
 
@@ -54,9 +54,11 @@ The next product-analysis sequence is:
 8. **Review policy baseline** — First-edition abstract default = single-anonymous; flexible stage/round/assignment architecture supports single/double-anonymous and variable reviewer counts/tasks: **APPROVED**.
 9. **PRD-002 / Part 4D / REQ-LIFE-001** — Full Paper → LoA → Scheduling → Presentation: **APPROVED**.
 10. **PRD-002 / Part 4E / REQ-LIFE-001** — Post-Presentation Revision → Publication Review → Publication Eligibility: **APPROVED**.
-11. **PRD-002 / Part 4F / REQ-LIFE-001** — Proceedings/OJS → Publication → Certificate → Archive: **NEXT**.
-12. **INT-BASE-001** — Integration baseline.
-13. **GOV-GATE-001** — Phase 0 consistency audit and Phase 1 readiness.
+11. **PRD-002 / Part 4F / REQ-LIFE-001** — Proceedings/OJS → Publication → Certificate → Archive: **APPROVED**.
+12. **REQ-LIFE-001 End-to-End Conference Lifecycle** — **DONE / PRODUCT REQUIREMENT COMPLETE**.
+13. **REQ-PERM-001** — Detailed application permission matrix: **NEXT HIGH-PRIORITY ANALYSIS**.
+14. **REQ-NFR-001 / INT-BASE-001** — Non-functional and integration baselines: **PENDING**.
+15. **GOV-GATE-001** — Phase 0 consistency audit and Phase 1 readiness: **PENDING**.
 
 ## Human local workspace
 

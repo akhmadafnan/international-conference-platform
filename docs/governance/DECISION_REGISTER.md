@@ -89,5 +89,9 @@
 | DEC-085 | PUBLICATION_APPROVED must pass an auditable Publication Eligibility Gate before PUBLICATION_ELIGIBLE | ACCEPTED |
 | DEC-086 | Publication rejection preserves presenter/conference history and does not automatically trigger conference-fee refund | ACCEPTED |
 | DEC-087 | Conference platform is authoritative for PUBLICATION_ELIGIBLE before OJS/proceedings handoff | ACCEPTED |
+| DEC-088 | Certificate module includes an authorized Manual Certificate Builder for individual and bulk/collective issuance | ACCEPTED |
+| DEC-089 | Certificate display date is the configured activity/event date and is distinct from immutable internal creation/generation timestamps | ACCEPTED |
+| DEC-090 | Technical certificate generation timestamps remain internal and need not appear on the certificate or normal public verification page | ACCEPTED |
+| DEC-091 | Every generated certificate receives its own record and unique verification identity/link | ACCEPTED |
 
 Statuses: PROPOSED, ANALYZED, ACCEPTED DIRECTION, ACCEPTED, REJECTED, SUPERSEDED, OPEN.

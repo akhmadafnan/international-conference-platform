@@ -96,6 +96,17 @@
 | REQ-LIFE-007 | Historical edition/submission metadata must not be silently rewritten by later global-profile changes | ACCEPTED |
 | REQ-LIFE-008 | Account/profile/edition-membership/draft creation does not itself trigger payment | ACCEPTED |
 | REQ-LIFE-009 | End-to-end conference lifecycle stages 4A–4F are Product Owner approved | ACCEPTED |
+| REQ-PERM-001 | Authorization uses default-deny and least-privilege principles | ACCEPTED |
+| REQ-PERM-002 | Effective permission depends on role, scope, resource relationship/state, domain authority, and restrictions | ACCEPTED |
+| REQ-PERM-003 | Most business roles are edition-scoped; session/submission/review-assignment scope applies where relevant | ACCEPTED |
+| REQ-PERM-004 | Super Admin and Technical Admin do not automatically inherit Finance, Academic, Event, or Publication business authority | ACCEPTED |
+| REQ-PERM-005 | Conference Admin coordinates/configures an edition but does not automatically own all authoritative business decisions | ACCEPTED |
+| REQ-PERM-006 | Multi-role permissions may combine, but explicit restriction/COI rules override normal allows | ACCEPTED |
+| REQ-PERM-007 | Sensitive data visibility follows need-to-know and is separable from status visibility | ACCEPTED |
+| REQ-PERM-008 | Override/exception authority is a distinct permission and requires audit trail | ACCEPTED |
+| REQ-PERM-009 | Assignment authority and final decision authority are distinct concepts | ACCEPTED |
+| REQ-PERM-010 | Server-side authorization is mandatory; UI visibility alone is not security | ACCEPTED |
+| REQ-PERM-011 | Historical/archive corrections require controlled special authority and audit | ACCEPTED |
 | REQ-PRD-001 | PRD must reach baseline before Phase 1 begins | ACCEPTED |
 
 Statuses: PROPOSED, ANALYSIS, ACCEPTED DIRECTION, ACCEPTED, IMPLEMENTED, VERIFIED, SUPERSEDED.

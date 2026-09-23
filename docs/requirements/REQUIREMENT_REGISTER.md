@@ -55,7 +55,11 @@
 | REQ-CERT-001 | Certificate issuance is rule-driven by default but supports authorized manual/ad-hoc issuance | ACCEPTED |
 | REQ-CERT-002 | Manual certificate type/wording must match documented role/status and cannot fabricate presentation | ACCEPTED |
 | REQ-CERT-003 | Presenter Certificate requires PRESENTED status or an authorized qualifying presentation exception/makeup | ACCEPTED |
-| REQ-CERT-004 | Manual certificate issuance records recipient, type, reason, authority, timestamp, and audit history | ACCEPTED |
+| REQ-CERT-004 | Manual certificate issuance records recipient, type, reason, authority, and immutable internal audit timestamps/history | ACCEPTED |
+| REQ-CERT-005 | Manual Certificate Builder supports individual and bulk/collective issuance, including external/manual recipients | ACCEPTED |
+| REQ-CERT-006 | Certificate display date is an activity/event date configurable for the credential and is distinct from internal record creation/generation timestamps | ACCEPTED |
+| REQ-CERT-007 | Each generated certificate has an individual record, identifier/number, verification code, and verification link | ACCEPTED |
+| REQ-CERT-008 | Public certificate/verification output need not expose technical generation timestamps or internal administrative notes | ACCEPTED |
 | REQ-PUB-001 | Presented manuscript may remain publication-blocked | ACCEPTED |
 | REQ-PUB-002 | Required revision must be approved before publication eligibility | ACCEPTED |
 | REQ-INT-OJS-001 | OJS is downstream publication integration | ACCEPTED |

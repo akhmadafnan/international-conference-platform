@@ -114,5 +114,13 @@
 | DEC-110 | Override/exception authority is distinct, reasoned, and auditable | ACCEPTED |
 | DEC-111 | Assignment authority and decision authority are separate | ACCEPTED |
 | DEC-112 | Authorization must be enforced server-side regardless of UI visibility | ACCEPTED |
+| DEC-113 | Super Administrator is global platform governance, not an automatic business-domain decision authority | ACCEPTED |
+| DEC-114 | Technical Administrator is a technical-operations role with minimum-necessary access to business data | ACCEPTED |
+| DEC-115 | Conference Administrator is edition-scoped and may configure workflows without automatically executing authoritative domain decisions | ACCEPTED |
+| DEC-116 | Ordinary edition administration cannot assign global protected roles | ACCEPTED |
+| DEC-117 | Protected roles cannot be self-assigned through normal role-management capability | ACCEPTED |
+| DEC-118 | Protected-role assignment/revocation must be auditable | ACCEPTED |
+| DEC-119 | Controlled break-glass access may be used for serious technical/security incidents and must be reasoned, temporary, scoped, and audited | ACCEPTED |
+| DEC-120 | Break-glass access does not rewrite business-domain authority/history | ACCEPTED |
 
 Statuses: PROPOSED, ANALYZED, ACCEPTED DIRECTION, ACCEPTED, REJECTED, SUPERSEDED, OPEN.

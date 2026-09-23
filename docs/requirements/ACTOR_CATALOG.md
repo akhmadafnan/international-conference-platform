@@ -1,6 +1,6 @@
 # Actor Catalog — Approved Baseline
 
-**Status:** PRODUCT OWNER APPROVED BASELINE — permission model Part 1 approved; detailed actor-by-domain matrix still in progress
+**Status:** PRODUCT OWNER APPROVED BASELINE — permission model Parts 1–2 approved; detailed actor-by-domain matrix still in progress
 
 ## Participant-side actors
 
@@ -100,3 +100,13 @@ Core rules:
 - assignment authority and final decision authority are distinct;
 - archived/historical corrections require special controlled authority;
 - authorization must be enforced server-side, not only through hidden UI controls.
+
+
+## Administrative role boundaries — approved
+
+- **Super Administrator** = global platform governance and protected access administration; not automatic business-domain decision authority.
+- **Technical Administrator** = system operations/diagnostics; confidential business data is minimum-necessary and business decisions remain denied by default.
+- **Conference Administrator** = edition operations/configuration and cross-domain status visibility; authoritative Finance/Academic/Event/Publication decisions require additional roles.
+- Protected-role self-escalation is denied.
+- Global roles cannot be assigned by ordinary edition-level administration.
+- Emergency/break-glass access, when implemented, must be temporary/reasoned/audited and does not rewrite the underlying business history.

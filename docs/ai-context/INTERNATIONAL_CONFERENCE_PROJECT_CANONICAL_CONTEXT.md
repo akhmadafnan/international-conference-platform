@@ -89,7 +89,14 @@ Not just a website, upload form, or OJS front-end.
 - multi-role is allowed but COI/restrictions override normal allows;
 - sensitive-data access follows need-to-know;
 - overrides/exceptions require distinct authority and audit;
-- server-side authorization is mandatory.
+- server-side authorization is mandatory;
+- Super Admin governs the platform globally but does not automatically verify payments, decide papers, verify presentations, or approve publication;
+- Technical Admin operates the system/diagnostics with minimum-necessary business-data access;
+- Conference Admin is edition-scoped and may configure workflows/policies without automatically executing Finance/Academic/Event/Publication decisions;
+- global/protected roles cannot be assigned through ordinary edition administration;
+- protected-role self-escalation is denied;
+- protected-role assignment/revocation is auditable;
+- controlled break-glass access may exist for serious incidents but must be reasoned, temporary, scoped, audited, and must not rewrite business authority/history.
 
 ## Authentication / registration
 

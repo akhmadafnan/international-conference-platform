@@ -127,6 +127,19 @@
 | REQ-PERM-029 | Current profile edits do not silently rewrite historical submission/publication/certificate/archive snapshots | ACCEPTED |
 | REQ-PERM-030 | Official submissions use formal withdrawal rather than unrestricted hard deletion | ACCEPTED |
 | REQ-PERM-031 | Contributor mutations after official submission require controlled correction workflow | ACCEPTED |
+| REQ-PERM-032 | Finance is an edition-scoped authoritative financial role | ACCEPTED |
+| REQ-PERM-033 | Only authorized Finance may perform authoritative payment verification and refund execution | ACCEPTED |
+| REQ-PERM-034 | Raw bank mutation/reconciliation data is Finance-restricted; other domains receive derived financial status only | ACCEPTED |
+| REQ-PERM-035 | Payment proof is visible to the related payer/Author and Finance; other-role access is denied by default | ACCEPTED |
+| REQ-PERM-036 | Finance authority does not include academic decision authority | ACCEPTED |
+| REQ-PERM-037 | Refund eligibility comes from policy/business events; Finance executes eligible refunds rather than freely creating academic eligibility | ACCEPTED |
+| REQ-PERM-038 | Refund recipient/bank data is Finance-restricted | ACCEPTED |
+| REQ-PERM-039 | Refund amount derives from applicable policy and amount actually paid; exceptions require explicit auditable override | ACCEPTED |
+| REQ-PERM-040 | Payment/refund corrections preserve before/after state, reason, actor, timestamp, and evidence/reference | ACCEPTED |
+| REQ-PERM-041 | Operational payment/refund records are not freely hard-deleted | ACCEPTED |
+| REQ-PERM-042 | Overpayment/partial/mismatched receipt does not automatically result in normal PAID status | ACCEPTED |
+| REQ-PERM-043 | Finance cannot normally verify payment or process refund for its own submission/financial case | ACCEPTED |
+| REQ-PERM-044 | V1 may use one Finance role but permission architecture must support future Finance sub-role separation | ACCEPTED |
 | REQ-PRD-001 | PRD must reach baseline before Phase 1 begins | ACCEPTED |
 
 Statuses: PROPOSED, ANALYSIS, ACCEPTED DIRECTION, ACCEPTED, IMPLEMENTED, VERIFIED, SUPERSEDED.

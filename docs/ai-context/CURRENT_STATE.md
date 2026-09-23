@@ -1,6 +1,6 @@
 # Current Project State
 
-**State ID:** ICP-STATE-20260923-02  
+**State ID:** ICP-STATE-20260923-03  
 **Status:** PHASE 0 IN PROGRESS  
 **Implementation authorization:** NOT GRANTED
 
@@ -8,27 +8,28 @@
 
 `akhmadafnan/international-conference-platform`
 
-Branches:
-- `main`: initial stable baseline
-- `develop`: created from main
-- `docs/phase-0-governance-r1`: active bootstrap work
+Branch model:
+- `main`: stable/release baseline
+- `develop`: integration baseline
+- scoped branches: all work
 
-## Completed / established
+## GitHub bootstrap status
 
-- repository created public;
-- governance workflow designed;
-- branch strategy established;
-- PRD requirement accepted;
-- PRD v0.1.0 draft created;
-- canonical context established;
-- mandatory languages recorded;
-- payment/refund/publication-gate directions recorded;
-- OJS/ORCID/ROR/Crossref readiness recorded;
-- AI handoff model defined.
+- governance bootstrap PR #1: **MERGED to develop**
+- merge commit: `2b22bc68ca7271b18318b5d74a53adc43195f33e`
+- PRD v0.1.0-draft: **AVAILABLE on develop**
+- Phase 0 issues: created (#2–#8)
 
-## Active objective
+## Established
 
-Bootstrap Phase 0 governance docs into GitHub and review them through PR.
+- repository is public and sanitized;
+- PRD is a core Phase 0 artifact;
+- AGENTS.md governs AI/developer behavior;
+- canonical context and decision/requirement registers exist;
+- audit → plan → ready → implement → regression → UAT → closeout workflow exists;
+- no-repeat-mistake guardrail rule exists;
+- mandatory languages: id, en, ar; Arabic RTL;
+- payment/refund/publication-gate/OJS/FO directions documented.
 
 ## Application implementation
 
@@ -36,15 +37,39 @@ Bootstrap Phase 0 governance docs into GitHub and review them through PR.
 - database: NOT LOCKED
 - ERD: NOT STARTED
 - migrations: NOT STARTED
-- auth: NOT STARTED
-- UI: NOT STARTED
+- authentication: NOT STARTED
+- application UI: NOT STARTED
 
-## Next after governance PR
+## Active Phase 0 work
 
-1. review/accept PRD draft structure;
-2. resolve actor/lifecycle analysis;
-3. resolve authentication model;
-4. expand requirement register;
-5. standards/integration baseline;
-6. Phase 0 consistency audit;
-7. Phase 1 Definition of Ready.
+The next product-analysis sequence is:
+
+1. **GOV-001** — Product Owner confirms governance/working protocol.
+2. **PRD-002** — Guided Product Owner review of PRD v0.1.
+3. **REQ-ACTOR-001** — Finalize actor catalog.
+4. **REQ-AUTH-001** — Resolve authentication/registration model.
+5. **REQ-LIFE-001** — Validate end-to-end lifecycle.
+6. **INT-BASE-001** — Integration baseline.
+7. **GOV-GATE-001** — Phase 0 consistency audit and Phase 1 readiness.
+
+## Human local workspace
+
+Human developer should work from `develop`, not `main`.
+
+For a fresh local clone:
+
+```powershell
+git clone https://github.com/akhmadafnan/international-conference-platform.git
+cd international-conference-platform
+git fetch origin --prune
+git switch --track origin/develop
+git status -sb
+```
+
+Expected branch after setup: `develop`.
+
+## Next conversational action
+
+Do **not** ask the Product Owner to manually inspect GitHub files without guidance.
+
+The architect should conduct the PRD/governance review interactively in chat, one decision group at a time, while recording accepted outcomes back to GitHub.

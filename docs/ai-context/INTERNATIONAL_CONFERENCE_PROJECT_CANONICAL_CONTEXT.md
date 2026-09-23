@@ -113,7 +113,18 @@ Not just a website, upload form, or OJS front-end.
 - financial corrections preserve audit/history and operational payment/refund records are not freely hard-deleted;
 - overpayment/partial mismatch does not automatically become PAID;
 - Finance cannot normally verify/process its own payment/refund case;
-- V1 may use one Finance role while remaining ready for future Finance sub-role separation.
+- V1 may use one Finance role while remaining ready for future Finance sub-role separation;
+- Academic Committee manages review operations while Academic Decision Authority controls final academic decisions;
+- Reviewer access is assignment/round/version scoped and subject to COI;
+- anonymity is enforced per assignment, including mixed single/double-anonymous cases;
+- double-anonymous review blocks identity-bearing author metadata/files and technical identity leakage;
+- Reviewer cannot see other reviewers' reports by default;
+- reviewer recommendations are advisory, not automatic decisions;
+- Decision Authority may differ by review stage and cannot decide own/conflicted submissions;
+- submitted reviews are locked and reopen only through controlled audit;
+- reviewer assignment history is preserved;
+- confidential editor comments must never leak to Authors;
+- final academic-decision corrections use controlled supersession.
 
 ## Authentication / registration
 

@@ -7,8 +7,8 @@
 | DEC-003 | Multi-edition conference architecture | ACCEPTED |
 | DEC-004 | Payment occurs in abstract-submission lifecycle | ACCEPTED |
 | DEC-005 | Payment does not imply academic acceptance | ACCEPTED |
-| DEC-006 | Refund workflow is configurable by edition | ACCEPTED DIRECTION |
-| DEC-007 | Abstract selection mode configurable by edition | ACCEPTED DIRECTION |
+| DEC-006 | Refund workflow is configurable by edition | ACCEPTED |
+| DEC-007 | Abstract selection/review mode configurable by edition | ACCEPTED |
 | DEC-008 | Presented does not automatically mean publication-ready | ACCEPTED |
 | DEC-009 | Required post-presentation revision blocks publication | ACCEPTED |
 | DEC-010 | OJS is downstream publication infrastructure | ACCEPTED |
@@ -55,5 +55,16 @@
 | DEC-051 | Before payment succeeds, submit intent may return to DRAFT subject to policy; after payment, withdrawal is formal | ACCEPTED |
 | DEC-052 | Sensitive bank/mutation information is restricted to Finance | ACCEPTED |
 | DEC-053 | V1 remains future-payment-provider-ready without implementing a provider now | ACCEPTED |
+| DEC-054 | Administrative screening precedes academic processing | ACCEPTED |
+| DEC-055 | Core abstract academic outcomes are ACCEPTED, REVISION_REQUIRED, and REJECTED | ACCEPTED |
+| DEC-056 | Abstract revisions are versioned and traceable | ACCEPTED |
+| DEC-057 | Academic authority and Finance authority are separate | ACCEPTED |
+| DEC-058 | Academic rejection automatically creates refund eligibility | ACCEPTED |
+| DEC-059 | V1 academic-rejection refund is 100% of conference fee actually paid | ACCEPTED |
+| DEC-060 | Refund is executed manually by authorized Finance personnel | ACCEPTED |
+| DEC-061 | Withdrawal and administrative-ineligibility refund rules are separate edition policies | ACCEPTED |
+| DEC-062 | Abstract review is not required to be double-blind at platform level | ACCEPTED |
+| DEC-063 | Exact first-edition abstract anonymity/reviewer model remains open/configurable | OPEN |
+| DEC-064 | Separate post-presentation full-paper publication review is a candidate; anonymity/reviewer model remains open | OPEN |
 
 Statuses: PROPOSED, ANALYZED, ACCEPTED DIRECTION, ACCEPTED, REJECTED, SUPERSEDED, OPEN.

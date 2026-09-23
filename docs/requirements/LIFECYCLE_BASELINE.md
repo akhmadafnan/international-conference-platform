@@ -11,8 +11,8 @@ This document is the lifecycle-specific source used to validate the full confere
 ```text
 4A Registration / Profile / Join Edition / Submission Entry     APPROVED
 4B Abstract Draft / Manual Payment / Finance Verification        APPROVED
-4C Academic Processing / Decision / Refund                       NEXT
-4D Full Paper / Scheduling / Presentation                        PENDING
+4C Academic Processing / Decision / Refund                       APPROVED
+4D Full Paper / Scheduling / Presentation                        NEXT
 4E Post-Presentation Revision / Publication Gate                 PENDING
 4F OJS / Publication / Certificate / Archive                     PENDING
 ```
@@ -102,14 +102,60 @@ DRAFT
 17. Sensitive bank/mutation data is Finance-restricted.
 18. The payment domain remains future-provider-ready without requiring a gateway in V1.
 
-## Next — Stage 4C
+## Stage 4C — Approved: Academic Decision and Refund
+
+```text
+OFFICIAL_SUBMISSION
+→ ADMINISTRATIVE_SCREENING
+   ├─ correction required
+   ├─ administratively ineligible
+   └─ pass
+        → ACADEMIC_PROCESSING
+           ├─ ACCEPTED
+           ├─ REVISION_REQUIRED → new abstract version → re-check
+           └─ REJECTED → REFUND_ELIGIBLE → Finance manual refund → REFUNDED
+```
+
+### Approved rules
+
+1. Administrative screening precedes academic processing.
+2. Administrative and scholarly judgments are separate.
+3. Academic-processing method is configurable by edition.
+4. Abstract decisions: ACCEPTED, REVISION_REQUIRED, REJECTED.
+5. Abstract revision creates a new traceable version.
+6. Academic authority and Finance authority are separate.
+7. Academic rejection automatically creates refund eligibility.
+8. V1 academic rejection refund = **100% of conference fee actually paid**.
+9. Refund is executed manually by Finance.
+10. Refund execution and proof/history are auditable.
+11. Author withdrawal follows separate edition refund policy.
+12. Administrative ineligibility follows separate edition refund policy.
+13. FO cannot change decisions or mark refunds complete.
+14. Payment/submission/decision history remains preserved after refund.
+
+### Review-model note
+
+Abstract review does **not** need to be double-blind at platform level. Exact first-edition mode remains open/configurable.
+
+Candidate later publication workflow:
+```text
+Presentation
+→ Full Paper / Final Manuscript
+→ separate publication-quality review (mode still OPEN)
+→ revision/approval
+→ publication eligibility
+```
+
+The later full-paper review may be single-anonymous, double-anonymous, committee review, or another documented model. This is intentionally not locked yet.
+
+## Next — Stage 4D
 
 The next review must decide:
-- academic screening/review model;
-- decision states and decision authority;
-- revision before acceptance, if used;
-- rejected-paper behavior;
-- refund eligibility and amount;
-- withdrawal after payment;
-- refund approval and execution;
-- notification/LoA timing.
+- full-paper requirement/timing;
+- Letter of Acceptance timing;
+- schedule/session allocation;
+- presenter designation;
+- attendance/presentation evidence;
+- no-show behavior;
+- whether non-presenting accepted papers can proceed;
+- relationship between presentation and later publication-quality review.

@@ -50,9 +50,11 @@ The next product-analysis sequence is:
 4. **PRD-002 / Part 3 / REQ-AUTH-001** — Progressive/Hybrid authentication model: **APPROVED**.
 5. **PRD-002 / Part 4A / REQ-LIFE-001** — Registration → Profile → Join Edition → Submission Entry: **APPROVED**.
 6. **PRD-002 / Part 4B / REQ-LIFE-001** — Abstract Draft → Manual Payment → Finance Verification → Official Submission: **APPROVED**.
-7. **PRD-002 / Part 4C / REQ-LIFE-001** — Academic Processing → Decision → Refund: **NEXT**.
-8. **INT-BASE-001** — Integration baseline.
-9. **GOV-GATE-001** — Phase 0 consistency audit and Phase 1 readiness.
+7. **PRD-002 / Part 4C / REQ-LIFE-001** — Administrative/Academic Processing → Decision → Refund: **APPROVED**.
+8. **Review policy analysis** — Abstract does not require double-blind; exact first-edition review model and possible post-presentation full-paper review: **OPEN / TO BE DISCUSSED**.
+9. **PRD-002 / Part 4D / REQ-LIFE-001** — Full Paper → Scheduling → Presentation: **NEXT after review-policy discussion**.
+10. **INT-BASE-001** — Integration baseline.
+11. **GOV-GATE-001** — Phase 0 consistency audit and Phase 1 readiness.
 
 ## Human local workspace
 

@@ -1,0 +1,40 @@
+# Phase 0 Backlog
+
+## EPIC-0001 — Governance Foundation
+- GOV-001 Approve Project Charter — ANALYSIS
+- GOV-002 Approve Working Protocol — ANALYSIS
+- GOV-003 Approve Delivery Role Matrix — ANALYSIS
+- GOV-004 Establish Decision Register — ANALYSIS
+- GOV-005 Approve Git/GitHub Workflow — ANALYSIS
+- GOV-006 Approve AI Handoff Protocol — ANALYSIS
+
+## EPIC-0002 — Product Requirements Document
+- PRD-001 Establish PRD structure and v0.1 draft — IN_PROGRESS
+- PRD-002 Product Owner review of PRD — BACKLOG
+- PRD-003 Reconcile PRD with decisions/requirements — BACKLOG
+- PRD-004 PRD v1.0 baseline approval — BACKLOG
+
+## EPIC-0003 — Actor & Lifecycle Analysis
+- REQ-ACTOR-001 Finalize Actor Catalog — BACKLOG
+- REQ-AUTH-001 Resolve Authentication / Registration Model — BACKLOG
+- REQ-LIFE-001 Map End-to-End Conference Lifecycle — BACKLOG
+- REQ-PERM-001 Draft Application Permission Matrix — BACKLOG
+
+## EPIC-0004 — Requirements & Standards
+- REQ-REG-001 Expand Functional Requirement Registry — BACKLOG
+- REQ-NFR-001 Define Non-Functional Requirements — BACKLOG
+- INT-STD-001 ORCID Baseline — BACKLOG
+- INT-STD-002 ROR Baseline — BACKLOG
+- INT-STD-003 OJS Integration Baseline — BACKLOG
+- INT-STD-004 Crossref / DOI Metadata Baseline — BACKLOG
+- INT-STD-005 Payment / Refund Integration Baseline — BACKLOG
+- INT-STD-006 WhatsApp FO Integration Baseline — BACKLOG
+
+## EPIC-0005 — Localization Foundation
+- REQ-L10N-001 Localization Policy — BACKLOG
+- REQ-L10N-002 Arabic RTL Policy — BACKLOG
+
+## EPIC-0006 — Phase Gate
+- GOV-GATE-001 Phase 0 Consistency Audit — BACKLOG
+- GOV-GATE-002 Define Phase 1 Definition of Ready — BACKLOG
+- GOV-GATE-003 Phase 0 Approval / Closeout — BACKLOG

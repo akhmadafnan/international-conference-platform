@@ -140,6 +140,20 @@
 | REQ-PERM-042 | Overpayment/partial/mismatched receipt does not automatically result in normal PAID status | ACCEPTED |
 | REQ-PERM-043 | Finance cannot normally verify payment or process refund for its own submission/financial case | ACCEPTED |
 | REQ-PERM-044 | V1 may use one Finance role but permission architecture must support future Finance sub-role separation | ACCEPTED |
+| REQ-PERM-045 | Academic Committee manages review operations but does not automatically hold final academic decision authority | ACCEPTED |
+| REQ-PERM-046 | Reviewer access is restricted to the assigned submission, review stage/round, and assigned manuscript version | ACCEPTED |
+| REQ-PERM-047 | Reviewer assignment requires COI declaration/screening and COI restriction overrides normal reviewer permission | ACCEPTED |
+| REQ-PERM-048 | Review anonymity is enforced per assignment, including mixed single/double-anonymous assignments | ACCEPTED |
+| REQ-PERM-049 | Double-anonymous Reviewer access excludes identity-bearing Author metadata/files and identity leakage through technical surfaces | ACCEPTED |
+| REQ-PERM-050 | Reviewers cannot view other reviewers' reports by default | ACCEPTED |
+| REQ-PERM-051 | Reviewer recommendation is advisory and does not automatically determine final decision | ACCEPTED |
+| REQ-PERM-052 | Academic Decision Authority records authoritative academic decisions and may differ by review stage | ACCEPTED |
+| REQ-PERM-053 | Exceptional/divergent academic decisions require an auditable rationale according to policy | ACCEPTED |
+| REQ-PERM-054 | Submitted reviewer reports are locked by default and may be reopened only through controlled audited workflow | ACCEPTED |
+| REQ-PERM-055 | Reviewer assignment history is preserved and not silently deleted | ACCEPTED |
+| REQ-PERM-056 | Confidential editor comments must not be exposed through author-facing UI/API/export/email/documents | ACCEPTED |
+| REQ-PERM-057 | Academic Decision Authority cannot decide a submission where they are an Author/Contributor or otherwise conflicted | ACCEPTED |
+| REQ-PERM-058 | Final academic decision corrections use controlled supersession with prior/new decision, reason, authority, and timestamp | ACCEPTED |
 | REQ-PRD-001 | PRD must reach baseline before Phase 1 begins | ACCEPTED |
 
 Statuses: PROPOSED, ANALYSIS, ACCEPTED DIRECTION, ACCEPTED, IMPLEMENTED, VERIFIED, SUPERSEDED.

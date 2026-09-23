@@ -184,8 +184,8 @@ Audit Requirement
 
 - Part 1 — Authorization Foundation: APPROVED
 - Part 2 — Super Admin / Technical Admin / Conference Admin: APPROVED
-- Part 3 — Participant / Author / Presenter: NEXT
-- Part 4 — Finance / Refund
+- Part 3 — Participant / Author / Presenter: APPROVED
+- Part 4 — Finance / Refund: NEXT
 - Part 5 — Academic Committee / Reviewer / Decision Authority
 - Part 6 — Event Operations / Session Chair / Moderator
 - Part 7 — Publication / OJS
@@ -312,3 +312,207 @@ Minimum conceptual requirements:
 - sensitive-access audit trail.
 
 Break-glass does not silently convert the administrator into the normal business-domain authority and must not erase the original business history.
+
+
+## Part 3 — Approved Participant-Side Role Matrix
+
+### Visitor
+
+Scope: public.
+
+Allowed:
+- public conference pages;
+- public CFP/guidelines;
+- published schedule;
+- public speaker information;
+- public FAQ/announcements;
+- public certificate verification;
+- published proceedings/publication links.
+
+Denied:
+- participant workspace;
+- protected submission files;
+- payment evidence;
+- internal review data;
+- draft/internal schedules;
+- private participant data.
+
+### Prospective Participant
+
+May:
+- register/activate account;
+- verify email;
+- complete current profile;
+- read policies;
+- request/join edition.
+
+Private edition capabilities require active edition membership.
+
+### Participant
+
+Scope: own account + own edition membership.
+
+May:
+- view/update current profile;
+- view own edition membership and registration status;
+- view own announcements/agenda;
+- view own attendance/check-in status;
+- access own eligible certificates;
+- access own participant-relevant communication/history.
+
+Participant membership alone does not grant submission-management, review, Finance, Event-authority, or Publication-authority permissions.
+
+### Author / Corresponding Author
+
+`Author` is a scholarly contributor relationship.
+
+`Corresponding Author` is the primary submission manager/contact.
+
+For an owned/managed submission, Corresponding Author may, subject to lifecycle state:
+- create/manage draft;
+- edit submission metadata while permitted;
+- manage contributor list while permitted;
+- upload abstract;
+- submit for payment;
+- upload own payment proof;
+- view payer-facing payment status/action-required reason;
+- view academic decision;
+- view author-facing reviewer comments;
+- respond to revision request;
+- upload revised abstract;
+- upload Full Paper/final manuscript;
+- designate/modify presenter where policy permits;
+- complete publication metadata/declarations;
+- request formal withdrawal where permitted;
+- view LoA and submission correspondence.
+
+Corresponding Author does not receive:
+- anonymous reviewer identity;
+- confidential editor/reviewer comments;
+- internal COI notes;
+- internal academic deliberation;
+- other authors' unrelated submissions;
+- bank mutation/reconciliation details;
+- internal Finance notes.
+
+### Other Author / Co-author / Contributor
+
+Contributor relationship does not automatically grant submission-management permission.
+
+A Co-author may exist without an account.
+
+No account means:
+```text
+contributor metadata exists
+→ no authenticated workspace permission
+```
+
+If linked to an account, baseline access is still not equivalent to Corresponding Author management authority.
+
+### Submission Collaborator / Delegation
+
+The architecture should support a submission-scoped delegated relationship rather than creating a broad global role.
+
+Candidate delegated permissions:
+- VIEW;
+- EDIT_METADATA;
+- UPLOAD_FILES;
+- RESPOND_REVISION.
+
+Sensitive actions such as:
+- WITHDRAW;
+- CHANGE_CORRESPONDING_AUTHOR;
+- sensitive contributor changes;
+may require stronger authority/confirmation.
+
+Detailed delegation/assignment governance is finalized in Part 9.
+
+### Presenter
+
+Presenter permission derives from the specific presentation/submission relationship.
+
+May:
+- view assigned presentation;
+- confirm presenter designation;
+- view session/room/date/time;
+- view presentation instructions;
+- access presentation-material workflow if enabled;
+- view own presenter status;
+- access presenter certificate when eligible.
+
+Presenter cannot self-set authoritative `PRESENTED` status.
+
+### Presenter who is also Author
+
+Normal permissions combine subject to scope/resource-state rules.
+
+### Exceptional non-author Presenter
+
+Receives only presentation-related access needed for the assignment.
+
+Does not automatically receive:
+- manuscript editing;
+- payment visibility;
+- reviewer comments;
+- publication-revision rights;
+- contributor-management rights.
+
+### Non-presenting Participant
+
+Receives participant/member capabilities only, including own registration, check-in/attendance, announcements, and eligible participant certificates.
+
+No submission/review/presentation-authority permissions arise from non-presenting attendance.
+
+### Invited Speaker / Keynote
+
+Edition-scoped special participant role.
+
+May manage relevant own speaker data:
+- bio/profile;
+- affiliation;
+- photo where supported;
+- talk title/description;
+- availability/confirmation;
+- assigned session;
+- presentation information;
+- speaker certificate where eligible.
+
+Speaker/Keynote status does not imply Conference Admin, Academic Committee, Reviewer, Finance, Event-authority, or Publication-authority permissions.
+
+### Current profile vs historical records
+
+```text
+EDIT CURRENT PROFILE
+≠
+REWRITE HISTORICAL SNAPSHOT
+```
+
+Participants may edit current profile data, but historical submission/publication/certificate/archive snapshots are controlled records.
+
+### Submission deletion / withdrawal
+
+```text
+DRAFT
+→ cancel/delete may be allowed by policy
+
+OFFICIAL_SUBMISSION+
+→ no unrestricted hard delete
+→ formal withdrawal workflow
+```
+
+Audit/history remains preserved.
+
+### Contributor-list mutation
+
+Before official submission:
+- Corresponding Author may manage contributor list according to policy.
+
+After official submission:
+- add/remove/reorder/change contributors becomes a controlled correction;
+- later lifecycle stages may impose stricter authority/evidence requirements.
+
+### Participant-side privacy boundary
+
+Participation in the same edition does not grant access to another participant's protected submission/workspace.
+
+Publicly published information remains governed by public-content rules, not protected workspace permissions.

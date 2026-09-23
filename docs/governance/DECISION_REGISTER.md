@@ -144,5 +144,19 @@
 | DEC-140 | Overpayment/partial mismatch does not automatically become normal PAID | ACCEPTED |
 | DEC-141 | Finance may not normally verify/process its own payment or refund case | ACCEPTED |
 | DEC-142 | V1 may use one Finance role while remaining ready for future Payment Verifier/Refund Processor/Finance Approver separation | ACCEPTED |
+| DEC-143 | Academic Committee manages academic review operations but is not automatically the final decision authority | ACCEPTED |
+| DEC-144 | Reviewer permission is review-assignment/round/version scoped | ACCEPTED |
+| DEC-145 | Reviewer access requires COI declaration/screening and COI restriction overrides role permission | ACCEPTED |
+| DEC-146 | Review anonymity is enforced per assignment, including mixed anonymity on one submission | ACCEPTED |
+| DEC-147 | Double-anonymous access excludes identity-bearing author metadata/files and technical identity leakage | ACCEPTED |
+| DEC-148 | Reviewers cannot view other reviewers' reports by default | ACCEPTED |
+| DEC-149 | Reviewer recommendation is advisory; no automatic majority decision | ACCEPTED |
+| DEC-150 | Academic Decision Authority records final academic decision and may differ by review stage | ACCEPTED |
+| DEC-151 | Divergent/exceptional academic decisions require auditable rationale according to policy | ACCEPTED |
+| DEC-152 | Submitted review reports are locked and only reopened through controlled audited workflow | ACCEPTED |
+| DEC-153 | Reviewer assignment history is preserved rather than silently deleted | ACCEPTED |
+| DEC-154 | Confidential editor comments never become author-facing output | ACCEPTED |
+| DEC-155 | Decision Authority/Reviewer conflict on own paper blocks review/decision authority | ACCEPTED |
+| DEC-156 | Academic decision corrections use controlled supersession rather than silent overwrite | ACCEPTED |
 
 Statuses: PROPOSED, ANALYZED, ACCEPTED DIRECTION, ACCEPTED, REJECTED, SUPERSEDED, OPEN.

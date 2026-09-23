@@ -16,8 +16,19 @@
 | REQ-PAY-007 | Only PAID may transition a paper into OFFICIAL_SUBMISSION | ACCEPTED |
 | REQ-PAY-008 | Sensitive bank/mutation information is Finance-restricted | ACCEPTED |
 | REQ-PAY-009 | Payment-domain design must remain compatible with future providers without requiring one in V1 | ACCEPTED |
-| REQ-REF-001 | Edition may define refund eligibility for rejected abstracts | ACCEPTED DIRECTION |
-| REQ-ACA-001 | Edition may configure abstract selection mode | ACCEPTED DIRECTION |
+| REQ-REF-001 | Academic rejection makes the V1 submission refund-eligible | ACCEPTED |
+| REQ-REF-002 | V1 academic-rejection refund equals 100% of conference fee actually paid | ACCEPTED |
+| REQ-REF-003 | Refund execution is manual and restricted to authorized Finance personnel | ACCEPTED |
+| REQ-REF-004 | Withdrawal and administrative-ineligibility refund policies remain separately configurable by edition | ACCEPTED |
+| REQ-REF-005 | Refund status, amount, processor, timestamps, and proof/history are auditable | ACCEPTED |
+| REQ-ACA-001 | Edition may configure abstract selection/review mode | ACCEPTED |
+| REQ-ACA-002 | Official submission undergoes administrative screening before academic processing | ACCEPTED |
+| REQ-ACA-003 | Abstract decision outcomes include ACCEPTED, REVISION_REQUIRED, and REJECTED | ACCEPTED |
+| REQ-ACA-004 | Abstract revision creates a new traceable version | ACCEPTED |
+| REQ-ACA-005 | Academic decision authority is separate from Finance authority | ACCEPTED |
+| REQ-ACA-006 | Abstract review is not required to be double-blind at platform level | ACCEPTED |
+| REQ-ACA-007 | Exact first-edition abstract anonymity/reviewer model remains open and edition-configurable | ANALYSIS |
+| REQ-ACA-008 | Separate post-presentation full-paper publication review remains a candidate and is not yet locked | ANALYSIS |
 | REQ-PUB-001 | Presented manuscript may remain publication-blocked | ACCEPTED |
 | REQ-PUB-002 | Required revision must be approved before publication eligibility | ACCEPTED |
 | REQ-INT-OJS-001 | OJS is downstream publication integration | ACCEPTED |

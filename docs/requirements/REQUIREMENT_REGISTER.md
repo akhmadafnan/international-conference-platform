@@ -7,8 +7,15 @@
 | REQ-L10N-003 | Support Arabic `ar` | ACCEPTED |
 | REQ-L10N-004 | Arabic interface supports RTL | ACCEPTED |
 | REQ-CONF-001 | Support recurring conference editions | ACCEPTED |
-| REQ-PAY-001 | Payment is part of abstract-submission lifecycle | ACCEPTED DIRECTION |
+| REQ-PAY-001 | Payment is part of abstract-submission lifecycle | ACCEPTED |
 | REQ-PAY-002 | Payment cannot automatically determine academic acceptance | ACCEPTED |
+| REQ-PAY-003 | V1 uses manual bank transfer; no payment gateway is required | ACCEPTED |
+| REQ-PAY-004 | Uploading payment proof creates submitted-for-verification state, not PAID | ACCEPTED |
+| REQ-PAY-005 | Only authorized Finance personnel may verify payment after cross-checking actual receipt | ACCEPTED |
+| REQ-PAY-006 | Finance verification result, verifier, timestamp, and action-required reason are auditable | ACCEPTED |
+| REQ-PAY-007 | Only PAID may transition a paper into OFFICIAL_SUBMISSION | ACCEPTED |
+| REQ-PAY-008 | Sensitive bank/mutation information is Finance-restricted | ACCEPTED |
+| REQ-PAY-009 | Payment-domain design must remain compatible with future providers without requiring one in V1 | ACCEPTED |
 | REQ-REF-001 | Edition may define refund eligibility for rejected abstracts | ACCEPTED DIRECTION |
 | REQ-ACA-001 | Edition may configure abstract selection mode | ACCEPTED DIRECTION |
 | REQ-PUB-001 | Presented manuscript may remain publication-blocked | ACCEPTED |

@@ -37,6 +37,10 @@ Not just a website, upload form, or OJS front-end.
 - mandatory locales `id`, `en`, `ar`;
 - Arabic RTL from first UI foundation;
 - payment around abstract submission;
+- V1 payment uses manual bank transfer + Author payment-proof upload + Finance verification;
+- payment-proof upload is not PAID; only Finance verification after actual receipt cross-check may set PAID;
+- only PAID transitions a paper to OFFICIAL_SUBMISSION;
+- payment gateway is not required for V1, while the payment domain remains future-provider-ready;
 - payment does not imply academic acceptance;
 - refund workflow supported and configurable;
 - abstract selection mode configurable;

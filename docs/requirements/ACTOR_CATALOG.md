@@ -1,6 +1,6 @@
 # Actor Catalog — Approved Baseline
 
-**Status:** PRODUCT OWNER APPROVED BASELINE — detailed permission matrix still pending
+**Status:** PRODUCT OWNER APPROVED BASELINE — permission model Part 1 approved; detailed actor-by-domain matrix still in progress
 
 ## Participant-side actors
 
@@ -70,3 +70,33 @@ Phase 0 must still define:
 - edition membership lifecycle;
 - invitation/onboarding for internal roles;
 - whether special actors such as Sponsor or Steering Committee require system roles or only metadata/content representation.
+
+
+## Approved authorization foundation
+
+The permission model is not a flat role checkbox list. Authorization evaluates:
+
+```text
+ROLE
++ SCOPE
++ RESOURCE RELATIONSHIP
++ DOMAIN AUTHORITY
++ RESOURCE STATE
++ RESTRICTIONS / COI
+= EFFECTIVE PERMISSION
+```
+
+Core rules:
+- default deny;
+- least privilege;
+- visibility does not imply authority;
+- technical authority does not imply business authority;
+- Super Administrator does not automatically receive Finance/Academic/Event/Publication decision powers;
+- Conference Administrator coordinates an edition but does not automatically own every authoritative state change;
+- permissions are scope-aware: global, edition, session, submission/membership, review assignment;
+- multi-role is allowed, but explicit restrictions/COI override a normal allow;
+- sensitive data follows need-to-know;
+- override/exception permissions are distinct and auditable;
+- assignment authority and final decision authority are distinct;
+- archived/historical corrections require special controlled authority;
+- authorization must be enforced server-side, not only through hidden UI controls.

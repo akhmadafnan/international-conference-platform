@@ -122,5 +122,16 @@
 | DEC-118 | Protected-role assignment/revocation must be auditable | ACCEPTED |
 | DEC-119 | Controlled break-glass access may be used for serious technical/security incidents and must be reasoned, temporary, scoped, and audited | ACCEPTED |
 | DEC-120 | Break-glass access does not rewrite business-domain authority/history | ACCEPTED |
+| DEC-121 | Participant access is limited to own account/membership unless another scoped resource relationship grants more | ACCEPTED |
+| DEC-122 | Corresponding Author is the primary submission manager; other contributors do not automatically inherit management authority | ACCEPTED |
+| DEC-123 | Co-author/contributor may exist without an account and therefore without workspace access | ACCEPTED |
+| DEC-124 | Submission collaboration/delegation is modeled as a submission-scoped relationship, not a broad global role | ACCEPTED |
+| DEC-125 | Author-facing review access excludes anonymous reviewer identity, confidential comments, COI notes, and internal deliberation | ACCEPTED |
+| DEC-126 | Presenter cannot self-set authoritative PRESENTED status | ACCEPTED |
+| DEC-127 | Exceptional non-author Presenter receives limited presentation access rather than Author permissions | ACCEPTED |
+| DEC-128 | Invited Speaker/Keynote is edition-scoped and does not imply administrative/academic/reviewer authority | ACCEPTED |
+| DEC-129 | Current-profile updates do not rewrite historical conference snapshots | ACCEPTED |
+| DEC-130 | Official submissions are not freely hard-deleted; withdrawal is a formal workflow | ACCEPTED |
+| DEC-131 | Contributor changes after official submission are controlled corrections | ACCEPTED |
 
 Statuses: PROPOSED, ANALYZED, ACCEPTED DIRECTION, ACCEPTED, REJECTED, SUPERSEDED, OPEN.

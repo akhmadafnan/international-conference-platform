@@ -1,6 +1,6 @@
 # Actor Catalog — Approved Baseline
 
-**Status:** PRODUCT OWNER APPROVED BASELINE — permission model Parts 1–2 approved; detailed actor-by-domain matrix still in progress
+**Status:** PRODUCT OWNER APPROVED BASELINE — permission model Parts 1–3 approved; detailed actor-by-domain matrix still in progress
 
 ## Participant-side actors
 
@@ -110,3 +110,18 @@ Core rules:
 - Protected-role self-escalation is denied.
 - Global roles cannot be assigned by ordinary edition-level administration.
 - Emergency/break-glass access, when implemented, must be temporary/reasoned/audited and does not rewrite the underlying business history.
+
+
+## Participant-side permission boundaries — approved
+
+- Participant access is limited to own account/membership unless another resource relationship grants more.
+- Corresponding Author is the primary submission manager.
+- Other Authors/Co-authors do not automatically receive submission-edit authority.
+- Co-author/contributor may remain accountless.
+- Submission collaboration/delegation should be submission-scoped, not a broad global role.
+- Author-facing review information excludes anonymous reviewer identity, confidential editor comments, internal COI notes, and academic deliberation.
+- Presenter cannot self-verify PRESENTED.
+- Exceptional non-author Presenter receives presentation-only access, not Author permissions.
+- Current profile edits do not rewrite historical submission/publication/certificate/archive snapshots.
+- Official submissions are withdrawn through workflow rather than unrestricted deletion.
+- Contributor changes after official submission become controlled corrections.

@@ -43,6 +43,10 @@ Not just a website, upload form, or OJS front-end.
 - payment gateway is not required for V1, while the payment domain remains future-provider-ready;
 - payment does not imply academic acceptance;
 - refund workflow supported and configurable;
+- academic rejection in V1 receives 100% refund of conference fee actually paid;
+- refund execution is manual by Finance; withdrawal/admin-ineligible refund rules are separate edition policies;
+- abstract review is not required to be double-blind; exact first-edition review mode remains open/configurable;
+- separate post-presentation full-paper publication review remains a candidate, not yet locked;
 - abstract selection mode configurable;
 - presentation does not imply publication readiness;
 - required post-presentation revision blocks publication;

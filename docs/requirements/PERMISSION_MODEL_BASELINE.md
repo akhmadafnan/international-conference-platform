@@ -187,8 +187,8 @@ Audit Requirement
 - Part 3 — Participant / Author / Presenter: APPROVED
 - Part 4 — Finance / Refund: APPROVED
 - Part 5 — Academic Committee / Reviewer / Decision Authority: APPROVED
-- Part 6 — Event Operations / Session Chair / Moderator: NEXT
-- Part 7 — Publication / OJS
+- Part 6 — Event Operations / Session Chair / Moderator: APPROVED
+- Part 7 — Publication / OJS: NEXT
 - Part 8 — Certificate / Archive
 - Part 9 — Assignment / Revocation / COI / Overrides
 - Part 10 — Full Matrix Consistency Audit
@@ -863,3 +863,161 @@ Correction/supersession preserves:
 - authority;
 - timestamp;
 - relevant reference/evidence.
+
+
+## Part 6 — Approved Event Operations / Session Chair / Moderator Matrix
+
+### Event Operations
+
+Scope: `EDITION`.
+
+Primary event-domain authority:
+- session/room/slot operations;
+- presenter readiness;
+- check-in/attendance operations;
+- presentation verification;
+- no-show recording;
+- rescheduling;
+- operational notes.
+
+Event Operations receives only operationally necessary information.
+
+Allowed derived indicators may include:
+- payment/eligibility requirement satisfied;
+- Full Paper/presentation readiness;
+- presenter confirmation.
+
+Raw Finance data, reviewer identity/comments, confidential academic deliberation, and publication-review confidential notes remain denied by default.
+
+### Scheduling
+
+Authorized Event Operations may:
+- create/edit sessions;
+- create/edit presentation slots;
+- assign eligible presentations;
+- change room/date/time;
+- publish schedule;
+- revise/unpublish schedule where policy permits.
+
+Changes to already-published schedules are auditable and may trigger notifications.
+
+### Session Chair
+
+Scope: assigned `SESSION`.
+
+May:
+- view assigned session;
+- view assigned presentation slots;
+- view presenter/paper information needed for session operation;
+- view session-relevant attendance/presentation status;
+- record operational notes;
+- verify PRESENTED/NO_SHOW for presentations in the assigned session.
+
+No authority over unrelated sessions unless separately assigned.
+
+### Moderator
+
+Scope: assigned `SESSION`.
+
+May:
+- view assigned session/order/timing;
+- view presenter information needed for moderation;
+- record operational notes;
+- assist attendance/presentation verification.
+
+Moderator authority to set PRESENTED/NO_SHOW is edition/session-policy configurable rather than universally enabled.
+
+### Attendance vs presentation
+
+```text
+CHECKED_IN / ATTENDED
+≠
+PRESENTED
+```
+
+Participant self check-in or QR check-in does not create authoritative PRESENTED status.
+
+### Presentation verification
+
+Authoritative presentation verification may be performed by:
+- Event Operations;
+- Session Chair for assigned session;
+- Moderator when explicitly authorized by policy;
+- another explicitly authorized event verifier.
+
+Verification must preserve:
+- presentation;
+- verifier;
+- status;
+- verified_at;
+- session;
+- note/reason;
+- optional evidence/reference.
+
+### No-show
+
+Event authority records factual NO_SHOW status.
+
+Business rules then derive downstream consequences such as PUBLICATION_BLOCKED.
+
+Event roles do not themselves make academic publication decisions.
+
+### Presentation exception / makeup
+
+Normal presentation verification permission does not imply exception approval.
+
+`presentation.exception.approve` is a distinct, auditable authority finalized in Part 9.
+
+A normal Session Chair/Moderator cannot silently convert a completed NO_SHOW into a qualifying exception.
+
+### Presenter substitution
+
+Presenter changes are traceable.
+
+Exceptional non-author presenter substitution requires the previously approved authorization/exception path.
+
+Post-event historical presenter changes require controlled correction.
+
+### Rescheduling boundary
+
+Event Operations may perform authoritative schedule changes.
+
+Session Chair/Moderator may report/request adjustments or operational delays but do not automatically control the full edition schedule.
+
+### Event-domain privacy
+
+Event roles do not automatically receive:
+- payment proof/bank reconciliation;
+- reviewer identity/reports;
+- confidential academic comments;
+- academic decision authority;
+- publication approval authority.
+
+### Operational notes
+
+Operational notes may be participant-visible or internal according to field/policy.
+
+Event notes must not be used as a substitute store for restricted Finance or confidential review data.
+
+### Evidence
+
+Presentation/attendance evidence is policy-driven and may include:
+- authorized verifier;
+- attendance record;
+- operational note;
+- optional photo/reference;
+- optional virtual-platform/log reference.
+
+V1 does not require universal photo/video evidence.
+
+### Event self-conflict
+
+An Event Operations/Session Chair/Moderator actor cannot normally verify their own presentation.
+
+Own-presentation verification must be performed by another authorized event verifier or controlled exceptional authority.
+
+### Certificate separation
+
+Event authority records factual presentation/attendance states.
+
+Certificate issuance remains a separate certificate-domain process that consumes those states according to certificate rules.

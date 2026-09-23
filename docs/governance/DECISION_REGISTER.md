@@ -5,7 +5,7 @@
 | DEC-001 | Mandatory locales are `id`, `en`, `ar` | ACCEPTED |
 | DEC-002 | Arabic RTL is required from first UI foundation | ACCEPTED |
 | DEC-003 | Multi-edition conference architecture | ACCEPTED |
-| DEC-004 | Payment occurs in abstract-submission lifecycle | ACCEPTED DIRECTION |
+| DEC-004 | Payment occurs in abstract-submission lifecycle | ACCEPTED |
 | DEC-005 | Payment does not imply academic acceptance | ACCEPTED |
 | DEC-006 | Refund workflow is configurable by edition | ACCEPTED DIRECTION |
 | DEC-007 | Abstract selection mode configurable by edition | ACCEPTED DIRECTION |
@@ -47,5 +47,13 @@
 | DEC-043 | Starting a paper creates a DRAFT submission; draft is not an official submission | ACCEPTED |
 | DEC-044 | Historical edition/submission metadata is protected from silent retroactive profile changes | ACCEPTED |
 | DEC-045 | Payment does not start merely from account/profile/membership/draft creation | ACCEPTED |
+| DEC-046 | V1 payment method is manual bank transfer; payment gateway is not required | ACCEPTED |
+| DEC-047 | Payment-proof upload is not equivalent to PAID/verified status | ACCEPTED |
+| DEC-048 | Only authorized Finance verification after actual-receipt cross-check may set PAID | ACCEPTED |
+| DEC-049 | Only PAID transitions a paper to OFFICIAL_SUBMISSION | ACCEPTED |
+| DEC-050 | Official submission creates a stable submitted-version snapshot | ACCEPTED |
+| DEC-051 | Before payment succeeds, submit intent may return to DRAFT subject to policy; after payment, withdrawal is formal | ACCEPTED |
+| DEC-052 | Sensitive bank/mutation information is restricted to Finance | ACCEPTED |
+| DEC-053 | V1 remains future-payment-provider-ready without implementing a provider now | ACCEPTED |
 
 Statuses: PROPOSED, ANALYZED, ACCEPTED DIRECTION, ACCEPTED, REJECTED, SUPERSEDED, OPEN.

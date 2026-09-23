@@ -103,5 +103,16 @@
 | DEC-099 | Edition closeout is a formal policy-driven checklist process | ACCEPTED |
 | DEC-100 | Archived editions are preserved, primarily read-only, and corrected only through auditable controlled changes | ACCEPTED |
 | DEC-101 | End-to-end lifecycle stages 4A–4F are approved and REQ-LIFE-001 is complete at PRD level | ACCEPTED |
+| DEC-102 | Authorization baseline uses default deny and least privilege | ACCEPTED |
+| DEC-103 | Effective authorization is role + scope + resource relationship/state + domain authority + restriction aware | ACCEPTED |
+| DEC-104 | Visibility/read access does not imply authority to change an authoritative business state | ACCEPTED |
+| DEC-105 | Super Admin is not an automatic Finance/Academic/Event/Publication decision-maker | ACCEPTED |
+| DEC-106 | Technical Admin does not receive confidential/business-domain authority by default | ACCEPTED |
+| DEC-107 | Conference Admin coordinates an edition without automatically inheriting all domain decisions | ACCEPTED |
+| DEC-108 | Multi-role permissions combine subject to restriction/COI rules; explicit deny/restriction wins | ACCEPTED |
+| DEC-109 | Sensitive-data access follows need-to-know and may be narrower than status visibility | ACCEPTED |
+| DEC-110 | Override/exception authority is distinct, reasoned, and auditable | ACCEPTED |
+| DEC-111 | Assignment authority and decision authority are separate | ACCEPTED |
+| DEC-112 | Authorization must be enforced server-side regardless of UI visibility | ACCEPTED |
 
 Statuses: PROPOSED, ANALYZED, ACCEPTED DIRECTION, ACCEPTED, REJECTED, SUPERSEDED, OPEN.

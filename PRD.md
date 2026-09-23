@@ -7,7 +7,7 @@
 **Owner:** Product Owner / Conference Organizer  
 **Purpose:** Define the product to be built before domain/data/technical implementation begins.
 
-**Product Owner Review Progress:** Part 1 — Product identity, initial scale, recurring-edition model, and V1-vs-future principle **APPROVED on 2026-09-23**.
+**Product Owner Review Progress:** Part 1 — Product identity/scale/recurrence/V1-vs-future **APPROVED**; Part 2 — actor model/multi-role/edition scope **APPROVED on 2026-09-23**.
 
 ---
 
@@ -175,11 +175,38 @@ Final permission matrix remains Phase 0 work.
 - Conference Administrator
 - Super Administrator
 
-### Role principle
+### Role principles — Product Owner approved
 
-One person may have multiple roles.
+- One person may have multiple roles.
+- Most conference roles are **edition-scoped**, not permanent global roles.
+- `Participant` is a base conference membership/status concept, not an exclusive role that prevents additional roles.
+- Author/Corresponding Author and Presenter are distinct concepts.
+- A co-author/contributor does **not** need to own a login account merely to appear on a submission.
+- Front Office, Finance, Academic, Publication, and Event functions have separate authority boundaries and must not casually override one another.
+- Reviewer and Author roles may coexist for the same person/edition, but later permission/conflict-of-interest rules must prevent inappropriate review assignments.
+- Scholarly identity must remain conceptually separate from authentication/account membership.
 
-Do not assume one global `users.role` value is sufficient.
+Conceptual scope:
+
+```text
+GLOBAL PLATFORM ROLE
+└── Super Admin
+
+EDITION-SCOPED ROLES / MEMBERSHIPS
+├── Conference Admin
+├── Front Office
+├── Finance
+├── Academic Committee / Decision Authority
+├── Reviewer
+├── Event Operations
+├── Session Chair / Moderator
+├── Publication Team
+├── Participant
+├── Author
+└── Presenter
+```
+
+Detailed permission matrices remain Phase 0 work.
 
 ---
 

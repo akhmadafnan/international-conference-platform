@@ -7,7 +7,7 @@
 **Owner:** Product Owner / Conference Organizer  
 **Purpose:** Define the product to be built before domain/data/technical implementation begins.
 
-**Product Owner Review Progress:** Part 1 — product identity/scale/recurrence/V1-vs-future **APPROVED**; Part 2 — actor model/multi-role/edition scope + optional ORCID **APPROVED**; Part 3 — Progressive/Hybrid Authentication Model **APPROVED**; Part 4A — Registration/Profile/Join Edition/Submission Entry **APPROVED on 2026-09-23**.
+**Product Owner Review Progress:** Part 1 — product identity/scale/recurrence/V1-vs-future **APPROVED**; Part 2 — actor model/multi-role/edition scope + optional ORCID **APPROVED**; Part 3 — Progressive/Hybrid Authentication Model **APPROVED**; Part 4A — Registration/Profile/Join Edition/Submission Entry **APPROVED**; Part 4B — Manual Payment → Finance Verification → Official Submission **APPROVED on 2026-09-23**.
 
 ---
 
@@ -314,16 +314,55 @@ Approved business rules:
 8. Current profile data and historical conference/submission data must be separable. Later profile changes must not silently rewrite historical edition/submission metadata.
 9. Payment does not occur merely because a person created an account, profile, edition membership, or draft submission.
 
-### 10.2 Remaining lifecycle stages to validate
+### 10.2 Stage 4B — Abstract Draft → Manual Payment → Finance Verification → Official Submission
+
+**Status: APPROVED**
 
 ```text
-Stage 4B
-Abstract Draft
-→ Submit Intent
-→ Payment
-→ Payment Verification
-→ Official Submission
+DRAFT
+→ author completes abstract metadata
+→ Submit & Proceed to Payment
+→ validation
+→ AWAITING_PAYMENT
+→ manual bank transfer
+→ upload payment proof
+→ PAYMENT_SUBMITTED
+→ Finance cross-checks actual receipt outside the conference system
+   ├─ VERIFIED
+   │    → PAID
+   │    → OFFICIAL_SUBMISSION
+   │    → submitted-version snapshot
+   │    → Academic Processing
+   └─ ACTION_REQUIRED
+        → reason recorded
+        → author corrects / re-uploads proof
+```
 
+Approved business rules:
+
+1. V1 uses **manual bank transfer**, not a payment gateway.
+2. Payment obligation begins only after a valid draft is submitted for payment.
+3. The system shows the authoritative destination account, amount due, reference/submission code, and payment deadline.
+4. The amount due is determined by edition policy/configuration; the author does not freely type the amount owed.
+5. Uploading transfer proof creates `PAYMENT_SUBMITTED`; it does **not** mean paid/verified.
+6. Finance must cross-check the actual incoming transfer using the organization's bank/mobile-banking record outside the conference platform.
+7. Finance records a verification result in the platform:
+   - verified → `PAID`;
+   - not verifiable/incorrect → `PAYMENT_ACTION_REQUIRED` with an auditable reason.
+8. Only `PAID` may transition the paper to `OFFICIAL_SUBMISSION`.
+9. `PAID` does not imply academic acceptance.
+10. Before successful payment, the author may cancel the submit intent and return to `DRAFT`, subject to edition deadline/policy.
+11. After payment/official submission, withdrawal is a formal workflow; it does not silently return the paper to draft.
+12. Official submission creates a stable submitted-version snapshot for academic processing.
+13. Subsequent substantive changes require a controlled revision/correction workflow; submitted content is not silently overwritten.
+14. Payment proof, Finance verification, verifier identity, timestamps, and rejection/action-required reason must be auditable.
+15. Front Office may explain payment status but cannot mark payment as verified.
+16. Sensitive bank-account/mutation information remains Finance-restricted and is not exposed to Author/FO.
+17. The V1 domain should remain capable of supporting a future payment provider without changing the conference lifecycle semantics.
+
+### 10.3 Remaining lifecycle stages to validate
+
+```text
 Stage 4C
 Administrative / Academic Processing
 → Acceptance / Rejection / Revision
@@ -451,21 +490,26 @@ Abstract and later full-paper/revision stages belong to one logical submission l
 
 ### 11.6 Payment
 
-Current direction:
-- payment occurs around abstract submission;
-- payment is required for official submission according to edition policy;
-- payment does not imply acceptance.
+**V1 payment model: manual bank transfer with Finance verification.**
 
-System should support:
-- invoice/charge reference;
-- amount/currency;
-- payment state;
-- verification;
-- evidence where operationally needed;
-- audit history;
-- participant-visible status.
+The system should support:
+- edition-configured payment amount/fee category;
+- authoritative bank-transfer instructions;
+- payment/submission reference;
+- payment deadline;
+- payment-proof upload;
+- `AWAITING_PAYMENT`;
+- `PAYMENT_SUBMITTED`;
+- `PAYMENT_ACTION_REQUIRED`;
+- `PAID`;
+- `PAYMENT_EXPIRED` where edition policy uses expiry;
+- Finance-only verification action;
+- auditable verifier, time, result, and reason;
+- participant-visible non-sensitive payment status.
 
-Provider and automation level are not locked.
+Uploading a transfer proof is not equivalent to payment verification. Only authorized Finance verification may make the payment `PAID`.
+
+V1 does not require payment-gateway, QRIS, virtual-account, or similar integration. Future providers may be added behind the same payment-domain/lifecycle boundary.
 
 ### 11.7 Refund
 
@@ -815,7 +859,7 @@ Architecture readiness does not mean immediate implementation.
 ## 19. Key Open Questions
 
 - OPEN-001 Authentication/registration model.
-- OPEN-002 Exact initial payment method/provider and verification model.
+- OPEN-002 Initial payment model/provider and verification: **RESOLVED — V1 manual bank transfer + Finance verification; no payment gateway required.**
 - OPEN-003 Exact abstract acceptance/review model for first edition.
 - OPEN-004 Refund policy percentages/fees/deadlines.
 - OPEN-005 Full-paper requirement and timing.

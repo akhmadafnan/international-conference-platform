@@ -1,6 +1,6 @@
 # Actor Catalog — Approved Baseline
 
-**Status:** PRODUCT OWNER APPROVED BASELINE — permission model Parts 1–3 approved; detailed actor-by-domain matrix still in progress
+**Status:** PRODUCT OWNER APPROVED BASELINE — permission model Parts 1–4 approved; detailed actor-by-domain matrix still in progress
 
 ## Participant-side actors
 
@@ -125,3 +125,17 @@ Core rules:
 - Current profile edits do not rewrite historical submission/publication/certificate/archive snapshots.
 - Official submissions are withdrawn through workflow rather than unrestricted deletion.
 - Contributor changes after official submission become controlled corrections.
+
+
+## Finance permission boundaries — approved
+
+- Finance is edition-scoped and is the authoritative role for payment/refund state execution.
+- Raw payment proof and bank reconciliation detail are Finance-restricted by default, while other roles receive derived status as needed.
+- Finance does not control academic decisions.
+- Refund eligibility comes from policy/business events; Finance executes eligible refunds.
+- Refund bank/recipient data is Finance-restricted.
+- Financial corrections preserve before/after state and audit rather than silently rewriting history.
+- Payment/refund records are not freely hard-deleted.
+- Overpayment/partial mismatch does not automatically become PAID.
+- Finance cannot normally verify or refund its own submission/financial case.
+- V1 may use one Finance role while remaining structurally ready for future Finance sub-roles.

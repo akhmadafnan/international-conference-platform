@@ -44,8 +44,8 @@ Branch model:
 
 The next product-analysis sequence is:
 
-1. **GOV-001** — Product Owner confirms governance/working protocol.
-2. **PRD-002** — Guided Product Owner review of PRD v0.1.
+1. **PRD-002 / Part 1** — Product identity, initial scale, recurring editions, V1-vs-future: **APPROVED**.
+2. **PRD-002 / Part 2** — Actor/user model and multi-role relationships: **NEXT**.
 3. **REQ-ACTOR-001** — Finalize actor catalog.
 4. **REQ-AUTH-001** — Resolve authentication/registration model.
 5. **REQ-LIFE-001** — Validate end-to-end lifecycle.

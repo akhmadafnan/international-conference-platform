@@ -20,5 +20,9 @@
 | DEC-016 | No implementation before Definition of Ready | ACCEPTED |
 | DEC-017 | PRD is a core Phase 0 product-truth artifact | ACCEPTED |
 | DEC-018 | Authentication/registration model | OPEN |
+| DEC-019 | Product is a full academic conference lifecycle platform, not merely website/submission tooling | ACCEPTED |
+| DEC-020 | Initial planning baseline is approximately 100 participants/submissions, primarily Indonesia | ACCEPTED |
+| DEC-021 | One reusable application serves recurring editions while preserving historical editions | ACCEPTED |
+| DEC-022 | V1 must complete first-conference operations without forcing future-scale features into V1 | ACCEPTED |
 
 Statuses: PROPOSED, ANALYZED, ACCEPTED DIRECTION, ACCEPTED, REJECTED, SUPERSEDED, OPEN.

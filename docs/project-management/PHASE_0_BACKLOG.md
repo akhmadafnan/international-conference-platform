@@ -1,18 +1,17 @@
 # Phase 0 Backlog
 
 ## EPIC-0001 — Governance Foundation
-- GOV-001 Approve Project Charter — ANALYSIS
-- GOV-002 Approve Working Protocol — ANALYSIS
-- GOV-003 Approve Delivery Role Matrix — ANALYSIS
-- GOV-004 Establish Decision Register — ANALYSIS
-- GOV-005 Approve Git/GitHub Workflow — ANALYSIS
-- GOV-006 Approve AI Handoff Protocol — ANALYSIS
+- GOV-001 Approve Project Charter & Working Protocol — READY FOR PRODUCT OWNER REVIEW
+- GOV-002 Approve Delivery Role Matrix — ANALYSIS
+- GOV-003 Establish Decision Register — IN PROGRESS
+- GOV-004 Approve Git/GitHub Workflow — ACCEPTED DIRECTION
+- GOV-005 Approve AI Handoff Protocol — ACCEPTED DIRECTION
 
 ## EPIC-0002 — Product Requirements Document
-- PRD-001 Establish PRD structure and v0.1 draft — IN_PROGRESS
-- PRD-002 Product Owner review of PRD — BACKLOG
-- PRD-003 Reconcile PRD with decisions/requirements — BACKLOG
-- PRD-004 PRD v1.0 baseline approval — BACKLOG
+- PRD-001 Establish PRD structure and v0.1 draft — DONE
+- PRD-002 Product Owner guided review of PRD — READY
+- PRD-003 Reconcile PRD with decisions/requirements — BLOCKED BY PRD-002
+- PRD-004 PRD v1.0 baseline approval — BLOCKED
 
 ## EPIC-0003 — Actor & Lifecycle Analysis
 - REQ-ACTOR-001 Finalize Actor Catalog — BACKLOG
@@ -38,3 +37,9 @@
 - GOV-GATE-001 Phase 0 Consistency Audit — BACKLOG
 - GOV-GATE-002 Define Phase 1 Definition of Ready — BACKLOG
 - GOV-GATE-003 Phase 0 Approval / Closeout — BACKLOG
+
+## Current execution rule
+
+Product Owner does not need to manually navigate GitHub for routine review.
+
+Architect/AI conducts guided analysis in chat, records accepted decisions in the repository using scoped branches and PRs, and reports only concrete user actions that cannot be performed through the GitHub connection.

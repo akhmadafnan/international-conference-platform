@@ -60,7 +60,10 @@ Not just a website, upload form, or OJS front-end.
 - Full Paper is required after acceptance and validated before presentation;
 - presenter is explicitly designated/confirmed; attendance and presentation statuses are separate;
 - NO_SHOW blocks publication by default unless an authorized makeup/waiver exception applies;
-- manual certificate issuance is allowed only with truthful certificate type and auditable authority/reason; Presenter Certificate requires actual presentation or qualifying authorized exception;
+- manual certificate issuance is supported through an individual/bulk Manual Certificate Builder with auditable authority/reason;
+- certificate display date uses the configured activity/event date, while actual record creation/generation timestamps remain immutable internal audit data and need not appear publicly;
+- each generated certificate has its own record and verification identity/link;
+- Presenter Certificate requires actual presentation or qualifying authorized exception;
 - presentation does not imply publication readiness;
 - required post-presentation revision blocks publication;
 - OJS is downstream publication infrastructure;

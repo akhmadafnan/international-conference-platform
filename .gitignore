@@ -1,0 +1,34 @@
+# Secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+secrets.*
+credentials.*
+
+# Dependencies/build
+node_modules/
+vendor/
+dist/
+build/
+.output/
+.next/
+coverage/
+
+# Runtime/backups
+*.sqlite
+*.sqlite3
+*.db
+*.sql
+*.dump
+*.bak
+backups/
+*.log
+
+# Editors/OS
+.idea/
+.DS_Store
+Thumbs.db

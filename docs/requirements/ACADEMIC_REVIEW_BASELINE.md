@@ -1,7 +1,7 @@
 # Academic Review & Decision Baseline
 
 **ID:** ICP-REQ-ACA-001  
-**Status:** PARTIALLY APPROVED — REVIEW MODE STILL OPEN  
+**Status:** APPROVED BASELINE — DETAIL REMAINS CONFIGURABLE  
 **Updated:** 2026-09-23
 
 ## What is approved
@@ -52,7 +52,7 @@ The first edition may use one of these models:
    - requires anonymized submissions and stricter workflow;
    - not required by the platform baseline.
 
-The exact first-edition choice remains OPEN.
+The first-edition abstract default is **single-anonymous**, while remaining configurable through the approved Review Stage architecture.
 
 ## Candidate two-gate quality model
 
@@ -72,11 +72,7 @@ Presentation completed
 
 This separation allows the conference to keep abstract selection operationally light while applying stronger review before publication.
 
-The publication-quality review may later be:
-- committee review;
-- single-anonymous;
-- double-anonymous;
-- another documented model required by the publication partner.
+The V1 publication-quality review defaults to **double-anonymous**, while the Review Stage remains configurable for publisher/edition requirements.
 
 ## Must be decided before review implementation
 
@@ -209,10 +205,12 @@ If mixed modes are deliberately used for one submission, the platform must isola
 
 The same engine will later support post-presentation full-paper publication review.
 
-Still OPEN:
-- default publication-review anonymity mode;
-- minimum reviewer count for publication review;
-- whether all formal publication-review assignments are voting or some are advisory;
+Approved:
+- default publication-review anonymity mode: **double-anonymous**.
+
+Still configurable/open at policy level:
+- minimum/target reviewer count for publication review;
+- formal vs advisory assignment mix;
 - publisher/OJS-specific requirements.
 
 This architecture intentionally avoids hardcoding OJS itself as the conference source of truth while borrowing the proven editorial concept of flexible reviewer assignment, review rounds, configurable review mode, and assignment-specific forms/tasks.

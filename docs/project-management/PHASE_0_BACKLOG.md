@@ -17,7 +17,7 @@
 - REQ-ACTOR-001 Finalize Actor Catalog — APPROVED BASELINE; detailed permission mapping pending
 - REQ-AUTH-001 Resolve Authentication / Registration Model — DONE
 - REQ-LIFE-001 Map End-to-End Conference Lifecycle — DONE
-- REQ-PERM-001 Draft Application Permission Matrix — NEXT
+- REQ-PERM-001 Draft Application Permission Matrix — IN PROGRESS (Part 1 authorization foundation APPROVED; Part 2 admin roles NEXT)
 
 ## EPIC-0004 — Requirements & Standards
 - REQ-REG-001 Expand Functional Requirement Registry — BACKLOG

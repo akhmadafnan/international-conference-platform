@@ -7,7 +7,7 @@
 **Owner:** Product Owner / Conference Organizer  
 **Purpose:** Define the product to be built before domain/data/technical implementation begins.
 
-**Product Owner Review Progress:** Part 1 — product identity/scale/recurrence/V1-vs-future **APPROVED**; Part 2 — actor model/multi-role/edition scope + optional ORCID **APPROVED**; Part 3 — Progressive/Hybrid Authentication Model **APPROVED**; Part 4A — Registration/Profile/Join Edition/Submission Entry **APPROVED**; Part 4B — Manual Payment → Finance Verification → Official Submission **APPROVED**; Part 4C — Administrative/Academic Processing → Decision → Refund **APPROVED on 2026-09-23**.
+**Product Owner Review Progress:** Part 1 — product identity/scale/recurrence/V1-vs-future **APPROVED**; Part 2 — actor model/multi-role/edition scope + optional ORCID **APPROVED**; Part 3 — Progressive/Hybrid Authentication Model **APPROVED**; Part 4A — Registration/Profile/Join Edition/Submission Entry **APPROVED**; Part 4B — Manual Payment → Finance Verification → Official Submission **APPROVED**; Part 4C — Administrative/Academic Processing → Decision → Refund **APPROVED**; Part 4D — Full Paper → LoA → Scheduling → Presentation **APPROVED on 2026-09-23**.
 
 ---
 
@@ -404,15 +404,80 @@ The product does **not** require abstract review to be double-blind. The exact a
 
 A **separate publication-quality review gate for the full paper after presentation** remains a candidate design for later lifecycle stages. Whether that later review is single-anonymous, double-anonymous, committee review, or another documented model remains **OPEN** and must be decided before publication workflow implementation.
 
-### 10.4 Remaining lifecycle stages to validate
+### 10.4 Stage 4D — Full Paper → LoA → Scheduling → Presentation
+
+**Status: APPROVED**
 
 ```text
-Stage 4D
-Full Paper
-→ Validation
-→ Scheduling
-→ Presentation
+ABSTRACT_ACCEPTED
+→ LoA issued (accepted for presentation)
+→ FULL_PAPER_PENDING
+→ FULL_PAPER_SUBMITTED
+→ administrative/format validation
+   ├─ FULL_PAPER_ACTION_REQUIRED → revised version → re-check
+   └─ FULL_PAPER_VALID
+        → presenter designated
+        → presenter confirmed
+        → PRESENTATION_READY
+        → session/slot scheduling
+        → schedule published
+        → attendance/check-in
+        → presentation verification
+           ├─ PRESENTED → proceed to Stage 4E
+           └─ NO_SHOW → PUBLICATION_BLOCKED
+                └─ approved exception may permit makeup/waiver
+```
 
+Approved business rules:
+
+1. Abstract acceptance means **accepted for conference presentation**, not accepted for publication.
+2. LoA is issued after academic acceptance and must not imply publication acceptance.
+3. Accepted Authors submit a Full Paper by an edition-configurable deadline.
+4. Pre-conference Full Paper undergoes administrative/format validation; it is not yet the post-presentation publication peer-review decision.
+5. Full Paper corrections create new traceable versions rather than overwriting prior submitted files.
+6. Full Paper validity is one requirement for `PRESENTATION_READY`.
+7. Presenter is explicitly designated and is not automatically the corresponding author.
+8. Presenter is normally selected from the submission contributors; exceptional non-author presenter changes require authorized approval.
+9. Presenter confirmation is required and presenter changes remain auditable.
+10. Scheduling uses Sessions and Presentation Slots rather than unstructured date/time fields only.
+11. Schedule supports at least `DRAFT` and `PUBLISHED` states; published changes are traceable and may trigger notification.
+12. Attendance/check-in status is separate from presentation status.
+13. Attendance evidence may support manual, QR, or barcode methods; V1 may use the simplest operational method.
+14. Presentation completion is recorded/verified by an authorized Event Operations, Session Chair, Moderator, or equivalent role—not self-certified by the Author.
+15. Default `NO_SHOW` blocks the publication path.
+16. Exceptional circumstances may use an auditable makeup-presentation or presentation-requirement waiver approved by the appropriate authority.
+17. Presentation evidence and exception decisions must be auditable.
+
+#### Certificate-integrity rule
+
+The platform may support **manual certificate issuance** for legitimate exceptional or ad-hoc needs, but certificate type and wording must reflect the person's actual documented role/status.
+
+Examples of valid manual certificate types may include:
+- Participant;
+- Committee;
+- Reviewer;
+- Session Chair / Moderator;
+- Supporting Contributor;
+- Guest / Invited Guest;
+- Speaker/Keynote where documented;
+- other edition-defined recognition categories.
+
+A `Presenter Certificate` may be issued only when the person has a documented `PRESENTED` status or an authorized presentation exception/makeup outcome that legitimately qualifies under edition policy.
+
+Manual issuance must record:
+- certificate type;
+- recipient;
+- reason;
+- issuing authority;
+- timestamp;
+- optional supporting reference/evidence;
+- whether issuance was rule-based or exceptional.
+
+Manual issuance must not silently rewrite the underlying attendance/presentation record.
+
+### 10.5 Remaining lifecycle stages to validate
+
+```text
 Stage 4E
 Post-Presentation Assessment
 → Revision when required
@@ -657,11 +722,17 @@ Expected capabilities:
 - venue;
 - room;
 - session;
+- presentation slot;
 - date/time;
-- presenter;
+- presenter designation and confirmation;
 - moderator/session chair;
+- draft/published schedule states;
+- attendance/check-in status;
 - presentation status;
-- attendance evidence where required.
+- authorized presentation verification;
+- no-show handling;
+- makeup/waiver exception handling where approved;
+- attendance/presentation evidence where required.
 
 ### 11.13 Post-Presentation Revision
 
@@ -715,16 +786,21 @@ Candidate generated documents:
 - invitation letter;
 - invoice/receipt;
 - payment confirmation;
-- certificate;
+- participant certificate;
+- presenter certificate;
 - reviewer certificate;
 - committee certificate;
-- speaker certificate.
+- session chair/moderator certificate;
+- speaker/keynote certificate;
+- other edition-defined recognition certificate.
 
-Document numbering, QR verification, and templates require separate specifications.
+The platform may support manual/ad-hoc certificate issuance, but the certificate type must truthfully reflect the documented role/status. Presenter certificates require documented presentation or an authorized qualifying presentation exception.
+
+Document numbering, QR verification, templates, verification URLs, and detailed issuance rules require separate specifications.
 
 ### 11.17 Certificates
 
-Certificate eligibility should be rule-driven rather than manual mass generation alone.
+Certificate eligibility should be rule-driven by default, while allowing authorized manual issuance for legitimate exceptions/ad-hoc recognition.
 
 Potential inputs:
 - role;
@@ -733,7 +809,11 @@ Potential inputs:
 - attendance;
 - presentation;
 - reviewer completion;
-- committee membership.
+- committee membership;
+- approved exception/waiver;
+- edition-defined recognition category.
+
+Manual issuance must not fabricate an underlying role or event state. It creates a certificate issuance record with reason/authority/audit history.
 
 ### 11.18 Front Office & Support
 
@@ -940,8 +1020,8 @@ Architecture readiness does not mean immediate implementation.
 - OPEN-002 Initial payment model/provider and verification: **RESOLVED — V1 manual bank transfer + Finance verification; no payment gateway required.**
 - OPEN-003 Exact abstract review model for first edition: **PARTIALLY RESOLVED — double-blind is not mandatory; exact screening/reviewer/anonymity model remains OPEN.**
 - OPEN-004 Refund policy: **PARTIALLY RESOLVED — academic rejection = 100% refund of conference fee paid; withdrawal/admin-ineligible rules remain OPEN.**
-- OPEN-005 Full-paper requirement and timing.
-- OPEN-006 Presentation attendance evidence.
+- OPEN-005 Full-paper requirement and timing: **RESOLVED — required after abstract acceptance; deadline configurable; administrative/format validation before presentation.**
+- OPEN-006 Presentation attendance evidence: **PARTIALLY RESOLVED — attendance and presentation are separate; V1 may use manual/QR/barcode evidence; exact operational method remains configurable.**
 - OPEN-007 Who approves post-presentation revision?
 - OPEN-008 Initial OJS integration: export/manual-assisted/API?
 - OPEN-009 Certificate eligibility rules.

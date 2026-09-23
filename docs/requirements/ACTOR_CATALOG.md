@@ -1,6 +1,6 @@
 # Actor Catalog — Approved Baseline
 
-**Status:** PRODUCT OWNER APPROVED BASELINE — permission model Parts 1–5 approved; detailed actor-by-domain matrix still in progress
+**Status:** PRODUCT OWNER APPROVED BASELINE — permission model Parts 1–6 approved; detailed actor-by-domain matrix still in progress
 
 ## Participant-side actors
 
@@ -155,3 +155,17 @@ Core rules:
 - Confidential editor comments never become author-facing data.
 - Author/Reviewer/Decision Authority self-conflict blocks review/decision on own paper.
 - Academic decisions are corrected through controlled supersession, not silent overwrite.
+
+
+## Event permission boundaries — approved
+
+- Event Operations is edition-scoped event authority.
+- Session Chair and Moderator are session-scoped.
+- Event roles receive operationally necessary data only; raw Finance/reviewer/confidential academic data is denied by default.
+- Attendance/check-in is distinct from presentation verification.
+- Event Operations and Session Chair may verify PRESENTED/NO_SHOW within scope; Moderator verification is policy-configurable.
+- Presentation verification is auditable.
+- Normal verifier does not automatically possess presentation-exception/makeup approval.
+- Authoritative schedule changes belong to Event Operations/authorized edition operations; published changes are traceable.
+- Event actors cannot normally verify their own presentation.
+- Event-domain state does not grant Academic/Publication/Certificate issuance authority.

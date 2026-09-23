@@ -7,6 +7,8 @@
 **Owner:** Product Owner / Conference Organizer  
 **Purpose:** Define the product to be built before domain/data/technical implementation begins.
 
+**Product Owner Review Progress:** Part 1 — Product identity, initial scale, recurring-edition model, and V1-vs-future principle **APPROVED on 2026-09-23**.
+
 ---
 
 ## 1. Executive Summary
@@ -21,7 +23,7 @@ It is not merely:
 
 It should eventually coordinate the lifecycle from conference information and participant registration through abstract submission, payment, academic processing, presentation, revision, publication eligibility, OJS handoff, certificates, support, and historical reporting.
 
-The first realistic scale is approximately **100 participants/submissions**, initially dominated by Indonesian participants. The architecture must remain operationally simple at this scale while avoiding a disposable one-event schema.
+The first realistic scale is approximately **100 participants/submissions**, initially dominated by Indonesian participants. This initial scale is an **approved planning baseline**. The architecture must remain operationally simple at this scale while avoiding a disposable one-event schema.
 
 ---
 
@@ -96,7 +98,7 @@ The conference may run:
 - every two years;
 - or another configurable cycle.
 
-Historical editions must remain accessible.
+Historical editions must remain accessible. One application installation is intended to serve successive editions rather than rebuilding a separate application/database for each event.
 
 ### 5.3 Initial operational communication
 One WhatsApp number is planned as Front Office (FO).
@@ -141,7 +143,7 @@ Unless later accepted, initial release should not automatically imply:
 - global payment coverage;
 - multiple simultaneous conference series.
 
-These may be architecture-ready without being implemented in V1.
+These may be architecture-ready without being implemented in V1. This separation between **V1 operational completeness** and **future capability readiness** is approved product direction.
 
 ---
 

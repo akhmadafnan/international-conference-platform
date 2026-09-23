@@ -13,8 +13,8 @@ This document is the lifecycle-specific source used to validate the full confere
 4B Abstract Draft / Manual Payment / Finance Verification        APPROVED
 4C Academic Processing / Decision / Refund                       APPROVED
 4D Full Paper / LoA / Scheduling / Presentation                  APPROVED
-4E Post-Presentation Revision / Publication Gate                 NEXT
-4F OJS / Publication / Certificate / Archive                     PENDING
+4E Post-Presentation Revision / Publication Review / Gate        APPROVED
+4F OJS / Publication / Certificate / Archive                     NEXT
 ```
 
 ## Stage 4A — Approved
@@ -204,6 +204,37 @@ A Presenter Certificate requires documented PRESENTED status or an authorized qu
 
 For people who did not present, edition-defined alternatives may include Participant, Committee, Guest, Supporting Contributor, or another truthful recognition category.
 
-## Next — Stage 4E
+## Stage 4E — Approved: Post-Presentation Publication Quality Gate
 
-Post-presentation revision/publication review/publication eligibility remains to be validated.
+```text
+PRESENTED
+→ post-presentation assessment/feedback
+→ FINAL_MANUSCRIPT_PENDING
+→ final/revised manuscript
+→ PUBLICATION_REVIEW
+→ REVISION_REQUIRED | PUBLICATION_APPROVED | PUBLICATION_REJECTED
+→ if approved: PUBLICATION_ELIGIBILITY_GATE
+→ PUBLICATION_ELIGIBLE or BLOCKED
+```
+
+### Approved rules
+
+1. Presentation does not equal publication approval.
+2. Session/presentation feedback is distinct from formal Publication Review.
+3. V1 Publication Review defaults to **double-anonymous**.
+4. Publication Review remains configurable by edition/stage using the common Review Stage engine.
+5. Double-anonymous assignments receive anonymized identity-safe review packets.
+6. Reviewer count remains policy-driven, not globally fixed.
+7. Multiple review rounds and versioned manuscript revisions are supported.
+8. Reviewer recommendations are advisory; authorized decision authority records the final decision.
+9. Publication decisions: REVISION_REQUIRED, PUBLICATION_APPROVED, PUBLICATION_REJECTED.
+10. PUBLICATION_APPROVED does not bypass the Publication Eligibility Gate.
+11. NO_SHOW remains blocked unless an authorized qualifying exception/makeup applies.
+12. Publication rejection preserves legitimate presenter/conference history.
+13. Publication rejection does not automatically trigger conference-fee refund.
+14. Review, revisions, decisions, gate checks, overrides, and blocking reasons are auditable.
+15. Conference platform controls PUBLICATION_ELIGIBLE before OJS/proceedings handoff.
+
+## Next — Stage 4F
+
+Proceedings/OJS handoff, publication status, certificate completion, archive, and historical record remain to be validated.

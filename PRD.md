@@ -7,7 +7,7 @@
 **Owner:** Product Owner / Conference Organizer  
 **Purpose:** Define the product to be built before domain/data/technical implementation begins.
 
-**Product Owner Review Progress:** Part 1 — product identity/scale/recurrence/V1-vs-future **APPROVED**; Part 2 — actor model/multi-role/edition scope + optional ORCID **APPROVED**; Part 3 — Progressive/Hybrid Authentication Model **APPROVED**; Part 4A — Registration/Profile/Join Edition/Submission Entry **APPROVED**; Part 4B — Manual Payment → Finance Verification → Official Submission **APPROVED**; Part 4C — Administrative/Academic Processing → Decision → Refund **APPROVED**; Part 4D — Full Paper → LoA → Scheduling → Presentation **APPROVED**; Part 4E — Post-Presentation Revision → Publication Review → Publication Eligibility **APPROVED on 2026-09-23**.
+**Product Owner Review Progress:** Part 1 — product identity/scale/recurrence/V1-vs-future **APPROVED**; Part 2 — actor model/multi-role/edition scope + optional ORCID **APPROVED**; Part 3 — Progressive/Hybrid Authentication Model **APPROVED**; Part 4A — Registration/Profile/Join Edition/Submission Entry **APPROVED**; Part 4B — Manual Payment → Finance Verification → Official Submission **APPROVED**; Part 4C — Administrative/Academic Processing → Decision → Refund **APPROVED**; Part 4D — Full Paper → LoA → Scheduling → Presentation **APPROVED**; Part 4E — Post-Presentation Revision → Publication Review → Publication Eligibility **APPROVED**; Part 4F — Proceedings/OJS → Publication → Certificate → Archive **APPROVED on 2026-09-23**. End-to-end lifecycle review **COMPLETE**.
 
 ---
 
@@ -523,17 +523,68 @@ Approved business rules:
 17. Publication review, manuscript versions, decisions, eligibility checks, overrides, and blocking reasons are auditable.
 18. Publication Eligibility is controlled by the conference platform before downstream OJS/proceedings handoff.
 
-### 10.6 Remaining lifecycle stage to validate
+### 10.6 Stage 4F — Proceedings/OJS → Publication → Certificate → Archive
+
+**Status: APPROVED**
 
 ```text
-Stage 4F
-Proceedings Queue
-→ OJS
-→ Published / Archived
-→ Certificate / Historical Record
+PUBLICATION_ELIGIBLE
+→ PUBLICATION_QUEUE
+→ FINAL_PUBLICATION_METADATA_VALIDATION
+→ READY_FOR_TRANSFER
+→ manual/assisted OJS/proceedings handoff
+→ TRANSFERRED
+→ IN_PUBLICATION_PROCESS
+→ PUBLISHED
+→ external publication references recorded
+→ certificates / verification
+→ edition closeout
+→ ARCHIVED
 ```
 
-Stage 4F remains unapproved until reviewed by the Product Owner.
+Approved business rules:
+
+1. `PUBLICATION_ELIGIBLE` is distinct from `PUBLISHED`.
+2. Publication Queue is operated by the authorized Publication Team/Proceeding Editor.
+3. V1 OJS/proceedings handoff is **manual/assisted**; API integration is not required.
+4. OJS is downstream publication infrastructure and is not authoritative for conference payment, refund, attendance, presentation, academic acceptance, or certificate state.
+5. Final publication metadata is captured as a stable publication snapshot before/at handoff; later current-profile edits must not silently rewrite it.
+6. OJS submission IDs, DOI, publication URL, ISBN/ISSN references, or other external identifiers are stored as external references and never become internal primary keys.
+7. V1 publication-transfer states may include `NOT_TRANSFERRED`, `READY_FOR_TRANSFER`, `TRANSFERRED`, `IN_PUBLICATION_PROCESS`, `PUBLISHED`, and terminal/problem states such as `PUBLICATION_WITHDRAWN` or `PUBLICATION_FAILED`.
+8. Each certificate is an official record with its own identifier/number, verification identity/link, status, and history.
+9. V1 certificate verification supports a public verification page and QR representation linked to the verification identity.
+10. Manual Certificate Builder remains available for individual and bulk/collective issuance using configurable activity/event date while preserving internal creation/generation timestamps.
+11. Certificate correction uses controlled revocation/reissue or equivalent versioned correction; issued records are not silently overwritten.
+12. Edition closeout is a formal process with a checklist covering event completion, presentation records, refunds, publication queue status, certificates, and other edition policy items.
+13. Closeout items may be warnings or hard blockers according to edition policy; unresolved publication work may remain in process while the edition event itself is closed where policy allows.
+14. `ARCHIVED` means historically preserved and primarily read-only, not deleted.
+15. Archived editions retain participant, submission, payment, refund, decision, review, schedule, attendance, presentation, publication, certificate, and audit history subject to access policy.
+16. Historical corrections after archive require controlled authority, reason, and audit trail rather than unrestricted editing.
+17. Publication handoff, publication-status changes, certificate issuance/revocation/reissue, edition closeout, archive, and historical corrections are auditable.
+
+### 10.7 End-to-End Lifecycle Validation
+
+Stages 4A–4F are **APPROVED**.
+
+```text
+Registration / Identity
+→ Submission
+→ Manual Payment
+→ Official Submission
+→ Administrative & Academic Processing
+→ Acceptance / Refund when rejected
+→ Full Paper / LoA
+→ Scheduling / Presentation
+→ Post-Presentation Revision
+→ Publication Review
+→ Publication Eligibility
+→ Proceedings / OJS
+→ Published
+→ Certificate / Verification
+→ Closeout / Archive
+```
+
+The end-to-end lifecycle requirement is complete at PRD level. Detailed permission, NFR, integration, data-model, and feature specifications remain Phase 0/Phase 1 work and are not implied complete by this lifecycle approval.
 
 ---
 
@@ -830,14 +881,20 @@ The conference platform controls conference readiness.
 
 ```text
 Conference Platform
-→ Publication Eligible
+→ PUBLICATION_ELIGIBLE
 → Publication Queue
-→ OJS
+→ final metadata snapshot
+→ manual/assisted handoff
+→ OJS / proceedings
+→ publication status tracking
+→ PUBLISHED
 ```
 
-OJS is not the source of truth for payment, presentation, refund, or conference status.
+V1 uses manual/assisted handoff rather than requiring an OJS API integration.
 
-Initial OJS integration may be manual/assisted/export-based before deeper automation.
+OJS is downstream and is not the source of truth for payment, presentation, refund, conference acceptance, certificate, or archive state.
+
+The conference platform may store external publication references such as OJS submission ID, DOI, publication URL, ISBN/ISSN reference, destination publication, transfer timestamp, and transfer actor. External identifiers must not become internal primary keys.
 
 ### 11.16 Documents
 
@@ -856,7 +913,7 @@ Candidate generated documents:
 
 The platform may support manual/ad-hoc certificate issuance, but the certificate type must truthfully reflect the documented role/status. Presenter certificates require documented presentation or an authorized qualifying presentation exception.
 
-Document numbering, QR verification, templates, verification URLs, and detailed issuance rules require separate specifications.
+Certificate numbering, templates, public verification, QR representation, revocation/reissue, and manual/bulk issuance are part of the approved certificate capability; exact technical format remains for feature specification.
 
 ### 11.17 Certificates
 
@@ -873,7 +930,7 @@ Potential inputs:
 - approved exception/waiver;
 - edition-defined recognition category.
 
-Manual issuance must not fabricate an underlying role or event state. It creates a certificate issuance record with reason/authority/audit history.
+Manual issuance creates its own certificate issuance record with authority/audit history and does not silently rewrite underlying event-state records.
 
 ### 11.18 Front Office & Support
 
@@ -1083,8 +1140,8 @@ Architecture readiness does not mean immediate implementation.
 - OPEN-005 Full-paper requirement and timing: **RESOLVED — required after abstract acceptance; deadline configurable; administrative/format validation before presentation.**
 - OPEN-006 Presentation attendance evidence: **PARTIALLY RESOLVED — attendance and presentation are separate; V1 may use manual/QR/barcode evidence; exact operational method remains configurable.**
 - OPEN-007 Post-presentation/publication decision authority: **RESOLVED DIRECTION — authorized Publication/Academic Decision Authority records the decision; exact role mapping remains for permission matrix.**
-- OPEN-008 Initial OJS integration: export/manual-assisted/API?
-- OPEN-009 Certificate eligibility rules.
+- OPEN-008 Initial OJS integration: **RESOLVED — V1 manual/assisted handoff; deeper API integration is future capability.**
+- OPEN-009 Certificate capability: **PARTIALLY RESOLVED — rule-based + authorized manual/bulk issuance, public verification, QR, revoke/reissue approved; exact per-type eligibility remains edition-configurable.**
 - OPEN-010 Initial participant types and fee categories.
 - OPEN-011 Whether conference series name/brand is already final.
 - OPEN-012 Initial production hosting constraints/budget.

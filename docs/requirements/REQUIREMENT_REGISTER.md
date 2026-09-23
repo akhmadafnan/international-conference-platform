@@ -115,6 +115,18 @@
 | REQ-PERM-017 | Protected-role assignment and revocation are auditable | ACCEPTED |
 | REQ-PERM-018 | Controlled break-glass access may exist for serious technical/security incidents with reason, scope, temporariness, and audit trail | ACCEPTED |
 | REQ-PERM-019 | Break-glass access does not silently convert technical/platform administrators into the normal business-domain decision authority | ACCEPTED |
+| REQ-PERM-020 | Participant permission is limited to own account/membership unless another scoped relationship grants access | ACCEPTED |
+| REQ-PERM-021 | Corresponding Author is the primary submission manager/contact | ACCEPTED |
+| REQ-PERM-022 | Co-author/contributor relationship does not automatically grant submission-edit authority and may exist without an account | ACCEPTED |
+| REQ-PERM-023 | Submission collaboration/delegation is submission-scoped rather than a broad global role | ACCEPTED |
+| REQ-PERM-024 | Author access to review information is limited to author-facing content and excludes anonymous/confidential/internal-review data | ACCEPTED |
+| REQ-PERM-025 | Participant-side users cannot access internal Finance/reconciliation data merely through submission involvement | ACCEPTED |
+| REQ-PERM-026 | Presenter cannot self-verify PRESENTED status | ACCEPTED |
+| REQ-PERM-027 | Exceptional non-author Presenter receives limited presentation access without automatic Author permissions | ACCEPTED |
+| REQ-PERM-028 | Invited Speaker/Keynote is an edition-scoped special participant role and does not imply administrative/review authority | ACCEPTED |
+| REQ-PERM-029 | Current profile edits do not silently rewrite historical submission/publication/certificate/archive snapshots | ACCEPTED |
+| REQ-PERM-030 | Official submissions use formal withdrawal rather than unrestricted hard deletion | ACCEPTED |
+| REQ-PERM-031 | Contributor mutations after official submission require controlled correction workflow | ACCEPTED |
 | REQ-PRD-001 | PRD must reach baseline before Phase 1 begins | ACCEPTED |
 
 Statuses: PROPOSED, ANALYSIS, ACCEPTED DIRECTION, ACCEPTED, IMPLEMENTED, VERIFIED, SUPERSEDED.

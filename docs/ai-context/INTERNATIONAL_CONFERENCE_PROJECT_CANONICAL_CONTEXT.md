@@ -46,6 +46,8 @@ Not just a website, upload form, or OJS front-end.
 - one WhatsApp number as Front Office gateway;
 - WhatsApp is not source of truth;
 - scholarly model should be ORCID/ROR/OJS/Crossref/DOI-ready;
+- ORCID is optional; lack of ORCID does not block participation/authorship/review/presentation;
+- if ORCID is supplied, future verification can distinguish manual vs authenticated/verified state;
 - GitHub + docs-as-code is engineering source of truth;
 - Project → Phase → Epic → Ticket;
 - no implementation before Definition of Ready.

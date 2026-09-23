@@ -37,13 +37,15 @@
 5. Author and Presenter are distinct.
 6. Co-authors/contributors need not have login accounts.
 7. Scholarly identity is conceptually separate from authentication/account identity.
-8. Domain authorities remain separated:
+8. ORCID is optional. A person does not need an ORCID to register, become an author/co-author, present, review, or otherwise participate.
+9. If available, ORCID may be attached to scholarly identity and later distinguished as manually supplied vs authenticated/verified.
+10. Domain authorities remain separated:
    - Front Office communicates/escalates;
    - Finance controls finance states;
    - Academic roles control academic decisions;
    - Event roles control event operations;
    - Publication roles control publication processing.
-9. Reviewer and Author may coexist, subject to later conflict-of-interest controls.
+11. Reviewer and Author may coexist, subject to later conflict-of-interest controls.
 
 ## Conceptual multi-edition example
 

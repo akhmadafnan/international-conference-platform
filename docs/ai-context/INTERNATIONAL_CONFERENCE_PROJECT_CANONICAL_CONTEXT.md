@@ -96,7 +96,17 @@ Not just a website, upload form, or OJS front-end.
 - global/protected roles cannot be assigned through ordinary edition administration;
 - protected-role self-escalation is denied;
 - protected-role assignment/revocation is auditable;
-- controlled break-glass access may exist for serious incidents but must be reasoned, temporary, scoped, audited, and must not rewrite business authority/history.
+- controlled break-glass access may exist for serious incidents but must be reasoned, temporary, scoped, audited, and must not rewrite business authority/history;
+- Participant access is own-account/own-membership scoped unless another resource relationship grants more;
+- Corresponding Author is the primary submission manager;
+- Co-author/contributor may exist without an account and does not automatically receive submission-edit authority;
+- submission collaboration/delegation is submission-scoped;
+- Author sees only author-facing review information, not anonymous/confidential/internal review data;
+- Presenter cannot self-verify PRESENTED;
+- exceptional non-author Presenter receives limited presentation access, not Author permissions;
+- Invited Speaker/Keynote is edition-scoped and does not imply administrative/reviewer authority;
+- current profile updates do not rewrite historical snapshots;
+- official submissions use formal withdrawal and later contributor changes are controlled.
 
 ## Authentication / registration
 

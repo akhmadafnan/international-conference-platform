@@ -63,6 +63,16 @@
 | REQ-PUB-001 | Presented manuscript may remain publication-blocked | ACCEPTED |
 | REQ-PUB-002 | Required revision must be approved before publication eligibility | ACCEPTED |
 | REQ-INT-OJS-001 | OJS is downstream publication integration | ACCEPTED |
+| REQ-INT-OJS-002 | V1 OJS/proceedings handoff is manual/assisted; API integration is not required | ACCEPTED |
+| REQ-INT-OJS-003 | Publication Queue tracks handoff/status independently from conference academic/payment state | ACCEPTED |
+| REQ-INT-OJS-004 | Final publication metadata is stored as a stable snapshot before/at publication handoff | ACCEPTED |
+| REQ-INT-OJS-005 | OJS IDs, DOI, URLs, ISBN/ISSN references remain external identifiers, not internal primary keys | ACCEPTED |
+| REQ-CERT-009 | Certificates support public verification and QR representation linked to unique verification identity | ACCEPTED |
+| REQ-CERT-010 | Certificate correction supports controlled revocation/reissue or versioned replacement | ACCEPTED |
+| REQ-ARCH-001 | Edition closeout uses an auditable policy-driven checklist | ACCEPTED |
+| REQ-ARCH-002 | Archived editions are historically preserved and primarily read-only | ACCEPTED |
+| REQ-ARCH-003 | Historical corrections after archive require controlled authority, reason, and audit trail | ACCEPTED |
+| REQ-ARCH-004 | Archive retains lifecycle history subject to access/privacy policy | ACCEPTED |
 | REQ-FO-001 | One FO entry point supports participant inquiries | ACCEPTED |
 | REQ-FO-002 | FO is not authoritative for academic/finance/publication decisions | ACCEPTED |
 | REQ-ID-001 | Scholarly identity supports optional ORCID when available; ORCID is not required for participation, authorship, presentation, or review | ACCEPTED |
@@ -85,6 +95,7 @@
 | REQ-LIFE-006 | Starting a paper creates a DRAFT submission that is not yet official submission | ACCEPTED |
 | REQ-LIFE-007 | Historical edition/submission metadata must not be silently rewritten by later global-profile changes | ACCEPTED |
 | REQ-LIFE-008 | Account/profile/edition-membership/draft creation does not itself trigger payment | ACCEPTED |
+| REQ-LIFE-009 | End-to-end conference lifecycle stages 4A–4F are Product Owner approved | ACCEPTED |
 | REQ-PRD-001 | PRD must reach baseline before Phase 1 begins | ACCEPTED |
 
 Statuses: PROPOSED, ANALYSIS, ACCEPTED DIRECTION, ACCEPTED, IMPLEMENTED, VERIFIED, SUPERSEDED.

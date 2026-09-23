@@ -183,8 +183,8 @@ Audit Requirement
 ## Review sequence
 
 - Part 1 — Authorization Foundation: APPROVED
-- Part 2 — Super Admin / Technical Admin / Conference Admin: NEXT
-- Part 3 — Participant / Author / Presenter
+- Part 2 — Super Admin / Technical Admin / Conference Admin: APPROVED
+- Part 3 — Participant / Author / Presenter: NEXT
 - Part 4 — Finance / Refund
 - Part 5 — Academic Committee / Reviewer / Decision Authority
 - Part 6 — Event Operations / Session Chair / Moderator
@@ -192,3 +192,123 @@ Audit Requirement
 - Part 8 — Certificate / Archive
 - Part 9 — Assignment / Revocation / COI / Overrides
 - Part 10 — Full Matrix Consistency Audit
+
+
+## Part 2 — Approved Administrative Role Matrix
+
+### Super Administrator
+
+Scope: `GLOBAL`.
+
+Primary authority:
+- platform governance;
+- conference-series and edition lifecycle administration;
+- global account/access governance;
+- role infrastructure and protected-role administration;
+- global security/audit visibility;
+- emergency platform controls;
+- platform/integration configuration.
+
+Default business-domain restrictions:
+- no automatic payment verification;
+- no automatic refund approval/execution;
+- no automatic academic decision;
+- no automatic reviewer recommendation;
+- no automatic presentation verification;
+- no automatic publication approval.
+
+A Super Administrator who also performs a business-domain function must receive the corresponding additional role/assignment.
+
+### Technical Administrator
+
+Primary authority:
+- application/system configuration;
+- system health/diagnostics;
+- queue/job/notification diagnostics;
+- storage and technical integration operations;
+- backup/restore and maintenance operations as later specified;
+- technical audit subset.
+
+Default restrictions:
+- no Finance authority;
+- no Academic decision authority;
+- no Publication decision authority;
+- no unrestricted confidential-review access;
+- no unrestricted bank/finance-sensitive access.
+
+Technical diagnostics should expose only the minimum business data needed to diagnose the technical problem.
+
+### Conference Administrator
+
+Scope: assigned `EDITION`.
+
+Primary authority:
+- edition configuration;
+- dates/deadlines;
+- tracks/subthemes;
+- forms/templates;
+- fee/refund policy configuration;
+- review-stage configuration;
+- event/presentation configuration;
+- publication/certificate configuration;
+- public/CMS configuration;
+- cross-domain operational status dashboards;
+- edition-role coordination subject to protected-role rules.
+
+Default restrictions:
+- viewing a payment state does not permit payment verification;
+- configuring academic workflow does not permit accepting/rejecting a paper;
+- configuring presentation workflow does not permit marking PRESENTED;
+- configuring publication workflow does not permit publication approval.
+
+### Configuration vs execution
+
+```text
+CONFIGURE POLICY / WORKFLOW
+≠
+EXECUTE AUTHORITATIVE DOMAIN DECISION
+```
+
+Example:
+- Conference Admin may configure conference fee and destination account;
+- Finance verifies an actual transfer.
+- Conference Admin may configure review mode/deadline;
+- Academic Decision Authority records acceptance/rejection.
+
+### Protected-role assignment
+
+Protected roles cannot be self-assigned merely because a person is an administrator.
+
+Global protected roles include at minimum:
+- Super Administrator;
+- Technical Administrator.
+
+Edition-level sensitive roles may include:
+- Finance;
+- Academic Decision Authority;
+- Publication authority;
+- other roles later classified as protected.
+
+Assignment/revocation must be auditable.
+
+Conference Admin cannot assign a global Super Administrator or Technical Administrator role.
+
+### Anti-self-escalation
+
+No administrator may use ordinary role-management capability to self-grant a protected role or bypass separation-of-duties controls.
+
+Any exceptional privilege elevation must use a dedicated, auditable privileged-access mechanism.
+
+### Break-glass / emergency access
+
+The platform should support a controlled emergency-access concept for serious technical/security incidents.
+
+Minimum conceptual requirements:
+- explicit reason;
+- actor identity;
+- scope/resource;
+- temporary/elevated access record;
+- start/end or revocation;
+- sensitive-access audit trail.
+
+Break-glass does not silently convert the administrator into the normal business-domain authority and must not erase the original business history.

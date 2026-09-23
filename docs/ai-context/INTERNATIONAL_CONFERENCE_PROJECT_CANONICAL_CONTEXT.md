@@ -48,7 +48,13 @@ Not just a website, upload form, or OJS front-end.
 - first-edition abstract review defaults to single-anonymous;
 - review architecture is flexible by stage/round/assignment, supporting single-anonymous, double-anonymous, committee screening, variable reviewer counts, assignment-specific tasks/forms, and controlled overrides;
 - final academic decision belongs to the authorized editor/Academic Decision Authority, not automatic reviewer majority voting;
-- separate post-presentation full-paper publication review remains a candidate, not yet locked;
+- post-presentation full-paper Publication Review is part of the publication path;
+- V1 Publication Review defaults to double-anonymous while remaining edition/stage configurable;
+- reviewer count/tasks/forms remain policy-driven through the common Review Stage engine;
+- session feedback is distinct from formal Publication Review;
+- publication decision outcomes are revision required / approved / rejected, followed by an auditable Publication Eligibility Gate;
+- publication rejection does not erase presenter history and does not automatically trigger conference-fee refund;
+- conference platform controls PUBLICATION_ELIGIBLE before downstream OJS/proceedings handoff;
 - abstract selection mode configurable;
 - abstract acceptance/LoA means accepted for presentation, not publication;
 - Full Paper is required after acceptance and validated before presentation;

@@ -186,8 +186,8 @@ Audit Requirement
 - Part 2 — Super Admin / Technical Admin / Conference Admin: APPROVED
 - Part 3 — Participant / Author / Presenter: APPROVED
 - Part 4 — Finance / Refund: APPROVED
-- Part 5 — Academic Committee / Reviewer / Decision Authority: NEXT
-- Part 6 — Event Operations / Session Chair / Moderator
+- Part 5 — Academic Committee / Reviewer / Decision Authority: APPROVED
+- Part 6 — Event Operations / Session Chair / Moderator: NEXT
 - Part 7 — Publication / OJS
 - Part 8 — Certificate / Archive
 - Part 9 — Assignment / Revocation / COI / Overrides
@@ -668,3 +668,198 @@ Architecture must remain compatible with future separation such as:
 - Finance Approver.
 
 The physical permission design must not make future separation impossible.
+
+
+## Part 5 — Approved Academic Committee / Reviewer / Decision Authority Matrix
+
+### Academic Committee
+
+Academic Committee manages academic review operations and may:
+- screen academic eligibility where assigned;
+- discover/select reviewers;
+- create/manage review assignments;
+- configure/manage review rounds and deadlines within edition policy;
+- send reminders;
+- screen COI;
+- replace/cancel/reassign reviewers;
+- monitor review progress;
+- view relevant reviewer identity;
+- view relevant reviewer recommendations;
+- view author-facing comments;
+- view confidential editor comments;
+- view COI declarations and assignment history.
+
+Academic Committee does not automatically hold final academic decision authority.
+
+### Reviewer
+
+Reviewer access is scoped to the specific review assignment.
+
+Reviewer may:
+- accept/decline assignment;
+- declare COI;
+- view assigned manuscript/version;
+- view assignment instructions/form;
+- draft and submit review;
+- submit author-facing comments;
+- submit confidential editor comments where enabled;
+- submit recommendation;
+- view own submitted review/history.
+
+Reviewer may not:
+- browse unrelated submissions;
+- self-select arbitrary submissions;
+- assign/replace other reviewers;
+- access raw Finance data;
+- edit Author manuscript/metadata;
+- make final academic decision.
+
+### Assigned version
+
+Reviewer access is tied to the assigned manuscript version/round.
+
+A new manuscript version does not automatically become visible to the Reviewer unless a new/continued assignment explicitly grants access.
+
+### Anonymity enforcement
+
+Anonymity is enforced per review assignment.
+
+For `single_anonymous`:
+- Reviewer may see Author identity;
+- Author may not see Reviewer identity.
+
+For `double_anonymous`:
+- Reviewer receives anonymized manuscript/content;
+- Reviewer cannot access Author identity, affiliation, email, profile/account, ORCID, contributor identity, or identity-bearing original files where those reveal identity;
+- Author cannot access Reviewer identity.
+
+Mixed anonymity across different assignments on the same submission must not leak identity between assignments.
+
+### Reviewer-to-reviewer visibility
+
+Default V1:
+- Reviewer cannot see another Reviewer's report/identity merely because both review the same submission.
+- Academic Committee/Decision Authority may view all relevant reports according to role.
+
+Future post-completion peer-review visibility may be configurable, but default is deny.
+
+### Conflict of Interest
+
+Before substantive review access, Reviewer must declare COI/assignment acceptance status.
+
+COI may result in:
+- decline;
+- blocked assignment;
+- cancelled assignment;
+- reassignment.
+
+Academic Committee may also screen COI.
+
+Restriction/COI overrides normal role permission.
+
+### Reviewer recommendation
+
+Reviewer recommendation is advisory and never automatically determines final outcome.
+
+No automatic majority-vote decision is permitted unless a future explicit edition policy is approved.
+
+### Academic Decision Authority
+
+Academic Decision Authority records authoritative academic decisions for the applicable review stage.
+
+Abstract stage outcomes may include:
+- ACCEPTED;
+- REVISION_REQUIRED;
+- REJECTED.
+
+Publication-review outcomes may include:
+- REVISION_REQUIRED;
+- PUBLICATION_APPROVED;
+- PUBLICATION_REJECTED.
+
+Decision Authority may access the academic evidence required for decision-making:
+- relevant submission/manuscript;
+- review assignments;
+- reviewer identity where authorized;
+- reviewer recommendations;
+- author-facing comments;
+- confidential comments;
+- COI status;
+- revision/version history;
+- relevant academic history.
+
+This role does not automatically receive Finance, Event-verification, or OJS-transfer authority.
+
+### Stage-scoped decision authority
+
+Decision authority may differ by stage.
+
+Example:
+- Abstract Review → Scientific Committee Chair;
+- Publication Review → Proceedings/Academic Editor.
+
+The implementation must not assume one universal decision authority for the entire lifecycle.
+
+### Decision rationale
+
+Where the final decision materially diverges from normal review synthesis or uses an exceptional/override path, a rationale must be recorded and auditable according to policy.
+
+### Submitted review lock
+
+```text
+REVIEW_DRAFT
+→ Reviewer editable
+
+REVIEW_SUBMITTED
+→ locked by default
+```
+
+Correction requires controlled reopen/return workflow with audit.
+
+### Assignment history preservation
+
+Reviewer assignments are not silently deleted.
+
+Invitation/acceptance/decline/cancel/reassign/completion history remains traceable.
+
+### Confidential comment boundary
+
+Author-facing comments and confidential editor comments are separate channels.
+
+Confidential comments must not be exposed to Authors through:
+- UI;
+- API;
+- export;
+- decision letter;
+- email;
+- generated document.
+
+### Anonymous identity leakage prevention
+
+Reviewer/Author identity restrictions must apply beyond visible UI fields, including:
+- download/file access;
+- file names where identity-bearing;
+- URLs;
+- exports;
+- notifications;
+- email templates;
+- document metadata;
+- author-visible audit/history.
+
+### Multi-role academic COI
+
+Academic Committee may also act as Reviewer, but Reviewer-assignment anonymity rules remain assignment-specific.
+
+Academic Decision Authority who is also an Author/Contributor on the same submission is conflicted and cannot make the final decision for that submission.
+
+### Decision correction
+
+Final academic decisions are not silently overwritten.
+
+Correction/supersession preserves:
+- prior decision;
+- new decision;
+- reason;
+- authority;
+- timestamp;
+- relevant reference/evidence.

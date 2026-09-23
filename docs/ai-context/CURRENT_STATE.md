@@ -48,9 +48,10 @@ The next product-analysis sequence is:
 2. **PRD-002 / Part 2** — Actor/user model and multi-role relationships: **APPROVED; ORCID optional-policy amendment recorded**.
 3. **REQ-ACTOR-001** — Actor catalog baseline: **APPROVED; detailed permission matrix remains pending**.
 4. **PRD-002 / Part 3 / REQ-AUTH-001** — Progressive/Hybrid authentication model: **APPROVED**.
-5. **PRD-002 / Part 4 / REQ-LIFE-001** — Validate end-to-end conference lifecycle: **NEXT**.
-6. **INT-BASE-001** — Integration baseline.
-7. **GOV-GATE-001** — Phase 0 consistency audit and Phase 1 readiness.
+5. **PRD-002 / Part 4A / REQ-LIFE-001** — Registration → Profile → Join Edition → Submission Entry: **APPROVED**.
+6. **PRD-002 / Part 4B / REQ-LIFE-001** — Abstract Draft → Payment → Payment Verification → Official Submission: **NEXT**.
+7. **INT-BASE-001** — Integration baseline.
+8. **GOV-GATE-001** — Phase 0 consistency audit and Phase 1 readiness.
 
 ## Human local workspace
 

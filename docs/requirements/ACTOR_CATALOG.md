@@ -1,6 +1,6 @@
 # Actor Catalog — Approved Baseline
 
-**Status:** PRODUCT OWNER APPROVED BASELINE — permission model Parts 1–6 approved; detailed actor-by-domain matrix still in progress
+**Status:** PRODUCT OWNER APPROVED BASELINE — permission model Parts 1–7 approved; detailed actor-by-domain matrix still in progress
 
 ## Participant-side actors
 
@@ -169,3 +169,21 @@ Core rules:
 - Authoritative schedule changes belong to Event Operations/authorized edition operations; published changes are traceable.
 - Event actors cannot normally verify their own presentation.
 - Event-domain state does not grant Academic/Publication/Certificate issuance authority.
+
+
+## Publication permission boundaries — approved
+
+- Publication Team / Proceeding Editor is edition-scoped publication-operations authority.
+- PUBLICATION_APPROVED, PUBLICATION_ELIGIBLE, and PUBLISHED remain distinct.
+- Publication Team does not automatically hold Academic Decision Authority.
+- Publication Team only processes papers that have passed the required publication gate.
+- Publication Team receives derived Finance/eligibility status, not raw Finance evidence by default.
+- Final publication metadata is snapshotted.
+- Substantive authorship/manuscript changes require controlled correction/authority.
+- V1 OJS handoff is manual/assisted and handled by Publication Team.
+- OJS/DOI/URL/ISBN/ISSN identifiers remain external references.
+- Publication transfer/status changes are auditable.
+- Downstream failure/withdrawal preserves conference/presentation history.
+- Publication Team cannot bypass review/eligibility gates, including on its own papers.
+- Publication records are corrected through controlled history, not hard-deleted.
+- V1 may combine Publication Team/Proceeding Editor while remaining ready for future publication sub-roles.

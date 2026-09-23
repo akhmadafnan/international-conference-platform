@@ -1,6 +1,6 @@
 # Current Project State
 
-**State ID:** ICP-STATE-20260923-10  
+**State ID:** ICP-STATE-20260924-01  
 **Status:** PHASE 0 IN PROGRESS  
 **Implementation authorization:** NOT GRANTED
 
@@ -62,9 +62,10 @@ The next product-analysis sequence is:
 16. **REQ-PERM-001 / Part 4** — Finance & Refund: **APPROVED**.
 17. **REQ-PERM-001 / Part 5** — Academic Committee, Reviewer, Academic Decision Authority: **APPROVED**.
 18. **REQ-PERM-001 / Part 6** — Event Operations, Session Chair, Moderator: **APPROVED**.
-19. **REQ-PERM-001 / Part 7** — Publication Team / Proceeding Editor / OJS handoff: **NEXT**.
-20. **REQ-NFR-001 / INT-BASE-001** — Non-functional and integration baselines: **PENDING**.
-21. **GOV-GATE-001** — Phase 0 consistency audit and Phase 1 readiness: **PENDING**.
+19. **REQ-PERM-001 / Part 7** — Publication Team / Proceeding Editor / OJS handoff: **APPROVED**.
+20. **REQ-PERM-001 / Part 8** — Certificate & Archive: **NEXT**.
+21. **REQ-NFR-001 / INT-BASE-001** — Non-functional and integration baselines: **PENDING**.
+22. **GOV-GATE-001** — Phase 0 consistency audit and Phase 1 readiness: **PENDING**.
 
 ## Human local workspace
 

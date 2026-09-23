@@ -168,5 +168,19 @@
 | DEC-164 | Presenter substitutions and post-event presenter corrections are traceable/controlled | ACCEPTED |
 | DEC-165 | Event actors cannot normally verify their own presentation | ACCEPTED |
 | DEC-166 | Event status authority does not imply Academic/Publication/Certificate issuance authority | ACCEPTED |
+| DEC-167 | Publication Team/Proceeding Editor is edition-scoped publication-operations authority | ACCEPTED |
+| DEC-168 | PUBLICATION_APPROVED, PUBLICATION_ELIGIBLE, and PUBLISHED remain distinct states/authorities | ACCEPTED |
+| DEC-169 | Publication Team does not automatically receive Academic Decision Authority and cannot bypass review/eligibility gates | ACCEPTED |
+| DEC-170 | Publication Team processes only submissions that have satisfied required publication eligibility | ACCEPTED |
+| DEC-171 | Publication Team consumes derived Finance/eligibility state rather than raw Finance evidence by default | ACCEPTED |
+| DEC-172 | Final publication metadata is snapshotted before/at handoff | ACCEPTED |
+| DEC-173 | Substantive authorship/manuscript changes after protected stages require controlled correction/authority | ACCEPTED |
+| DEC-174 | V1 OJS/proceedings handoff is manual/assisted and operated by Publication Team | ACCEPTED |
+| DEC-175 | External OJS/DOI/URL/ISBN/ISSN references never become internal primary keys | ACCEPTED |
+| DEC-176 | Publication transfer/status changes are auditable and must reflect known downstream fact | ACCEPTED |
+| DEC-177 | Downstream publication failure/withdrawal preserves legitimate conference/presentation/certificate history | ACCEPTED |
+| DEC-178 | Publication Team cannot bypass academic/publication gates on its own paper | ACCEPTED |
+| DEC-179 | Publication records are corrected through controlled audited history, not free hard delete | ACCEPTED |
+| DEC-180 | V1 may combine Publication Team/Proceeding Editor while remaining ready for future publication sub-roles | ACCEPTED |
 
 Statuses: PROPOSED, ANALYZED, ACCEPTED DIRECTION, ACCEPTED, REJECTED, SUPERSEDED, OPEN.

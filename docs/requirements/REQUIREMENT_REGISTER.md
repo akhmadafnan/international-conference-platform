@@ -166,6 +166,20 @@
 | REQ-PERM-068 | Presenter substitutions and post-event presenter corrections are traceable/controlled | ACCEPTED |
 | REQ-PERM-069 | Event actors cannot normally verify their own presentation | ACCEPTED |
 | REQ-PERM-070 | Event-domain status authority does not confer Academic, Publication, or Certificate issuance authority | ACCEPTED |
+| REQ-PERM-071 | Publication Team/Proceeding Editor is an edition-scoped publication-operations authority | ACCEPTED |
+| REQ-PERM-072 | PUBLICATION_APPROVED, PUBLICATION_ELIGIBLE, and PUBLISHED are distinct authorization/state concepts | ACCEPTED |
+| REQ-PERM-073 | Publication Team does not automatically hold Academic Decision Authority and cannot bypass publication-review/eligibility gates | ACCEPTED |
+| REQ-PERM-074 | Publication Team may process only submissions that have satisfied the required publication gate | ACCEPTED |
+| REQ-PERM-075 | Publication Team consumes derived Finance/eligibility status rather than raw Finance evidence by default | ACCEPTED |
+| REQ-PERM-076 | Final publication metadata is preserved as a stable snapshot before/at handoff | ACCEPTED |
+| REQ-PERM-077 | Substantive authorship/manuscript changes after protected stages require controlled correction/authority | ACCEPTED |
+| REQ-PERM-078 | V1 manual/assisted OJS/proceedings handoff is an authorized Publication Team operation | ACCEPTED |
+| REQ-PERM-079 | OJS/DOI/URL/ISBN/ISSN and similar identifiers remain external references, not internal primary keys | ACCEPTED |
+| REQ-PERM-080 | Publication transfer/status changes are auditable and must reflect known downstream fact | ACCEPTED |
+| REQ-PERM-081 | Publication failure/withdrawal preserves legitimate conference/presentation/certificate history | ACCEPTED |
+| REQ-PERM-082 | Publication Team cannot bypass review/eligibility gates on its own papers | ACCEPTED |
+| REQ-PERM-083 | Publication records are not freely hard-deleted; corrections use controlled audited history | ACCEPTED |
+| REQ-PERM-084 | V1 may combine Publication Team/Proceeding Editor responsibilities while remaining ready for future publication sub-role separation | ACCEPTED |
 | REQ-PRD-001 | PRD must reach baseline before Phase 1 begins | ACCEPTED |
 
 Statuses: PROPOSED, ANALYSIS, ACCEPTED DIRECTION, ACCEPTED, IMPLEMENTED, VERIFIED, SUPERSEDED.

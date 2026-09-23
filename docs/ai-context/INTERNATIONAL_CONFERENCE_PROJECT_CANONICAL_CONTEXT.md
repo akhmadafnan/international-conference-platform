@@ -3,7 +3,7 @@
 **ID:** ICP-CANONICAL-001  
 **Version:** 0.3.0  
 **Status:** ACTIVE — PHASE 0  
-**Updated:** 2026-09-23
+**Updated:** 2026-09-24
 
 ## Purpose
 
@@ -132,7 +132,20 @@ Not just a website, upload form, or OJS front-end.
 - presentation verification is auditable and separate from exception/makeup approval;
 - published schedule changes and presenter substitutions/corrections are traceable;
 - event actors cannot normally verify their own presentation;
-- event-domain authority does not imply Academic/Publication/Certificate issuance authority.
+- event-domain authority does not imply Academic/Publication/Certificate issuance authority;
+- Publication Team/Proceeding Editor is edition-scoped publication-operations authority;
+- PUBLICATION_APPROVED, PUBLICATION_ELIGIBLE, and PUBLISHED remain distinct;
+- Publication Team cannot bypass academic/publication-review/eligibility gates;
+- Publication Team receives publication-required metadata plus derived Finance/eligibility status, not raw Finance evidence by default;
+- final publication metadata is snapshotted before/at handoff;
+- substantive authorship/manuscript changes after protected stages require controlled authority;
+- V1 manual/assisted OJS handoff is handled by Publication Team;
+- OJS/DOI/URL/ISBN/ISSN remain external references;
+- publication transfer/status changes are auditable and must reflect known downstream fact;
+- publication failure/withdrawal preserves conference/presentation/certificate history;
+- Publication Team cannot bypass gates on its own paper;
+- publication records are not freely hard-deleted;
+- V1 may combine Publication Team/Proceeding Editor while remaining ready for future sub-role separation.
 
 ## Authentication / registration
 

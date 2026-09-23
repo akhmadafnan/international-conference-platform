@@ -188,8 +188,8 @@ Audit Requirement
 - Part 4 — Finance / Refund: APPROVED
 - Part 5 — Academic Committee / Reviewer / Decision Authority: APPROVED
 - Part 6 — Event Operations / Session Chair / Moderator: APPROVED
-- Part 7 — Publication / OJS: NEXT
-- Part 8 — Certificate / Archive
+- Part 7 — Publication / OJS: APPROVED
+- Part 8 — Certificate / Archive: NEXT
 - Part 9 — Assignment / Revocation / COI / Overrides
 - Part 10 — Full Matrix Consistency Audit
 
@@ -1021,3 +1021,161 @@ Own-presentation verification must be performed by another authorized event veri
 Event authority records factual presentation/attendance states.
 
 Certificate issuance remains a separate certificate-domain process that consumes those states according to certificate rules.
+
+
+## Part 7 — Approved Publication Team / Proceeding Editor / OJS Handoff Matrix
+
+### Publication Team
+
+Scope: `EDITION`.
+
+Publication Team is the operational authority for downstream publication processing after the required academic/publication gates have been satisfied.
+
+It may:
+- manage Publication Queue;
+- validate final publication metadata;
+- prepare publication package;
+- record READY_FOR_TRANSFER;
+- perform manual/assisted OJS/proceedings handoff;
+- record TRANSFERRED / IN_PUBLICATION_PROCESS / PUBLISHED;
+- record external publication references;
+- perform controlled publication-record corrections.
+
+It does not automatically hold Academic Decision Authority.
+
+### Publication state separation
+
+```text
+PUBLICATION_APPROVED
+≠
+PUBLICATION_ELIGIBLE
+≠
+PUBLISHED
+```
+
+- Academic Decision Authority controls PUBLICATION_APPROVED.
+- Eligibility rules/gate control PUBLICATION_ELIGIBLE.
+- Publication Team controls downstream publication operations/status tracking after eligibility.
+
+Publication Team cannot use operational permissions to bypass academic review or eligibility gates.
+
+### Publication Queue
+
+Only submissions satisfying the required publication gate may enter the actionable publication-processing queue.
+
+Publication Team may manage:
+- final metadata validation;
+- publication package readiness;
+- transfer destination;
+- transfer timestamps/actor;
+- external processing status;
+- final published references.
+
+### Data visibility
+
+Publication Team may view publication-required data such as:
+- final manuscript/version;
+- title;
+- abstract;
+- keywords;
+- language;
+- contributor order;
+- affiliations;
+- optional ORCID;
+- declarations/consent;
+- presentation/eligibility result;
+- derived payment requirement satisfied/not satisfied.
+
+Publication Team does not receive raw Finance proof/reconciliation/bank details by default.
+
+Confidential academic-review content is limited to what is operationally necessary; publication approval/eligibility result is sufficient unless another academic/editorial role grants more.
+
+### Final publication metadata snapshot
+
+Before/at transfer, the platform preserves an authoritative publication snapshot.
+
+Later current-profile changes do not silently rewrite that snapshot.
+
+Publication Team may correct non-substantive metadata through controlled workflow.
+
+Substantive changes such as:
+- adding/removing/reordering authors after protected stages;
+- major title changes;
+- replacing substantive manuscript content;
+require the appropriate correction/academic authority rather than ordinary publication-operations edit permission.
+
+### Manual/assisted OJS handoff
+
+V1 Publication Team may:
+- export/copy publication metadata;
+- upload/transfer files manually;
+- record publication destination;
+- record OJS/external reference ID;
+- record transferred_at / transferred_by;
+- record external status.
+
+No OJS API integration is required for V1.
+
+### External identifiers
+
+External identifiers may include:
+- OJS submission/reference ID;
+- DOI;
+- publication URL;
+- ISBN/ISSN reference;
+- proceedings/volume/issue reference;
+- published date.
+
+These remain external references and never become internal primary keys.
+
+### Publication status integrity
+
+Publication status must reflect known downstream fact.
+
+`READY_FOR_TRANSFER` cannot be marked `PUBLISHED` merely to clear a queue.
+
+Status transitions are auditable and may require:
+- actor;
+- timestamp;
+- external reference;
+- note/evidence where applicable.
+
+### Publication failure / withdrawal
+
+Downstream states such as PUBLICATION_FAILED or PUBLICATION_WITHDRAWN preserve their history.
+
+They do not erase legitimate:
+- PRESENTED status;
+- conference participation history;
+- presenter certificate history;
+- prior academic history.
+
+### Proceeding Editor and future split
+
+V1 may combine Publication Team / Proceeding Editor operational responsibilities for simplicity.
+
+Permission architecture must remain compatible with future roles such as:
+- Publication Metadata Staff;
+- OJS Operator;
+- Proceeding Editor;
+- Publication Manager.
+
+### Publication self-conflict
+
+A Publication Team member who is also Author may perform ordinary downstream operations on an already-eligible own paper where policy allows.
+
+But they may not:
+- create/force PUBLICATION_APPROVED;
+- bypass PUBLICATION_ELIGIBILITY;
+- bypass required review/revision;
+- use publication operations to rewrite academic history.
+
+Any sensitive exceptional override remains governed separately.
+
+### Publication correction / preservation
+
+Publication records are not freely hard-deleted.
+
+Corrections to DOI/URL/external references/status use controlled correction with audit.
+
+Substantive post-publication metadata corrections are historical corrections and do not imply the external publication has automatically changed.

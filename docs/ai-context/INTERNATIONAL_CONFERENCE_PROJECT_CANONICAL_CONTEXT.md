@@ -50,6 +50,11 @@ Not just a website, upload form, or OJS front-end.
 - final academic decision belongs to the authorized editor/Academic Decision Authority, not automatic reviewer majority voting;
 - separate post-presentation full-paper publication review remains a candidate, not yet locked;
 - abstract selection mode configurable;
+- abstract acceptance/LoA means accepted for presentation, not publication;
+- Full Paper is required after acceptance and validated before presentation;
+- presenter is explicitly designated/confirmed; attendance and presentation statuses are separate;
+- NO_SHOW blocks publication by default unless an authorized makeup/waiver exception applies;
+- manual certificate issuance is allowed only with truthful certificate type and auditable authority/reason; Presenter Certificate requires actual presentation or qualifying authorized exception;
 - presentation does not imply publication readiness;
 - required post-presentation revision blocks publication;
 - OJS is downstream publication infrastructure;

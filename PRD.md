@@ -7,7 +7,7 @@
 **Owner:** Product Owner / Conference Organizer  
 **Purpose:** Define the product to be built before domain/data/technical implementation begins.
 
-**Product Owner Review Progress:** Part 1 — product identity/scale/recurrence/V1-vs-future **APPROVED**; Part 2 — actor model/multi-role/edition scope + optional ORCID **APPROVED**; Part 3 — Progressive/Hybrid Authentication Model **APPROVED on 2026-09-23**.
+**Product Owner Review Progress:** Part 1 — product identity/scale/recurrence/V1-vs-future **APPROVED**; Part 2 — actor model/multi-role/edition scope + optional ORCID **APPROVED**; Part 3 — Progressive/Hybrid Authentication Model **APPROVED**; Part 4A — Registration/Profile/Join Edition/Submission Entry **APPROVED on 2026-09-23**.
 
 ---
 
@@ -280,34 +280,74 @@ Authentication identity is distinct from scholarly identity. ORCID remains optio
 
 ---
 
-## 10. End-to-End Lifecycle — Candidate Baseline
+## 10. End-to-End Lifecycle — Validation In Progress
+
+### 10.1 Stage 4A — Registration → Profile → Join Edition → Submission Entry
+
+**Status: APPROVED**
 
 ```text
-Conference Edition
-→ Participant/Author Entry
-→ Profile / Scholarly Identity
-→ Abstract Draft
-→ Abstract Submit
+Visitor
+→ choose conference edition
+→ Register / Join Conference
+→ provide email
+→ if existing account: authenticate
+→ if new account: verify email and activate reusable account
+→ complete/update global profile
+→ join edition
+→ edition membership created
+→ choose current activity:
+   ├─ Participant Only
+   └─ Submit Paper / Author
+        → create Submission in DRAFT
+```
+
+Approved business rules:
+
+1. The same verified email/account is reused across conference editions; a new account is not created for each edition.
+2. Email must be verified before edition membership is considered active.
+3. A reusable global person/profile may contain identity/contact/current affiliation/preferred locale and optional ORCID.
+4. Joining a conference creates an **edition membership**, not another account.
+5. Participant-only and Author/Submit-Paper are workflow choices, not permanent mutually exclusive identities. A participant may later become an Author while submission is open.
+6. One account may own/manage more than one submission when the edition policy allows it. Submission limits are edition-configurable and must not be hardcoded.
+7. Choosing Submit Paper creates a **DRAFT** submission. A draft is not yet an official conference submission.
+8. Current profile data and historical conference/submission data must be separable. Later profile changes must not silently rewrite historical edition/submission metadata.
+9. Payment does not occur merely because a person created an account, profile, edition membership, or draft submission.
+
+### 10.2 Remaining lifecycle stages to validate
+
+```text
+Stage 4B
+Abstract Draft
+→ Submit Intent
 → Payment
 → Payment Verification
 → Official Submission
-→ Administrative / Academic Processing
+
+Stage 4C
+Administrative / Academic Processing
 → Acceptance / Rejection / Revision
-→ Refund Flow when applicable
-→ Full Paper
-→ Final Validation
+→ Refund when applicable
+
+Stage 4D
+Full Paper
+→ Validation
 → Scheduling
 → Presentation
-→ Post-Presentation Assessment
+
+Stage 4E
+Post-Presentation Assessment
 → Revision when required
 → Publication Eligibility Gate
-→ Proceedings Queue
+
+Stage 4F
+Proceedings Queue
 → OJS
 → Published / Archived
 → Certificate / Historical Record
 ```
 
-This lifecycle will be formally validated during Phase 0.
+These later stages remain unapproved until reviewed by the Product Owner.
 
 ---
 

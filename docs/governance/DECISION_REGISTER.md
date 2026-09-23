@@ -39,5 +39,13 @@
 | DEC-035 | Privileged internal roles require stronger-authentication/MFA readiness | ACCEPTED |
 | DEC-036 | FO cannot perform informal identity recovery/account takeover | ACCEPTED |
 | DEC-037 | Account recovery and primary-email changes are sensitive controlled workflows | ACCEPTED |
+| DEC-038 | The same participant account is reused across conference editions | ACCEPTED |
+| DEC-039 | Verified email is required before edition membership becomes active | ACCEPTED |
+| DEC-040 | Joining an edition creates edition membership, not a new account | ACCEPTED |
+| DEC-041 | Participant-only and Author pathways are not permanently mutually exclusive | ACCEPTED |
+| DEC-042 | Submission-count limits are configurable per edition rather than hardcoded | ACCEPTED |
+| DEC-043 | Starting a paper creates a DRAFT submission; draft is not an official submission | ACCEPTED |
+| DEC-044 | Historical edition/submission metadata is protected from silent retroactive profile changes | ACCEPTED |
+| DEC-045 | Payment does not start merely from account/profile/membership/draft creation | ACCEPTED |
 
 Statuses: PROPOSED, ANALYZED, ACCEPTED DIRECTION, ACCEPTED, REJECTED, SUPERSEDED, OPEN.

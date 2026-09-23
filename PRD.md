@@ -7,7 +7,7 @@
 **Owner:** Product Owner / Conference Organizer  
 **Purpose:** Define the product to be built before domain/data/technical implementation begins.
 
-**Product Owner Review Progress:** Part 1 — Product identity/scale/recurrence/V1-vs-future **APPROVED**; Part 2 — actor model/multi-role/edition scope **APPROVED on 2026-09-23**.
+**Product Owner Review Progress:** Part 1 — product identity/scale/recurrence/V1-vs-future **APPROVED**; Part 2 — actor model/multi-role/edition scope **APPROVED**, with ORCID policy amendment **APPROVED on 2026-09-23**.
 
 ---
 
@@ -339,12 +339,22 @@ Requirements to analyze:
 ### 11.4 Scholarly Identity
 
 Architecture should support:
-- ORCID;
+- **optional ORCID**;
 - multiple affiliations;
 - organization identity;
 - future ROR mapping.
 
-A manually typed ORCID and an authenticated/verified ORCID must be distinguishable if verification is later implemented.
+ORCID is **not mandatory** for Participant, Author, Co-author/Contributor, Presenter, Reviewer, or other actors.
+
+A person who does not have ORCID must still be able to register, submit, participate, review, present, and appear as a contributor according to their permissions.
+
+If a person already has an ORCID, the identifier may be added to their scholarly identity/profile and reused where appropriate for submission/publication metadata.
+
+If ORCID authentication/verification is implemented later, the system must be able to distinguish:
+- ORCID entered manually;
+- ORCID authenticated/verified through an official integration.
+
+Absence of ORCID must never make a person academically ineligible unless a future conference policy explicitly introduces such a rule and records it as a new product decision.
 
 ### 11.5 Abstract Submission
 
@@ -600,7 +610,7 @@ Exact persistence strategy is not decided by this PRD.
 ## 13. Scholarly Metadata & Standards Readiness
 
 The canonical product model should be capable of mapping to:
-- ORCID for researchers;
+- optional ORCID for researchers/contributors when available;
 - ROR for organizations;
 - OJS for publication workflow;
 - Crossref/DOI metadata;

@@ -35,7 +35,15 @@
 | REQ-ACA-013 | Double-anonymous assignments must use anonymized files/metadata and isolated identity visibility | ACCEPTED |
 | REQ-ACA-014 | Reviewer recommendations inform but do not automatically determine the final academic decision | ACCEPTED |
 | REQ-ACA-015 | Review assignments include conflict-of-interest declaration/check and auditable status/history | ACCEPTED |
-| REQ-ACA-008 | Separate post-presentation full-paper publication review remains a candidate and is not yet locked | ANALYSIS |
+| REQ-ACA-008 | Post-presentation full-paper Publication Review is required for the publication path and defaults to double-anonymous in V1 | ACCEPTED |
+| REQ-PUB-003 | Session/presentation feedback is distinct from formal Publication Review | ACCEPTED |
+| REQ-PUB-004 | Publication Review uses configurable Review Stage/Round/Assignment architecture | ACCEPTED |
+| REQ-PUB-005 | V1 Publication Review default is double-anonymous while remaining edition/stage configurable | ACCEPTED |
+| REQ-PUB-006 | Publication Review supports multi-round revision and versioned final manuscripts | ACCEPTED |
+| REQ-PUB-007 | Publication decisions include REVISION_REQUIRED, PUBLICATION_APPROVED, and PUBLICATION_REJECTED | ACCEPTED |
+| REQ-PUB-008 | PUBLICATION_APPROVED must still pass an auditable Publication Eligibility Gate | ACCEPTED |
+| REQ-PUB-009 | Publication rejection preserves conference/presenter history and does not automatically trigger conference-fee refund | ACCEPTED |
+| REQ-PUB-010 | Conference platform controls PUBLICATION_ELIGIBLE before downstream OJS/proceedings handoff | ACCEPTED |
 | REQ-PRES-001 | Abstract acceptance/LoA means accepted for presentation, not publication | ACCEPTED |
 | REQ-PRES-002 | Accepted Author must submit Full Paper by edition-configurable deadline | ACCEPTED |
 | REQ-PRES-003 | Pre-conference Full Paper receives administrative/format validation with version history | ACCEPTED |

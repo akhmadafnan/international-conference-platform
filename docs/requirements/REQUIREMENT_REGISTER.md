@@ -28,6 +28,14 @@
 | REQ-AUTH-006 | FO cannot perform informal account recovery/account takeover | ACCEPTED |
 | REQ-AUTH-007 | Account recovery and primary-email changes are controlled sensitive workflows | ACCEPTED |
 | REQ-AUTH-008 | Authentication identity remains separate from scholarly identity/ORCID | ACCEPTED |
+| REQ-LIFE-001 | Reuse the same verified participant account across conference editions | ACCEPTED |
+| REQ-LIFE-002 | Verified email is required before edition membership becomes active | ACCEPTED |
+| REQ-LIFE-003 | Joining a conference creates an edition membership rather than another account | ACCEPTED |
+| REQ-LIFE-004 | Participant-only and Author/Submit-Paper pathways may coexist/change while edition policy permits | ACCEPTED |
+| REQ-LIFE-005 | Submission count limit is edition-configurable and not hardcoded | ACCEPTED |
+| REQ-LIFE-006 | Starting a paper creates a DRAFT submission that is not yet official submission | ACCEPTED |
+| REQ-LIFE-007 | Historical edition/submission metadata must not be silently rewritten by later global-profile changes | ACCEPTED |
+| REQ-LIFE-008 | Account/profile/edition-membership/draft creation does not itself trigger payment | ACCEPTED |
 | REQ-PRD-001 | PRD must reach baseline before Phase 1 begins | ACCEPTED |
 
 Statuses: PROPOSED, ANALYSIS, ACCEPTED DIRECTION, ACCEPTED, IMPLEMENTED, VERIFIED, SUPERSEDED.

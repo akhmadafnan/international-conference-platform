@@ -36,6 +36,18 @@
 | REQ-ACA-014 | Reviewer recommendations inform but do not automatically determine the final academic decision | ACCEPTED |
 | REQ-ACA-015 | Review assignments include conflict-of-interest declaration/check and auditable status/history | ACCEPTED |
 | REQ-ACA-008 | Separate post-presentation full-paper publication review remains a candidate and is not yet locked | ANALYSIS |
+| REQ-PRES-001 | Abstract acceptance/LoA means accepted for presentation, not publication | ACCEPTED |
+| REQ-PRES-002 | Accepted Author must submit Full Paper by edition-configurable deadline | ACCEPTED |
+| REQ-PRES-003 | Pre-conference Full Paper receives administrative/format validation with version history | ACCEPTED |
+| REQ-PRES-004 | Presenter must be explicitly designated and confirmed | ACCEPTED |
+| REQ-PRES-005 | Scheduling uses Session and Presentation Slot with draft/published states | ACCEPTED |
+| REQ-PRES-006 | Attendance status and presentation status are separate | ACCEPTED |
+| REQ-PRES-007 | Presentation completion requires authorized verification | ACCEPTED |
+| REQ-PRES-008 | NO_SHOW blocks publication by default unless an authorized exception/makeup applies | ACCEPTED |
+| REQ-CERT-001 | Certificate issuance is rule-driven by default but supports authorized manual/ad-hoc issuance | ACCEPTED |
+| REQ-CERT-002 | Manual certificate type/wording must match documented role/status and cannot fabricate presentation | ACCEPTED |
+| REQ-CERT-003 | Presenter Certificate requires PRESENTED status or an authorized qualifying presentation exception/makeup | ACCEPTED |
+| REQ-CERT-004 | Manual certificate issuance records recipient, type, reason, authority, timestamp, and audit history | ACCEPTED |
 | REQ-PUB-001 | Presented manuscript may remain publication-blocked | ACCEPTED |
 | REQ-PUB-002 | Required revision must be approved before publication eligibility | ACCEPTED |
 | REQ-INT-OJS-001 | OJS is downstream publication integration | ACCEPTED |

@@ -19,7 +19,7 @@
 | DEC-015 | Project → Phase → Epic → Ticket | ACCEPTED |
 | DEC-016 | No implementation before Definition of Ready | ACCEPTED |
 | DEC-017 | PRD is a core Phase 0 product-truth artifact | ACCEPTED |
-| DEC-018 | Authentication/registration model | OPEN |
+| DEC-018 | Authentication/registration model: Progressive/Hybrid Account Model | ACCEPTED |
 | DEC-019 | Product is a full academic conference lifecycle platform, not merely website/submission tooling | ACCEPTED |
 | DEC-020 | Initial planning baseline is approximately 100 participants/submissions, primarily Indonesia | ACCEPTED |
 | DEC-021 | One reusable application serves recurring editions while preserving historical editions | ACCEPTED |
@@ -33,5 +33,11 @@
 | DEC-029 | Scholarly identity is conceptually separate from authentication/account identity | ACCEPTED |
 | DEC-030 | ORCID is optional; lack of ORCID must not block registration, authorship, presentation, review, or participation | ACCEPTED |
 | DEC-031 | If provided, ORCID may be stored on scholarly identity; future verification must distinguish manual vs authenticated/verified state | ACCEPTED |
+| DEC-032 | Initial participant registration requires verified email but not mandatory password | ACCEPTED |
+| DEC-033 | Participant account/workspace is reusable across conference editions | ACCEPTED |
+| DEC-034 | Reviewer must use authenticated account access | ACCEPTED |
+| DEC-035 | Privileged internal roles require stronger-authentication/MFA readiness | ACCEPTED |
+| DEC-036 | FO cannot perform informal identity recovery/account takeover | ACCEPTED |
+| DEC-037 | Account recovery and primary-email changes are sensitive controlled workflows | ACCEPTED |
 
 Statuses: PROPOSED, ANALYZED, ACCEPTED DIRECTION, ACCEPTED, REJECTED, SUPERSEDED, OPEN.

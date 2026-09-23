@@ -7,7 +7,7 @@
 **Owner:** Product Owner / Conference Organizer  
 **Purpose:** Define the product to be built before domain/data/technical implementation begins.
 
-**Product Owner Review Progress:** Part 1 — product identity/scale/recurrence/V1-vs-future **APPROVED**; Part 2 — actor model/multi-role/edition scope + optional ORCID **APPROVED**; Part 3 — Progressive/Hybrid Authentication Model **APPROVED**; Part 4A — Registration/Profile/Join Edition/Submission Entry **APPROVED**; Part 4B — Manual Payment → Finance Verification → Official Submission **APPROVED on 2026-09-23**.
+**Product Owner Review Progress:** Part 1 — product identity/scale/recurrence/V1-vs-future **APPROVED**; Part 2 — actor model/multi-role/edition scope + optional ORCID **APPROVED**; Part 3 — Progressive/Hybrid Authentication Model **APPROVED**; Part 4A — Registration/Profile/Join Edition/Submission Entry **APPROVED**; Part 4B — Manual Payment → Finance Verification → Official Submission **APPROVED**; Part 4C — Administrative/Academic Processing → Decision → Refund **APPROVED on 2026-09-23**.
 
 ---
 
@@ -360,14 +360,53 @@ Approved business rules:
 16. Sensitive bank-account/mutation information remains Finance-restricted and is not exposed to Author/FO.
 17. The V1 domain should remain capable of supporting a future payment provider without changing the conference lifecycle semantics.
 
-### 10.3 Remaining lifecycle stages to validate
+### 10.3 Stage 4C — Administrative / Academic Processing → Decision → Refund
+
+**Status: APPROVED**
 
 ```text
-Stage 4C
-Administrative / Academic Processing
-→ Acceptance / Rejection / Revision
-→ Refund when applicable
+OFFICIAL_SUBMISSION
+→ ADMINISTRATIVE_SCREENING
+   ├─ ADMIN_CORRECTION_REQUIRED → correction → re-check
+   ├─ ADMIN_INELIGIBLE → terminal academic path + refund policy
+   └─ PASS
+        → ACADEMIC_PROCESSING
+           ├─ ACCEPTED → proceed to Full Paper stage
+           ├─ REVISION_REQUIRED
+           │    → Abstract Revision Version N+1
+           │    → Academic Re-check
+           └─ REJECTED
+                → REFUND_ELIGIBLE
+                → manual Finance refund
+                → REFUNDED
+```
 
+Approved business rules:
+
+1. Official submissions undergo administrative screening before academic decision processing.
+2. Administrative screening checks eligibility/completeness, not scholarly quality.
+3. Academic-processing method is configurable per edition; the platform must not hardcode one universal review model.
+4. Core academic outcomes for abstract selection are `ACCEPTED`, `REVISION_REQUIRED`, and `REJECTED`.
+5. Abstract revision creates a new version; prior submitted/reviewed versions remain traceable.
+6. Academic decision authority and Finance authority are separate.
+7. Academic rejection automatically creates **refund eligibility**.
+8. For V1, an academically rejected submission receives **100% refund of the conference fee actually paid**.
+9. Refund execution is manual and handled by authorized Finance personnel.
+10. Refund status, amount, recipient data, processor, timestamps, proof/record, and reasons are auditable.
+11. Author withdrawal is not treated as academic rejection; refund follows edition withdrawal policy.
+12. Administrative ineligibility has a separate edition refund policy and is not automatically treated as academic rejection.
+13. Front Office may explain status but cannot change academic decisions or execute/mark refunds.
+14. Refund completion does not erase the historical payment, submission, or academic-decision records.
+
+#### Review anonymity note
+
+The product does **not** require abstract review to be double-blind. The exact abstract-review mode remains edition-configurable/open for the first edition. A practical initial direction is administrative/academic screening or single-anonymous committee/reviewer assessment rather than forcing double-blind review.
+
+A **separate publication-quality review gate for the full paper after presentation** remains a candidate design for later lifecycle stages. Whether that later review is single-anonymous, double-anonymous, committee review, or another documented model remains **OPEN** and must be decided before publication workflow implementation.
+
+### 10.4 Remaining lifecycle stages to validate
+
+```text
 Stage 4D
 Full Paper
 → Validation
@@ -513,28 +552,39 @@ V1 does not require payment-gateway, QRIS, virtual-account, or similar integrati
 
 ### 11.7 Refund
 
-Refund policy must be configurable by edition.
+For V1:
+- academic rejection → refund eligible;
+- academic rejection refund amount → **100% of conference fee actually paid**;
+- refund execution → manual Finance workflow.
 
-Possible concepts:
+Refund policy remains configurable for other causes such as:
+- author withdrawal;
+- administrative ineligibility;
+- cancellation or exceptional organizer policy.
+
+Possible refund states include:
 - eligible;
-- requested;
+- requested / data required;
 - approved;
 - processing;
 - refunded;
 - failed;
-- rejected.
+- rejected/not eligible.
 
-The system must not promise a refund through WhatsApp while authoritative finance state says otherwise.
+The system must not promise or mark a refund through Front Office/WhatsApp while authoritative Finance state says otherwise.
 
 ### 11.8 Administrative / Academic Processing
 
-Edition may use:
-- peer review;
-- academic screening;
-- administrative screening;
+Every official submission enters administrative screening before academic processing.
+
+Edition academic selection may use:
+- academic committee screening;
+- single-anonymous review;
+- double-anonymous review;
+- other documented peer-review model;
 - open/broad acceptance subject to eligibility.
 
-Exact workflow must be configurable enough to avoid rewriting the system between editions.
+The platform must support edition-configurable selection/review policy and must not hardcode double-blind review.
 
 ### 11.9 Review
 
@@ -548,7 +598,7 @@ If peer review is used, expected capabilities may include:
 - review completion;
 - decision support.
 
-Exact blind-review policy remains to be confirmed per edition.
+For the initial edition, abstract review is **not required to be double-blind**. Exact reviewer count, anonymity model, conflict-of-interest rules, reviewer honorarium policy, and whether the post-presentation full paper receives a separate publication-quality review remain to be finalized.
 
 ### 11.10 Academic Decision
 
@@ -860,8 +910,8 @@ Architecture readiness does not mean immediate implementation.
 
 - OPEN-001 Authentication/registration model.
 - OPEN-002 Initial payment model/provider and verification: **RESOLVED — V1 manual bank transfer + Finance verification; no payment gateway required.**
-- OPEN-003 Exact abstract acceptance/review model for first edition.
-- OPEN-004 Refund policy percentages/fees/deadlines.
+- OPEN-003 Exact abstract review model for first edition: **PARTIALLY RESOLVED — double-blind is not mandatory; exact screening/reviewer/anonymity model remains OPEN.**
+- OPEN-004 Refund policy: **PARTIALLY RESOLVED — academic rejection = 100% refund of conference fee paid; withdrawal/admin-ineligible rules remain OPEN.**
 - OPEN-005 Full-paper requirement and timing.
 - OPEN-006 Presentation attendance evidence.
 - OPEN-007 Who approves post-presentation revision?

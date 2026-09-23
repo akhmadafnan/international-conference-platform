@@ -93,5 +93,15 @@
 | DEC-089 | Certificate display date is the configured activity/event date and is distinct from immutable internal creation/generation timestamps | ACCEPTED |
 | DEC-090 | Technical certificate generation timestamps remain internal and need not appear on the certificate or normal public verification page | ACCEPTED |
 | DEC-091 | Every generated certificate receives its own record and unique verification identity/link | ACCEPTED |
+| DEC-092 | PUBLICATION_ELIGIBLE is distinct from PUBLISHED | ACCEPTED |
+| DEC-093 | V1 OJS/proceedings handoff is manual/assisted; API integration is deferred | ACCEPTED |
+| DEC-094 | Publication Team owns the Publication Queue while OJS remains downstream | ACCEPTED |
+| DEC-095 | Final publication metadata is snapshotted before/at handoff and protected from silent profile rewrites | ACCEPTED |
+| DEC-096 | External publication identifiers remain references and never become internal primary keys | ACCEPTED |
+| DEC-097 | Certificate verification includes a public verification identity/link and QR representation | ACCEPTED |
+| DEC-098 | Issued certificate corrections use controlled revocation/reissue or versioned correction | ACCEPTED |
+| DEC-099 | Edition closeout is a formal policy-driven checklist process | ACCEPTED |
+| DEC-100 | Archived editions are preserved, primarily read-only, and corrected only through auditable controlled changes | ACCEPTED |
+| DEC-101 | End-to-end lifecycle stages 4A–4F are approved and REQ-LIFE-001 is complete at PRD level | ACCEPTED |
 
 Statuses: PROPOSED, ANALYZED, ACCEPTED DIRECTION, ACCEPTED, REJECTED, SUPERSEDED, OPEN.

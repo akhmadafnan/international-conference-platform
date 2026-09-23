@@ -67,6 +67,12 @@ Not just a website, upload form, or OJS front-end.
 - presentation does not imply publication readiness;
 - required post-presentation revision blocks publication;
 - OJS is downstream publication infrastructure;
+- V1 OJS/proceedings handoff is manual/assisted through a Publication Queue; API integration is deferred;
+- PUBLICATION_ELIGIBLE and PUBLISHED are distinct states;
+- final publication metadata is snapshotted and external OJS/DOI/URL/ISBN/ISSN identifiers remain external references;
+- certificate capability includes individual/bulk manual builder, unique verification link/identity, public verification + QR, and controlled revoke/reissue;
+- edition closeout uses a policy-driven checklist and ARCHIVED editions are preserved/primarily read-only with controlled auditable correction;
+- end-to-end lifecycle stages 4A–4F are Product Owner approved; REQ-LIFE-001 is complete at PRD level;
 - one WhatsApp number as Front Office gateway;
 - WhatsApp is not source of truth;
 - scholarly model should be ORCID/ROR/OJS/Crossref/DOI-ready;

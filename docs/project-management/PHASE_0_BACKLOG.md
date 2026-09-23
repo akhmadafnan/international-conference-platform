@@ -9,15 +9,15 @@
 
 ## EPIC-0002 — Product Requirements Document
 - PRD-001 Establish PRD structure and v0.1 draft — DONE
-- PRD-002 Product Owner guided review of PRD — READY
+- PRD-002 Product Owner guided review of PRD — IN PROGRESS (core lifecycle review complete)
 - PRD-003 Reconcile PRD with decisions/requirements — BLOCKED BY PRD-002
 - PRD-004 PRD v1.0 baseline approval — BLOCKED
 
 ## EPIC-0003 — Actor & Lifecycle Analysis
-- REQ-ACTOR-001 Finalize Actor Catalog — BACKLOG
-- REQ-AUTH-001 Resolve Authentication / Registration Model — BACKLOG
-- REQ-LIFE-001 Map End-to-End Conference Lifecycle — BACKLOG
-- REQ-PERM-001 Draft Application Permission Matrix — BACKLOG
+- REQ-ACTOR-001 Finalize Actor Catalog — APPROVED BASELINE; detailed permission mapping pending
+- REQ-AUTH-001 Resolve Authentication / Registration Model — DONE
+- REQ-LIFE-001 Map End-to-End Conference Lifecycle — DONE
+- REQ-PERM-001 Draft Application Permission Matrix — NEXT
 
 ## EPIC-0004 — Requirements & Standards
 - REQ-REG-001 Expand Functional Requirement Registry — BACKLOG

@@ -1,7 +1,7 @@
 # Certificate Governance Baseline
 
 **ID:** ICP-REQ-CERT-001  
-**Status:** PARTIALLY APPROVED — DETAIL CONTINUES IN STAGE 4F  
+**Status:** PRODUCT OWNER APPROVED BASELINE — IMPLEMENTATION DETAIL PENDING  
 **Approved principles:** 2026-09-23
 
 ## Core integrity rule
@@ -50,7 +50,18 @@ If a person did not present, use a truthful alternative certificate category suc
 - Recognition/Acknowledgement;
 - another edition-defined category.
 
-Detailed numbering, QR verification, templates, revocation/reissue, and public verification belong to Stage 4F.
+## Verification and lifecycle
+
+Approved certificate capability includes:
+- unique certificate number/canonical identifier;
+- verification code/token;
+- public verification link;
+- QR representation pointing to verification;
+- status such as valid/revoked/reissued as appropriate;
+- controlled revocation/reissue or versioned correction;
+- audit history.
+
+Exact numbering format, token format, QR library, PDF technology, and template implementation remain technical/feature-spec decisions.
 
 
 ## Manual Certificate Builder

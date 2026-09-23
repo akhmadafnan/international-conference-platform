@@ -7,7 +7,7 @@
 **Owner:** Product Owner / Conference Organizer  
 **Purpose:** Define the product to be built before domain/data/technical implementation begins.
 
-**Product Owner Review Progress:** Part 1 — product identity/scale/recurrence/V1-vs-future **APPROVED**; Part 2 — actor model/multi-role/edition scope + optional ORCID **APPROVED**; Part 3 — Progressive/Hybrid Authentication Model **APPROVED**; Part 4A — Registration/Profile/Join Edition/Submission Entry **APPROVED**; Part 4B — Manual Payment → Finance Verification → Official Submission **APPROVED**; Part 4C — Administrative/Academic Processing → Decision → Refund **APPROVED**; Part 4D — Full Paper → LoA → Scheduling → Presentation **APPROVED on 2026-09-23**.
+**Product Owner Review Progress:** Part 1 — product identity/scale/recurrence/V1-vs-future **APPROVED**; Part 2 — actor model/multi-role/edition scope + optional ORCID **APPROVED**; Part 3 — Progressive/Hybrid Authentication Model **APPROVED**; Part 4A — Registration/Profile/Join Edition/Submission Entry **APPROVED**; Part 4B — Manual Payment → Finance Verification → Official Submission **APPROVED**; Part 4C — Administrative/Academic Processing → Decision → Refund **APPROVED**; Part 4D — Full Paper → LoA → Scheduling → Presentation **APPROVED**; Part 4E — Post-Presentation Revision → Publication Review → Publication Eligibility **APPROVED on 2026-09-23**.
 
 ---
 
@@ -475,14 +475,57 @@ Manual issuance must record:
 
 Manual issuance must not silently rewrite the underlying attendance/presentation record.
 
-### 10.5 Remaining lifecycle stages to validate
+### 10.5 Stage 4E — Post-Presentation Revision → Publication Review → Publication Eligibility
+
+**Status: APPROVED**
 
 ```text
-Stage 4E
-Post-Presentation Assessment
-→ Revision when required
-→ Publication Eligibility Gate
+PRESENTED
+→ POST_PRESENTATION_ASSESSMENT
+→ FINAL_MANUSCRIPT_PENDING
+→ revised/final manuscript submitted
+→ PUBLICATION_REVIEW
+   → Review Round 1
+      ├─ Reviewer Assignment 1
+      ├─ Reviewer Assignment 2
+      └─ Reviewer Assignment N
+   → Publication Decision Authority
+      ├─ REVISION_REQUIRED
+      │    → new manuscript version
+      │    → next review round / editorial re-check
+      ├─ PUBLICATION_APPROVED
+      │    → PUBLICATION_ELIGIBILITY_GATE
+      │         ├─ PASS → PUBLICATION_ELIGIBLE
+      │         └─ BLOCKED → action required
+      └─ PUBLICATION_REJECTED
+           → presenter/conference history preserved
+           → no publication eligibility
+```
 
+Approved business rules:
+
+1. `PRESENTED` does not mean publication approval.
+2. Post-presentation feedback may inform revision but is not automatically a formal peer-review report.
+3. Author submits a revised/final manuscript after presentation according to edition policy/deadline.
+4. Publication Review uses the existing configurable Review Stage / Review Round / Review Assignment architecture.
+5. **Default V1 Publication Review mode is double-anonymous**, while remaining configurable per edition/stage and subject to controlled assignment-level override where policy permits.
+6. Double-anonymous review must use anonymized manuscript packets and identity-safe metadata isolation.
+7. Reviewer count remains policy-driven rather than globally hardcoded; exact minimum/target count may be set by edition/publication policy.
+8. Reviewer assignments may have different tasks/forms and may be formal or advisory according to policy.
+9. Review recommendations do not automatically determine the decision; the authorized Publication/Academic Decision Authority records the final decision.
+10. Publication review may use multiple rounds and every substantive revision creates a new traceable manuscript version.
+11. Core publication decisions are `REVISION_REQUIRED`, `PUBLICATION_APPROVED`, and `PUBLICATION_REJECTED`.
+12. A manuscript marked `PUBLICATION_APPROVED` still must pass the Publication Eligibility Gate before it becomes `PUBLICATION_ELIGIBLE`.
+13. Candidate eligibility checks include payment satisfied, abstract acceptance, required full paper/final manuscript, presentation requirement, attendance where required, approved revisions, complete publication metadata, required declarations/consent, and any edition/publication-partner requirements.
+14. A `NO_SHOW` remains publication-blocked unless an authorized qualifying exception/makeup outcome exists.
+15. Publication rejection does not revoke legitimate conference participation/presenter history or a valid presenter certificate.
+16. Publication rejection after the conference does **not** automatically trigger refund of the conference fee; the 100% refund rule applies to academic rejection at the pre-conference abstract-selection stage.
+17. Publication review, manuscript versions, decisions, eligibility checks, overrides, and blocking reasons are auditable.
+18. Publication Eligibility is controlled by the conference platform before downstream OJS/proceedings handoff.
+
+### 10.6 Remaining lifecycle stage to validate
+
+```text
 Stage 4F
 Proceedings Queue
 → OJS
@@ -490,7 +533,7 @@ Proceedings Queue
 → Certificate / Historical Record
 ```
 
-These later stages remain unapproved until reviewed by the Product Owner.
+Stage 4F remains unapproved until reviewed by the Product Owner.
 
 ---
 
@@ -734,35 +777,52 @@ Expected capabilities:
 - makeup/waiver exception handling where approved;
 - attendance/presentation evidence where required.
 
-### 11.13 Post-Presentation Revision
+### 11.13 Post-Presentation Revision & Publication Review
 
 Key rule:
 
 ```text
 PRESENTED
 ≠
-PUBLICATION_READY
+PUBLICATION_APPROVED
+≠
+PUBLICATION_ELIGIBLE
 ```
 
-If revision is required:
-- submission becomes revision-required;
-- author receives clear status/deadline;
-- revised file is submitted;
-- responsible role approves/rejects/requests further changes;
-- publication remains blocked until satisfied.
+After presentation:
+- presentation/session feedback may be recorded;
+- Author submits a revised/final manuscript where required;
+- Publication Review uses the configurable Review Stage engine;
+- V1 default Publication Review mode is **double-anonymous**;
+- review mode and reviewer count remain edition/stage configurable;
+- revised manuscript versions and review rounds remain traceable;
+- formal reviewer reports remain distinct from session/presentation feedback;
+- authorized Publication/Academic Decision Authority records the final publication decision.
+
+Publication-review outcomes:
+- `REVISION_REQUIRED`;
+- `PUBLICATION_APPROVED`;
+- `PUBLICATION_REJECTED`.
+
+Publication rejection preserves legitimate conference participation/presentation history and does not automatically trigger conference-fee refund.
 
 ### 11.14 Publication Eligibility Gate
 
+A publication-approved manuscript must still satisfy an edition-configurable eligibility gate.
+
 Candidate gate items:
 - payment satisfied;
-- required full paper exists;
-- presentation requirement satisfied;
-- attendance requirement satisfied;
-- required revision approved;
-- final approval;
-- publication consent/metadata complete.
+- abstract academic acceptance;
+- required Full Paper/final manuscript exists;
+- presentation requirement satisfied or authorized exception exists;
+- attendance requirement satisfied where configured;
+- required revisions approved;
+- Publication Review approved;
+- final publication metadata complete;
+- publication consent/declarations complete;
+- publisher/proceedings-specific requirements complete.
 
-Exact rule is edition-configurable.
+Only a passing gate yields `PUBLICATION_ELIGIBLE`. Blocking reasons and overrides must be auditable.
 
 ### 11.15 Publication / OJS
 
@@ -1018,11 +1078,11 @@ Architecture readiness does not mean immediate implementation.
 
 - OPEN-001 Authentication/registration model.
 - OPEN-002 Initial payment model/provider and verification: **RESOLVED — V1 manual bank transfer + Finance verification; no payment gateway required.**
-- OPEN-003 Exact abstract review model for first edition: **PARTIALLY RESOLVED — double-blind is not mandatory; exact screening/reviewer/anonymity model remains OPEN.**
+- OPEN-003 Exact abstract review model for first edition: **RESOLVED — default single-anonymous; review engine remains configurable.**
 - OPEN-004 Refund policy: **PARTIALLY RESOLVED — academic rejection = 100% refund of conference fee paid; withdrawal/admin-ineligible rules remain OPEN.**
 - OPEN-005 Full-paper requirement and timing: **RESOLVED — required after abstract acceptance; deadline configurable; administrative/format validation before presentation.**
 - OPEN-006 Presentation attendance evidence: **PARTIALLY RESOLVED — attendance and presentation are separate; V1 may use manual/QR/barcode evidence; exact operational method remains configurable.**
-- OPEN-007 Who approves post-presentation revision?
+- OPEN-007 Post-presentation/publication decision authority: **RESOLVED DIRECTION — authorized Publication/Academic Decision Authority records the decision; exact role mapping remains for permission matrix.**
 - OPEN-008 Initial OJS integration: export/manual-assisted/API?
 - OPEN-009 Certificate eligibility rules.
 - OPEN-010 Initial participant types and fee categories.

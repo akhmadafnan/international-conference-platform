@@ -185,8 +185,8 @@ Audit Requirement
 - Part 1 — Authorization Foundation: APPROVED
 - Part 2 — Super Admin / Technical Admin / Conference Admin: APPROVED
 - Part 3 — Participant / Author / Presenter: APPROVED
-- Part 4 — Finance / Refund: NEXT
-- Part 5 — Academic Committee / Reviewer / Decision Authority
+- Part 4 — Finance / Refund: APPROVED
+- Part 5 — Academic Committee / Reviewer / Decision Authority: NEXT
 - Part 6 — Event Operations / Session Chair / Moderator
 - Part 7 — Publication / OJS
 - Part 8 — Certificate / Archive
@@ -516,3 +516,155 @@ After official submission:
 Participation in the same edition does not grant access to another participant's protected submission/workspace.
 
 Publicly published information remains governed by public-content rules, not protected workspace permissions.
+
+
+## Part 4 — Approved Finance & Refund Role Matrix
+
+### Finance authority
+
+Finance is an `EDITION`-scoped financial authority.
+
+Only an authorized Finance role may make authoritative payment/refund state changes such as:
+- verify submitted payment;
+- set PAYMENT_ACTION_REQUIRED;
+- record PAID;
+- execute eligible refunds;
+- record REFUND_ACTION_REQUIRED;
+- record REFUNDED;
+- perform controlled financial corrections.
+
+### Payment evidence visibility
+
+- Corresponding Author: own uploaded payment proof and payer-facing status only.
+- Finance: payment proof + finance-required verification/reconciliation data.
+- Front Office: payment status/support view; payment proof denied by default.
+- Academic roles: derived payment requirement satisfied/not satisfied where needed; no raw proof by default.
+- Publication Team: derived payment requirement satisfied/not satisfied; no raw proof by default.
+- Event Operations: eligibility/payment requirement status only; no raw proof/amount/reconciliation by default.
+- Conference Admin: operational status visibility; raw payment proof/reconciliation denied by default.
+
+### Bank mutation / reconciliation
+
+Restricted to Finance by default.
+
+May include:
+- transaction/reference;
+- actual amount received;
+- received date/time;
+- matching/reconciliation evidence;
+- internal Finance notes.
+
+Other domains receive derived financial state, not raw reconciliation evidence.
+
+### Payment verification audit
+
+Authoritative verification records:
+- payment/submission reference;
+- verifier;
+- result;
+- verified_at;
+- amount actually received where recorded;
+- reason/note;
+- evidence/reference as policy requires.
+
+Action-required reasons may include:
+- amount mismatch;
+- proof unreadable;
+- transfer not found;
+- wrong destination;
+- duplicate proof;
+- reference mismatch;
+- other.
+
+Only the author-facing reason is exposed to the Author.
+
+### Finance vs Academic authority
+
+```text
+FINANCIAL STATE
+≠
+ACADEMIC STATE
+```
+
+Finance cannot accept/reject/revise a submission academically merely because payment is verified.
+
+### Refund eligibility vs refund execution
+
+```text
+BUSINESS EVENT / POLICY
+→ REFUND_ELIGIBLE
+→ Finance executes refund
+```
+
+Finance does not freely invent academic refund eligibility.
+
+For V1 academic rejection:
+- Academic authority records REJECTED;
+- system/policy creates refund eligibility;
+- Finance processes the refund.
+
+### Refund data
+
+Finance may access the bank/recipient data required to execute a refund.
+
+Front Office and unrelated roles may view safe refund status only.
+
+### Refund amount
+
+Refund amount derives from:
+- applicable refund policy;
+- amount actually paid.
+
+Any exception/override to computed policy amount requires dedicated authority and audit.
+
+### Financial correction
+
+Verified/paid/refunded history is not silently overwritten.
+
+Correction must preserve:
+- before state;
+- after state;
+- reason;
+- actor;
+- timestamp;
+- evidence/reference where applicable.
+
+### No hard delete
+
+Payment/refund records are not freely hard-deleted after they become operational records.
+
+Invalid/incorrect records use controlled void/correction/supersession semantics as later specified.
+
+### Overpayment / partial payment
+
+The system must not assume:
+```text
+actual received amount = amount due
+```
+
+Overpayment or partial/mismatched receipt does not automatically become normal PAID.
+
+V1 may route mismatches to PAYMENT_ACTION_REQUIRED while preserving reconciliation detail.
+
+### Finance self-conflict
+
+A Finance actor cannot normally verify/process:
+- payment for their own submission;
+- refund payable to themselves/their own submission.
+
+Restriction/COI overrides the Finance role allow.
+
+Resolution:
+- another authorized Finance actor; or
+- a controlled exceptional override defined later.
+
+### V1 Finance role vs future split
+
+V1 may use one Finance role for operational simplicity.
+
+Architecture must remain compatible with future separation such as:
+- Payment Verifier;
+- Refund Processor;
+- Finance Approver.
+
+The physical permission design must not make future separation impossible.

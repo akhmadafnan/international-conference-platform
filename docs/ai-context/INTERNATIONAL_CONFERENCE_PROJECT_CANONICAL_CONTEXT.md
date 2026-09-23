@@ -106,7 +106,14 @@ Not just a website, upload form, or OJS front-end.
 - exceptional non-author Presenter receives limited presentation access, not Author permissions;
 - Invited Speaker/Keynote is edition-scoped and does not imply administrative/reviewer authority;
 - current profile updates do not rewrite historical snapshots;
-- official submissions use formal withdrawal and later contributor changes are controlled.
+- official submissions use formal withdrawal and later contributor changes are controlled;
+- Finance is edition-scoped and solely authoritative for payment/refund execution;
+- raw payment proof/reconciliation/bank data is Finance-restricted by default while other domains consume derived financial status;
+- refund eligibility is policy/business-event driven, while Finance executes the eligible refund;
+- financial corrections preserve audit/history and operational payment/refund records are not freely hard-deleted;
+- overpayment/partial mismatch does not automatically become PAID;
+- Finance cannot normally verify/process its own payment/refund case;
+- V1 may use one Finance role while remaining ready for future Finance sub-role separation.
 
 ## Authentication / registration
 

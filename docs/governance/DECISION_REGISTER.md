@@ -133,5 +133,16 @@
 | DEC-129 | Current-profile updates do not rewrite historical conference snapshots | ACCEPTED |
 | DEC-130 | Official submissions are not freely hard-deleted; withdrawal is a formal workflow | ACCEPTED |
 | DEC-131 | Contributor changes after official submission are controlled corrections | ACCEPTED |
+| DEC-132 | Finance is edition-scoped and authoritative for payment/refund execution | ACCEPTED |
+| DEC-133 | Raw bank mutation/reconciliation data is Finance-restricted; other domains consume derived status | ACCEPTED |
+| DEC-134 | Payment proof is related-Author + Finance visible by default; unrelated-role visibility is denied | ACCEPTED |
+| DEC-135 | Finance authority does not confer academic decision authority | ACCEPTED |
+| DEC-136 | Refund eligibility is policy/business-event driven while Finance executes eligible refunds | ACCEPTED |
+| DEC-137 | Refund recipient/bank data is Finance-restricted | ACCEPTED |
+| DEC-138 | Financial corrections are controlled and audited rather than silently overwritten | ACCEPTED |
+| DEC-139 | Payment/refund operational records are not freely hard-deleted | ACCEPTED |
+| DEC-140 | Overpayment/partial mismatch does not automatically become normal PAID | ACCEPTED |
+| DEC-141 | Finance may not normally verify/process its own payment or refund case | ACCEPTED |
+| DEC-142 | V1 may use one Finance role while remaining ready for future Payment Verifier/Refund Processor/Finance Approver separation | ACCEPTED |
 
 Statuses: PROPOSED, ANALYZED, ACCEPTED DIRECTION, ACCEPTED, REJECTED, SUPERSEDED, OPEN.

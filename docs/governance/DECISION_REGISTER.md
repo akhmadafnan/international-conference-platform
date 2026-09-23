@@ -73,5 +73,13 @@
 | DEC-069 | Double-anonymous assignments require isolated anonymized review packets and identity-safe metadata visibility | ACCEPTED |
 | DEC-070 | Final academic decision belongs to the authorized decision authority/editor, not automatic reviewer majority voting | ACCEPTED |
 | DEC-071 | Review assignments require COI controls and auditable assignment/review history | ACCEPTED |
+| DEC-072 | Abstract acceptance and LoA mean accepted for presentation, not publication | ACCEPTED |
+| DEC-073 | Full Paper is required after acceptance and receives pre-conference administrative/format validation | ACCEPTED |
+| DEC-074 | Presenter is explicitly designated/confirmed; Author and Presenter remain distinct | ACCEPTED |
+| DEC-075 | Scheduling uses Session + Presentation Slot with draft/published states | ACCEPTED |
+| DEC-076 | Attendance and presentation are separate statuses and presentation requires authorized verification | ACCEPTED |
+| DEC-077 | NO_SHOW blocks publication by default unless an authorized exception/makeup applies | ACCEPTED |
+| DEC-078 | Manual/ad-hoc certificate issuance is supported with audit trail and truthful certificate type | ACCEPTED |
+| DEC-079 | Presenter Certificate cannot be issued for a non-presenter unless a documented qualifying presentation exception/makeup exists | ACCEPTED |
 
 Statuses: PROPOSED, ANALYZED, ACCEPTED DIRECTION, ACCEPTED, REJECTED, SUPERSEDED, OPEN.

@@ -65,7 +65,7 @@
 | DEC-061 | Withdrawal and administrative-ineligibility refund rules are separate edition policies | ACCEPTED |
 | DEC-062 | Abstract review is not required to be double-blind at platform level | ACCEPTED |
 | DEC-063 | First-edition abstract review defaults to single-anonymous while remaining configurable | ACCEPTED |
-| DEC-064 | Separate post-presentation full-paper publication review is a candidate; default anonymity/minimum reviewer count remain open | OPEN |
+| DEC-064 | Post-presentation full-paper Publication Review is part of the publication path; V1 default is double-anonymous while reviewer count remains policy-configurable | ACCEPTED |
 | DEC-065 | Review architecture is stage/round/assignment based and must not hardcode one global review mode | ACCEPTED |
 | DEC-066 | Reviewer count is variable and policy-driven; 1, 2, 3, or more assignments are supported | ACCEPTED |
 | DEC-067 | Each review assignment may have a distinct purpose/task and review form | ACCEPTED |
@@ -81,5 +81,13 @@
 | DEC-077 | NO_SHOW blocks publication by default unless an authorized exception/makeup applies | ACCEPTED |
 | DEC-078 | Manual/ad-hoc certificate issuance is supported with audit trail and truthful certificate type | ACCEPTED |
 | DEC-079 | Presenter Certificate cannot be issued for a non-presenter unless a documented qualifying presentation exception/makeup exists | ACCEPTED |
+| DEC-080 | Session/presentation feedback is distinct from formal Publication Review | ACCEPTED |
+| DEC-081 | V1 Publication Review defaults to double-anonymous but remains configurable by edition/stage | ACCEPTED |
+| DEC-082 | Publication Review supports multiple rounds and versioned revised/final manuscripts | ACCEPTED |
+| DEC-083 | Publication decisions are REVISION_REQUIRED, PUBLICATION_APPROVED, and PUBLICATION_REJECTED | ACCEPTED |
+| DEC-084 | Reviewer recommendations do not automatically decide publication; authorized Publication/Academic Decision Authority records the decision | ACCEPTED |
+| DEC-085 | PUBLICATION_APPROVED must pass an auditable Publication Eligibility Gate before PUBLICATION_ELIGIBLE | ACCEPTED |
+| DEC-086 | Publication rejection preserves presenter/conference history and does not automatically trigger conference-fee refund | ACCEPTED |
+| DEC-087 | Conference platform is authoritative for PUBLICATION_ELIGIBLE before OJS/proceedings handoff | ACCEPTED |
 
 Statuses: PROPOSED, ANALYZED, ACCEPTED DIRECTION, ACCEPTED, REJECTED, SUPERSEDED, OPEN.

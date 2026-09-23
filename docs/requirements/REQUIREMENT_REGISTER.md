@@ -20,7 +20,14 @@
 | REQ-ID-002 | If ORCID verification is implemented later, manually supplied and authenticated/verified ORCID states must be distinguishable | ACCEPTED DIRECTION |
 | REQ-ORG-001 | Organization/affiliation should be ROR-ready | ACCEPTED DIRECTION |
 | REQ-PUBMETA-001 | Publication metadata should be Crossref/DOI-ready | ACCEPTED DIRECTION |
-| REQ-AUTH-001 | Authentication model must be resolved before implementation | ANALYSIS |
+| REQ-AUTH-001 | Use Progressive/Hybrid Account Model: verified-email participant workspace with no mandatory password at initial registration | ACCEPTED |
+| REQ-AUTH-002 | Participant account is reusable across conference editions | ACCEPTED |
+| REQ-AUTH-003 | Co-author/contributor does not require an account merely to be listed on a submission | ACCEPTED |
+| REQ-AUTH-004 | Reviewer requires authenticated account access | ACCEPTED |
+| REQ-AUTH-005 | Privileged internal roles require stronger-authentication/MFA readiness | ACCEPTED |
+| REQ-AUTH-006 | FO cannot perform informal account recovery/account takeover | ACCEPTED |
+| REQ-AUTH-007 | Account recovery and primary-email changes are controlled sensitive workflows | ACCEPTED |
+| REQ-AUTH-008 | Authentication identity remains separate from scholarly identity/ORCID | ACCEPTED |
 | REQ-PRD-001 | PRD must reach baseline before Phase 1 begins | ACCEPTED |
 
 Statuses: PROPOSED, ANALYSIS, ACCEPTED DIRECTION, ACCEPTED, IMPLEMENTED, VERIFIED, SUPERSEDED.

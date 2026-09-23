@@ -24,5 +24,12 @@
 | DEC-020 | Initial planning baseline is approximately 100 participants/submissions, primarily Indonesia | ACCEPTED |
 | DEC-021 | One reusable application serves recurring editions while preserving historical editions | ACCEPTED |
 | DEC-022 | V1 must complete first-conference operations without forcing future-scale features into V1 | ACCEPTED |
+| DEC-023 | One person may hold multiple conference roles simultaneously | ACCEPTED |
+| DEC-024 | Most conference roles are edition-scoped; Super Admin is global platform scope | ACCEPTED |
+| DEC-025 | Participant is a base edition membership/status concept, not an exclusive role | ACCEPTED |
+| DEC-026 | Author/Corresponding Author and Presenter are distinct | ACCEPTED |
+| DEC-027 | Co-author/contributor may exist without a login account | ACCEPTED |
+| DEC-028 | FO, Finance, Academic, Event, and Publication authority boundaries must remain separated | ACCEPTED |
+| DEC-029 | Scholarly identity is conceptually separate from authentication/account identity | ACCEPTED |
 
 Statuses: PROPOSED, ANALYZED, ACCEPTED DIRECTION, ACCEPTED, REJECTED, SUPERSEDED, OPEN.

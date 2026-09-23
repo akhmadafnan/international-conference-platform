@@ -45,9 +45,9 @@ Branch model:
 The next product-analysis sequence is:
 
 1. **PRD-002 / Part 1** — Product identity, initial scale, recurring editions, V1-vs-future: **APPROVED**.
-2. **PRD-002 / Part 2** — Actor/user model and multi-role relationships: **NEXT**.
-3. **REQ-ACTOR-001** — Finalize actor catalog.
-4. **REQ-AUTH-001** — Resolve authentication/registration model.
+2. **PRD-002 / Part 2** — Actor/user model and multi-role relationships: **APPROVED**.
+3. **REQ-ACTOR-001** — Actor catalog baseline: **APPROVED; detailed permission matrix remains pending**.
+4. **PRD-002 / Part 3 / REQ-AUTH-001** — Resolve authentication/registration model: **NEXT**.
 5. **REQ-LIFE-001** — Validate end-to-end lifecycle.
 6. **INT-BASE-001** — Integration baseline.
 7. **GOV-GATE-001** — Phase 0 consistency audit and Phase 1 readiness.

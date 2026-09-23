@@ -1,7 +1,7 @@
 # End-to-End Conference Lifecycle Baseline
 
 **ID:** ICP-REQ-LIFE-001  
-**Status:** PHASE 0 — PARTIALLY APPROVED  
+**Status:** PHASE 0 — END-TO-END LIFECYCLE APPROVED  
 **Updated:** 2026-09-23
 
 This document is the lifecycle-specific source used to validate the full conference journey.
@@ -14,7 +14,7 @@ This document is the lifecycle-specific source used to validate the full confere
 4C Academic Processing / Decision / Refund                       APPROVED
 4D Full Paper / LoA / Scheduling / Presentation                  APPROVED
 4E Post-Presentation Revision / Publication Review / Gate        APPROVED
-4F OJS / Publication / Certificate / Archive                     NEXT
+4F OJS / Publication / Certificate / Archive                     APPROVED
 ```
 
 ## Stage 4A — Approved
@@ -238,3 +238,44 @@ PRESENTED
 ## Next — Stage 4F
 
 Proceedings/OJS handoff, publication status, certificate completion, archive, and historical record remain to be validated.
+
+
+## Stage 4F — Approved: Publication Handoff, Certificates, Closeout, Archive
+
+```text
+PUBLICATION_ELIGIBLE
+→ PUBLICATION_QUEUE
+→ FINAL METADATA SNAPSHOT
+→ READY_FOR_TRANSFER
+→ MANUAL/ASSISTED OJS HANDOFF
+→ TRANSFERRED
+→ IN_PUBLICATION_PROCESS
+→ PUBLISHED
+→ CERTIFICATE/VERIFICATION
+→ EDITION CLOSEOUT
+→ ARCHIVED
+```
+
+### Approved rules
+
+1. PUBLICATION_ELIGIBLE ≠ PUBLISHED.
+2. Publication Team owns the Publication Queue.
+3. V1 OJS/proceedings handoff is manual/assisted.
+4. OJS remains downstream and does not become conference source of truth.
+5. Final publication metadata is snapshotted and protected from silent current-profile changes.
+6. OJS/DOI/URL/ISBN/ISSN references are external identifiers, not internal primary keys.
+7. Publication transfer/status history is auditable.
+8. Certificates have unique records/verification identities and support public verification + QR.
+9. Manual Certificate Builder supports individual and bulk issuance using configured activity/event date.
+10. Certificate corrections use controlled revoke/reissue/versioned correction.
+11. Edition closeout uses a formal checklist.
+12. Closeout warnings/blockers are policy-driven.
+13. ARCHIVED editions are preserved and primarily read-only.
+14. Historical corrections require authority/reason/audit trail.
+15. Archive retains the complete conference lifecycle history subject to access policy.
+
+## Lifecycle completion
+
+Stages 4A–4F are approved. `REQ-LIFE-001` is complete at product-requirement level.
+
+This does **not** mean application implementation is authorized; detailed permissions, integrations, NFRs, domain/data design, and Phase 0 final gate remain outstanding.

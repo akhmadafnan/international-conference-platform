@@ -107,6 +107,14 @@
 | REQ-PERM-009 | Assignment authority and final decision authority are distinct concepts | ACCEPTED |
 | REQ-PERM-010 | Server-side authorization is mandatory; UI visibility alone is not security | ACCEPTED |
 | REQ-PERM-011 | Historical/archive corrections require controlled special authority and audit | ACCEPTED |
+| REQ-PERM-012 | Super Admin is global platform governance and does not automatically receive business-domain decision permissions | ACCEPTED |
+| REQ-PERM-013 | Technical Admin is limited to system/technical operations and minimum-necessary business-data access by default | ACCEPTED |
+| REQ-PERM-014 | Conference Admin is edition-scoped and may configure workflows/policies without automatically executing domain decisions | ACCEPTED |
+| REQ-PERM-015 | Global protected roles cannot be assigned by ordinary edition-level administration | ACCEPTED |
+| REQ-PERM-016 | Administrators cannot self-assign protected roles through ordinary role management | ACCEPTED |
+| REQ-PERM-017 | Protected-role assignment and revocation are auditable | ACCEPTED |
+| REQ-PERM-018 | Controlled break-glass access may exist for serious technical/security incidents with reason, scope, temporariness, and audit trail | ACCEPTED |
+| REQ-PERM-019 | Break-glass access does not silently convert technical/platform administrators into the normal business-domain decision authority | ACCEPTED |
 | REQ-PRD-001 | PRD must reach baseline before Phase 1 begins | ACCEPTED |
 
 Statuses: PROPOSED, ANALYSIS, ACCEPTED DIRECTION, ACCEPTED, IMPLEMENTED, VERIFIED, SUPERSEDED.

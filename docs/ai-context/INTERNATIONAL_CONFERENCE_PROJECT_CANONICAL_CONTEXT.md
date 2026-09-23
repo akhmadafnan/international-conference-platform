@@ -45,7 +45,9 @@ Not just a website, upload form, or OJS front-end.
 - refund workflow supported and configurable;
 - academic rejection in V1 receives 100% refund of conference fee actually paid;
 - refund execution is manual by Finance; withdrawal/admin-ineligible refund rules are separate edition policies;
-- abstract review is not required to be double-blind; exact first-edition review mode remains open/configurable;
+- first-edition abstract review defaults to single-anonymous;
+- review architecture is flexible by stage/round/assignment, supporting single-anonymous, double-anonymous, committee screening, variable reviewer counts, assignment-specific tasks/forms, and controlled overrides;
+- final academic decision belongs to the authorized editor/Academic Decision Authority, not automatic reviewer majority voting;
 - separate post-presentation full-paper publication review remains a candidate, not yet locked;
 - abstract selection mode configurable;
 - presentation does not imply publication readiness;

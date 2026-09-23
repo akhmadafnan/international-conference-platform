@@ -588,17 +588,45 @@ The platform must support edition-configurable selection/review policy and must 
 
 ### 11.9 Review
 
-If peer review is used, expected capabilities may include:
-- reviewer assignment;
-- review round;
-- due date;
-- recommendation;
-- author-facing comment;
-- confidential comment;
-- review completion;
-- decision support.
+The platform uses a **configurable Review Stage**, inspired by the flexible assignment model used in editorial systems such as OJS, without copying OJS implementation details.
 
-For the initial edition, abstract review is **not required to be double-blind**. Exact reviewer count, anonymity model, conflict-of-interest rules, reviewer honorarium policy, and whether the post-presentation full paper receives a separate publication-quality review remain to be finalized.
+For the first edition, the **default abstract review mode is single-anonymous**:
+- reviewer identity is hidden from the author;
+- reviewer can see author identity.
+
+The architecture must also support:
+- double-anonymous review;
+- committee/non-anonymous academic screening;
+- future additional documented review modes where justified.
+
+Review behavior must be configurable by edition and review stage rather than hardcoded globally.
+
+Expected capabilities:
+- multiple review stages, e.g. Abstract Selection and Publication Review;
+- one or more review rounds per stage;
+- one, two, three, or more reviewer assignments as policy/workload requires;
+- reviewer selected individually by the authorized editor/Academic Committee;
+- assignment-specific task/purpose, such as subject review, methodology review, language review, statistics review, or advisory review;
+- assignment-specific review form;
+- invitation/response/review deadlines;
+- accept/decline invitation;
+- conflict-of-interest declaration/check;
+- reviewer recommendation;
+- comments for author;
+- confidential comments for editor/decision authority;
+- review completion/locking;
+- version-specific review assignment;
+- auditable assignment and review history.
+
+An edition/review-stage may define a default anonymity mode, and authorized editorial staff may apply a controlled per-submission/per-assignment override when policy permits.
+
+A double-anonymous assignment must receive an anonymized review packet/version and must not expose author identity or affiliation to that reviewer. A single-anonymous assignment may expose author identity to the reviewer while preserving reviewer anonymity from the author.
+
+Different anonymity modes must never leak identity across assignments. If mixed modes are used for the same submission, file/metadata visibility must be isolated per assignment.
+
+Reviewer recommendations inform the decision but do **not** automatically determine it by majority vote. The authorized Academic Decision Authority/Editor synthesizes the reviews and records the final decision.
+
+The post-presentation full-paper Publication Review uses the same Review Stage architecture. Its default anonymity mode and minimum reviewer count remain to be decided before publication-review implementation.
 
 ### 11.10 Academic Decision
 

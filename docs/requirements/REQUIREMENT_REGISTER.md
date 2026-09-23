@@ -27,7 +27,14 @@
 | REQ-ACA-004 | Abstract revision creates a new traceable version | ACCEPTED |
 | REQ-ACA-005 | Academic decision authority is separate from Finance authority | ACCEPTED |
 | REQ-ACA-006 | Abstract review is not required to be double-blind at platform level | ACCEPTED |
-| REQ-ACA-007 | Exact first-edition abstract anonymity/reviewer model remains open and edition-configurable | ANALYSIS |
+| REQ-ACA-007 | First-edition abstract review defaults to single-anonymous while remaining edition/stage configurable | ACCEPTED |
+| REQ-ACA-009 | Review engine supports configurable review stages and multiple rounds | ACCEPTED |
+| REQ-ACA-010 | Review stage supports variable reviewer counts rather than a hardcoded fixed number | ACCEPTED |
+| REQ-ACA-011 | Each reviewer assignment may use an assignment-specific task/purpose and review form | ACCEPTED |
+| REQ-ACA-012 | Authorized academic/editorial staff may choose reviewers individually and apply controlled review-mode overrides | ACCEPTED |
+| REQ-ACA-013 | Double-anonymous assignments must use anonymized files/metadata and isolated identity visibility | ACCEPTED |
+| REQ-ACA-014 | Reviewer recommendations inform but do not automatically determine the final academic decision | ACCEPTED |
+| REQ-ACA-015 | Review assignments include conflict-of-interest declaration/check and auditable status/history | ACCEPTED |
 | REQ-ACA-008 | Separate post-presentation full-paper publication review remains a candidate and is not yet locked | ANALYSIS |
 | REQ-PUB-001 | Presented manuscript may remain publication-blocked | ACCEPTED |
 | REQ-PUB-002 | Required revision must be approved before publication eligibility | ACCEPTED |

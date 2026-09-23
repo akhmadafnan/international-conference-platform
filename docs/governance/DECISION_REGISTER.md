@@ -64,7 +64,14 @@
 | DEC-060 | Refund is executed manually by authorized Finance personnel | ACCEPTED |
 | DEC-061 | Withdrawal and administrative-ineligibility refund rules are separate edition policies | ACCEPTED |
 | DEC-062 | Abstract review is not required to be double-blind at platform level | ACCEPTED |
-| DEC-063 | Exact first-edition abstract anonymity/reviewer model remains open/configurable | OPEN |
-| DEC-064 | Separate post-presentation full-paper publication review is a candidate; anonymity/reviewer model remains open | OPEN |
+| DEC-063 | First-edition abstract review defaults to single-anonymous while remaining configurable | ACCEPTED |
+| DEC-064 | Separate post-presentation full-paper publication review is a candidate; default anonymity/minimum reviewer count remain open | OPEN |
+| DEC-065 | Review architecture is stage/round/assignment based and must not hardcode one global review mode | ACCEPTED |
+| DEC-066 | Reviewer count is variable and policy-driven; 1, 2, 3, or more assignments are supported | ACCEPTED |
+| DEC-067 | Each review assignment may have a distinct purpose/task and review form | ACCEPTED |
+| DEC-068 | Authorized academic/editorial staff select reviewers individually and may use controlled anonymity-mode overrides | ACCEPTED |
+| DEC-069 | Double-anonymous assignments require isolated anonymized review packets and identity-safe metadata visibility | ACCEPTED |
+| DEC-070 | Final academic decision belongs to the authorized decision authority/editor, not automatic reviewer majority voting | ACCEPTED |
+| DEC-071 | Review assignments require COI controls and auditable assignment/review history | ACCEPTED |
 
 Statuses: PROPOSED, ANALYZED, ACCEPTED DIRECTION, ACCEPTED, REJECTED, SUPERSEDED, OPEN.

@@ -31,5 +31,7 @@
 | DEC-027 | Co-author/contributor may exist without a login account | ACCEPTED |
 | DEC-028 | FO, Finance, Academic, Event, and Publication authority boundaries must remain separated | ACCEPTED |
 | DEC-029 | Scholarly identity is conceptually separate from authentication/account identity | ACCEPTED |
+| DEC-030 | ORCID is optional; lack of ORCID must not block registration, authorship, presentation, review, or participation | ACCEPTED |
+| DEC-031 | If provided, ORCID may be stored on scholarly identity; future verification must distinguish manual vs authenticated/verified state | ACCEPTED |
 
 Statuses: PROPOSED, ANALYZED, ACCEPTED DIRECTION, ACCEPTED, REJECTED, SUPERSEDED, OPEN.

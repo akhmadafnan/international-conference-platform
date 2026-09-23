@@ -80,7 +80,16 @@ Not just a website, upload form, or OJS front-end.
 - if ORCID is supplied, future verification can distinguish manual vs authenticated/verified state;
 - GitHub + docs-as-code is engineering source of truth;
 - Project → Phase → Epic → Ticket;
-- no implementation before Definition of Ready.
+- no implementation before Definition of Ready;
+- authorization baseline: default deny + least privilege;
+- effective permission is scope/resource/domain/restriction aware rather than role-name only;
+- visibility does not imply authority;
+- Super Admin/Technical Admin do not automatically inherit business-domain decision authority;
+- Conference Admin coordinates edition operations without automatically owning Finance/Academic/Event/Publication decisions;
+- multi-role is allowed but COI/restrictions override normal allows;
+- sensitive-data access follows need-to-know;
+- overrides/exceptions require distinct authority and audit;
+- server-side authorization is mandatory.
 
 ## Authentication / registration
 

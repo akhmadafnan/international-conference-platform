@@ -1,6 +1,6 @@
 # Current Project State
 
-**State ID:** ICP-STATE-20260923-04  
+**State ID:** ICP-STATE-20260923-05  
 **Status:** PHASE 0 IN PROGRESS  
 **Implementation authorization:** NOT GRANTED
 
@@ -56,9 +56,10 @@ The next product-analysis sequence is:
 10. **PRD-002 / Part 4E / REQ-LIFE-001** — Post-Presentation Revision → Publication Review → Publication Eligibility: **APPROVED**.
 11. **PRD-002 / Part 4F / REQ-LIFE-001** — Proceedings/OJS → Publication → Certificate → Archive: **APPROVED**.
 12. **REQ-LIFE-001 End-to-End Conference Lifecycle** — **DONE / PRODUCT REQUIREMENT COMPLETE**.
-13. **REQ-PERM-001** — Detailed application permission matrix: **NEXT HIGH-PRIORITY ANALYSIS**.
-14. **REQ-NFR-001 / INT-BASE-001** — Non-functional and integration baselines: **PENDING**.
-15. **GOV-GATE-001** — Phase 0 consistency audit and Phase 1 readiness: **PENDING**.
+13. **REQ-PERM-001 / Part 1** — Authorization foundation: **APPROVED**.
+14. **REQ-PERM-001 / Part 2** — Super Admin, Technical Admin, Conference Admin: **NEXT**.
+15. **REQ-NFR-001 / INT-BASE-001** — Non-functional and integration baselines: **PENDING**.
+16. **GOV-GATE-001** — Phase 0 consistency audit and Phase 1 readiness: **PENDING**.
 
 ## Human local workspace
 

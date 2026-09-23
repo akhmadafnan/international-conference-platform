@@ -1,6 +1,6 @@
 # Actor Catalog — Approved Baseline
 
-**Status:** PRODUCT OWNER APPROVED BASELINE — permission model Parts 1–4 approved; detailed actor-by-domain matrix still in progress
+**Status:** PRODUCT OWNER APPROVED BASELINE — permission model Parts 1–5 approved; detailed actor-by-domain matrix still in progress
 
 ## Participant-side actors
 
@@ -139,3 +139,19 @@ Core rules:
 - Overpayment/partial mismatch does not automatically become PAID.
 - Finance cannot normally verify or refund its own submission/financial case.
 - V1 may use one Finance role while remaining structurally ready for future Finance sub-roles.
+
+
+## Academic permission boundaries — approved
+
+- Academic Committee manages review operations and reviewer assignments but does not automatically hold final-decision authority.
+- Reviewer is assignment/round/version scoped.
+- Reviewer access is subject to COI and assignment-specific anonymity.
+- Double-anonymous review blocks access to identity-bearing author data/files.
+- Reviewer cannot see other reviewers' reports by default.
+- Reviewer recommendation is advisory; final decision belongs to Academic Decision Authority.
+- Academic Decision Authority may differ by review stage.
+- Submitted reviews are locked by default and reopened only through controlled audit.
+- Reviewer assignment history is preserved.
+- Confidential editor comments never become author-facing data.
+- Author/Reviewer/Decision Authority self-conflict blocks review/decision on own paper.
+- Academic decisions are corrected through controlled supersession, not silent overwrite.

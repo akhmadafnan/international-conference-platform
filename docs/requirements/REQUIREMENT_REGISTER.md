@@ -16,7 +16,8 @@
 | REQ-INT-OJS-001 | OJS is downstream publication integration | ACCEPTED |
 | REQ-FO-001 | One FO entry point supports participant inquiries | ACCEPTED |
 | REQ-FO-002 | FO is not authoritative for academic/finance/publication decisions | ACCEPTED |
-| REQ-ID-001 | Scholarly identity should be ORCID-ready | ACCEPTED DIRECTION |
+| REQ-ID-001 | Scholarly identity supports optional ORCID when available; ORCID is not required for participation, authorship, presentation, or review | ACCEPTED |
+| REQ-ID-002 | If ORCID verification is implemented later, manually supplied and authenticated/verified ORCID states must be distinguishable | ACCEPTED DIRECTION |
 | REQ-ORG-001 | Organization/affiliation should be ROR-ready | ACCEPTED DIRECTION |
 | REQ-PUBMETA-001 | Publication metadata should be Crossref/DOI-ready | ACCEPTED DIRECTION |
 | REQ-AUTH-001 | Authentication model must be resolved before implementation | ANALYSIS |

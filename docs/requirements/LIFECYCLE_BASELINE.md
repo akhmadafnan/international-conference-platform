@@ -12,8 +12,8 @@ This document is the lifecycle-specific source used to validate the full confere
 4A Registration / Profile / Join Edition / Submission Entry     APPROVED
 4B Abstract Draft / Manual Payment / Finance Verification        APPROVED
 4C Academic Processing / Decision / Refund                       APPROVED
-4D Full Paper / Scheduling / Presentation                        NEXT
-4E Post-Presentation Revision / Publication Gate                 PENDING
+4D Full Paper / LoA / Scheduling / Presentation                  APPROVED
+4E Post-Presentation Revision / Publication Gate                 NEXT
 4F OJS / Publication / Certificate / Archive                     PENDING
 ```
 
@@ -159,3 +159,51 @@ The next review must decide:
 - no-show behavior;
 - whether non-presenting accepted papers can proceed;
 - relationship between presentation and later publication-quality review.
+
+
+## Stage 4D — Approved: Full Paper, LoA, Scheduling, Presentation
+
+```text
+ABSTRACT_ACCEPTED
+→ LoA
+→ FULL_PAPER_PENDING
+→ FULL_PAPER_SUBMITTED
+→ FULL_PAPER_VALIDATION
+→ PRESENTER_CONFIRMED
+→ PRESENTATION_READY
+→ SCHEDULED
+→ CHECKED_IN
+→ PRESENTED | NO_SHOW
+```
+
+### Approved rules
+
+1. Abstract acceptance/LoA = acceptance for presentation, not publication.
+2. Full Paper is required after acceptance by an edition-configurable deadline.
+3. Pre-conference Full Paper validation is administrative/format validation.
+4. Full Paper versions are traceable.
+5. Presenter is explicitly designated and confirmed.
+6. Session and Presentation Slot are distinct scheduling concepts.
+7. Schedule has draft/published lifecycle.
+8. Attendance and presentation statuses are separate.
+9. Presentation is verified by an authorized event/session role.
+10. NO_SHOW blocks publication by default.
+11. Makeup/waiver exceptions require authority and audit trail.
+12. Attendance/presentation evidence supports simple V1 operation and future QR/barcode readiness.
+
+### Certificate integrity / manual issuance
+
+Manual certificate issuance is supported as an authorized exception/ad-hoc capability.
+
+It must:
+- use a truthful certificate type;
+- record recipient, reason, authority, timestamp, and issuance mode;
+- not rewrite the underlying attendance/presentation state.
+
+A Presenter Certificate requires documented PRESENTED status or an authorized qualifying presentation exception/makeup outcome.
+
+For people who did not present, edition-defined alternatives may include Participant, Committee, Guest, Supporting Contributor, or another truthful recognition category.
+
+## Next — Stage 4E
+
+Post-presentation revision/publication review/publication eligibility remains to be validated.

@@ -51,8 +51,8 @@ The next product-analysis sequence is:
 5. **PRD-002 / Part 4A / REQ-LIFE-001** — Registration → Profile → Join Edition → Submission Entry: **APPROVED**.
 6. **PRD-002 / Part 4B / REQ-LIFE-001** — Abstract Draft → Manual Payment → Finance Verification → Official Submission: **APPROVED**.
 7. **PRD-002 / Part 4C / REQ-LIFE-001** — Administrative/Academic Processing → Decision → Refund: **APPROVED**.
-8. **Review policy analysis** — Abstract does not require double-blind; exact first-edition review model and possible post-presentation full-paper review: **OPEN / TO BE DISCUSSED**.
-9. **PRD-002 / Part 4D / REQ-LIFE-001** — Full Paper → Scheduling → Presentation: **NEXT after review-policy discussion**.
+8. **Review policy baseline** — First-edition abstract default = single-anonymous; flexible stage/round/assignment architecture supports single/double-anonymous and variable reviewer counts/tasks: **APPROVED**.
+9. **PRD-002 / Part 4D / REQ-LIFE-001** — Full Paper → Scheduling → Presentation: **NEXT**.
 10. **INT-BASE-001** — Integration baseline.
 11. **GOV-GATE-001** — Phase 0 consistency audit and Phase 1 readiness.
 

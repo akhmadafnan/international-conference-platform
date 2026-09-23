@@ -154,6 +154,18 @@
 | REQ-PERM-056 | Confidential editor comments must not be exposed through author-facing UI/API/export/email/documents | ACCEPTED |
 | REQ-PERM-057 | Academic Decision Authority cannot decide a submission where they are an Author/Contributor or otherwise conflicted | ACCEPTED |
 | REQ-PERM-058 | Final academic decision corrections use controlled supersession with prior/new decision, reason, authority, and timestamp | ACCEPTED |
+| REQ-PERM-059 | Event Operations is an edition-scoped event authority | ACCEPTED |
+| REQ-PERM-060 | Session Chair and Moderator permissions are limited to assigned sessions | ACCEPTED |
+| REQ-PERM-061 | Event roles receive operationally necessary/derived readiness data, not raw Finance or confidential review data by default | ACCEPTED |
+| REQ-PERM-062 | Authoritative schedule creation/publishing is controlled by Event Operations/authorized edition operations and published changes are auditable | ACCEPTED |
+| REQ-PERM-063 | Check-in/attendance status is separate from presentation status | ACCEPTED |
+| REQ-PERM-064 | Participant self check-in does not create authoritative PRESENTED status | ACCEPTED |
+| REQ-PERM-065 | PRESENTED/NO_SHOW may be recorded only by an authorized event verifier and is auditable | ACCEPTED |
+| REQ-PERM-066 | Session Chair may verify presentation status within assigned session; Moderator verification is policy-configurable | ACCEPTED |
+| REQ-PERM-067 | Presentation exception/makeup approval is a separate permission from normal verification | ACCEPTED |
+| REQ-PERM-068 | Presenter substitutions and post-event presenter corrections are traceable/controlled | ACCEPTED |
+| REQ-PERM-069 | Event actors cannot normally verify their own presentation | ACCEPTED |
+| REQ-PERM-070 | Event-domain status authority does not confer Academic, Publication, or Certificate issuance authority | ACCEPTED |
 | REQ-PRD-001 | PRD must reach baseline before Phase 1 begins | ACCEPTED |
 
 Statuses: PROPOSED, ANALYSIS, ACCEPTED DIRECTION, ACCEPTED, IMPLEMENTED, VERIFIED, SUPERSEDED.

@@ -124,7 +124,15 @@ Not just a website, upload form, or OJS front-end.
 - submitted reviews are locked and reopen only through controlled audit;
 - reviewer assignment history is preserved;
 - confidential editor comments must never leak to Authors;
-- final academic-decision corrections use controlled supersession.
+- final academic-decision corrections use controlled supersession;
+- Event Operations is edition-scoped while Session Chair/Moderator are session-scoped;
+- event roles receive operationally necessary/derived data only;
+- attendance/check-in is distinct from presentation status and self-check-in never means PRESENTED;
+- Event Operations/Session Chair may verify PRESENTED/NO_SHOW within scope; Moderator verification is configurable;
+- presentation verification is auditable and separate from exception/makeup approval;
+- published schedule changes and presenter substitutions/corrections are traceable;
+- event actors cannot normally verify their own presentation;
+- event-domain authority does not imply Academic/Publication/Certificate issuance authority.
 
 ## Authentication / registration
 

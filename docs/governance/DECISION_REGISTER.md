@@ -158,5 +158,15 @@
 | DEC-154 | Confidential editor comments never become author-facing output | ACCEPTED |
 | DEC-155 | Decision Authority/Reviewer conflict on own paper blocks review/decision authority | ACCEPTED |
 | DEC-156 | Academic decision corrections use controlled supersession rather than silent overwrite | ACCEPTED |
+| DEC-157 | Event Operations is edition-scoped event authority while Session Chair/Moderator are session-scoped | ACCEPTED |
+| DEC-158 | Event roles receive operationally necessary/derived data rather than raw Finance or confidential academic data by default | ACCEPTED |
+| DEC-159 | Published schedule changes are controlled and auditable | ACCEPTED |
+| DEC-160 | Attendance/check-in and presentation status are separate | ACCEPTED |
+| DEC-161 | Self/QR check-in never creates authoritative PRESENTED status | ACCEPTED |
+| DEC-162 | Event Operations and Session Chair may verify PRESENTED/NO_SHOW within scope; Moderator verification is configurable | ACCEPTED |
+| DEC-163 | Presentation verification is auditable and separate from exception/makeup approval | ACCEPTED |
+| DEC-164 | Presenter substitutions and post-event presenter corrections are traceable/controlled | ACCEPTED |
+| DEC-165 | Event actors cannot normally verify their own presentation | ACCEPTED |
+| DEC-166 | Event status authority does not imply Academic/Publication/Certificate issuance authority | ACCEPTED |
 
 Statuses: PROPOSED, ANALYZED, ACCEPTED DIRECTION, ACCEPTED, REJECTED, SUPERSEDED, OPEN.

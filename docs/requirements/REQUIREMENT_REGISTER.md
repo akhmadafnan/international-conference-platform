@@ -291,3 +291,21 @@ Statuses: PROPOSED, ANALYSIS, ACCEPTED DIRECTION, ACCEPTED, IMPLEMENTED, VERIFIE
 | NFR-REL-019 | Conference-day operations require a minimum-necessary continuity pack for offline/manual fallback | ACCEPTED |
 | NFR-REL-020 | Post-outage/manual-fallback reconciliation must be controlled and auditable | ACCEPTED |
 | NFR-REL-021 | Data integrity/correctness takes priority over accepting unsafe transactions during degraded conditions | ACCEPTED |
+
+| NFR-PERF-001 | Typical interactive production requests should target ≤2 seconds, with common-request normal upper expectation ≤3 seconds | ACCEPTED |
+| NFR-PERF-002 | Capacity baseline must support at least 50 concurrent active users on common workflows without severe degradation or data-integrity failure | ACCEPTED |
+| NFR-PERF-003 | Deadline bursts must remain duplicate-safe and must not lose or corrupt state under repeated/concurrent actions | ACCEPTED |
+| NFR-PERF-004 | Large operational lists must use bounded retrieval/pagination rather than unbounded full-table rendering | ACCEPTED |
+| NFR-PERF-005 | Operational queries should be explicitly scoped to the selected/current edition so retained historical editions do not cause unnecessary work | ACCEPTED |
+| NFR-PERF-006 | Common operational search/filtering is server-side and index-ready; dedicated search infrastructure is not mandatory for V1 | ACCEPTED |
+| NFR-PERF-007 | Heavy operations such as bulk certificate generation, large exports, PDF generation, mass notification, and imports must be asynchronous-capable | ACCEPTED |
+| NFR-PERF-008 | File uploads must provide clear progress/wait/failure states, type/size validation, safe retry, and bounded application-resource usage | ACCEPTED |
+| NFR-PERF-009 | Upload size limits are configurable by file requirement/type with an infrastructure safety ceiling | ACCEPTED |
+| NFR-PERF-010 | Bulk certificate/export/notification workflows must support batching/job identity/progress/failure/retry semantics as needed | ACCEPTED |
+| NFR-PERF-011 | Cache may optimize reads but must not become the authoritative source of business truth | ACCEPTED |
+| NFR-PERF-012 | V1 does not require microservices; modular monolith/single-application architecture is acceptable if NFRs are met | ACCEPTED |
+| NFR-PERF-013 | Scaling strategy should be incremental and evidence-driven: efficient queries/indexes → pagination → background jobs → caching/storage optimization → infrastructure scaling | ACCEPTED |
+| NFR-PERF-014 | Performance observability must surface slow requests/jobs/database operations and integration latency/failure | ACCEPTED |
+| NFR-PERF-015 | Critical workflows require performance sanity/regression verification before production launch and major releases | ACCEPTED |
+| NFR-PERF-016 | Heavy/slow external delivery operations must not block authoritative business transactions longer than necessary | ACCEPTED |
+| NFR-PERF-017 | File handling must avoid unbounded in-memory processing of large uploads/artifacts | ACCEPTED |

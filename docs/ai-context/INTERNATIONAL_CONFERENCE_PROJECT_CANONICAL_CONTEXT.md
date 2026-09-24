@@ -199,7 +199,20 @@ Not just a website, upload form, or OJS front-end.
 - export/API authorization mirrors UI authorization and sensitive bulk export may be audited;
 - retention is defined by data class/purpose; exact periods remain deferred pending policy/legal basis;
 - account closure does not automatically erase historical scholarly/financial/certificate/publication/audit facts;
-- synthetic/redacted data is preferred for dev/test/demo/staging/AI prompts, and backups inherit source-data privacy restrictions.
+- synthetic/redacted data is preferred for dev/test/demo/staging/AI prompts, and backups inherit source-data privacy restrictions;
+- production availability objective is at least 99.5% monthly outside announced maintenance, with planned maintenance avoided during critical deadlines/event windows;
+- external-service failure must not cause authoritative core-data loss;
+- critical state changes are consistency-safe and sensitive operations are duplicate-safe/idempotent;
+- backup/recovery covers database plus required private files/generated artifacts and recovery-critical state;
+- normal RPO ≤4h, critical-window target RPO ≤1h where infrastructure reasonably supports it;
+- normal RTO ≤4h, critical-window target RTO ≤2h;
+- production backup is automated, monitored, failure-alerted, and restore-tested before first launch, before each major edition, and periodically (quarterly target while active);
+- backups are failure-domain separated and inherit source-data security/privacy restrictions;
+- database↔file/artifact integrity must be verifiable;
+- integration/notification retries must be safe and delivery failure must not rewrite authoritative business truth;
+- graceful degradation and controlled maintenance are required;
+- conference-day continuity pack plus controlled/auditable post-outage reconciliation are required;
+- data integrity/correctness takes priority over accepting unsafe transactions during degraded conditions.
 
 ## Authentication / registration
 

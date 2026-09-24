@@ -325,3 +325,21 @@ Statuses: PROPOSED, ANALYZED, ACCEPTED DIRECTION, ACCEPTED, REJECTED, SUPERSEDED
 | DEC-311 | Responsive design supports reflow/zoom, avoids unnecessary horizontal scrolling, and respects reduced-motion preference | ACCEPTED |
 | DEC-312 | Accessibility/usability quality applies equally across id/en/ar including Arabic RTL | ACCEPTED |
 | DEC-313 | Accessibility UAT covers representative devices, keyboard, zoom/reflow, semantic/screen-reader sanity, and RTL | ACCEPTED |
+
+| DEC-314 | V1 UI locales are id/en/ar and Arabic is a first-class RTL experience | ACCEPTED |
+| DEC-315 | Translatable UI copy comes from localization resources rather than scattered hardcoded strings | ACCEPTED |
+| DEC-316 | Locale fallback is requested locale → English → controlled missing-translation handling | ACCEPTED |
+| DEC-317 | Critical id/en/ar translation completeness is a release/UAT gate and missing keys are observable | ACCEPTED |
+| DEC-318 | RTL is full layout direction, not merely text-align:right, while directional/non-directional icon behavior is semantic | ACCEPTED |
+| DEC-319 | Mixed Arabic/Latin content requires explicit BiDi-safe handling for email/URL/DOI/ORCID/codes/identifiers | ACCEPTED |
+| DEC-320 | UI locale is separate from scholarly-content language; interface changes never silently translate/mutate paper metadata | ACCEPTED |
+| DEC-321 | Multilingual scholarly metadata is supported/configurable but not globally mandatory for every V1 submission | ACCEPTED |
+| DEC-322 | CMS/public edition content is locale-aware/translatable with explicit translation availability/fallback | ACCEPTED |
+| DEC-323 | Date/time/number formatting is locale-aware, while currency follows edition policy and timezone follows edition/user context | ACCEPTED |
+| DEC-324 | Critical validation/status/confirmation/error text and notifications are locale-aware with deterministic fallback | ACCEPTED |
+| DEC-325 | Generated-document language is explicit and independent of current UI locale; provenance records language/template/version context | ACCEPTED |
+| DEC-326 | Text storage/search is full-Unicode safe; naming models do not force a Western first/middle/last-only structure | ACCEPTED |
+| DEC-327 | The system does not silently auto-transliterate personal/scholarly identity | ACCEPTED |
+| DEC-328 | Locale switching preserves current resource context and does not mutate authoritative data | ACCEPTED |
+| DEC-329 | Authenticated user locale preference is supported while public language switching remains explicit | ACCEPTED |
+| DEC-330 | Arabic RTL receives dedicated UAT and must be tested together with accessibility requirements | ACCEPTED |

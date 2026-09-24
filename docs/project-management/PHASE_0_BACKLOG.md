@@ -21,7 +21,7 @@
 
 ## EPIC-0004 — Requirements & Standards
 - REQ-REG-001 Expand Functional Requirement Registry — BACKLOG
-- REQ-NFR-001 Define Non-Functional Requirements — IN PROGRESS (Parts 1–6 APPROVED; Part 7 Accessibility/Usability/Responsive NEXT)
+- REQ-NFR-001 Define Non-Functional Requirements — IN PROGRESS (Parts 1–7 APPROVED; Part 8 Localization/Internationalization/Arabic RTL NEXT)
 - INT-STD-001 ORCID Baseline — BACKLOG
 - INT-STD-002 ROR Baseline — BACKLOG
 - INT-STD-003 OJS Integration Baseline — BACKLOG

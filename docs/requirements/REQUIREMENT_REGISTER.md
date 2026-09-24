@@ -180,6 +180,22 @@
 | REQ-PERM-082 | Publication Team cannot bypass review/eligibility gates on its own papers | ACCEPTED |
 | REQ-PERM-083 | Publication records are not freely hard-deleted; corrections use controlled audited history | ACCEPTED |
 | REQ-PERM-084 | V1 may combine Publication Team/Proceeding Editor responsibilities while remaining ready for future publication sub-role separation | ACCEPTED |
+| REQ-PERM-085 | Certificate configuration, issuance, manual/bulk issuance, revoke, reissue, and history are distinct capabilities | ACCEPTED |
+| REQ-PERM-086 | Rule-based and Manual Certificate Builder issuance paths are both supported | ACCEPTED |
+| REQ-PERM-087 | Manual Certificate Builder supports individual/bulk issuance and external/manual recipients | ACCEPTED |
+| REQ-PERM-088 | Certificate display date uses configured activity/event date while immutable technical timestamps remain truthful internal audit data | ACCEPTED |
+| REQ-PERM-089 | Certificate issuance provenance distinguishes rule-based/manual/bulk/reissue internally | ACCEPTED |
+| REQ-PERM-090 | Bulk issuance creates an individual certificate record, identifier/number, verification token, and link per recipient | ACCEPTED |
+| REQ-PERM-091 | Public certificate verification exposes minimum credential metadata and hides internal audit/PII by default | ACCEPTED |
+| REQ-PERM-092 | Certificate QR resolves verification identity/link rather than exposing unrestricted PII | ACCEPTED |
+| REQ-PERM-093 | Issued certificates are corrected through revoke/supersede/reissue rather than free in-place edit or hard delete | ACCEPTED |
+| REQ-PERM-094 | Manual certificate issuance does not silently mutate attendance, presentation, academic, or publication states | ACCEPTED |
+| REQ-PERM-095 | Privileged manual certificate self-issuance is denied by default | ACCEPTED |
+| REQ-PERM-096 | Edition closeout is checklist-driven and may allow downstream publication work to continue according to policy | ACCEPTED |
+| REQ-PERM-097 | Archived editions are read-only by default while narrow controlled certificate/publication-reference/historical corrections remain possible | ACCEPTED |
+| REQ-PERM-098 | Historical correction is a dedicated audited capability, not unrestricted archive editing | ACCEPTED |
+| REQ-PERM-099 | Unarchive is an exceptional privileged audited operation and is not required for ordinary post-archive certificate work | ACCEPTED |
+| REQ-PERM-100 | Archive preserves lifecycle records rather than deleting them | ACCEPTED |
 | REQ-PRD-001 | PRD must reach baseline before Phase 1 begins | ACCEPTED |
 
 Statuses: PROPOSED, ANALYSIS, ACCEPTED DIRECTION, ACCEPTED, IMPLEMENTED, VERIFIED, SUPERSEDED.

@@ -343,3 +343,24 @@ Statuses: PROPOSED, ANALYZED, ACCEPTED DIRECTION, ACCEPTED, REJECTED, SUPERSEDED
 | DEC-328 | Locale switching preserves current resource context and does not mutate authoritative data | ACCEPTED |
 | DEC-329 | Authenticated user locale preference is supported while public language switching remains explicit | ACCEPTED |
 | DEC-330 | Arabic RTL receives dedicated UAT and must be tested together with accessibility requirements | ACCEPTED |
+
+| DEC-331 | Conference lifecycle source of truth remains internal to the platform; external systems/channels do not gain authority from delivery/status alone | ACCEPTED |
+| DEC-332 | Business-state commit and external notification/integration delivery are separate concerns | ACCEPTED |
+| DEC-333 | Important integration operations maintain explicit attempt/status history and retry safely/idempotently | ACCEPTED |
+| DEC-334 | External calls use timeout, bounded retry, and backoff/rate-limit-aware behavior | ACCEPTED |
+| DEC-335 | Provider outage degrades only the affected capability where possible and must not unnecessarily block unrelated conference domains | ACCEPTED |
+| DEC-336 | Critical participant business status remains visible in the authenticated workspace independent of notification-channel success | ACCEPTED |
+| DEC-337 | WhatsApp remains a Front Office/support channel, not an authoritative Finance/Academic/Event/Publication/Certificate transaction channel | ACCEPTED |
+| DEC-338 | OJS remains downstream; OJS failure does not erase PUBLICATION_ELIGIBLE or conference history | ACCEPTED |
+| DEC-339 | External IDs remain references, never internal primary keys | ACCEPTED |
+| DEC-340 | Optional scholarly services such as ORCID/ROR cannot block core registration/submission when unavailable | ACCEPTED |
+| DEC-341 | Supplied external identity/reference is not treated as verified/authenticated identity/reference | ACCEPTED |
+| DEC-342 | Crossref/DOI deposit state remains separate from publication approval/eligibility | ACCEPTED |
+| DEC-343 | Future payment callbacks/webhooks require authenticity, transaction/state validation, duplicate safety, amount/currency checks, and audit before changing internal Finance state | ACCEPTED |
+| DEC-344 | Integration processing must safely handle duplicate and out-of-order events | ACCEPTED |
+| DEC-345 | External payloads are untrusted and validated before affecting business state | ACCEPTED |
+| DEC-346 | Provider credentials stay out of source/client/plaintext logs and outbound data is minimum-necessary | ACCEPTED |
+| DEC-347 | Integration history preserves traceable attempts/status/external references without unnecessary raw sensitive payload retention | ACCEPTED |
+| DEC-348 | Critical integrations retain proportional operational/manual fallback paths where practical | ACCEPTED |
+| DEC-349 | Core integration/domain concepts remain provider-neutral enough for later provider replacement | ACCEPTED |
+| DEC-350 | Integration health is observed independently from core application health, and user-facing integration errors remain safe/non-technical | ACCEPTED |

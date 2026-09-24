@@ -384,3 +384,21 @@ Statuses: PROPOSED, ANALYZED, ACCEPTED DIRECTION, ACCEPTED, REJECTED, SUPERSEDED
 | DEC-367 | Deployment/rollback/restore/health/failed-job/secret-rotation runbooks are required operational documentation | ACCEPTED |
 | DEC-368 | Secret rotation/revocation must be supported without rewriting business data | ACCEPTED |
 | DEC-369 | First go-live requires a canonical production-readiness checklist before production authorization | ACCEPTED |
+
+| DEC-370 | Official desktop support uses latest 2 stable major versions of Chrome, Edge, Firefox, and Safari at release time | ACCEPTED |
+| DEC-371 | Mobile Safari and Chrome Android are first-class participant targets; Internet Explorer/unsupported legacy browsers are not official targets | ACCEPTED |
+| DEC-372 | Unsupported browsers fail gracefully with clear guidance rather than blank/broken critical UI | ACCEPTED |
+| DEC-373 | Standards-first implementation and progressive enhancement/fallback are preferred over browser-specific dependence | ACCEPTED |
+| DEC-374 | Smartphone/tablet/laptop/desktop are supported device classes according to role; participant workflows remain viable on realistic mid-range mobile hardware | ACCEPTED |
+| DEC-375 | Slow/unstable network must yield truthful retry/failure handling; full offline/PWA capability is not required for V1 | ACCEPTED |
+| DEC-376 | Essential interactions cannot be hover-only/right-click-only/drag-drop-only/mouse-precision-only or physical-keyboard-dependent | ACCEPTED |
+| DEC-377 | Camera/QR workflows require manual fallback and scanned payload does not itself create authoritative business state | ACCEPTED |
+| DEC-378 | PDF workflows retain authorized download fallback rather than relying only on embedded browser viewers | ACCEPTED |
+| DEC-379 | Refresh/navigation/retry/multiple-tab behavior remains duplicate-safe and stale writes are server-state revalidated | ACCEPTED |
+| DEC-380 | Session-expiry handling works with long-form recovery and context-preserving re-authentication where feasible | ACCEPTED |
+| DEC-381 | Native browser controls/autofill are supported appropriately but server-side validation remains authoritative | ACCEPTED |
+| DEC-382 | Edition timezone semantics remain correct across devices in different local timezones | ACCEPTED |
+| DEC-383 | Compatibility QA combines browser/device with locale, RTL, accessibility, and timezone scenarios | ACCEPTED |
+| DEC-384 | Embedded in-app browsers are best-effort; primary supported browsers remain authoritative support targets | ACCEPTED |
+| DEC-385 | Required browser-storage/cookie failure receives usable guidance and device permissions are requested only when needed | ACCEPTED |
+| DEC-386 | V1 does not require native mobile app/PWA installation; production readiness includes a canonical Browser & Device Support Matrix | ACCEPTED |

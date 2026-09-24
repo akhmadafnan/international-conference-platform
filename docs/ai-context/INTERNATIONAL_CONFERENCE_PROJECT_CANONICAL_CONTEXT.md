@@ -342,7 +342,29 @@ Not just a website, upload form, or OJS front-end.
 - embedded in-app browsers are best-effort while official modern browsers remain primary supported targets;
 - browser storage/cookie restrictions produce usable guidance and device permissions are requested only when needed;
 - native mobile app/PWA installation is not required for V1;
-- production readiness includes a canonical Browser & Device Support Matrix.
+- production readiness includes a canonical Browser & Device Support Matrix;
+- architecture preserves clear modular/domain boundaries without requiring microservices;
+- critical business rules and authorization use authoritative centralized/testable implementation patterns rather than scattered duplication;
+- canonical domain/state vocabulary remains consistent across code/tests/docs/logs/interfaces;
+- material architecture decisions require ADR/Decision Record rationale;
+- dependencies are justified, reproducibly locked, maintained for support/security lifecycle, and have planned upgrade paths;
+- automated tests and UAT are complementary; unit/domain, integration/feature, and representative critical-flow verification are used appropriately;
+- high-risk permission/Finance/refund/academic/anonymity/event/publication/certificate/archive/privacy/correction boundaries receive regression protection;
+- reproducible bugs should gain durable regression guardrails where practical; flaky tests are defects;
+- normal CI does not depend on live production third-party services;
+- time-dependent tests use controllable time and test data is deterministic/isolated;
+- critical-rule/boundary coverage matters more than arbitrary line-coverage percentages;
+- required CI checks can block merge/release and verification follows risk-proportional targeted → broader/full regression → UAT;
+- behavior/contract-changing implementation keeps canonical docs/ADRs/requirements synchronized;
+- inter-module contracts expose minimum necessary data and avoid unnecessary cross-domain coupling;
+- high-risk repair/backfill/correction scripts are version-controlled/reviewed/testable operational code;
+- incident support preserves separation of duties and significant incidents require severity/timeline/root-cause/recovery/follow-up guardrails;
+- routine maintenance covers dependency/security, backup/restore, secret/certificate expiry, failed jobs, storage/log health, browser matrix, and translation completeness;
+- critical operational domains have clear owners/capabilities and technical diagnostics remain minimum-necessary;
+- repository canonical sources, not chat alone, remain durable engineering memory for developer/AI continuity;
+- Definition of Done includes relevant implementation/auth/tests/regression/docs/accessibility/localization/UAT/temporary-harness cleanup;
+- technical debt/workarounds remain explicit and traceable;
+- template/form/state evolution must preserve historical record readability/compatibility.
 
 ## Authentication / registration
 

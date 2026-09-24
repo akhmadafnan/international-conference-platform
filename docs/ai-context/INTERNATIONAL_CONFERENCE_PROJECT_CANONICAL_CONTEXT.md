@@ -212,7 +212,20 @@ Not just a website, upload form, or OJS front-end.
 - integration/notification retries must be safe and delivery failure must not rewrite authoritative business truth;
 - graceful degradation and controlled maintenance are required;
 - conference-day continuity pack plus controlled/auditable post-outage reconciliation are required;
-- data integrity/correctness takes priority over accepting unsafe transactions during degraded conditions.
+- data integrity/correctness takes priority over accepting unsafe transactions during degraded conditions;
+- common interactive requests target ≤2s with a normal upper expectation ≤3s;
+- V1 capacity baseline supports at least 50 concurrent active users on common workflows without severe degradation;
+- deadline bursts must remain duplicate-safe and state-integrity safe;
+- large operational lists are bounded/paginated and current operational queries are edition-scoped;
+- search/filter is server-side and index-ready; dedicated search infrastructure is not mandatory for V1;
+- heavy operations are asynchronous-capable and bulk certificate/export/notification flows are batch/job-ready;
+- uploads expose progress/failure/retry, use configurable type-specific limits, and avoid unbounded memory usage;
+- cache may optimize reads but is never the authoritative business source of truth;
+- microservices are not required for V1; modular-monolith/single-application architecture is valid if NFRs are met;
+- scaling is incremental/evidence-driven rather than premature distributed-system complexity;
+- slow requests/jobs/database operations and integration latency/failure must be observable;
+- critical workflows receive performance sanity/regression verification before production and major releases;
+- slow external delivery should not unnecessarily block authoritative business transactions.
 
 ## Authentication / registration
 

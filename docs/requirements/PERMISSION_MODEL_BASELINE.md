@@ -191,7 +191,7 @@ Audit Requirement
 - Part 7 — Publication / OJS: APPROVED
 - Part 8 — Certificate / Archive: APPROVED
 - Part 9 — Assignment / Revocation / COI / Overrides: APPROVED
-- Part 10 — Full Matrix Consistency Audit: NEXT
+- Part 10 — Full Matrix Consistency Audit: APPROVED / GREEN
 
 
 ## Part 2 — Approved Administrative Role Matrix
@@ -1659,3 +1659,167 @@ At minimum, audit:
 - REASSIGN.
 
 Permission governance changes are first-class audit events.
+
+
+## Part 10 — Corrective Closure & Final Consistency Result
+
+The full Parts 1–9 audit against lifecycle 4A–4F identified five authority-ownership gaps. Product Owner approved closure of all five.
+
+### Gap 1 — Front Office
+
+Front Office is an `EDITION`-scoped support role.
+
+May access safe operational/support status for the assigned edition, including:
+- participant/registration status;
+- submission status;
+- author-visible academic decision/status;
+- safe payment/refund status;
+- full-paper status;
+- schedule/presentation status;
+- publication status;
+- certificate status;
+- support history/case.
+
+May:
+- provide guidance;
+- record support case;
+- resend only permitted system communication/actions;
+- escalate to the authoritative domain owner.
+
+Denied by default:
+- payment verification/refund execution;
+- raw payment proof/bank reconciliation/refund-bank data;
+- confidential review/internal academic deliberation;
+- anonymous reviewer identity;
+- academic decision;
+- PRESENTED/NO_SHOW authority;
+- publication approval/bypass;
+- privileged certificate issuance;
+- impersonation/account takeover.
+
+### Gap 2 — Administrative Screening
+
+Dedicated capability:
+
+`submission.admin_screen`
+
+This is edition-scoped and may be assigned to Conference Admin or a designated edition/Academic Committee staff member.
+
+It may evaluate administrative completeness/eligibility and produce:
+- correction required;
+- administratively ineligible;
+- pass.
+
+It must not perform scholarly-quality judgment or academic acceptance/rejection.
+
+```text
+ADMINISTRATIVE SCREENING
+≠
+ACADEMIC REVIEW / DECISION
+```
+
+### Gap 3 — Formal Withdrawal
+
+Separate capabilities:
+
+```text
+submission.withdraw.request
+→ Corresponding Author / authorized submission manager
+
+submission.withdraw.approve
+→ authorized edition withdrawal authority
+```
+
+V1 may assign approval to Conference Admin or another designated edition authority.
+
+After OFFICIAL_SUBMISSION, withdrawal is a controlled state transition, never hard delete.
+
+Approval records:
+- requester/reason;
+- requested_at;
+- approver/decision;
+- decision_at;
+- lifecycle state;
+- refund-policy consequence.
+
+Later-stage withdrawal must respect active academic/publication dependencies.
+
+### Gap 4 — Contributor/Authorship Change
+
+Dedicated capability:
+
+`submission.contributor_change.approve`
+
+Authority is stage-aware.
+
+Baseline:
+- before protected academic decisions: designated edition administrative/academic authority may approve;
+- after acceptance / during publication review: authorized Academic Decision/editorial authority is required;
+- after final publication snapshot or publication: Publication Team may process the metadata correction only after the required academic/editorial approval;
+- archived records additionally require historical-correction authority where applicable.
+
+Every protected contributor change preserves:
+- prior contributor set/order;
+- replacement contributor set/order;
+- requester;
+- approver;
+- reason;
+- timestamp.
+
+### Gap 5 — Publication Eligibility Gate
+
+Normal eligibility evaluation is policy/system driven from authoritative source facts.
+
+```text
+AUTHORITATIVE FACTS
++ EDITION PUBLICATION POLICY
+→ ELIGIBILITY RESULT
+```
+
+Publication Team may remediate blockers inside its domain, such as missing metadata/files/declarations, but may not falsify source facts from Finance, Academic, or Event domains.
+
+Protected capability:
+
+`publication.eligibility.override`
+
+This is a domain-specific protected override.
+
+It must:
+- identify the blocking condition;
+- preserve source facts;
+- record authority/reason;
+- record result;
+- preserve before/after gate state;
+- record timestamp/evidence/reference.
+
+Example:
+```text
+NO_SHOW remains NO_SHOW
++ authorized qualifying presentation exception
+→ presentation gate may be satisfied
+```
+
+It must never silently rewrite NO_SHOW to PRESENTED, UNPAID to PAID, or PUBLICATION_REJECTED to PUBLICATION_APPROVED.
+
+## Final consistency result
+
+Audit checks completed:
+- lifecycle 4A–4F has an explicit authority path;
+- each authoritative state change has a domain owner or protected capability;
+- read/status visibility is separated from authoritative mutation;
+- cross-edition leakage is prevented conceptually by scope;
+- reviewer/session/submission/resource assignments remain narrower than edition roles;
+- raw Finance and confidential review data remain need-to-know;
+- self-conflict restrictions exist across sensitive domains;
+- protected self-escalation is denied;
+- overrides are domain-specific and preserve original facts;
+- historical attribution survives revocation/reassignment;
+- archive remains preserved/read-only with narrow post-archive operations;
+- no role receives universal business authority;
+- server-side authorization remains mandatory.
+
+**Result: GREEN — no unresolved permission-ownership gap remains at product-requirement level.**
+
+Physical RBAC/ABAC tables, policies, middleware, permission names, database enums, and framework implementation remain Phase 1+/architecture decisions.
+
+`REQ-PERM-001` is complete at product-requirement level.

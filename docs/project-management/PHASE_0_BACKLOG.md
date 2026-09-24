@@ -21,7 +21,7 @@
 
 ## EPIC-0004 — Requirements & Standards
 - REQ-REG-001 Expand Functional Requirement Registry — BACKLOG
-- REQ-NFR-001 Define Non-Functional Requirements — IN PROGRESS (Parts 1–7 APPROVED; Part 8 Localization/Internationalization/Arabic RTL NEXT)
+- REQ-NFR-001 Define Non-Functional Requirements — IN PROGRESS (Parts 1–8 APPROVED; Part 9 Integration Resilience/Notifications/External Boundaries NEXT)
 - INT-STD-001 ORCID Baseline — BACKLOG
 - INT-STD-002 ROR Baseline — BACKLOG
 - INT-STD-003 OJS Integration Baseline — BACKLOG
@@ -30,8 +30,8 @@
 - INT-STD-006 WhatsApp FO Integration Baseline — BACKLOG
 
 ## EPIC-0005 — Localization Foundation
-- REQ-L10N-001 Localization Policy — BACKLOG
-- REQ-L10N-002 Arabic RTL Policy — BACKLOG
+- REQ-L10N-001 Localization Policy — APPROVED BASELINE via NFR Part 8
+- REQ-L10N-002 Arabic RTL Policy — APPROVED BASELINE via NFR Part 8
 
 ## EPIC-0006 — Phase Gate
 - GOV-GATE-001 Phase 0 Consistency Audit — BACKLOG

@@ -1,6 +1,6 @@
 # Actor Catalog — Approved Baseline
 
-**Status:** PRODUCT OWNER APPROVED BASELINE — permission model Parts 1–7 approved; detailed actor-by-domain matrix still in progress
+**Status:** PRODUCT OWNER APPROVED BASELINE — permission model Parts 1–8 approved; detailed actor-by-domain matrix still in progress
 
 ## Participant-side actors
 
@@ -187,3 +187,19 @@ Core rules:
 - Publication Team cannot bypass review/eligibility gates, including on its own papers.
 - Publication records are corrected through controlled history, not hard-deleted.
 - V1 may combine Publication Team/Proceeding Editor while remaining ready for future publication sub-roles.
+
+
+## Certificate & archive permission boundaries — approved
+
+- Certificate issuance/configuration/revoke/reissue are separate capabilities rather than automatic consequences of a broad admin role.
+- V1 may assign certificate capabilities to Conference Admin or another designated operator.
+- Rule-based and manual individual/bulk issuance are supported.
+- Every generated certificate has its own record/number/token/link.
+- Public verification exposes minimum credential metadata only.
+- Issued certificates use controlled revoke/supersede/reissue rather than free edit or hard delete.
+- Manual issuance does not silently rewrite event/academic/publication states.
+- Privileged manual self-issuance is denied by default.
+- Edition closeout is checklist-driven.
+- ARCHIVED is read-only by default.
+- Narrow certificate/historical correction capabilities may remain active on archived editions without reopening the entire edition.
+- Unarchive is exceptional privileged authority.

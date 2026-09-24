@@ -309,3 +309,26 @@ Statuses: PROPOSED, ANALYSIS, ACCEPTED DIRECTION, ACCEPTED, IMPLEMENTED, VERIFIE
 | NFR-PERF-015 | Critical workflows require performance sanity/regression verification before production launch and major releases | ACCEPTED |
 | NFR-PERF-016 | Heavy/slow external delivery operations must not block authoritative business transactions longer than necessary | ACCEPTED |
 | NFR-PERF-017 | File handling must avoid unbounded in-memory processing of large uploads/artifacts | ACCEPTED |
+
+| NFR-OBS-001 | Business audit trail is distinct from technical application logs | ACCEPTED |
+| NFR-OBS-002 | Business audit records are append-only/immutable in normal application workflow and are not freely edited/deleted | ACCEPTED |
+| NFR-OBS-003 | Sensitive lifecycle, security, permission, override, correction, archive, and certificate actions must be auditable | ACCEPTED |
+| NFR-OBS-004 | Exceptional access to restricted data, including break-glass sensitive reads, must be auditable where applicable | ACCEPTED |
+| NFR-OBS-005 | Technical logs should be structured and correlation/request-ID capable | ACCEPTED |
+| NFR-OBS-006 | Technical logs use consistent severity/context and avoid unbounded production DEBUG verbosity | ACCEPTED |
+| NFR-OBS-007 | Secrets, authentication tokens, unnecessary PII, financial data, review-confidential text, and manuscript payloads must be redacted/excluded from logs | ACCEPTED |
+| NFR-OBS-008 | Application, database, storage, and critical background-job health must be monitorable | ACCEPTED |
+| NFR-OBS-009 | Request latency, error rate, HTTP 5xx, failed jobs, queue backlog, database slowness, and integration latency/failure must be observable where applicable | ACCEPTED |
+| NFR-OBS-010 | Backup freshness/failure is part of operational monitoring | ACCEPTED |
+| NFR-OBS-011 | Alerts should be actionable and severity-based rather than generated for every minor warning | ACCEPTED |
+| NFR-OBS-012 | Alert sensitivity/escalation may account for edition critical windows | ACCEPTED |
+| NFR-OBS-013 | Authorized audit viewers can search by edition, actor, action, resource, domain, and time range | ACCEPTED |
+| NFR-OBS-014 | Sensitive audit export is permission-restricted and may itself be audited | ACCEPTED |
+| NFR-OBS-015 | Business-audit retention and technical-log retention are separate policies; exact durations remain deferred pending policy | ACCEPTED |
+| NFR-OBS-016 | Technical logs must use bounded retention/rotation/archival so logging cannot exhaust storage | ACCEPTED |
+| NFR-OBS-017 | Internal timestamps must be consistent/unambiguous while user-facing display may convert to edition/user timezone | ACCEPTED |
+| NFR-OBS-018 | User-facing error references should enable correlation with internal diagnostics without exposing stack traces | ACCEPTED |
+| NFR-OBS-019 | Production deployments must be traceable by version/commit, environment, deployment time, and status | ACCEPTED |
+| NFR-OBS-020 | Incident investigation should support reconstruction of cross-request/job/integration timelines through timestamps and correlation context | ACCEPTED |
+| NFR-OBS-021 | Monitoring/observability systems must not become the authoritative business source of truth or a single point of failure for core workflows | ACCEPTED |
+| NFR-OBS-022 | Audit/monitoring controls must be verifiable before production through representative failure/override scenarios | ACCEPTED |

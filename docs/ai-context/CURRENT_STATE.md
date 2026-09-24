@@ -1,6 +1,6 @@
 # Current Project State
 
-**State ID:** ICP-STATE-20260924-06  
+**State ID:** ICP-STATE-20260924-07  
 **Status:** PHASE 0 IN PROGRESS  
 **Implementation authorization:** NOT GRANTED
 
@@ -69,9 +69,10 @@ The next product-analysis sequence is:
 23. **REQ-PERM-001 Detailed Application Permission Matrix** — **DONE / PRODUCT REQUIREMENT COMPLETE**.
 24. **REQ-NFR-001 / Part 1** — Security & Access Protection: **APPROVED**.
 25. **REQ-NFR-001 / Part 2** — Privacy, PII & Sensitive Data Protection: **APPROVED**.
-26. **REQ-NFR-001 / Part 3** — Reliability, Availability, Backup & Disaster Recovery: **NEXT**.
-27. **INT-BASE-001** — Integration baselines: **PENDING**.
-28. **GOV-GATE-001** — Phase 0 consistency audit and Phase 1 readiness: **PENDING**.
+26. **REQ-NFR-001 / Part 3** — Reliability, Availability, Backup & Disaster Recovery: **APPROVED**.
+27. **REQ-NFR-001 / Part 4** — Performance, Capacity & Scalability: **NEXT**.
+28. **INT-BASE-001** — Integration baselines: **PENDING**.
+29. **GOV-GATE-001** — Phase 0 consistency audit and Phase 1 readiness: **PENDING**.
 
 ## Human local workspace
 

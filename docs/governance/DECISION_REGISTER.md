@@ -213,5 +213,15 @@
 | DEC-209 | Sensitive-role revocation must cease new authorization immediately at product-policy level | ACCEPTED |
 | DEC-210 | Active dependency warnings support revocation handoff but do not block emergency revocation | ACCEPTED |
 | DEC-211 | Assignment, revocation, expiry, extension, scope changes, and reassignment are first-class audit events | ACCEPTED |
+| DEC-212 | Front Office is edition-scoped support: safe-status visibility with no automatic business-domain authority | ACCEPTED |
+| DEC-213 | Front Office has no default raw Finance/confidential-review access and no impersonation/account-takeover authority | ACCEPTED |
+| DEC-214 | Administrative screening is a distinct submission.admin_screen capability and is not academic judgment | ACCEPTED |
+| DEC-215 | Official-submission withdrawal separates request from authorized approval and preserves history | ACCEPTED |
+| DEC-216 | Post-submission contributor/authorship correction requires stage-aware protected approval and before/after audit | ACCEPTED |
+| DEC-217 | Publication eligibility normally derives from authoritative facts + edition policy, not discretionary operator mutation | ACCEPTED |
+| DEC-218 | Publication Team may remediate its own-domain blockers but cannot rewrite Finance/Academic/Event source facts | ACCEPTED |
+| DEC-219 | publication.eligibility.override is protected/domain-specific and preserves the original blocking facts | ACCEPTED |
+| DEC-220 | Final permission matrix is canonical for Phase 0 permission requirements | ACCEPTED |
+| DEC-221 | Full permission consistency audit is GREEN and REQ-PERM-001 is complete at product-requirement level | ACCEPTED |
 
 Statuses: PROPOSED, ANALYZED, ACCEPTED DIRECTION, ACCEPTED, REJECTED, SUPERSEDED, OPEN.

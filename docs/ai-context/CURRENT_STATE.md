@@ -1,6 +1,6 @@
 # Current Project State
 
-**State ID:** ICP-STATE-20260924-03  
+**State ID:** ICP-STATE-20260924-04  
 **Status:** PHASE 0 IN PROGRESS  
 **Implementation authorization:** NOT GRANTED
 
@@ -46,7 +46,7 @@ The next product-analysis sequence is:
 
 1. **PRD-002 / Part 1** — Product identity, initial scale, recurring editions, V1-vs-future: **APPROVED**.
 2. **PRD-002 / Part 2** — Actor/user model and multi-role relationships: **APPROVED; ORCID optional-policy amendment recorded**.
-3. **REQ-ACTOR-001** — Actor catalog baseline: **APPROVED; detailed permission matrix remains pending**.
+3. **REQ-ACTOR-001** — Actor catalog baseline: **APPROVED; detailed permission mapping COMPLETE through REQ-PERM-001**.
 4. **PRD-002 / Part 3 / REQ-AUTH-001** — Progressive/Hybrid authentication model: **APPROVED**.
 5. **PRD-002 / Part 4A / REQ-LIFE-001** — Registration → Profile → Join Edition → Submission Entry: **APPROVED**.
 6. **PRD-002 / Part 4B / REQ-LIFE-001** — Abstract Draft → Manual Payment → Finance Verification → Official Submission: **APPROVED**.
@@ -65,9 +65,10 @@ The next product-analysis sequence is:
 19. **REQ-PERM-001 / Part 7** — Publication Team / Proceeding Editor / OJS handoff: **APPROVED**.
 20. **REQ-PERM-001 / Part 8** — Certificate & Archive: **APPROVED**.
 21. **REQ-PERM-001 / Part 9** — Assignment / Revocation / COI / Overrides / Break-glass: **APPROVED**.
-22. **REQ-PERM-001 / Part 10** — Full Permission Matrix Consistency Audit: **NEXT**.
-23. **REQ-NFR-001 / INT-BASE-001** — Non-functional and integration baselines: **PENDING**.
-24. **GOV-GATE-001** — Phase 0 consistency audit and Phase 1 readiness: **PENDING**.
+22. **REQ-PERM-001 / Part 10** — Full Permission Matrix Consistency Audit: **GREEN / DONE**.
+23. **REQ-PERM-001 Detailed Application Permission Matrix** — **DONE / PRODUCT REQUIREMENT COMPLETE**.
+24. **REQ-NFR-001 / INT-BASE-001** — Non-functional and integration baselines: **PENDING**.
+25. **GOV-GATE-001** — Phase 0 consistency audit and Phase 1 readiness: **PENDING**.
 
 ## Human local workspace
 

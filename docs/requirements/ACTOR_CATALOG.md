@@ -1,6 +1,6 @@
 # Actor Catalog — Approved Baseline
 
-**Status:** PRODUCT OWNER APPROVED BASELINE — permission model Parts 1–9 approved; final consistency audit pending
+**Status:** PRODUCT OWNER APPROVED BASELINE — permission model Parts 1–10 complete; REQ-PERM-001 DONE
 
 ## Participant-side actors
 
@@ -218,3 +218,21 @@ Core rules:
 - Break-glass is separate from business override, temporary/scoped/reasoned/audited, and never permanent.
 - Silent impersonation/account takeover is denied; V1 does not require impersonation.
 - Sensitive-role revocation must stop new authorization immediately at the product-policy level.
+
+
+## Final permission-ownership closure
+
+### Front Office
+Edition-scoped support role with broad safe-status visibility but no authoritative Finance/Academic/Event/Publication decision power and no confidential/raw sensitive-data access by default.
+
+### Administrative Screening Authority
+`submission.admin_screen` is a capability assignable to Conference Admin or designated edition/Academic Committee staff. Administrative screening is distinct from scholarly judgment.
+
+### Withdrawal Authority
+Corresponding Author may request withdrawal. `submission.withdraw.approve` belongs to an authorized edition authority; V1 may assign it to Conference Admin/designee.
+
+### Contributor Change Authority
+Protected post-submission contributor/authorship change requires `submission.contributor_change.approve` with stage-aware academic/editorial authority.
+
+### Publication Eligibility Override Authority
+Normal eligibility is policy/system evaluated from authoritative source facts. `publication.eligibility.override` is a protected exception capability that cannot rewrite the underlying Finance/Academic/Event fact.

@@ -127,3 +127,17 @@ Parts 1–10 are approved.
 The final permission consistency audit is GREEN.
 
 `REQ-PERM-001` is DONE at product-requirement level.
+
+
+## NFR Privacy Overlay
+
+Permission grants define who may access data, while privacy rules additionally constrain how that data may be exposed, exported, logged, notified, integrated, retained, and copied across environments.
+
+Key overlay rules:
+- confidential/restricted data stays private by default;
+- reviewer anonymity applies across UI/API/files/export/email/metadata/logs;
+- Finance-restricted evidence does not become visible merely because another role can see a derived status;
+- exports and APIs cannot become authorization bypasses;
+- public certificate verification remains minimum-data only;
+- current-profile edits never silently rewrite historical snapshots;
+- third-party integrations receive only minimum purpose-required data.

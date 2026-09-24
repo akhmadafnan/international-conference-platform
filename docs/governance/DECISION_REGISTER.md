@@ -237,3 +237,15 @@ Statuses: PROPOSED, ANALYZED, ACCEPTED DIRECTION, ACCEPTED, REJECTED, SUPERSEDED
 | DEC-229 | Security-sensitive account/access/override/break-glass events are auditable | ACCEPTED |
 | DEC-230 | Silent impersonation/account takeover remains prohibited and is not required for V1 | ACCEPTED |
 | DEC-231 | Phase 0 locks security behavior, not specific authentication/MFA/session libraries or providers | ACCEPTED |
+
+| DEC-232 | Privacy treatment is sensitivity/purpose-based; the product collects only data needed for defined conference purposes | ACCEPTED |
+| DEC-233 | Current-profile changes never silently rewrite protected historical snapshots | ACCEPTED |
+| DEC-234 | Unpublished manuscripts, financial evidence, reviewer data, and audit/security data are private by default | ACCEPTED |
+| DEC-235 | Reviewer anonymity/confidentiality applies across all technical and communication surfaces, not only UI | ACCEPTED |
+| DEC-236 | Finance-restricted data remains isolated from unrelated operational/support/academic/event/publication surfaces | ACCEPTED |
+| DEC-237 | Notifications and third-party integrations use minimum necessary data; authenticated workspace is preferred for sensitive detail | ACCEPTED |
+| DEC-238 | Public URLs/logs must not expose unnecessary PII, secrets, authentication tokens, or raw restricted content | ACCEPTED |
+| DEC-239 | Export/API access cannot bypass UI authorization boundaries and sensitive bulk export may be audited | ACCEPTED |
+| DEC-240 | Data retention is purpose/data-class specific; exact retention periods remain deferred until policy/legal basis is available | ACCEPTED |
+| DEC-241 | Account closure is distinct from erasure of historical scholarly/financial/certificate/publication/audit facts | ACCEPTED |
+| DEC-242 | Test/staging/demo/backup handling remains subject to production-equivalent privacy boundaries; synthetic/redacted test data is preferred | ACCEPTED |

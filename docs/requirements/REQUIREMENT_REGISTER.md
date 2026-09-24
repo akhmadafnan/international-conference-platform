@@ -457,3 +457,28 @@ Statuses: PROPOSED, ANALYSIS, ACCEPTED DIRECTION, ACCEPTED, IMPLEMENTED, VERIFIE
 | NFR-OPS-024 | Secret rotation/revocation must be operationally supported without rewriting authoritative business data | ACCEPTED |
 | NFR-OPS-025 | Software release must not silently change edition business policy such as fees, deadlines, refund rules, review mode, or certificate eligibility | ACCEPTED |
 | NFR-OPS-026 | First production launch requires a canonical production-readiness checklist covering security, backup/restore, monitoring, HTTPS, mail/storage/database/jobs, privacy, localization/RTL, accessibility, regression, deployment/rollback, and privileged provisioning | ACCEPTED |
+
+| NFR-COMP-001 | Official desktop browser support targets the latest 2 stable major versions of Chrome, Edge, Firefox, and Safari at release time | ACCEPTED |
+| NFR-COMP-002 | Mobile Safari on supported recent iOS/iPadOS and Chrome on supported recent Android are first-class participant targets | ACCEPTED |
+| NFR-COMP-003 | Internet Explorer and browsers no longer receiving security support are not supported targets | ACCEPTED |
+| NFR-COMP-004 | Unsupported/obsolete browsers should fail gracefully with clear upgrade/open-in-supported-browser guidance rather than blank/broken critical UI | ACCEPTED |
+| NFR-COMP-005 | Frontend behavior should prefer web standards and minimize undocumented browser-specific hacks | ACCEPTED |
+| NFR-COMP-006 | Progressive enhancement/fallback is required where practical for features such as drag-and-drop upload, camera/QR scanning, and rich browser capabilities | ACCEPTED |
+| NFR-COMP-007 | Supported device classes include smartphone, tablet, laptop, and desktop according to role/workflow needs | ACCEPTED |
+| NFR-COMP-008 | Participant/Author ordinary critical workflows must remain usable on realistic mid-range mobile hardware | ACCEPTED |
+| NFR-COMP-009 | Slow/unstable network conditions must produce truthful retry/failure state; V1 does not require a full offline/PWA workflow | ACCEPTED |
+| NFR-COMP-010 | Essential actions must not depend exclusively on hover, right-click, drag-and-drop, precision mouse input, or physical keyboard | ACCEPTED |
+| NFR-COMP-011 | Camera/QR-dependent workflows require an authorized manual/search/reference fallback | ACCEPTED |
+| NFR-COMP-012 | Scanned barcode/QR data is a lookup/reference input and does not become authoritative identity/event state without normal server-side validation | ACCEPTED |
+| NFR-COMP-013 | PDF-dependent content must have an authorized download path and must not rely solely on a browser's embedded PDF viewer | ACCEPTED |
+| NFR-COMP-014 | Refresh/back/forward/retry/reopen-tab behavior must not duplicate authoritative business effects | ACCEPTED |
+| NFR-COMP-015 | Stale/multiple-tab actions must be revalidated against current server-side authority/resource state before mutation | ACCEPTED |
+| NFR-COMP-016 | Session expiration should preserve/recover long-form work where feasible and support return to the authorized context after re-authentication | ACCEPTED |
+| NFR-COMP-017 | Browser-native controls/autofill may enhance UX but do not replace server-side validation or correct semantic form behavior | ACCEPTED |
+| NFR-COMP-018 | Edition deadlines/schedules must retain correct meaning when device/browser timezone differs from edition timezone | ACCEPTED |
+| NFR-COMP-019 | Compatibility QA must combine representative browser/device, locale, Arabic RTL, accessibility, and timezone scenarios | ACCEPTED |
+| NFR-COMP-020 | Embedded in-app browsers/webviews receive best-effort support; official supported browsers remain the primary target and open-in-browser guidance may be used | ACCEPTED |
+| NFR-COMP-021 | Browser cookie/storage/privacy restrictions that prevent required authentication state should produce usable guidance instead of opaque server errors | ACCEPTED |
+| NFR-COMP-022 | Device permissions such as camera are requested only when needed for the relevant feature | ACCEPTED |
+| NFR-COMP-023 | Native mobile app or PWA installation is not required for V1 participation | ACCEPTED |
+| NFR-COMP-024 | Production readiness requires a canonical Browser & Device Support Matrix documenting support policy, tested critical flows, known limitations, and last verification | ACCEPTED |

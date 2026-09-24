@@ -430,3 +430,30 @@ Statuses: PROPOSED, ANALYSIS, ACCEPTED DIRECTION, ACCEPTED, IMPLEMENTED, VERIFIE
 | NFR-INT-024 | Domain concepts should remain provider-neutral enough to permit provider replacement without rewriting core business lifecycle semantics | ACCEPTED |
 | NFR-INT-025 | Integration health, latency, repeated failure, queue/backlog, and last-success signals must be observable separately from core application health | ACCEPTED |
 | NFR-INT-026 | User-facing integration failures must be clear and safe, preserve authoritative business success when applicable, and not expose low-level provider/stack internals | ACCEPTED |
+
+| NFR-OPS-001 | Local/development, staging, and production environments must be conceptually and operationally separated | ACCEPTED |
+| NFR-OPS-002 | Non-production environments use synthetic/redacted data by default; production data use outside production requires controlled authorization | ACCEPTED |
+| NFR-OPS-003 | Source code, non-secret configuration, and secrets are separate concerns | ACCEPTED |
+| NFR-OPS-004 | Production secrets are distinct from non-production credentials and must not appear in repository, client bundles, or plaintext logs | ACCEPTED |
+| NFR-OPS-005 | Production debug/internal-detail disclosure must be disabled; users receive safe error references instead | ACCEPTED |
+| NFR-OPS-006 | Required environment configuration must be validated and documented with purpose, sensitivity, required/optional status, and example format | ACCEPTED |
+| NFR-OPS-007 | Database migration is a controlled/versioned deployment step tied to release traceability | ACCEPTED |
+| NFR-OPS-008 | Destructive migrations/data operations require explicit identification, review, verification, and recovery awareness | ACCEPTED |
+| NFR-OPS-009 | Deployment must be repeatable and each production release must have a traceable version/commit identity | ACCEPTED |
+| NFR-OPS-010 | Production deployment requires quality gates; feature/develop branches are not direct production release sources | ACCEPTED |
+| NFR-OPS-011 | Significant deployments require rollback/recovery strategy that prioritizes preservation of newly-created authoritative data | ACCEPTED |
+| NFR-OPS-012 | Feature flags may support controlled rollout but must not replace authorization/security controls | ACCEPTED |
+| NFR-OPS-013 | Edition/business configuration is distinct from software deployment | ACCEPTED |
+| NFR-OPS-014 | Seed/demo/default privileged credentials must not be introduced into production | ACCEPTED |
+| NFR-OPS-015 | Sandbox/test integration endpoints/configuration must be separated from production endpoints/configuration | ACCEPTED |
+| NFR-OPS-016 | Background workers, schedulers, and jobs are part of deployment compatibility/readiness and must not run stale/incompatible code | ACCEPTED |
+| NFR-OPS-017 | Scheduled jobs must have clear environment/ownership boundaries and must not process production resources from non-production environments | ACCEPTED |
+| NFR-OPS-018 | High-risk production data changes require proportional recovery preparation such as appropriate backup/recovery point verification | ACCEPTED |
+| NFR-OPS-019 | Post-deployment health and smoke verification is required and must avoid contaminating production with fake business records | ACCEPTED |
+| NFR-OPS-020 | Environment parity/configuration shape should be maintained sufficiently to minimize staging/production drift | ACCEPTED |
+| NFR-OPS-021 | Production operational access follows least privilege and minimum-necessary data access | ACCEPTED |
+| NFR-OPS-022 | Ad-hoc source/database changes in production are avoided; emergency changes must be traceable and reconciled back to canonical repository/process | ACCEPTED |
+| NFR-OPS-023 | Deployment, rollback, restore, health inspection, failed-job handling, and secret-rotation procedures must be documented as operational runbooks | ACCEPTED |
+| NFR-OPS-024 | Secret rotation/revocation must be operationally supported without rewriting authoritative business data | ACCEPTED |
+| NFR-OPS-025 | Software release must not silently change edition business policy such as fees, deadlines, refund rules, review mode, or certificate eligibility | ACCEPTED |
+| NFR-OPS-026 | First production launch requires a canonical production-readiness checklist covering security, backup/restore, monitoring, HTTPS, mail/storage/database/jobs, privacy, localization/RTL, accessibility, regression, deployment/rollback, and privileged provisioning | ACCEPTED |

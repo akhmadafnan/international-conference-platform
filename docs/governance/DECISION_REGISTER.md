@@ -364,3 +364,23 @@ Statuses: PROPOSED, ANALYZED, ACCEPTED DIRECTION, ACCEPTED, REJECTED, SUPERSEDED
 | DEC-348 | Critical integrations retain proportional operational/manual fallback paths where practical | ACCEPTED |
 | DEC-349 | Core integration/domain concepts remain provider-neutral enough for later provider replacement | ACCEPTED |
 | DEC-350 | Integration health is observed independently from core application health, and user-facing integration errors remain safe/non-technical | ACCEPTED |
+
+| DEC-351 | Local/development, staging, and production are separated operational environments | ACCEPTED |
+| DEC-352 | Non-production uses synthetic/redacted data by default and production data outside production requires controlled authorization | ACCEPTED |
+| DEC-353 | Code, configuration, and secrets are distinct concerns; production credentials are isolated from non-production and never stored in repo/client/plaintext logs | ACCEPTED |
+| DEC-354 | Production debug disclosure is disabled and required environment configuration is validated/documented | ACCEPTED |
+| DEC-355 | Database migration is a controlled/versioned deployment step and destructive changes require explicit review/recovery awareness | ACCEPTED |
+| DEC-356 | Production deployment is repeatable, release-identified, and gated; develop/feature branches are not direct production sources | ACCEPTED |
+| DEC-357 | Significant releases maintain rollback/recovery strategy that preserves newly-created authoritative data | ACCEPTED |
+| DEC-358 | Feature flags may aid rollout but never replace authorization | ACCEPTED |
+| DEC-359 | Edition/business configuration is separate from software deployment and software releases do not silently mutate edition policy | ACCEPTED |
+| DEC-360 | Production must not receive unsafe demo seed/default privileged credentials | ACCEPTED |
+| DEC-361 | Sandbox/test integration configuration/endpoints are separated from production | ACCEPTED |
+| DEC-362 | Workers/schedulers/jobs are deployment-managed components and scheduled work cannot cross environment boundaries improperly | ACCEPTED |
+| DEC-363 | High-risk production data changes require proportional recovery preparation | ACCEPTED |
+| DEC-364 | Post-deployment health/smoke verification is mandatory and must avoid polluting production business data | ACCEPTED |
+| DEC-365 | Environment parity is maintained at configuration/architecture level to reduce staging-production drift | ACCEPTED |
+| DEC-366 | Production operational access is least-privilege and ad-hoc source/DB mutation is avoided; emergency changes remain traceable and reconciled | ACCEPTED |
+| DEC-367 | Deployment/rollback/restore/health/failed-job/secret-rotation runbooks are required operational documentation | ACCEPTED |
+| DEC-368 | Secret rotation/revocation must be supported without rewriting business data | ACCEPTED |
+| DEC-369 | First go-live requires a canonical production-readiness checklist before production authorization | ACCEPTED |

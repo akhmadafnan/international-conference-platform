@@ -190,8 +190,8 @@ Audit Requirement
 - Part 6 — Event Operations / Session Chair / Moderator: APPROVED
 - Part 7 — Publication / OJS: APPROVED
 - Part 8 — Certificate / Archive: APPROVED
-- Part 9 — Assignment / Revocation / COI / Overrides: NEXT
-- Part 10 — Full Matrix Consistency Audit
+- Part 9 — Assignment / Revocation / COI / Overrides: APPROVED
+- Part 10 — Full Matrix Consistency Audit: NEXT
 
 
 ## Part 2 — Approved Administrative Role Matrix
@@ -1419,3 +1419,243 @@ Archive retains lifecycle history including:
 - publication;
 - certificates;
 - audit history.
+
+
+## Part 9 — Approved Assignment / Revocation / COI / Override / Break-glass Governance
+
+### Assignment record model
+
+Role/capability assignment is an auditable scoped record, not a single mutable user-role field.
+
+Assignment records must conceptually preserve:
+- subject/user;
+- role or capability;
+- scope;
+- assigned_by;
+- assigned_at;
+- effective_from;
+- expires_at when temporary;
+- status;
+- revoked_by / revoked_at when revoked;
+- reason/reference where required.
+
+### Role assignment vs resource assignment
+
+These are distinct concepts.
+
+Examples:
+- Role assignment: Finance → Edition 2027.
+- Resource assignment: Reviewer → Submission #021 / Round 1.
+- Resource assignment: Session Chair → Session A.
+- Resource assignment: Presenter → Submission #015.
+
+A resource assignment must not accidentally grant broad edition-wide authority.
+
+### Assignment lifecycle
+
+Assignments may support states such as:
+- INVITED;
+- ACTIVE / ACCEPTED;
+- COMPLETED;
+- EXPIRED;
+- REVOKED;
+- CANCELLED.
+
+Exact physical enum remains a later data-model decision.
+
+### Temporary authority
+
+Roles/capabilities may have effective dates and expiry.
+
+Expired authority stops granting new access while preserving historical attribution.
+
+### Revocation
+
+```text
+REVOKE ACCESS
+≠
+DELETE HISTORY
+```
+
+Historical actions remain attributed to the actor who performed them.
+
+Revocation of a person does not rewrite:
+- review authorship;
+- payment verification;
+- event verification;
+- publication operation;
+- certificate issuance;
+- administrative action history.
+
+### Active responsibility handling
+
+When authority is revoked while active responsibilities remain, the system should support:
+- immediate access removal;
+- warning about dependent assignments;
+- cancellation/reassignment of active work;
+- preserved history.
+
+Security-sensitive revocation must not be blocked merely because dependencies exist.
+
+### Protected authorities
+
+At minimum, protected assignment governance applies to:
+- Super Administrator;
+- Technical Administrator;
+- Finance;
+- Academic Decision Authority;
+- Publication authority;
+- privileged certificate issue/revoke/reissue;
+- historical.correct;
+- edition archive/unarchive authority;
+- break-glass authority.
+
+### Anti-self-escalation
+
+Normal administration cannot self-grant a protected role/capability.
+
+```text
+SELF-ASSIGN PROTECTED AUTHORITY
+= DENY
+```
+
+A separate authorized assigner is required.
+
+### V1 approval model
+
+V1 does not require dual/multi-person approval for every protected assignment.
+
+Baseline V1 requires:
+- authorized assigner;
+- anti-self-assignment;
+- scope;
+- audit.
+
+The architecture must remain compatible with future four-eyes / dual-approval policies.
+
+### Generic COI restriction layer
+
+COI/restriction is cross-domain and overrides normal allow.
+
+Required direct self-conflict examples:
+- Reviewer → own/conflicted paper;
+- Academic Decision Authority → own/conflicted paper;
+- Finance → own payment/refund;
+- Event verifier → own presentation;
+- privileged certificate operator → manual privileged certificate for self.
+
+Reviewer COI declaration remains mandatory as previously approved.
+
+Other configured conflict sources may later include institutional or declared relationships.
+
+### Domain-specific overrides
+
+There is no universal `override_everything`.
+
+Overrides are domain-specific, for example:
+- payment correction;
+- refund override;
+- academic decision override;
+- presentation exception/makeup;
+- certificate manual exception;
+- historical correction;
+- edition unarchive.
+
+### Override audit
+
+Every override records:
+- actor/authority;
+- target resource;
+- original state/value;
+- new state/value;
+- reason;
+- timestamp;
+- reference/evidence where applicable.
+
+Override must preserve the original history rather than erasing it.
+
+### Break-glass
+
+Break-glass is distinct from business override.
+
+It exists only for serious technical/security incidents such as:
+- critical production incident;
+- account/security recovery;
+- investigation;
+- emergency technical remediation.
+
+Break-glass must be:
+- explicitly reasoned;
+- scoped;
+- temporary;
+- auditable;
+- expired or explicitly revoked.
+
+It does not create permanent authority and must not be used as a shortcut for ordinary Finance/Academic/Event/Publication decisions.
+
+### Break-glass audit
+
+Audit should preserve:
+- actor;
+- reason;
+- incident/reference;
+- scope;
+- temporary privileges;
+- resources accessed;
+- actions performed;
+- start time;
+- expiry/revocation.
+
+### Impersonation
+
+Silent impersonation/account takeover is denied.
+
+V1 does not require an impersonation feature.
+
+If introduced later, impersonation must be a distinct privileged capability with explicit reason, visible session context, start/end, restrictions, and audit.
+
+Front Office does not receive informal account-takeover authority.
+
+### Delegation revocation
+
+Submission/resource delegation can be revoked prospectively.
+
+Revocation removes future permission but does not erase historical attribution for actions performed while delegation was valid.
+
+### Assignment attribution immutability
+
+Replacing one role holder with another does not transfer historical attribution.
+
+Example:
+- Finance A verified payment X;
+- Finance B later replaces A;
+- payment X remains verified_by A.
+
+### Immediate sensitive revocation
+
+Revoked sensitive authority must cease authorizing new actions immediately at the product-policy level.
+
+Technical session/token invalidation mechanics are deferred to security/NFR design.
+
+### Dependency warnings
+
+Before ordinary revocation, the system should be able to surface active dependencies such as:
+- active reviewer assignments;
+- future session assignments;
+- pending Finance cases;
+- delegated submission work.
+
+Warnings support handoff but do not prevent emergency revocation.
+
+### Assignment audit events
+
+At minimum, audit:
+- ASSIGN;
+- ACCEPT / ACTIVATE where applicable;
+- REVOKE;
+- EXPIRE;
+- EXTEND;
+- CHANGE_SCOPE;
+- REASSIGN.
+
+Permission governance changes are first-class audit events.

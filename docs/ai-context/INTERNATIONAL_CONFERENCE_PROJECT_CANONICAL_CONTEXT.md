@@ -178,7 +178,17 @@ Not just a website, upload form, or OJS front-end.
 - normal Publication Eligibility is policy/system evaluated from authoritative source facts;
 - Publication Team may remediate its own-domain blockers but cannot rewrite Finance/Academic/Event facts;
 - publication.eligibility.override is protected/domain-specific and preserves the original blocking facts;
-- REQ-PERM-001 Parts 1–10 passed full consistency audit and are complete at product-requirement level.
+- REQ-PERM-001 Parts 1–10 passed full consistency audit and are complete at product-requirement level;
+- NFR Security Part 1 requires HTTPS/secure transport and server-side authorization on every protected request;
+- MFA is mandatory for high-risk internal authorities; Participant MFA is not mandatory for V1 and Reviewer MFA is configurable;
+- sensitive security/authority actions may use re-authentication/step-up verification;
+- revoked authority must fail at the next protected authorization check even if a prior session remains open;
+- authentication/verification/recovery endpoints require abuse protection and should avoid unnecessary account enumeration;
+- magic-link/OTP tokens are unpredictable, short-lived, single-use, action/account-bound, and excluded from plaintext logs/analytics;
+- uploaded files are untrusted input; secrets stay out of repo/client bundles/plaintext logs; production errors do not expose internals;
+- security-sensitive events are auditable;
+- silent impersonation/account takeover remains prohibited and V1 does not require impersonation;
+- specific MFA/auth/session libraries/providers remain deferred to architecture/implementation.
 
 ## Authentication / registration
 

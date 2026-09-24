@@ -84,3 +84,24 @@ Not locked in Phase 0:
 - exact recovery mechanics.
 
 These belong to architecture/feature specifications after the product rules are stable.
+
+
+## NFR Security & Access Protection — approved
+
+The authentication model must satisfy the following non-functional security baseline:
+
+- production traffic uses HTTPS/secure transport;
+- protected requests are authorized server-side on every request;
+- high-risk internal authorities require MFA in production;
+- Participant MFA is not mandatory for V1;
+- Reviewer MFA is supported and may be required by edition/security policy;
+- sensitive authority/security operations may require re-authentication/step-up verification;
+- revocation must prevent the next protected operation even when the previous authenticated session still exists;
+- login, verification, magic-link/OTP request, recovery, and sensitive endpoints use abuse/rate limiting controls;
+- public auth/recovery responses avoid unnecessary account enumeration;
+- magic-link/OTP credentials are unpredictable, time-limited, single-use, action/account-bound, and excluded from plaintext logs/analytics;
+- recovery and primary-email change remain controlled sensitive workflows;
+- Front Office never gains account-takeover authority;
+- silent impersonation remains prohibited and V1 has no impersonation requirement.
+
+Exact MFA technology, authentication framework, token format, session implementation, and re-authentication mechanism remain deferred.

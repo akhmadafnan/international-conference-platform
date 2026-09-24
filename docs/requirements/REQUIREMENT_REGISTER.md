@@ -231,3 +231,21 @@
 | REQ-PRD-001 | PRD must reach baseline before Phase 1 begins | ACCEPTED |
 
 Statuses: PROPOSED, ANALYSIS, ACCEPTED DIRECTION, ACCEPTED, IMPLEMENTED, VERIFIED, SUPERSEDED.
+
+
+| NFR-SEC-001 | Production traffic must use HTTPS/secure transport | ACCEPTED |
+| NFR-SEC-002 | Protected actions require server-side authorization on every request using default-deny, least-privilege, scope/resource-aware rules | ACCEPTED |
+| NFR-SEC-003 | High-risk internal authorities require MFA in production | ACCEPTED |
+| NFR-SEC-004 | Participant MFA is not mandatory for V1; Reviewer MFA is supported and policy-configurable | ACCEPTED |
+| NFR-SEC-005 | Highly sensitive security/authority actions may require re-authentication/step-up verification | ACCEPTED |
+| NFR-SEC-006 | Revoked authority must stop authorizing the next protected action even if an existing session remains open | ACCEPTED |
+| NFR-SEC-007 | Authentication, verification, recovery, and other sensitive endpoints require abuse/rate-limit protection | ACCEPTED |
+| NFR-SEC-008 | Public authentication/recovery flows must avoid unnecessary account-existence disclosure | ACCEPTED |
+| NFR-SEC-009 | Magic-link/OTP tokens must be unpredictable, short-lived, single-use, action/account-bound, and not exposed in plaintext logs/analytics | ACCEPTED |
+| NFR-SEC-010 | Account recovery and primary-email change are controlled sensitive workflows; Front Office cannot take over accounts | ACCEPTED |
+| NFR-SEC-011 | Uploaded files are treated as untrusted input and private files cannot become permanently public merely because upload succeeded | ACCEPTED |
+| NFR-SEC-012 | Secrets/credentials/tokens must not be stored in source repository, client bundle, or plaintext logs | ACCEPTED |
+| NFR-SEC-013 | Production error responses must not expose stack traces, secrets, sensitive paths, SQL details, or internal credentials | ACCEPTED |
+| NFR-SEC-014 | Security-sensitive events including abnormal login/recovery, role changes, MFA/security changes, break-glass, and sensitive overrides must be auditable | ACCEPTED |
+| NFR-SEC-015 | Silent impersonation/account takeover remains prohibited; V1 does not require impersonation | ACCEPTED |
+| NFR-SEC-016 | Detailed authentication libraries, MFA providers, session mechanisms, and security-control implementation remain deferred to architecture/implementation | ACCEPTED |

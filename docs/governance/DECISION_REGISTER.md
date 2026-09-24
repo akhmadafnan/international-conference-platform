@@ -423,3 +423,9 @@ Statuses: PROPOSED, ANALYZED, ACCEPTED DIRECTION, ACCEPTED, REJECTED, SUPERSEDED
 | DEC-404 | Repository canonical sources—not chat alone—remain the durable engineering memory for developer/AI continuity | ACCEPTED |
 | DEC-405 | Feature Definition of Done includes appropriate auth/tests/regression/docs/accessibility/localization/UAT/cleanup obligations | ACCEPTED |
 | DEC-406 | Technical debt is explicit/traceable and historical records remain readable across template/form/state evolution | ACCEPTED |
+
+| DEC-407 | Full NFR Parts 1–12 consistency audit is GREEN with no unresolved critical product-level gap or contradiction | ACCEPTED |
+| DEC-408 | The NFR baseline contains 271 accepted product-level requirements across 12 approved parts | ACCEPTED |
+| DEC-409 | Deferred provider/framework/schema/tooling details are intentional Phase 1+/implementation decisions and do not block REQ-NFR-001 closure | ACCEPTED |
+| DEC-410 | Phase 1 architecture/specification must translate the approved NFRs into concrete schemas, components, controls, tests, and operational acceptance criteria without weakening the product baseline | ACCEPTED |
+| DEC-411 | REQ-NFR-001 is complete at product-requirement level; application implementation remains unauthorized until the broader Phase 0 gate is passed | ACCEPTED |

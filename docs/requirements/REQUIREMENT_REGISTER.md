@@ -403,3 +403,30 @@ Statuses: PROPOSED, ANALYSIS, ACCEPTED DIRECTION, ACCEPTED, IMPLEMENTED, VERIFIE
 | NFR-L10N-025 | Missing translation keys must be detectable through QA/observability rather than waiting for user reports | ACCEPTED |
 | NFR-L10N-026 | Arabic RTL requires dedicated UAT across navigation, forms, tables, dialogs, pagination, steppers, uploads, cards, mobile, mixed-direction metadata, and applicable generated documents | ACCEPTED |
 | NFR-L10N-027 | Accessibility and RTL must be tested together; Arabic must not receive reduced accessibility/usability quality | ACCEPTED |
+
+| NFR-INT-001 | The conference platform remains the authoritative source of truth for conference lifecycle state; external systems/channels do not create authority merely by delivery or external status | ACCEPTED |
+| NFR-INT-002 | Authoritative business commit is separated from external notification/integration delivery success | ACCEPTED |
+| NFR-INT-003 | Important integration operations maintain explicit attempt/processing status and history | ACCEPTED |
+| NFR-INT-004 | Retried integration operations must be duplicate-safe/idempotent where repeated requests could duplicate side effects | ACCEPTED |
+| NFR-INT-005 | Outbound integration calls require explicit connection/request timeout policy and bounded retry behavior | ACCEPTED |
+| NFR-INT-006 | Retry handling must support backoff/rate-limit-aware behavior for transient failures | ACCEPTED |
+| NFR-INT-007 | Prolonged provider outage must degrade the affected integration without unnecessarily blocking unrelated conference domains | ACCEPTED |
+| NFR-INT-008 | Important email notifications track at least queued/sent-or-provider-accepted/failed states; provider delivery/read signals do not create business decisions | ACCEPTED |
+| NFR-INT-009 | Critical participant-facing business status remains available in the authenticated platform workspace independent of email/WhatsApp delivery | ACCEPTED |
+| NFR-INT-010 | WhatsApp remains a Front Office/support channel and is not an authoritative transaction/decision channel | ACCEPTED |
+| NFR-INT-011 | OJS remains downstream publication infrastructure; OJS outage/failure does not erase publication eligibility or conference history | ACCEPTED |
+| NFR-INT-012 | External identifiers such as OJS IDs, DOI, ORCID, ROR, provider message IDs, payment transaction IDs, and deposit IDs remain references rather than internal primary keys | ACCEPTED |
+| NFR-INT-013 | ORCID/ROR availability failure must not block core registration/submission workflows when those services are optional/enrichment-only | ACCEPTED |
+| NFR-INT-014 | Supplied external identity/reference is distinct from authenticated/verified external identity/reference | ACCEPTED |
+| NFR-INT-015 | Crossref/DOI deposit/registration status remains separate from internal publication approval/eligibility | ACCEPTED |
+| NFR-INT-016 | Future payment-provider callbacks must be authenticated/verified, transaction-matched, amount/currency validated, duplicate-safe, state-compatible, and auditable before affecting internal Finance state | ACCEPTED |
+| NFR-INT-017 | Webhook endpoints must verify authenticity according to provider capability and must tolerate duplicate delivery safely | ACCEPTED |
+| NFR-INT-018 | Integration event processing must account for out-of-order delivery/provider semantics so stale events cannot incorrectly regress internal state | ACCEPTED |
+| NFR-INT-019 | External integration payloads are untrusted input and require schema/type/identifier/state/authenticity validation before affecting business state | ACCEPTED |
+| NFR-INT-020 | Provider credentials/secrets must not appear in source control, client bundles, or plaintext logs | ACCEPTED |
+| NFR-INT-021 | Outbound integrations follow minimum-necessary-data privacy rules | ACCEPTED |
+| NFR-INT-022 | Important integration attempts preserve internal resource, external reference, attempt/status/timestamp/error-category history without retaining unnecessary sensitive raw payloads | ACCEPTED |
+| NFR-INT-023 | Critical external dependencies should have proportional operational/manual fallback paths where practical | ACCEPTED |
+| NFR-INT-024 | Domain concepts should remain provider-neutral enough to permit provider replacement without rewriting core business lifecycle semantics | ACCEPTED |
+| NFR-INT-025 | Integration health, latency, repeated failure, queue/backlog, and last-success signals must be observable separately from core application health | ACCEPTED |
+| NFR-INT-026 | User-facing integration failures must be clear and safe, preserve authoritative business success when applicable, and not expose low-level provider/stack internals | ACCEPTED |

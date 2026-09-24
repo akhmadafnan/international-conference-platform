@@ -143,3 +143,31 @@ Conference Platform
 ```
 
 OJS does not decide conference payment, attendance, presentation, refund, or conference eligibility state.
+
+
+## Eligibility Gate Authority — Final Permission Closure
+
+Normal Publication Eligibility is not a discretionary Publication Team decision.
+
+```text
+AUTHORITATIVE PAYMENT / ACADEMIC / EVENT / PUBLICATION-METADATA FACTS
++ EDITION POLICY
+→ GATE RESULT
+```
+
+Publication Team may remediate publication-domain blockers such as incomplete metadata, missing files, or declarations.
+
+Publication Team cannot directly rewrite source-domain facts such as:
+- payment verification;
+- academic approval/rejection;
+- PRESENTED/NO_SHOW.
+
+A protected `publication.eligibility.override` capability may handle an approved exception. It must preserve the original blocking fact and record:
+- blocking condition;
+- authority;
+- reason;
+- before/after gate result;
+- timestamp;
+- evidence/reference where applicable.
+
+This override must not silently convert source facts merely to make the gate pass.

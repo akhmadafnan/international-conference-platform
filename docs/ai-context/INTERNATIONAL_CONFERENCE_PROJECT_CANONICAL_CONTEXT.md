@@ -364,7 +364,12 @@ Not just a website, upload form, or OJS front-end.
 - repository canonical sources, not chat alone, remain durable engineering memory for developer/AI continuity;
 - Definition of Done includes relevant implementation/auth/tests/regression/docs/accessibility/localization/UAT/temporary-harness cleanup;
 - technical debt/workarounds remain explicit and traceable;
-- template/form/state evolution must preserve historical record readability/compatibility.
+- template/form/state evolution must preserve historical record readability/compatibility;
+- REQ-NFR-001 Parts 1–12 contain 271 accepted product-level requirements;
+- the full NFR consistency audit is GREEN with no unresolved critical product-level gap or contradiction;
+- NFR provider/framework/schema/tooling implementation details remain intentionally deferred to Phase 1+/implementation;
+- Phase 1 must translate NFRs into concrete architecture, acceptance criteria, tests, controls, and operational runbooks without weakening the approved baseline;
+- REQ-NFR-001 is DONE at product-requirement level, while application implementation remains unauthorized until the broader Phase 0 gate is passed.
 
 ## Authentication / registration
 

@@ -1,6 +1,6 @@
 # Current Project State
 
-**State ID:** ICP-STATE-20260924-08  
+**State ID:** ICP-STATE-20260924-09  
 **Status:** PHASE 0 IN PROGRESS  
 **Implementation authorization:** NOT GRANTED
 
@@ -71,9 +71,10 @@ The next product-analysis sequence is:
 25. **REQ-NFR-001 / Part 2** — Privacy, PII & Sensitive Data Protection: **APPROVED**.
 26. **REQ-NFR-001 / Part 3** — Reliability, Availability, Backup & Disaster Recovery: **APPROVED**.
 27. **REQ-NFR-001 / Part 4** — Performance, Capacity & Scalability: **APPROVED**.
-28. **REQ-NFR-001 / Part 5** — Auditability, Logging, Monitoring & Observability: **NEXT**.
-29. **INT-BASE-001** — Integration baselines: **PENDING**.
-30. **GOV-GATE-001** — Phase 0 consistency audit and Phase 1 readiness: **PENDING**.
+28. **REQ-NFR-001 / Part 5** — Auditability, Logging, Monitoring & Observability: **APPROVED**.
+29. **REQ-NFR-001 / Part 6** — File, Document & Data Integrity: **NEXT**.
+30. **INT-BASE-001** — Integration baselines: **PENDING**.
+31. **GOV-GATE-001** — Phase 0 consistency audit and Phase 1 readiness: **PENDING**.
 
 ## Human local workspace
 

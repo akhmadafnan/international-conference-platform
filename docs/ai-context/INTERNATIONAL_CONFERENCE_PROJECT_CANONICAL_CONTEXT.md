@@ -225,7 +225,22 @@ Not just a website, upload form, or OJS front-end.
 - scaling is incremental/evidence-driven rather than premature distributed-system complexity;
 - slow requests/jobs/database operations and integration latency/failure must be observable;
 - critical workflows receive performance sanity/regression verification before production and major releases;
-- slow external delivery should not unnecessarily block authoritative business transactions.
+- slow external delivery should not unnecessarily block authoritative business transactions;
+- business audit and technical application logs are separate concerns;
+- business audit is append-only/immutable in normal workflow and corrections create new events rather than rewriting history;
+- sensitive lifecycle/security/permission/override/archive/certificate actions and exceptional restricted-data access are auditable;
+- technical logs are structured, correlation-ID capable, severity-aware, and redact secrets/PII/confidential payloads;
+- application/database/storage/critical-job health plus latency/error/job/queue/database/integration signals are observable;
+- backup freshness/failure is monitored;
+- alerts are actionable/severity-based and may become more sensitive during critical edition windows;
+- authorized audit views are searchable and sensitive audit exports are restricted/auditable;
+- business-audit retention is separated from technical-log retention; exact periods remain deferred;
+- technical logs use bounded retention/rotation;
+- internal timestamps are consistent/unambiguous while display timezone may convert to edition/user context;
+- user-facing error references correlate to internal diagnostics without exposing stack traces;
+- production deployments are traceable and incident timelines are reconstructable through timestamps/correlation context;
+- monitoring is not the business source of truth and must not become a core single point of failure;
+- audit/observability behavior must be verified before production.
 
 ## Authentication / registration
 

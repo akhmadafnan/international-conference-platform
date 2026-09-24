@@ -278,3 +278,19 @@ Statuses: PROPOSED, ANALYZED, ACCEPTED DIRECTION, ACCEPTED, REJECTED, SUPERSEDED
 | DEC-267 | Scaling is incremental/evidence-driven rather than premature distributed-system complexity | ACCEPTED |
 | DEC-268 | Performance observability and pre-production/major-release regression sanity checks are required | ACCEPTED |
 | DEC-269 | Slow external delivery must not unnecessarily block authoritative business transactions | ACCEPTED |
+
+| DEC-270 | Business audit trail and technical application logs are separate concerns | ACCEPTED |
+| DEC-271 | Business audit is append-only/immutable in normal workflow; corrections create new events rather than rewriting audit history | ACCEPTED |
+| DEC-272 | Sensitive business/security/permission/override/archive/certificate actions and exceptional restricted-data access are auditable | ACCEPTED |
+| DEC-273 | Technical logging is structured, correlation-ID capable, severity-aware, and privacy-redacted | ACCEPTED |
+| DEC-274 | Application/database/storage/critical-job health plus latency/error/job/queue/database/integration signals are observable | ACCEPTED |
+| DEC-275 | Backup freshness/failure belongs to operational monitoring | ACCEPTED |
+| DEC-276 | Alerts are actionable/severity-based and may be more sensitive during edition critical windows | ACCEPTED |
+| DEC-277 | Authorized audit views are searchable; sensitive audit exports are restricted and may themselves be audited | ACCEPTED |
+| DEC-278 | Business-audit retention and technical-log retention are separate; exact periods remain deferred | ACCEPTED |
+| DEC-279 | Technical logs use bounded retention/rotation to avoid exhausting storage | ACCEPTED |
+| DEC-280 | Internal timestamps are consistent/unambiguous; display timezone may be converted for user/edition context | ACCEPTED |
+| DEC-281 | User-facing error references correlate to internal diagnostics without exposing technical internals | ACCEPTED |
+| DEC-282 | Production deployments are traceable and incident timelines should be reconstructable across requests/jobs/integrations | ACCEPTED |
+| DEC-283 | Monitoring is an observability layer, not business source of truth or a required dependency for core transaction success | ACCEPTED |
+| DEC-284 | Audit/observability behavior must be verified before production through representative failure and protected-action scenarios | ACCEPTED |

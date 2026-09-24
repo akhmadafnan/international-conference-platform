@@ -286,7 +286,27 @@ Not just a website, upload form, or OJS front-end.
 - personal/scholarly identity is never silently auto-transliterated;
 - layout tolerates translation-length variation and search/filter remains usable across mixed scripts;
 - locale switching preserves current resource context and authenticated users may persist a preferred locale;
-- Arabic RTL receives dedicated UAT and is tested together with accessibility requirements.
+- Arabic RTL receives dedicated UAT and is tested together with accessibility requirements;
+- the conference platform remains the authoritative source of truth for lifecycle state; external systems/channels do not gain business authority from delivery/status alone;
+- authoritative business commit is separated from external notification/integration delivery success;
+- important integration operations preserve attempt/status history and support duplicate-safe/idempotent retry;
+- outbound integration calls use explicit timeout, bounded retry, and backoff/rate-limit-aware behavior;
+- prolonged provider outage should degrade the affected capability rather than unnecessarily blocking unrelated conference domains;
+- critical participant status remains available in the authenticated workspace independent of email/WhatsApp success;
+- WhatsApp remains a Front Office/support channel, not an authoritative transaction/decision channel;
+- OJS remains downstream and failure does not erase PUBLICATION_ELIGIBLE or conference history;
+- external identifiers remain references rather than internal primary keys;
+- optional ORCID/ROR failure does not block core conference workflows;
+- supplied external identity/reference is distinct from authenticated/verified identity/reference;
+- Crossref/DOI deposit state remains separate from publication approval/eligibility;
+- future payment callbacks/webhooks require authenticity, transaction/state/amount/currency validation, duplicate safety, and audit;
+- integration event processing safely handles duplicate and out-of-order provider events;
+- all external payloads are untrusted input and validated before affecting business state;
+- provider credentials remain outside source/client/plaintext logs and outbound data follows minimum-necessary privacy;
+- integration attempt/status history is traceable without unnecessary retention of sensitive raw payloads;
+- critical dependencies retain proportional operational/manual fallback paths where practical;
+- core integration concepts remain provider-neutral enough to permit provider replacement;
+- integration health/latency/failure/backlog is observable separately from core app health and user-facing provider errors remain safe/non-technical.
 
 ## Authentication / registration
 

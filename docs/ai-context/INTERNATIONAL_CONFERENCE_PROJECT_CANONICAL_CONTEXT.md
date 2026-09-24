@@ -306,7 +306,25 @@ Not just a website, upload form, or OJS front-end.
 - integration attempt/status history is traceable without unnecessary retention of sensitive raw payloads;
 - critical dependencies retain proportional operational/manual fallback paths where practical;
 - core integration concepts remain provider-neutral enough to permit provider replacement;
-- integration health/latency/failure/backlog is observable separately from core app health and user-facing provider errors remain safe/non-technical.
+- integration health/latency/failure/backlog is observable separately from core app health and user-facing provider errors remain safe/non-technical;
+- local/development, staging, and production are separated environments, with synthetic/redacted non-production data by default;
+- code, non-secret configuration, and secrets are separate; production credentials are distinct and excluded from repository/client/plaintext logs;
+- production debug/internal-detail disclosure is disabled and required environment configuration is validated/documented;
+- database migration is a controlled/versioned deployment step and destructive data changes require explicit review/recovery awareness;
+- deployment is repeatable, release/version/commit traceable, and protected by quality gates; feature/develop branches are not direct production sources;
+- significant deployment rollback/recovery planning prioritizes preservation of newly-created authoritative data;
+- feature flags may support controlled rollout but do not replace authorization;
+- edition/business configuration is separate from software deployment and releases do not silently change edition policy;
+- unsafe seed/demo/default privileged credentials are prohibited in production;
+- sandbox/test integration endpoints/configuration are separated from production;
+- background workers/schedulers/jobs are part of deployment compatibility/readiness and cannot cross environment boundaries improperly;
+- high-risk production data changes use proportional recovery preparation;
+- post-deployment health/smoke verification is mandatory and must not pollute production business data;
+- environment parity is maintained sufficiently to reduce staging/production configuration drift;
+- production operational access is least-privilege; ad-hoc source/DB changes are avoided and emergency changes remain traceable/reconciled;
+- deployment/rollback/restore/health/failed-job/secret-rotation runbooks are required;
+- secret rotation/revocation is supported without rewriting authoritative business data;
+- first production launch requires a canonical production-readiness checklist covering security, backup/restore, monitoring, HTTPS, mail/storage/database/jobs, privacy, localization/RTL, accessibility, regression, deployment/rollback, and privileged provisioning.
 
 ## Authentication / registration
 

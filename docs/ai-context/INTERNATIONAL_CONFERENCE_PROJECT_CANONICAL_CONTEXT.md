@@ -324,7 +324,25 @@ Not just a website, upload form, or OJS front-end.
 - production operational access is least-privilege; ad-hoc source/DB changes are avoided and emergency changes remain traceable/reconciled;
 - deployment/rollback/restore/health/failed-job/secret-rotation runbooks are required;
 - secret rotation/revocation is supported without rewriting authoritative business data;
-- first production launch requires a canonical production-readiness checklist covering security, backup/restore, monitoring, HTTPS, mail/storage/database/jobs, privacy, localization/RTL, accessibility, regression, deployment/rollback, and privileged provisioning.
+- first production launch requires a canonical production-readiness checklist covering security, backup/restore, monitoring, HTTPS, mail/storage/database/jobs, privacy, localization/RTL, accessibility, regression, deployment/rollback, and privileged provisioning;
+- official desktop browser support targets the latest 2 stable major versions of Chrome, Edge, Firefox, and Safari at release time;
+- Mobile Safari and Chrome Android are first-class participant targets; Internet Explorer and unsupported legacy browsers are not official targets;
+- unsupported browsers should fail gracefully with upgrade/open-in-supported-browser guidance;
+- frontend implementation is standards-first and uses progressive enhancement/fallback for optional rich capabilities;
+- supported device classes include smartphone/tablet/laptop/desktop according to role, and participant workflows remain usable on realistic mid-range mobile hardware;
+- slow/unstable network yields truthful retry/failure behavior; full offline/PWA capability is not required in V1;
+- essential actions are not hover-only/right-click-only/drag-drop-only/mouse-precision-only or physical-keyboard-dependent;
+- camera/QR flows have manual fallback and scanned payload is only a lookup/reference input until server-validated;
+- PDF content retains an authorized download fallback;
+- refresh/back/forward/retry/reopen-tab/multiple-tab behavior cannot duplicate authoritative effects and stale mutations require server-state revalidation;
+- session-expiry handling should preserve/recover long-form work and authorized context where feasible;
+- browser-native controls/autofill may enhance UX but never replace server-side validation;
+- edition timezone semantics remain correct when device timezone differs;
+- compatibility QA combines browser/device with locale, RTL, accessibility, and timezone scenarios;
+- embedded in-app browsers are best-effort while official modern browsers remain primary supported targets;
+- browser storage/cookie restrictions produce usable guidance and device permissions are requested only when needed;
+- native mobile app/PWA installation is not required for V1;
+- production readiness includes a canonical Browser & Device Support Matrix.
 
 ## Authentication / registration
 

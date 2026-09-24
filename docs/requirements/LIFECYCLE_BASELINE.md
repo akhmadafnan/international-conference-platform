@@ -279,3 +279,17 @@ PUBLICATION_ELIGIBLE
 Stages 4A–4F are approved. `REQ-LIFE-001` is complete at product-requirement level.
 
 This does **not** mean application implementation is authorized; detailed permissions, integrations, NFRs, domain/data design, and Phase 0 final gate remain outstanding.
+
+
+## Permission Ownership Closure — REQ-PERM-001 Part 10
+
+The final permission audit explicitly assigns previously implicit lifecycle ownership:
+
+- `ADMINISTRATIVE_SCREENING` is performed through `submission.admin_screen` by an authorized edition screening authority; it is not an academic decision.
+- Official-submission withdrawal separates Author request from `submission.withdraw.approve` by an authorized edition authority.
+- Protected post-submission contributor/authorship changes use stage-aware `submission.contributor_change.approve`.
+- Front Office is edition-scoped support only: it can surface safe status and escalate, but cannot execute Finance/Academic/Event/Publication decisions.
+- Normal `PUBLICATION_ELIGIBILITY` evaluation is policy/system based on authoritative lifecycle facts.
+- `publication.eligibility.override` is a protected exception and never rewrites source facts merely to force PASS.
+
+These closures complete the lifecycle-to-authority mapping for stages 4A–4F.

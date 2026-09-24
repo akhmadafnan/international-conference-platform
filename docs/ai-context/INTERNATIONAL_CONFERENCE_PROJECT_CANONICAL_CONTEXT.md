@@ -145,7 +145,20 @@ Not just a website, upload form, or OJS front-end.
 - publication failure/withdrawal preserves conference/presentation/certificate history;
 - Publication Team cannot bypass gates on its own paper;
 - publication records are not freely hard-deleted;
-- V1 may combine Publication Team/Proceeding Editor while remaining ready for future sub-role separation.
+- V1 may combine Publication Team/Proceeding Editor while remaining ready for future sub-role separation;
+- certificate configuration/issue/manual/bulk/revoke/reissue/history are separate capabilities;
+- rule-based and manual individual/bulk certificate issuance are supported, including external/manual recipients;
+- activity/event date is the public certificate date while created/generated timestamps remain truthful internal audit data;
+- every certificate has an individual record/identifier/token/link; public verification and QR expose only minimum credential data;
+- issued certificates use revoke/supersede/reissue, not free edit or hard delete;
+- manual certificate issuance does not silently mutate event/academic/publication states;
+- privileged manual certificate self-issuance is denied by default;
+- edition closeout is checklist-driven and can coexist with continuing publication work according to policy;
+- ARCHIVED is read-only by default;
+- controlled certificate/publication-reference/historical correction may continue post-archive without reopening the whole edition;
+- historical.correct is a dedicated audited capability;
+- unarchive is exceptional and privileged;
+- archive preserves lifecycle records rather than deleting them.
 
 ## Authentication / registration
 

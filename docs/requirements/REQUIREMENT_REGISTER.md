@@ -375,3 +375,31 @@ Statuses: PROPOSED, ANALYSIS, ACCEPTED DIRECTION, ACCEPTED, IMPLEMENTED, VERIFIE
 | NFR-UX-017 | Motion is optional enhancement only and relevant interfaces respect reduced-motion preference | ACCEPTED |
 | NFR-UX-018 | Accessibility/usability requirements apply consistently across Indonesian, English, and Arabic/RTL interfaces | ACCEPTED |
 | NFR-UX-019 | Accessibility UAT includes representative mobile/tablet/desktop, keyboard-only, zoom/reflow, semantic/screen-reader sanity, and RTL scenarios | ACCEPTED |
+
+| NFR-L10N-001 | V1 mandatory UI locales are Indonesian (`id`), English (`en`), and Arabic (`ar`) | ACCEPTED |
+| NFR-L10N-002 | Arabic is a first-class RTL interface; RTL behavior applies to layout direction, navigation, forms, dialogs, steppers, pagination, tables, and responsive views as appropriate | ACCEPTED |
+| NFR-L10N-003 | UI strings must come from localization resources/catalogs rather than being scattered as hardcoded translatable text | ACCEPTED |
+| NFR-L10N-004 | Locale fallback is deterministic: requested locale → English → controlled missing-translation handling/observability | ACCEPTED |
+| NFR-L10N-005 | Critical UI translation completeness for id/en/ar is a release/UAT gate | ACCEPTED |
+| NFR-L10N-006 | Bidirectional handling must preserve correct display/interaction for mixed Arabic/Latin content such as email, URL, DOI, ORCID, codes, and identifiers | ACCEPTED |
+| NFR-L10N-007 | UI locale is separate from scholarly-content language; changing interface language must not translate or mutate paper metadata automatically | ACCEPTED |
+| NFR-L10N-008 | Multilingual scholarly metadata is supported/configurable where needed but is not globally mandatory for every submission in V1 | ACCEPTED |
+| NFR-L10N-009 | CMS/public edition content must be locale-aware/translatable and translation availability must be explicit rather than silently assumed | ACCEPTED |
+| NFR-L10N-010 | Date/time and number presentation is locale-aware while authoritative stored values remain canonical | ACCEPTED |
+| NFR-L10N-011 | Currency is determined by edition/business policy rather than UI locale | ACCEPTED |
+| NFR-L10N-012 | Timezone is determined by edition/user context rather than UI locale | ACCEPTED |
+| NFR-L10N-013 | Validation, status, confirmation, and system error messages used in critical workflows must support the active locale | ACCEPTED |
+| NFR-L10N-014 | Notifications should use the recipient/preferred locale where available with deterministic fallback | ACCEPTED |
+| NFR-L10N-015 | Generated-document language/template is explicit and independent from the administrator's current UI locale | ACCEPTED |
+| NFR-L10N-016 | Generated-document provenance preserves document language plus template/version context | ACCEPTED |
+| NFR-L10N-017 | Text storage/search must be full-Unicode safe and must not assume ASCII/Latin-only content | ACCEPTED |
+| NFR-L10N-018 | Personal-name modeling must support Indonesian, Arabic, and international naming patterns without forcing a Western first/middle/last-name structure as the only representation | ACCEPTED |
+| NFR-L10N-019 | The platform must not silently auto-transliterate or alter scholarly/personal identity; alternate-script/transliterated forms are user/source supplied where used | ACCEPTED |
+| NFR-L10N-020 | Search/filter must remain usable across mixed scripts and for DOI/email/ORCID/submission codes in RTL interfaces | ACCEPTED |
+| NFR-L10N-021 | Layout/components must tolerate translation-length variation and must not be designed around one short source-language string | ACCEPTED |
+| NFR-L10N-022 | Directional icons/affordances are mirrored based on semantic direction; non-directional icons are not blindly mirrored | ACCEPTED |
+| NFR-L10N-023 | Locale switching should preserve the current authorized page/resource context and must never mutate authoritative data | ACCEPTED |
+| NFR-L10N-024 | Authenticated users may persist a preferred UI locale; public users retain explicit language-switch control | ACCEPTED |
+| NFR-L10N-025 | Missing translation keys must be detectable through QA/observability rather than waiting for user reports | ACCEPTED |
+| NFR-L10N-026 | Arabic RTL requires dedicated UAT across navigation, forms, tables, dialogs, pagination, steppers, uploads, cards, mobile, mixed-direction metadata, and applicable generated documents | ACCEPTED |
+| NFR-L10N-027 | Accessibility and RTL must be tested together; Arabic must not receive reduced accessibility/usability quality | ACCEPTED |

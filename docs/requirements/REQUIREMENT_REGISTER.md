@@ -217,6 +217,17 @@
 | REQ-PERM-119 | Revoked sensitive authority must stop authorizing new actions immediately at product-policy level | ACCEPTED |
 | REQ-PERM-120 | Revocation workflow may surface active-dependency warnings without preventing emergency revocation | ACCEPTED |
 | REQ-PERM-121 | Assignment/revocation/expiry/scope-change/reassignment events are auditable | ACCEPTED |
+| REQ-PERM-122 | Front Office is an edition-scoped support role with safe operational-status visibility and no default authoritative business decision power | ACCEPTED |
+| REQ-PERM-123 | Front Office cannot access raw Finance/confidential review data or impersonate/take over user accounts by default | ACCEPTED |
+| REQ-PERM-124 | Administrative screening uses a distinct submission.admin_screen capability and is separated from academic judgment | ACCEPTED |
+| REQ-PERM-125 | Formal withdrawal separates author request from authorized edition approval and never hard-deletes official submissions | ACCEPTED |
+| REQ-PERM-126 | Protected contributor/authorship changes use stage-aware submission.contributor_change.approve authority with before/after audit | ACCEPTED |
+| REQ-PERM-127 | Normal publication eligibility is evaluated from authoritative source facts plus edition policy rather than discretionary operator mutation | ACCEPTED |
+| REQ-PERM-128 | Publication Team may remediate publication-domain blockers but cannot falsify Finance/Academic/Event source facts | ACCEPTED |
+| REQ-PERM-129 | publication.eligibility.override is a protected domain-specific override that preserves source facts and records blocking condition, authority, reason, result, and audit | ACCEPTED |
+| REQ-PERM-130 | Final canonical permission matrix covers all approved actors/domains and lifecycle 4A–4F | ACCEPTED |
+| REQ-PERM-131 | Full permission consistency audit is GREEN with no unresolved authority-ownership gap at product-requirement level | ACCEPTED |
+| REQ-PERM-132 | REQ-PERM-001 is complete; physical RBAC/ABAC implementation remains a later architecture/implementation decision | ACCEPTED |
 | REQ-PRD-001 | PRD must reach baseline before Phase 1 begins | ACCEPTED |
 
 Statuses: PROPOSED, ANALYSIS, ACCEPTED DIRECTION, ACCEPTED, IMPLEMENTED, VERIFIED, SUPERSEDED.

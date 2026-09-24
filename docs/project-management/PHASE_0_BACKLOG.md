@@ -14,10 +14,10 @@
 - PRD-004 PRD v1.0 baseline approval — BLOCKED
 
 ## EPIC-0003 — Actor & Lifecycle Analysis
-- REQ-ACTOR-001 Finalize Actor Catalog — APPROVED BASELINE; detailed permission mapping pending
+- REQ-ACTOR-001 Finalize Actor Catalog — APPROVED BASELINE; detailed permission mapping COMPLETE
 - REQ-AUTH-001 Resolve Authentication / Registration Model — DONE
 - REQ-LIFE-001 Map End-to-End Conference Lifecycle — DONE
-- REQ-PERM-001 Draft Application Permission Matrix — IN PROGRESS (Parts 1–9 APPROVED; Part 10 Full Consistency Audit NEXT)
+- REQ-PERM-001 Detailed Application Permission Matrix — DONE (Parts 1–10 APPROVED; final consistency audit GREEN)
 
 ## EPIC-0004 — Requirements & Standards
 - REQ-REG-001 Expand Functional Requirement Registry — BACKLOG

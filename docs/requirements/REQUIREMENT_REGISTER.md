@@ -269,3 +269,25 @@ Statuses: PROPOSED, ANALYSIS, ACCEPTED DIRECTION, ACCEPTED, IMPLEMENTED, VERIFIE
 | NFR-PRIV-017 | Non-required personal data should be deletable/anonymizable according to retention/privacy policy | ACCEPTED |
 | NFR-PRIV-018 | Production PII must not be copied casually into local development, demo, test, staging, screenshots, fixtures, or AI prompts; synthetic/redacted data is preferred | ACCEPTED |
 | NFR-PRIV-019 | Backups inherit the privacy/sensitivity classification of the production data they contain | ACCEPTED |
+
+| NFR-REL-001 | Production monthly availability objective is at least 99.5%, excluding announced scheduled maintenance | ACCEPTED |
+| NFR-REL-002 | Planned maintenance should be avoided during submission/payment/review/full-paper deadlines and conference-day critical windows | ACCEPTED |
+| NFR-REL-003 | External-service failure must not cause loss of authoritative core conference data | ACCEPTED |
+| NFR-REL-004 | Critical state-changing operations must be atomic/consistency-safe | ACCEPTED |
+| NFR-REL-005 | Sensitive state-changing operations must be duplicate-safe/idempotent where repeated requests could otherwise duplicate business effects | ACCEPTED |
+| NFR-REL-006 | Production recovery scope includes database, required private files/generated artifacts, and recovery-critical configuration/state | ACCEPTED |
+| NFR-REL-007 | Normal production recovery point objective is RPO ≤ 4 hours | ACCEPTED |
+| NFR-REL-008 | Critical-window recovery point target is RPO ≤ 1 hour where reasonably supported by the selected infrastructure | ACCEPTED |
+| NFR-REL-009 | Normal production recovery time objective is RTO ≤ 4 hours | ACCEPTED |
+| NFR-REL-010 | Critical-window recovery time target is RTO ≤ 2 hours | ACCEPTED |
+| NFR-REL-011 | Production backup is automated and exposes last-success/failure health with actionable failure notification | ACCEPTED |
+| NFR-REL-012 | Restore verification is required before first production launch, before each major edition, and periodically; quarterly is the target while production is actively used | ACCEPTED |
+| NFR-REL-013 | Backup copies must have failure-domain separation from the primary production system | ACCEPTED |
+| NFR-REL-014 | Backups retain the same security/privacy classification as their source data | ACCEPTED |
+| NFR-REL-015 | Database references and stored files/artifacts must be integrity-verifiable | ACCEPTED |
+| NFR-REL-016 | Integration/notification retries must be safe and must not duplicate authoritative business actions | ACCEPTED |
+| NFR-REL-017 | Notification/integration failure must not roll back or falsify authoritative business state | ACCEPTED |
+| NFR-REL-018 | The platform should support graceful degradation and controlled maintenance rather than cascading unrelated service failure | ACCEPTED |
+| NFR-REL-019 | Conference-day operations require a minimum-necessary continuity pack for offline/manual fallback | ACCEPTED |
+| NFR-REL-020 | Post-outage/manual-fallback reconciliation must be controlled and auditable | ACCEPTED |
+| NFR-REL-021 | Data integrity/correctness takes priority over accepting unsafe transactions during degraded conditions | ACCEPTED |

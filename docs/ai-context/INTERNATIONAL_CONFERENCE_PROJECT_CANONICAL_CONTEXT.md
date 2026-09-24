@@ -270,7 +270,23 @@ Not just a website, upload form, or OJS front-end.
 - authoritative success is shown only after confirmed server completion;
 - responsive layouts support reflow/zoom, avoid unnecessary horizontal scrolling, and respect reduced-motion preference;
 - accessibility/usability quality applies equally across id/en/ar including Arabic RTL;
-- accessibility UAT includes representative mobile/tablet/desktop, keyboard, zoom/reflow, semantic/screen-reader sanity, and RTL scenarios.
+- accessibility UAT includes representative mobile/tablet/desktop, keyboard, zoom/reflow, semantic/screen-reader sanity, and RTL scenarios;
+- mandatory UI locales are id/en/ar and Arabic is a first-class RTL experience;
+- translatable UI copy comes from localization resources, with requested-locale → English fallback and detectable missing-translation handling;
+- critical id/en/ar translation completeness is a release/UAT gate;
+- RTL applies to layout direction and semantic directional affordances, not merely text alignment;
+- mixed Arabic/Latin content must remain BiDi-safe for email/URL/DOI/ORCID/codes and other identifiers;
+- UI locale is separate from scholarly-content language; locale switching never silently translates/mutates paper metadata;
+- multilingual scholarly metadata is supported/configurable but not mandatory for every V1 submission;
+- CMS/public edition content is locale-aware/translatable with explicit translation availability;
+- date/time/number presentation is locale-aware, while currency follows edition policy and timezone follows edition/user context;
+- critical validation/status/confirmation/error messages and notifications are locale-aware;
+- generated-document language/template is explicit and its language/template/version context is traceable;
+- text storage/search is full-Unicode safe and personal-name modeling supports international naming patterns;
+- personal/scholarly identity is never silently auto-transliterated;
+- layout tolerates translation-length variation and search/filter remains usable across mixed scripts;
+- locale switching preserves current resource context and authenticated users may persist a preferred locale;
+- Arabic RTL receives dedicated UAT and is tested together with accessibility requirements.
 
 ## Authentication / registration
 

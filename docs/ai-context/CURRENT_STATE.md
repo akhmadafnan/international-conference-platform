@@ -1,6 +1,6 @@
 # Current Project State
 
-**State ID:** ICP-STATE-20260924-11  
+**State ID:** ICP-STATE-20260924-12  
 **Status:** PHASE 0 IN PROGRESS  
 **Implementation authorization:** NOT GRANTED
 
@@ -74,9 +74,11 @@ The next product-analysis sequence is:
 28. **REQ-NFR-001 / Part 5** — Auditability, Logging, Monitoring & Observability: **APPROVED**.
 29. **REQ-NFR-001 / Part 6** — File, Document & Data Integrity: **APPROVED**.
 30. **REQ-NFR-001 / Part 7** — Accessibility, Usability & Responsive Experience: **APPROVED**.
-31. **REQ-NFR-001 / Part 8** — Localization, Internationalization & Arabic RTL Quality: **NEXT**.
-32. **INT-BASE-001** — Integration baselines: **PENDING**.
-33. **GOV-GATE-001** — Phase 0 consistency audit and Phase 1 readiness: **PENDING**.
+31. **REQ-NFR-001 / Part 8** — Localization, Internationalization & Arabic RTL Quality: **APPROVED**.
+32. **REQ-L10N-001/002** — Localization + Arabic RTL baseline: **APPROVED via NFR Part 8**.
+33. **REQ-NFR-001 / Part 9** — Integration Resilience, Notifications & External Service Boundaries: **NEXT**.
+34. **INT-BASE-001** — Integration baselines: **PENDING**.
+35. **GOV-GATE-001** — Phase 0 consistency audit and Phase 1 readiness: **PENDING**.
 
 ## Human local workspace
 

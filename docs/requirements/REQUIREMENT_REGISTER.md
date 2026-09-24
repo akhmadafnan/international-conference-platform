@@ -249,3 +249,23 @@ Statuses: PROPOSED, ANALYSIS, ACCEPTED DIRECTION, ACCEPTED, IMPLEMENTED, VERIFIE
 | NFR-SEC-014 | Security-sensitive events including abnormal login/recovery, role changes, MFA/security changes, break-glass, and sensitive overrides must be auditable | ACCEPTED |
 | NFR-SEC-015 | Silent impersonation/account takeover remains prohibited; V1 does not require impersonation | ACCEPTED |
 | NFR-SEC-016 | Detailed authentication libraries, MFA providers, session mechanisms, and security-control implementation remain deferred to architecture/implementation | ACCEPTED |
+
+| NFR-PRIV-001 | Data handling follows sensitivity/purpose classes such as public, internal, confidential, and restricted | ACCEPTED |
+| NFR-PRIV-002 | The platform collects only data needed for defined conference lifecycle purposes | ACCEPTED |
+| NFR-PRIV-003 | Personal data use must not silently expand beyond the defined operational/scholarly purpose | ACCEPTED |
+| NFR-PRIV-004 | Current-profile changes must not silently rewrite historical submission/publication/certificate/archive snapshots | ACCEPTED |
+| NFR-PRIV-005 | Unpublished manuscripts, payment/refund evidence, reviewer data, and audit/security data are private by default | ACCEPTED |
+| NFR-PRIV-006 | Reviewer anonymity/confidentiality must hold across UI, files, API, export, email, notifications, metadata, and logs | ACCEPTED |
+| NFR-PRIV-007 | Finance-restricted data must not leak into support, academic, event, publication, or analytics surfaces | ACCEPTED |
+| NFR-PRIV-008 | Notifications/email should contain only minimum sensitive content and should direct users to authenticated workspaces when appropriate | ACCEPTED |
+| NFR-PRIV-009 | PII/confidential values must not be used as public URL identifiers | ACCEPTED |
+| NFR-PRIV-010 | Logs must exclude credentials, authentication tokens, full bank/refund data, and unnecessary raw confidential content | ACCEPTED |
+| NFR-PRIV-011 | Public certificate verification exposes only minimum credential-validation data | ACCEPTED |
+| NFR-PRIV-012 | Private/authenticated resources must not be intentionally exposed for search-engine indexing | ACCEPTED |
+| NFR-PRIV-013 | Export/API authorization must match UI authorization; sensitive bulk export may require audit | ACCEPTED |
+| NFR-PRIV-014 | Third-party integrations receive only the minimum data required for their defined purpose | ACCEPTED |
+| NFR-PRIV-015 | Data-retention duration must be defined by data class/purpose; exact periods remain deferred pending policy/legal basis | ACCEPTED |
+| NFR-PRIV-016 | Account closure/deletion does not automatically erase historical scholarly, financial, certificate, publication, or audit facts that must be retained | ACCEPTED |
+| NFR-PRIV-017 | Non-required personal data should be deletable/anonymizable according to retention/privacy policy | ACCEPTED |
+| NFR-PRIV-018 | Production PII must not be copied casually into local development, demo, test, staging, screenshots, fixtures, or AI prompts; synthetic/redacted data is preferred | ACCEPTED |
+| NFR-PRIV-019 | Backups inherit the privacy/sensitivity classification of the production data they contain | ACCEPTED |

@@ -196,6 +196,27 @@
 | REQ-PERM-098 | Historical correction is a dedicated audited capability, not unrestricted archive editing | ACCEPTED |
 | REQ-PERM-099 | Unarchive is an exceptional privileged audited operation and is not required for ordinary post-archive certificate work | ACCEPTED |
 | REQ-PERM-100 | Archive preserves lifecycle records rather than deleting them | ACCEPTED |
+| REQ-PERM-101 | Role/capability assignment is a scoped auditable record rather than a single mutable user-role field | ACCEPTED |
+| REQ-PERM-102 | Role assignment and resource assignment are distinct concepts | ACCEPTED |
+| REQ-PERM-103 | Assignment lifecycle supports activation/invitation, expiry/revocation, and preserved history | ACCEPTED |
+| REQ-PERM-104 | Temporary/expiring role and capability assignments are supported | ACCEPTED |
+| REQ-PERM-105 | Revocation removes future access but does not erase historical attribution | ACCEPTED |
+| REQ-PERM-106 | Active responsibilities can be cancelled/reassigned when authority is revoked | ACCEPTED |
+| REQ-PERM-107 | Protected roles/capabilities require authorized protected-role assignment and cannot be self-assigned | ACCEPTED |
+| REQ-PERM-108 | V1 requires authorized assigner + anti-self-assignment + audit, while remaining future-ready for dual-approval assignment | ACCEPTED |
+| REQ-PERM-109 | COI is a generic restriction layer and overrides normal permission across domains | ACCEPTED |
+| REQ-PERM-110 | Direct self-conflict is blocked for Reviewer, Decision Authority, Finance, Event verification, and privileged manual certificate issuance | ACCEPTED |
+| REQ-PERM-111 | Overrides are domain-specific; no universal override-everything permission exists | ACCEPTED |
+| REQ-PERM-112 | Every override records actor, resource, before/after state, reason, timestamp, and evidence/reference where applicable | ACCEPTED |
+| REQ-PERM-113 | Overrides preserve original facts/history rather than erasing them | ACCEPTED |
+| REQ-PERM-114 | Break-glass is distinct from business override and is limited to serious technical/security incidents | ACCEPTED |
+| REQ-PERM-115 | Break-glass access is temporary, scoped, reasoned, auditable, and does not create permanent authority | ACCEPTED |
+| REQ-PERM-116 | Silent impersonation/account takeover is denied and V1 does not require impersonation | ACCEPTED |
+| REQ-PERM-117 | Delegation revocation removes future permission without erasing historical attribution | ACCEPTED |
+| REQ-PERM-118 | Replacing a role holder does not rewrite prior action attribution | ACCEPTED |
+| REQ-PERM-119 | Revoked sensitive authority must stop authorizing new actions immediately at product-policy level | ACCEPTED |
+| REQ-PERM-120 | Revocation workflow may surface active-dependency warnings without preventing emergency revocation | ACCEPTED |
+| REQ-PERM-121 | Assignment/revocation/expiry/scope-change/reassignment events are auditable | ACCEPTED |
 | REQ-PRD-001 | PRD must reach baseline before Phase 1 begins | ACCEPTED |
 
 Statuses: PROPOSED, ANALYSIS, ACCEPTED DIRECTION, ACCEPTED, IMPLEMENTED, VERIFIED, SUPERSEDED.

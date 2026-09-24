@@ -1,6 +1,6 @@
 # Actor Catalog — Approved Baseline
 
-**Status:** PRODUCT OWNER APPROVED BASELINE — permission model Parts 1–8 approved; detailed actor-by-domain matrix still in progress
+**Status:** PRODUCT OWNER APPROVED BASELINE — permission model Parts 1–9 approved; final consistency audit pending
 
 ## Participant-side actors
 
@@ -203,3 +203,18 @@ Core rules:
 - ARCHIVED is read-only by default.
 - Narrow certificate/historical correction capabilities may remain active on archived editions without reopening the entire edition.
 - Unarchive is exceptional privileged authority.
+
+
+## Assignment / revocation / COI governance — approved
+
+- Role/capability assignments are scoped auditable records, separate from resource assignments.
+- Temporary/expiring authority is supported.
+- Revocation removes future authority without erasing historical attribution.
+- Active work can be reassigned when a role/resource assignment is revoked.
+- Protected authorities cannot be self-assigned.
+- V1 uses authorized assigner + anti-self-escalation + audit rather than mandatory dual approval everywhere.
+- COI/restriction is a generic layer that overrides normal permissions across Finance, Academic, Event, Certificate, and Reviewer contexts.
+- Overrides are domain-specific and must preserve before/after state, reason, actor, and audit.
+- Break-glass is separate from business override, temporary/scoped/reasoned/audited, and never permanent.
+- Silent impersonation/account takeover is denied; V1 does not require impersonation.
+- Sensitive-role revocation must stop new authorization immediately at the product-policy level.

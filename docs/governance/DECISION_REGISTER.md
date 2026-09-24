@@ -196,5 +196,22 @@
 | DEC-192 | Historical correction is a dedicated audited capability rather than unrestricted archive editing | ACCEPTED |
 | DEC-193 | Unarchive is an exceptional privileged audited operation | ACCEPTED |
 | DEC-194 | Archive preserves lifecycle records and is never equivalent to deletion | ACCEPTED |
+| DEC-195 | Role/capability assignments are scoped auditable records distinct from resource assignments | ACCEPTED |
+| DEC-196 | Temporary/expiring authority is supported while historical attribution is preserved | ACCEPTED |
+| DEC-197 | Revocation removes future authority without deleting or reassigning historical attribution | ACCEPTED |
+| DEC-198 | Protected roles/capabilities cannot be self-assigned through normal administration | ACCEPTED |
+| DEC-199 | V1 protected assignment uses authorized assigner + anti-self-assignment + audit; universal dual approval is not required | ACCEPTED |
+| DEC-200 | COI is a generic cross-domain restriction layer and explicit restriction wins over role allow | ACCEPTED |
+| DEC-201 | Direct self-conflict blocks Reviewer, Academic Decision, Finance, Event verification, and privileged manual certificate actions | ACCEPTED |
+| DEC-202 | Overrides are domain-specific; there is no universal override-everything authority | ACCEPTED |
+| DEC-203 | Overrides preserve before/after state, reason, actor, timestamp, and original factual history | ACCEPTED |
+| DEC-204 | Break-glass is separate from business override and reserved for serious technical/security incidents | ACCEPTED |
+| DEC-205 | Break-glass is temporary, scoped, reasoned, fully auditable, and never permanent | ACCEPTED |
+| DEC-206 | Silent impersonation/account takeover is denied; V1 does not require impersonation | ACCEPTED |
+| DEC-207 | Delegation revocation preserves historical attribution while removing future permission | ACCEPTED |
+| DEC-208 | Role-holder replacement never rewrites prior actor attribution | ACCEPTED |
+| DEC-209 | Sensitive-role revocation must cease new authorization immediately at product-policy level | ACCEPTED |
+| DEC-210 | Active dependency warnings support revocation handoff but do not block emergency revocation | ACCEPTED |
+| DEC-211 | Assignment, revocation, expiry, extension, scope changes, and reassignment are first-class audit events | ACCEPTED |
 
 Statuses: PROPOSED, ANALYZED, ACCEPTED DIRECTION, ACCEPTED, REJECTED, SUPERSEDED, OPEN.

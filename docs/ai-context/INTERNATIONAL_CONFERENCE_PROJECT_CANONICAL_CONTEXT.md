@@ -158,7 +158,19 @@ Not just a website, upload form, or OJS front-end.
 - controlled certificate/publication-reference/historical correction may continue post-archive without reopening the whole edition;
 - historical.correct is a dedicated audited capability;
 - unarchive is exceptional and privileged;
-- archive preserves lifecycle records rather than deleting them.
+- archive preserves lifecycle records rather than deleting them;
+- role/capability assignments are scoped auditable records and are distinct from resource assignments;
+- temporary/expiring authority is supported;
+- revocation removes future access without erasing historical attribution;
+- protected authorities cannot be self-assigned;
+- V1 does not require dual approval for every assignment, but uses authorized assigner + anti-self-escalation + audit and remains future-ready;
+- COI is a generic restriction layer and direct self-conflicts are blocked across Reviewer/Academic/Finance/Event/Certificate contexts;
+- overrides are domain-specific, never universal, and always preserve before/after state, reason, actor, and history;
+- break-glass is separate from business override, temporary/scoped/reasoned/audited, and never permanent;
+- silent impersonation/account takeover is denied; V1 does not require impersonation;
+- delegation revocation and role-holder replacement preserve historical attribution;
+- sensitive-role revocation stops new authorization immediately at product-policy level;
+- assignment/revocation/expiry/scope-change/reassignment are first-class audit events.
 
 ## Authentication / registration
 

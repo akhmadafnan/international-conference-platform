@@ -256,7 +256,21 @@ Not just a website, upload form, or OJS front-end.
 - storage failures fail safely and are observable;
 - backup/restore supports post-recovery file-integrity verification;
 - exceptional restricted-file access can be audited;
-- export/publication packages reference authoritative approved file versions.
+- export/publication packages reference authoritative approved file versions;
+- WCAG 2.2 Level AA is the V1 accessibility target;
+- Participant/Author workflows are mobile-first and ordinary critical participant actions cannot be desktop-only;
+- back-office workspaces are desktop-first but responsive; Event Operations must be usable on tablet/mobile;
+- core workflows are keyboard-operable with visible focus, no keyboard traps, semantic roles/labels, and accessible names;
+- status/progress/error feedback is not color-only and must be exposed accessibly;
+- forms use persistent labels, clear field-specific errors, and preserve user-entered data after validation failure;
+- long-form workflows use draft/autosave/recovery safeguards;
+- high-impact actions use proportional confirmation explaining consequences;
+- user-facing workflow presentation emphasizes understandable current state and next required action;
+- deadlines/schedules display absolute date/time and timezone where ambiguity is possible;
+- authoritative success is shown only after confirmed server completion;
+- responsive layouts support reflow/zoom, avoid unnecessary horizontal scrolling, and respect reduced-motion preference;
+- accessibility/usability quality applies equally across id/en/ar including Arabic RTL;
+- accessibility UAT includes representative mobile/tablet/desktop, keyboard, zoom/reflow, semantic/screen-reader sanity, and RTL scenarios.
 
 ## Authentication / registration
 

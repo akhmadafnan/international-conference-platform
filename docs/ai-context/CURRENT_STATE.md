@@ -1,6 +1,6 @@
 # Current Project State
 
-**State ID:** ICP-STATE-20260924-15  
+**State ID:** ICP-STATE-20260924-16  
 **Status:** PHASE 0 IN PROGRESS  
 **Implementation authorization:** NOT GRANTED
 
@@ -79,8 +79,8 @@ The next product-analysis sequence is:
 33. **REQ-NFR-001 / Part 9** — Integration Resilience, Notifications & External Service Boundaries: **APPROVED**.
 34. **REQ-NFR-001 / Part 10** — Deployment, Configuration, Environment & Production Readiness: **APPROVED**.
 35. **REQ-NFR-001 / Part 11** — Compatibility, Browser & Device Support: **APPROVED**.
-36. **REQ-NFR-001 / Part 12** — Maintainability, Testability & Operational Support: **NEXT**.
-37. **REQ-NFR-001 / Final Audit** — Parts 1–12 consistency audit: **PENDING AFTER PART 12**.
+36. **REQ-NFR-001 / Part 12** — Maintainability, Testability & Operational Support: **APPROVED**.
+37. **REQ-NFR-001 / Final Audit** — Parts 1–12 consistency audit: **NEXT / REQUIRED BEFORE CLOSE**.
 38. **INT-BASE-001** — Integration baselines: **PENDING**.
 39. **GOV-GATE-001** — Phase 0 consistency audit and Phase 1 readiness: **PENDING**.
 

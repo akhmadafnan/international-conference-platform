@@ -482,3 +482,36 @@ Statuses: PROPOSED, ANALYSIS, ACCEPTED DIRECTION, ACCEPTED, IMPLEMENTED, VERIFIE
 | NFR-COMP-022 | Device permissions such as camera are requested only when needed for the relevant feature | ACCEPTED |
 | NFR-COMP-023 | Native mobile app or PWA installation is not required for V1 participation | ACCEPTED |
 | NFR-COMP-024 | Production readiness requires a canonical Browser & Device Support Matrix documenting support policy, tested critical flows, known limitations, and last verification | ACCEPTED |
+
+| NFR-MAINT-001 | Architecture should preserve clear modular/domain boundaries without requiring microservices | ACCEPTED |
+| NFR-MAINT-002 | Critical business rules must have one authoritative implementation concept rather than duplicated logic across UI/controllers/jobs/exports/integrations | ACCEPTED |
+| NFR-MAINT-003 | Authorization must follow centralized/policy-driven, consistent, and testable patterns rather than scattered role-name checks | ACCEPTED |
+| NFR-MAINT-004 | Canonical domain/state terminology must remain consistent across code, tests, docs, logs, and interfaces where applicable | ACCEPTED |
+| NFR-MAINT-005 | Material architecture decisions must be documented through ADR/Decision Records with rationale | ACCEPTED |
+| NFR-MAINT-006 | New dependencies must be justified for maintenance/security/compatibility/replacement cost and dependency resolution must be reproducible through ecosystem lock mechanisms | ACCEPTED |
+| NFR-MAINT-007 | Supported runtime/framework/dependencies require ongoing security/support lifecycle review and planned upgrade paths | ACCEPTED |
+| NFR-MAINT-008 | Automated testing and UAT are complementary; neither replaces the other | ACCEPTED |
+| NFR-MAINT-009 | Critical business rules should have unit/domain tests where isolation is appropriate | ACCEPTED |
+| NFR-MAINT-010 | Database/resource workflows require integration/feature tests appropriate to their contracts | ACCEPTED |
+| NFR-MAINT-011 | Representative critical lifecycle paths require end-to-end/acceptance verification without forcing one giant brittle browser test | ACCEPTED |
+| NFR-MAINT-012 | High-risk permission, Finance, refund, academic, anonymity, event, publication, certificate, archive, privacy, and correction boundaries require regression protection | ACCEPTED |
+| NFR-MAINT-013 | Reproducible functional bugs should result in durable regression guardrails/tests where reasonably automatable | ACCEPTED |
+| NFR-MAINT-014 | Flaky tests are defects to investigate/repair rather than normal acceptable CI behavior | ACCEPTED |
+| NFR-MAINT-015 | Normal CI tests must not depend on live production third-party services and should use fakes/stubs/mocks/fixtures/sandboxes/contract tests as appropriate | ACCEPTED |
+| NFR-MAINT-016 | Time-dependent tests must use controllable time and automated test data must be deterministic, isolated, and non-production | ACCEPTED |
+| NFR-MAINT-017 | Test suites should not rely on hidden execution order except for explicitly orchestrated scenarios | ACCEPTED |
+| NFR-MAINT-018 | Test quality prioritizes critical-rule/boundary coverage over arbitrary global line-coverage percentages | ACCEPTED |
+| NFR-MAINT-019 | Required CI checks must be capable of blocking merge/release when mandatory verification fails | ACCEPTED |
+| NFR-MAINT-020 | Verification depth is proportional to change risk: targeted regression → broader/full regression → UAT where required | ACCEPTED |
+| NFR-MAINT-021 | Contract/behavior-changing implementation must keep canonical docs/ADRs/requirements synchronized | ACCEPTED |
+| NFR-MAINT-022 | Inter-module/API contracts should expose minimum necessary data and avoid cross-domain leakage/coupling | ACCEPTED |
+| NFR-MAINT-023 | High-risk repair/backfill/correction scripts should be version-controlled, reviewed, testable, and dry-run/idempotency-aware where appropriate | ACCEPTED |
+| NFR-MAINT-024 | Operational support preserves separation of duties between Front Office, Technical Admin, and business-domain authorities during incidents | ACCEPTED |
+| NFR-MAINT-025 | Significant incidents require severity/impact context, timeline, mitigation/recovery, root-cause analysis, and follow-up guardrails | ACCEPTED |
+| NFR-MAINT-026 | Routine maintenance must cover dependency/security review, backup/restore verification, secret/certificate expiry, failed jobs, storage/log health, browser matrix, and translation completeness at suitable cadence | ACCEPTED |
+| NFR-MAINT-027 | Critical operational domains must have clear ownership/capability rather than routing every issue to Super Admin | ACCEPTED |
+| NFR-MAINT-028 | Technical diagnostics must remain minimum-necessary and must not automatically expose confidential manuscript/Finance/reviewer data | ACCEPTED |
+| NFR-MAINT-029 | Repository canonical context/docs/issues—not chat alone—remain the engineering source of truth for developer/AI continuity | ACCEPTED |
+| NFR-MAINT-030 | Feature Definition of Done includes, as relevant, implementation, authorization, tests, regression, docs sync, accessibility/localization checks, UAT, and cleanup of temporary debug/harness artifacts | ACCEPTED |
+| NFR-MAINT-031 | Deliberate technical debt/workarounds must be visible and traceable with rationale/impact/follow-up rather than hidden as permanent architecture | ACCEPTED |
+| NFR-MAINT-032 | Changes to templates/forms/states must preserve historical readability/compatibility for prior records | ACCEPTED |

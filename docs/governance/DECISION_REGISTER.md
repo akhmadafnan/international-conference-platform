@@ -402,3 +402,24 @@ Statuses: PROPOSED, ANALYZED, ACCEPTED DIRECTION, ACCEPTED, REJECTED, SUPERSEDED
 | DEC-384 | Embedded in-app browsers are best-effort; primary supported browsers remain authoritative support targets | ACCEPTED |
 | DEC-385 | Required browser-storage/cookie failure receives usable guidance and device permissions are requested only when needed | ACCEPTED |
 | DEC-386 | V1 does not require native mobile app/PWA installation; production readiness includes a canonical Browser & Device Support Matrix | ACCEPTED |
+
+| DEC-387 | Maintainability uses clear modular/domain boundaries without requiring microservices | ACCEPTED |
+| DEC-388 | Critical business rules and authorization use authoritative centralized/testable implementation patterns rather than scattered duplication | ACCEPTED |
+| DEC-389 | Canonical domain/state terminology remains consistent across implementation and documentation | ACCEPTED |
+| DEC-390 | Material architecture choices require ADR/Decision Record rationale | ACCEPTED |
+| DEC-391 | Dependencies are justified, reproducibly locked, maintained for security/support lifecycle, and upgraded through planned paths | ACCEPTED |
+| DEC-392 | Automated tests and UAT are complementary; unit/domain, integration/feature, and representative critical-flow verification are required where appropriate | ACCEPTED |
+| DEC-393 | High-risk business/permission/privacy boundaries receive durable regression protection and reproducible bugs gain guardrail tests where practical | ACCEPTED |
+| DEC-394 | Flaky tests are defects; normal CI avoids dependence on live production third-party services | ACCEPTED |
+| DEC-395 | Time/test data is controllable/deterministic/isolated and hidden test-order coupling is prohibited | ACCEPTED |
+| DEC-396 | Critical-rule/boundary coverage is more important than arbitrary line-coverage targets | ACCEPTED |
+| DEC-397 | Required CI checks block merge/release and verification depth follows targeted → broader/full regression → UAT based on risk | ACCEPTED |
+| DEC-398 | Contract-changing implementation keeps canonical docs/ADRs/requirements synchronized | ACCEPTED |
+| DEC-399 | Inter-module contracts expose minimum necessary data and avoid unnecessary cross-domain coupling | ACCEPTED |
+| DEC-400 | High-risk repair/backfill/correction scripts are treated as version-controlled/reviewed/testable operational code | ACCEPTED |
+| DEC-401 | Incident support preserves separation of duties and significant incidents require severity, timeline, root cause, recovery, and corrective guardrails | ACCEPTED |
+| DEC-402 | Routine operational maintenance and clear domain ownership are required; not every issue routes to Super Admin | ACCEPTED |
+| DEC-403 | Technical diagnostics remain minimum-necessary and do not automatically expose confidential business data | ACCEPTED |
+| DEC-404 | Repository canonical sources—not chat alone—remain the durable engineering memory for developer/AI continuity | ACCEPTED |
+| DEC-405 | Feature Definition of Done includes appropriate auth/tests/regression/docs/accessibility/localization/UAT/cleanup obligations | ACCEPTED |
+| DEC-406 | Technical debt is explicit/traceable and historical records remain readable across template/form/state evolution | ACCEPTED |

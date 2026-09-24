@@ -189,8 +189,8 @@ Audit Requirement
 - Part 5 — Academic Committee / Reviewer / Decision Authority: APPROVED
 - Part 6 — Event Operations / Session Chair / Moderator: APPROVED
 - Part 7 — Publication / OJS: APPROVED
-- Part 8 — Certificate / Archive: NEXT
-- Part 9 — Assignment / Revocation / COI / Overrides
+- Part 8 — Certificate / Archive: APPROVED
+- Part 9 — Assignment / Revocation / COI / Overrides: NEXT
 - Part 10 — Full Matrix Consistency Audit
 
 
@@ -1179,3 +1179,243 @@ Publication records are not freely hard-deleted.
 Corrections to DOI/URL/external references/status use controlled correction with audit.
 
 Substantive post-publication metadata corrections are historical corrections and do not imply the external publication has automatically changed.
+
+
+## Part 8 — Approved Certificate & Archive Permission Matrix
+
+### Certificate capability model
+
+Certificate authority is capability-based rather than automatically inherited from a broad administrative role.
+
+Minimum conceptual capabilities:
+- `certificate.configure`;
+- `certificate.issue`;
+- `certificate.issue_manual`;
+- `certificate.issue_bulk`;
+- `certificate.revoke`;
+- `certificate.reissue`;
+- `certificate.view_history`.
+
+V1 may grant these capabilities to Conference Admin or another designated operator without requiring a separate Certificate Manager role.
+
+### Issuance paths
+
+Two supported paths:
+
+```text
+RULE_BASED
+MANUAL CERTIFICATE BUILDER
+```
+
+Rule-based issuance consumes authoritative lifecycle eligibility.
+
+Manual issuance supports:
+- individual issue;
+- bulk/collective issue;
+- existing user/participant;
+- external/manual recipient.
+
+### Manual Certificate Builder inputs
+
+Authorized operator may configure:
+- recipient name;
+- institution/affiliation;
+- optional email;
+- edition/activity;
+- certificate type;
+- role/recognition label;
+- certificate title;
+- custom wording;
+- activity/event date;
+- template;
+- signer(s);
+- certificate-number policy;
+- internal note/reason.
+
+### Date semantics
+
+Displayed certificate date is the configured activity/event date.
+
+Immutable technical timestamps such as `created_at` / `generated_at` remain truthful internal audit data and need not be exposed on the PDF or normal public verification page.
+
+### Issuance provenance
+
+Internal provenance should distinguish at least:
+- RULE_BASED;
+- MANUAL;
+- BULK_MANUAL;
+- REISSUE.
+
+Provenance does not need to be printed on the public certificate.
+
+### Bulk issuance identity
+
+Bulk generation creates one certificate record per recipient.
+
+Every certificate receives its own:
+- identifier/number;
+- verification token;
+- verification URL;
+- status/history.
+
+### Public verification
+
+Public verification exposes the minimum data needed to verify the credential, such as:
+- validity/status;
+- recipient;
+- certificate type/role;
+- event/edition;
+- activity/event date;
+- certificate number.
+
+It does not expose internal notes, issuer audit, technical timestamps, or unrelated PII by default.
+
+### QR
+
+Certificate QR represents/points to the certificate verification identity/link.
+
+QR must not be treated as a container for unrestricted recipient PII.
+
+### Issued-record immutability
+
+After issuance, material certificate fields are not freely edited in place.
+
+Correction uses controlled:
+- revoke;
+- supersede;
+- reissue.
+
+The old verification identity remains resolvable and can indicate revoked/superseded status.
+
+### No hard delete
+
+Issued certificate records are not freely hard-deleted.
+
+### Certificate vs lifecycle state
+
+Manual certificate issuance does not silently mutate authoritative:
+- attendance;
+- PRESENTED/NO_SHOW;
+- academic decision;
+- publication eligibility;
+- publication status.
+
+Certificate issuance records a credential/document event.
+
+### Presenter Certificate manual path
+
+Rule-based Presenter Certificate follows presentation eligibility.
+
+Exceptional/manual Presenter Certificate requires the separately authorized exception/manual-certificate path and audit; it does not silently rewrite presentation history.
+
+### Configuration vs issuance
+
+```text
+certificate.configure
+≠
+certificate.issue
+```
+
+A person may be permitted to configure templates/signers/number format without receiving issuance authority, or vice versa.
+
+### Certificate self-conflict
+
+For privileged/recognition certificate types, a certificate operator cannot normally manually issue/reissue their own certificate.
+
+Resolution:
+- another authorized certificate issuer; or
+- controlled exceptional override.
+
+Rule-based automatic issuance from satisfied lifecycle criteria is not treated as manual self-approval.
+
+### Edition closeout
+
+Edition closeout is a formal checklist process.
+
+Candidate checks include:
+- event completed;
+- presentation records reconciled;
+- refund cases reviewed;
+- publication queue reviewed;
+- certificate status reviewed;
+- open exception cases reviewed;
+- final edition notes.
+
+Each item may be INFO, WARNING, or BLOCKER by edition policy.
+
+### Closeout vs publication tail
+
+Edition/event closeout may occur while downstream publication work continues when policy permits.
+
+Closing an event does not require falsifying publication completion.
+
+### Archive default
+
+`ARCHIVED` is preserved and read-only by default.
+
+Normal CRUD on historical payment/review/presentation/schedule/submission records is denied.
+
+Archive means:
+```text
+PRESERVE
++
+RESTRICT MUTATION
+```
+
+not delete.
+
+### Controlled post-archive operations
+
+Authorized special capabilities may remain available without reopening the entire edition, including:
+- manual certificate issue/bulk issue;
+- certificate revoke/reissue;
+- publication-reference correction;
+- historical correction.
+
+### Manual certificates from archived editions
+
+An authorized certificate operator may issue a certificate for an archived edition/activity using the configured historical activity date without reactivating normal edition workflows.
+
+### Historical correction
+
+`historical.correct` is a dedicated capability, not unrestricted `archive.edit_all`.
+
+Historical correction records:
+- resource;
+- prior value/state;
+- new value/state;
+- reason;
+- authority;
+- timestamp;
+- optional evidence/reference.
+
+### Archive authority
+
+Separate capabilities:
+- `edition.closeout.manage`;
+- `edition.archive`;
+- `historical.correct`;
+- optionally `edition.unarchive`.
+
+V1 may grant archive authority to Conference Admin and/or Super Admin according to policy.
+
+### Unarchive
+
+Unarchive is an exceptional privileged operation, not normal edition administration.
+
+It requires reason, authority, timestamp, and audit.
+
+Most historical/certificate corrections should not require unarchiving.
+
+### Archive preservation
+
+Archive retains lifecycle history including:
+- participants;
+- submissions;
+- payment/refund;
+- reviews/decisions;
+- schedules;
+- attendance/presentation;
+- publication;
+- certificates;
+- audit history.

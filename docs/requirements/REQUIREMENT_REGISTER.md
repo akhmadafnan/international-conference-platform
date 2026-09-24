@@ -355,3 +355,23 @@ Statuses: PROPOSED, ANALYSIS, ACCEPTED DIRECTION, ACCEPTED, IMPLEMENTED, VERIFIE
 | NFR-FILE-020 | Exceptional access to restricted files can be audited where applicable | ACCEPTED |
 | NFR-FILE-021 | Export/publication packages must reference the authoritative approved file/version and a clear query/snapshot context | ACCEPTED |
 | NFR-FILE-022 | Download display names may be user-friendly, but internal storage identity remains separate and controlled | ACCEPTED |
+
+| NFR-UX-001 | Public and authenticated product surfaces target WCAG 2.2 Level AA | ACCEPTED |
+| NFR-UX-002 | Participant/Author workflows are mobile-first and must not require desktop for ordinary critical lifecycle actions | ACCEPTED |
+| NFR-UX-003 | Back-office workspaces are desktop-first but responsive; Event Operations must be operationally usable on tablet/mobile | ACCEPTED |
+| NFR-UX-004 | Core workflows must be operable by keyboard without mouse-only dependencies | ACCEPTED |
+| NFR-UX-005 | Interactive components require visible focus and must not create keyboard traps | ACCEPTED |
+| NFR-UX-006 | UI structure/components must expose correct semantic roles, labels, landmarks, headings, table/dialog semantics, and accessible names | ACCEPTED |
+| NFR-UX-007 | Important status/validation/progress feedback must be available semantically and must not rely on color alone | ACCEPTED |
+| NFR-UX-008 | Text, controls, focus indicators, errors, and meaningful visual states must meet WCAG 2.2 AA contrast requirements | ACCEPTED |
+| NFR-UX-009 | Touch targets and spacing must meet WCAG 2.2 AA minimums and should be comfortable for mobile primary actions | ACCEPTED |
+| NFR-UX-010 | Forms require persistent labels, clear required/optional state, field-associated validation errors, and preservation of user input when validation fails | ACCEPTED |
+| NFR-UX-011 | Long-form workflows require draft/autosave/recovery protection appropriate to the feature | ACCEPTED |
+| NFR-UX-012 | High-impact actions require proportional confirmation that explains the consequence, without confirmation fatigue for ordinary actions | ACCEPTED |
+| NFR-UX-013 | User-facing workflow status should use understandable language and clearly expose current state plus next required action | ACCEPTED |
+| NFR-UX-014 | Deadlines/schedules must display absolute date/time and explicit timezone where ambiguity is possible | ACCEPTED |
+| NFR-UX-015 | Loading/progress/success states must be truthful; authoritative success is not shown before confirmed server-side completion | ACCEPTED |
+| NFR-UX-016 | Responsive layouts must avoid unnecessary horizontal scrolling and support reflow/zoom without loss of critical content/functionality | ACCEPTED |
+| NFR-UX-017 | Motion is optional enhancement only and relevant interfaces respect reduced-motion preference | ACCEPTED |
+| NFR-UX-018 | Accessibility/usability requirements apply consistently across Indonesian, English, and Arabic/RTL interfaces | ACCEPTED |
+| NFR-UX-019 | Accessibility UAT includes representative mobile/tablet/desktop, keyboard-only, zoom/reflow, semantic/screen-reader sanity, and RTL scenarios | ACCEPTED |

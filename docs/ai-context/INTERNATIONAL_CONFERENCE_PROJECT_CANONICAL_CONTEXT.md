@@ -188,7 +188,18 @@ Not just a website, upload form, or OJS front-end.
 - uploaded files are untrusted input; secrets stay out of repo/client bundles/plaintext logs; production errors do not expose internals;
 - security-sensitive events are auditable;
 - silent impersonation/account takeover remains prohibited and V1 does not require impersonation;
-- specific MFA/auth/session libraries/providers remain deferred to architecture/implementation.
+- specific MFA/auth/session libraries/providers remain deferred to architecture/implementation;
+- privacy treatment is purpose/sensitivity based; collect only lifecycle-required data;
+- current-profile edits do not rewrite historical records;
+- unpublished manuscripts, payment/refund evidence, reviewer data, and audit/security data are private by default;
+- reviewer anonymity/confidentiality applies across UI/files/API/export/email/notifications/metadata/logs;
+- Finance-restricted evidence does not leak into unrelated domains;
+- notifications and integrations use minimum necessary data and prefer authenticated workspace for sensitive details;
+- public URLs/logs must not expose unnecessary PII, secrets, tokens, or raw restricted content;
+- export/API authorization mirrors UI authorization and sensitive bulk export may be audited;
+- retention is defined by data class/purpose; exact periods remain deferred pending policy/legal basis;
+- account closure does not automatically erase historical scholarly/financial/certificate/publication/audit facts;
+- synthetic/redacted data is preferred for dev/test/demo/staging/AI prompts, and backups inherit source-data privacy restrictions.
 
 ## Authentication / registration
 

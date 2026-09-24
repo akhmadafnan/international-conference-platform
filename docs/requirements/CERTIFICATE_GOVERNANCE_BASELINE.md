@@ -1,7 +1,7 @@
 # Certificate Governance Baseline
 
 **ID:** ICP-REQ-CERT-001  
-**Status:** PRODUCT OWNER APPROVED BASELINE — IMPLEMENTATION DETAIL PENDING  
+**Status:** PRODUCT OWNER APPROVED BASELINE — PERMISSION PART 8 APPROVED; IMPLEMENTATION DETAIL PENDING  
 **Approved principles:** 2026-09-23
 
 ## Core integrity rule
@@ -131,3 +131,45 @@ The public verification page may show only the information necessary to verify t
 - certificate number.
 
 Internal generation timestamps, administrative notes, and other audit-only metadata do not need to be public.
+
+
+## Approved permission boundary
+
+Certificate functions are capability-based rather than automatically inherited from a broad admin role.
+
+Conceptual capabilities:
+- `certificate.configure`;
+- `certificate.issue`;
+- `certificate.issue_manual`;
+- `certificate.issue_bulk`;
+- `certificate.revoke`;
+- `certificate.reissue`;
+- `certificate.view_history`.
+
+V1 may grant these to Conference Admin or another designated certificate operator.
+
+### Issued-record correction
+
+Once issued, a certificate is not freely edited in place.
+
+Use controlled revoke/supersede/reissue so:
+- prior record remains preserved;
+- prior verification URL remains resolvable;
+- status indicates revoked/superseded;
+- replacement receives its own certificate identity/token.
+
+### Manual issuance and lifecycle truth
+
+Manual certificate issuance does not silently change underlying attendance, PRESENTED/NO_SHOW, academic decision, or publication state.
+
+For Presenter Certificates, rule-based issuance follows presentation eligibility; exceptional/manual issuance requires the appropriate authorized exception/manual path and remains auditable.
+
+### Archived editions
+
+Authorized certificate operations may continue for archived editions without reopening the whole edition:
+- manual individual/bulk issue;
+- revoke;
+- reissue;
+- verification/history access.
+
+The configured historical activity/event date may be displayed while technical creation/generation timestamps remain truthful internal audit data.

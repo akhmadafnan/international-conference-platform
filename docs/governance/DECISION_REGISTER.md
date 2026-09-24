@@ -182,5 +182,19 @@
 | DEC-178 | Publication Team cannot bypass academic/publication gates on its own paper | ACCEPTED |
 | DEC-179 | Publication records are corrected through controlled audited history, not free hard delete | ACCEPTED |
 | DEC-180 | V1 may combine Publication Team/Proceeding Editor while remaining ready for future publication sub-roles | ACCEPTED |
+| DEC-181 | Certificate functions are capability-based and are not automatically inherited from a broad administrator role | ACCEPTED |
+| DEC-182 | Rule-based and manual individual/bulk certificate issuance are both supported | ACCEPTED |
+| DEC-183 | Certificate display date is activity/event date while technical creation/generation timestamps remain truthful internal audit data | ACCEPTED |
+| DEC-184 | Each certificate receives an individual record/identifier/token/link, including bulk issuance | ACCEPTED |
+| DEC-185 | Public verification and QR expose/resolve only minimum credential information | ACCEPTED |
+| DEC-186 | Issued certificates use controlled revoke/supersede/reissue rather than free edit/hard delete | ACCEPTED |
+| DEC-187 | Manual certificate issuance never silently rewrites event/academic/publication state | ACCEPTED |
+| DEC-188 | Privileged manual certificate self-issuance is denied by default | ACCEPTED |
+| DEC-189 | Edition closeout is checklist-driven and may coexist with continuing downstream publication work | ACCEPTED |
+| DEC-190 | ARCHIVED editions are read-only by default | ACCEPTED |
+| DEC-191 | Narrow post-archive certificate/publication-reference/historical corrections may occur without reopening the whole edition | ACCEPTED |
+| DEC-192 | Historical correction is a dedicated audited capability rather than unrestricted archive editing | ACCEPTED |
+| DEC-193 | Unarchive is an exceptional privileged audited operation | ACCEPTED |
+| DEC-194 | Archive preserves lifecycle records and is never equivalent to deletion | ACCEPTED |
 
 Statuses: PROPOSED, ANALYZED, ACCEPTED DIRECTION, ACCEPTED, REJECTED, SUPERSEDED, OPEN.

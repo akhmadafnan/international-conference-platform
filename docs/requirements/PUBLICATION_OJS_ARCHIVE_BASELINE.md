@@ -162,3 +162,43 @@ Conference platform remains authoritative for:
 - edition archive/history.
 
 OJS/proceedings systems remain downstream publication systems.
+
+
+## Approved archive permission boundary
+
+Archive is read-only by default.
+
+Normal mutation of archived submission/payment/refund/review/decision/schedule/presentation records is denied.
+
+Special post-archive capabilities may remain available without reopening the entire edition:
+- certificate manual/bulk issuance;
+- certificate revoke/reissue;
+- publication-reference correction;
+- controlled historical correction.
+
+### Historical correction
+
+Historical correction is a dedicated capability and must record:
+- target resource;
+- previous value/state;
+- new value/state;
+- reason;
+- authority;
+- timestamp;
+- evidence/reference where applicable.
+
+### Unarchive
+
+Unarchive is exceptional and privileged.
+
+It must not be required merely to issue/reissue a historical certificate or make an authorized narrow historical correction.
+
+### Preservation
+
+ARCHIVED remains:
+- retained;
+- queryable according to authorization;
+- mutation-restricted;
+- auditable.
+
+Archive is never equivalent to deletion.

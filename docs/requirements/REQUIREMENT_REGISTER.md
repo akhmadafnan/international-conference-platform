@@ -332,3 +332,26 @@ Statuses: PROPOSED, ANALYSIS, ACCEPTED DIRECTION, ACCEPTED, IMPLEMENTED, VERIFIE
 | NFR-OBS-020 | Incident investigation should support reconstruction of cross-request/job/integration timelines through timestamps and correlation context | ACCEPTED |
 | NFR-OBS-021 | Monitoring/observability systems must not become the authoritative business source of truth or a single point of failure for core workflows | ACCEPTED |
 | NFR-OBS-022 | Audit/monitoring controls must be verifiable before production through representative failure/override scenarios | ACCEPTED |
+
+| NFR-FILE-001 | Academic, payment, publication, and other authoritative file replacements create new version/evidence records rather than silent overwrite | ACCEPTED |
+| NFR-FILE-002 | A file version already used for submission, review, decision, publication handoff, or other authoritative evidence is immutable in normal workflow | ACCEPTED |
+| NFR-FILE-003 | Internal file identity/storage key is opaque and distinct from user-supplied original filename | ACCEPTED |
+| NFR-FILE-004 | Filenames and storage paths are normalized/sanitized and controlled by the application | ACCEPTED |
+| NFR-FILE-005 | File validation must not rely only on filename extension and should validate allowed type/content characteristics | ACCEPTED |
+| NFR-FILE-006 | Upload architecture must remain malware-scanner/quarantine-ready without locking a specific scanning provider in Phase 0 | ACCEPTED |
+| NFR-FILE-007 | Protected files require authorization or equivalent controlled temporary access and must not become permanently public by default | ACCEPTED |
+| NFR-FILE-008 | Double-anonymous reviewer packets are access-isolated from identity-bearing originals | ACCEPTED |
+| NFR-FILE-009 | Important stored files must support integrity fingerprint/checksum verification | ACCEPTED |
+| NFR-FILE-010 | Database↔storage consistency must be detectable/reconcilable for partial-failure scenarios | ACCEPTED |
+| NFR-FILE-011 | Orphan/temporary file cleanup must verify references/lifecycle state before deletion | ACCEPTED |
+| NFR-FILE-012 | Temporary previews/exports/conversions are distinguished from authoritative artifacts and may use shorter retention | ACCEPTED |
+| NFR-FILE-013 | Important generated documents such as certificates/LoA/decision letters preserve provenance and relevant template/version/snapshot context | ACCEPTED |
+| NFR-FILE-014 | Updating a current template must not silently alter previously issued/generated historical documents | ACCEPTED |
+| NFR-FILE-015 | Important file records preserve identity, original filename, type, size, storage reference, uploader, timestamp, resource relationship, version, integrity reference, and validation state as applicable | ACCEPTED |
+| NFR-FILE-016 | File retention follows purpose/resource/history/privacy policy rather than an unrelated standalone deletion rule | ACCEPTED |
+| NFR-FILE-017 | Authoritative/evidence files are not freely hard-deleted through normal application workflow | ACCEPTED |
+| NFR-FILE-018 | Storage failures must fail safely, must not report success before durable storage confirmation, and must be observable | ACCEPTED |
+| NFR-FILE-019 | Backup/restore procedures must permit verification that restored file artifacts still match expected records/integrity data | ACCEPTED |
+| NFR-FILE-020 | Exceptional access to restricted files can be audited where applicable | ACCEPTED |
+| NFR-FILE-021 | Export/publication packages must reference the authoritative approved file/version and a clear query/snapshot context | ACCEPTED |
+| NFR-FILE-022 | Download display names may be user-friendly, but internal storage identity remains separate and controlled | ACCEPTED |

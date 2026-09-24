@@ -294,3 +294,19 @@ Statuses: PROPOSED, ANALYZED, ACCEPTED DIRECTION, ACCEPTED, REJECTED, SUPERSEDED
 | DEC-282 | Production deployments are traceable and incident timelines should be reconstructable across requests/jobs/integrations | ACCEPTED |
 | DEC-283 | Monitoring is an observability layer, not business source of truth or a required dependency for core transaction success | ACCEPTED |
 | DEC-284 | Audit/observability behavior must be verified before production through representative failure and protected-action scenarios | ACCEPTED |
+
+| DEC-285 | Authoritative file replacement creates a new version/evidence record instead of silently overwriting prior evidence | ACCEPTED |
+| DEC-286 | File versions already used for review/decision/publication or other authoritative workflows are immutable in normal workflow | ACCEPTED |
+| DEC-287 | Internal file identity/storage keys are opaque and separate from original filenames; filenames/paths are application-controlled and sanitized | ACCEPTED |
+| DEC-288 | File validation must consider content/type policy rather than trusting extension alone, and upload architecture remains scanner/quarantine-ready | ACCEPTED |
+| DEC-289 | Protected files require authorized access and double-anonymous reviewer packets are isolated from identity-bearing originals | ACCEPTED |
+| DEC-290 | Important stored files support integrity fingerprint/checksum verification | ACCEPTED |
+| DEC-291 | Database↔storage partial-failure states must be detectable/reconcilable and orphan cleanup must be reference-safe | ACCEPTED |
+| DEC-292 | Temporary artifacts are distinguished from authoritative artifacts and may have shorter retention | ACCEPTED |
+| DEC-293 | Certificates, LoA, decision letters, and other important generated documents preserve provenance plus relevant template/version/snapshot context | ACCEPTED |
+| DEC-294 | Current-template changes do not silently rewrite historical generated documents | ACCEPTED |
+| DEC-295 | File metadata preserves enough identity/version/uploader/time/integrity/validation context for traceability | ACCEPTED |
+| DEC-296 | File retention follows resource purpose/history/privacy policy and authoritative evidence files are not freely hard-deleted | ACCEPTED |
+| DEC-297 | Storage failures fail safely and never report successful persistence before durable storage confirmation | ACCEPTED |
+| DEC-298 | Backup/restore supports post-recovery file-integrity verification | ACCEPTED |
+| DEC-299 | Exceptional restricted-file access is auditable where applicable and exports/publication packages bind to authoritative approved versions | ACCEPTED |

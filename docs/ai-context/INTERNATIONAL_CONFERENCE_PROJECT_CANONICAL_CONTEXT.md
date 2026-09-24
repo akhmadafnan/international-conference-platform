@@ -240,7 +240,23 @@ Not just a website, upload form, or OJS front-end.
 - user-facing error references correlate to internal diagnostics without exposing stack traces;
 - production deployments are traceable and incident timelines are reconstructable through timestamps/correlation context;
 - monitoring is not the business source of truth and must not become a core single point of failure;
-- audit/observability behavior must be verified before production.
+- audit/observability behavior must be verified before production;
+- authoritative academic/payment/publication file replacements create new versions/evidence rather than silent overwrite;
+- file versions already used for review/decision/publication or other authoritative evidence are immutable in normal workflow;
+- internal file identity/storage keys are opaque and separate from original filenames, with sanitized application-controlled paths;
+- file validation does not trust extension alone and upload architecture remains scanner/quarantine-ready;
+- protected files require authorized access and double-anonymous reviewer packets are isolated from identity-bearing originals;
+- important stored files support integrity fingerprint/checksum verification;
+- database↔storage partial-failure states must be detectable/reconcilable and orphan cleanup is reference-safe;
+- temporary artifacts are distinguished from authoritative artifacts;
+- certificates/LoA/decision letters and other important generated documents preserve provenance plus template/version/snapshot context;
+- changing the current template does not silently rewrite historical generated documents;
+- important file metadata preserves identity/type/size/storage/uploader/time/resource/version/integrity/validation context as applicable;
+- file retention follows resource purpose/history/privacy policy and authoritative evidence files are not freely hard-deleted;
+- storage failures fail safely and are observable;
+- backup/restore supports post-recovery file-integrity verification;
+- exceptional restricted-file access can be audited;
+- export/publication packages reference authoritative approved file versions.
 
 ## Authentication / registration
 

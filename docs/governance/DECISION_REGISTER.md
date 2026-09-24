@@ -249,3 +249,19 @@ Statuses: PROPOSED, ANALYZED, ACCEPTED DIRECTION, ACCEPTED, REJECTED, SUPERSEDED
 | DEC-240 | Data retention is purpose/data-class specific; exact retention periods remain deferred until policy/legal basis is available | ACCEPTED |
 | DEC-241 | Account closure is distinct from erasure of historical scholarly/financial/certificate/publication/audit facts | ACCEPTED |
 | DEC-242 | Test/staging/demo/backup handling remains subject to production-equivalent privacy boundaries; synthetic/redacted test data is preferred | ACCEPTED |
+
+| DEC-243 | V1 production availability objective is ≥99.5% monthly outside announced scheduled maintenance | ACCEPTED |
+| DEC-244 | Planned maintenance is avoided during conference critical windows and deadlines | ACCEPTED |
+| DEC-245 | External-service outages must not cause authoritative core-data loss or rollback of established business truth | ACCEPTED |
+| DEC-246 | Critical state transitions are consistency-safe and sensitive operations are duplicate-safe/idempotent | ACCEPTED |
+| DEC-247 | Backup/recovery scope includes database plus required private files/generated artifacts and recovery-critical state | ACCEPTED |
+| DEC-248 | Normal RPO is ≤4h and critical-window target RPO is ≤1h where reasonably supported | ACCEPTED |
+| DEC-249 | Normal RTO is ≤4h and critical-window target RTO is ≤2h | ACCEPTED |
+| DEC-250 | Production backups are automated, monitored, failure-alerted, and restore-tested | ACCEPTED |
+| DEC-251 | Restore verification occurs before first production launch, before each major edition, and periodically; quarterly is the active-production target | ACCEPTED |
+| DEC-252 | Backup storage must be failure-domain separated and retain source-data privacy/security classification | ACCEPTED |
+| DEC-253 | Database↔file/artifact integrity must be verifiable | ACCEPTED |
+| DEC-254 | Integration/notification retries are safe; delivery failure does not change authoritative business state | ACCEPTED |
+| DEC-255 | The platform should degrade gracefully and support controlled maintenance instead of cascading failure | ACCEPTED |
+| DEC-256 | Conference-day continuity pack and auditable post-outage reconciliation are required operational fallback capabilities | ACCEPTED |
+| DEC-257 | Data integrity/correctness has priority over accepting unsafe transactions during degraded conditions | ACCEPTED |

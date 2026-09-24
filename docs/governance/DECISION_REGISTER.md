@@ -225,3 +225,15 @@
 | DEC-221 | Full permission consistency audit is GREEN and REQ-PERM-001 is complete at product-requirement level | ACCEPTED |
 
 Statuses: PROPOSED, ANALYZED, ACCEPTED DIRECTION, ACCEPTED, REJECTED, SUPERSEDED, OPEN.
+
+
+| DEC-222 | Production requires HTTPS/secure transport and server-side authorization on every protected request | ACCEPTED |
+| DEC-223 | MFA is mandatory for high-risk internal authorities; Participant MFA is not mandatory in V1 and Reviewer MFA is configurable | ACCEPTED |
+| DEC-224 | Sensitive authority/security actions may require re-authentication/step-up verification | ACCEPTED |
+| DEC-225 | Revoked authority must cease authorizing protected actions immediately at the next server authorization check | ACCEPTED |
+| DEC-226 | Authentication/verification/recovery endpoints require abuse controls and must avoid unnecessary account enumeration | ACCEPTED |
+| DEC-227 | Magic-link/OTP tokens are unpredictable, short-lived, single-use, bound to intended action/account, and excluded from plaintext logs/analytics | ACCEPTED |
+| DEC-228 | Uploaded files are untrusted; secrets never belong in repo/client bundles/plaintext logs; production errors must not expose internals | ACCEPTED |
+| DEC-229 | Security-sensitive account/access/override/break-glass events are auditable | ACCEPTED |
+| DEC-230 | Silent impersonation/account takeover remains prohibited and is not required for V1 | ACCEPTED |
+| DEC-231 | Phase 0 locks security behavior, not specific authentication/MFA/session libraries or providers | ACCEPTED |

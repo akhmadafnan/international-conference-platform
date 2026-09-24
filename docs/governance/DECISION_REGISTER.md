@@ -265,3 +265,16 @@ Statuses: PROPOSED, ANALYZED, ACCEPTED DIRECTION, ACCEPTED, REJECTED, SUPERSEDED
 | DEC-255 | The platform should degrade gracefully and support controlled maintenance instead of cascading failure | ACCEPTED |
 | DEC-256 | Conference-day continuity pack and auditable post-outage reconciliation are required operational fallback capabilities | ACCEPTED |
 | DEC-257 | Data integrity/correctness has priority over accepting unsafe transactions during degraded conditions | ACCEPTED |
+
+| DEC-258 | Common interactive production requests target ≤2s with a normal upper expectation of ≤3s | ACCEPTED |
+| DEC-259 | V1 performance baseline supports at least 50 concurrent active users on common workflows | ACCEPTED |
+| DEC-260 | Deadline bursts must remain duplicate-safe and data-integrity safe | ACCEPTED |
+| DEC-261 | Large lists are bounded/paginated and operational queries are edition-scoped | ACCEPTED |
+| DEC-262 | Search/filter is server-side and index-ready; dedicated search infrastructure is not required for V1 | ACCEPTED |
+| DEC-263 | Heavy operations are asynchronous-capable and bulk workflows are batch/job-ready | ACCEPTED |
+| DEC-264 | Upload handling exposes progress/failure/retry, uses configurable limits, and avoids unbounded application-memory use | ACCEPTED |
+| DEC-265 | Cache is optimization only and never the authoritative business source of truth | ACCEPTED |
+| DEC-266 | Microservices are not required for V1; architecture may remain a modular monolith/single application if approved NFRs are met | ACCEPTED |
+| DEC-267 | Scaling is incremental/evidence-driven rather than premature distributed-system complexity | ACCEPTED |
+| DEC-268 | Performance observability and pre-production/major-release regression sanity checks are required | ACCEPTED |
+| DEC-269 | Slow external delivery must not unnecessarily block authoritative business transactions | ACCEPTED |

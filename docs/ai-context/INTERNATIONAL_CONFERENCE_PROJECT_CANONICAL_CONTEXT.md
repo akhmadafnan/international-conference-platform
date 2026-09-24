@@ -170,7 +170,15 @@ Not just a website, upload form, or OJS front-end.
 - silent impersonation/account takeover is denied; V1 does not require impersonation;
 - delegation revocation and role-holder replacement preserve historical attribution;
 - sensitive-role revocation stops new authorization immediately at product-policy level;
-- assignment/revocation/expiry/scope-change/reassignment are first-class audit events.
+- assignment/revocation/expiry/scope-change/reassignment are first-class audit events;
+- Front Office is edition-scoped support with safe operational visibility but no default Finance/Academic/Event/Publication authority or raw confidential-data access;
+- administrative screening uses a distinct submission.admin_screen capability and remains separate from academic judgment;
+- official-submission withdrawal separates author request from authorized edition approval;
+- post-submission contributor/authorship changes require stage-aware protected approval;
+- normal Publication Eligibility is policy/system evaluated from authoritative source facts;
+- Publication Team may remediate its own-domain blockers but cannot rewrite Finance/Academic/Event facts;
+- publication.eligibility.override is protected/domain-specific and preserves the original blocking facts;
+- REQ-PERM-001 Parts 1–10 passed full consistency audit and are complete at product-requirement level.
 
 ## Authentication / registration
 

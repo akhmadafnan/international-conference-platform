@@ -310,3 +310,18 @@ Statuses: PROPOSED, ANALYZED, ACCEPTED DIRECTION, ACCEPTED, REJECTED, SUPERSEDED
 | DEC-297 | Storage failures fail safely and never report successful persistence before durable storage confirmation | ACCEPTED |
 | DEC-298 | Backup/restore supports post-recovery file-integrity verification | ACCEPTED |
 | DEC-299 | Exceptional restricted-file access is auditable where applicable and exports/publication packages bind to authoritative approved versions | ACCEPTED |
+
+| DEC-300 | WCAG 2.2 Level AA is the V1 accessibility target | ACCEPTED |
+| DEC-301 | Participant/Author experience is mobile-first; ordinary critical participant workflows must not be desktop-only | ACCEPTED |
+| DEC-302 | Back-office workspaces are desktop-first but responsive, while Event Operations must be usable on tablet/mobile | ACCEPTED |
+| DEC-303 | Core workflows are keyboard-operable with visible focus, no keyboard traps, and semantic accessible component behavior | ACCEPTED |
+| DEC-304 | Status/progress/errors are not color-only and must be exposed accessibly | ACCEPTED |
+| DEC-305 | Forms use persistent labels, field-specific errors, and preserve entered data after validation failure | ACCEPTED |
+| DEC-306 | Long-form work uses draft/autosave/recovery safeguards appropriate to the feature | ACCEPTED |
+| DEC-307 | High-impact actions use proportional confirmation that explains consequences | ACCEPTED |
+| DEC-308 | User-facing workflow status prioritizes understandable current-state and next-action guidance over raw internal enums | ACCEPTED |
+| DEC-309 | Deadline/schedule display uses absolute date/time and timezone where ambiguity is possible | ACCEPTED |
+| DEC-310 | Authoritative success is shown only after server-confirmed completion; loading state should prevent accidental duplicate actions where necessary | ACCEPTED |
+| DEC-311 | Responsive design supports reflow/zoom, avoids unnecessary horizontal scrolling, and respects reduced-motion preference | ACCEPTED |
+| DEC-312 | Accessibility/usability quality applies equally across id/en/ar including Arabic RTL | ACCEPTED |
+| DEC-313 | Accessibility UAT covers representative devices, keyboard, zoom/reflow, semantic/screen-reader sanity, and RTL | ACCEPTED |

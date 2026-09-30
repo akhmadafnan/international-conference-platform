@@ -110,3 +110,4 @@ Statuses:
 | META-020 | Crossref proceedings adapter consumes Edition/proceedings + paper snapshot metadata | ACCEPTED |
 | META-021 | General production readiness and Crossref deposit readiness are separate gates | ACCEPTED |
 | META-022 | Metadata readiness vocabulary is READY / WARNING / BLOCKED | ACCEPTED |
+| META-023 | ROR-backed affiliation uses the institution/organization as canonical affiliation identity; faculty/department/study program is optional subdivision metadata only | ACCEPTED |

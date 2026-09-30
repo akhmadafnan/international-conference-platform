@@ -146,7 +146,13 @@ Canonical affiliation relationship contains:
 - country code;
 - optional city/location text where operationally useful.
 
-ROR identifies the organization; department/faculty remains separate local text.
+ROR lookup and canonical affiliation identity use the **institution/organization name**, not the faculty, department, study program, or other internal unit.
+
+Examples:
+- Canonical institution/ROR affiliation: Universitas Islam Syarifuddin Lumajang
+- Optional subdivision text: Fakultas ..., Program Studi ..., Department ...
+
+The participant-facing affiliation selector should therefore search/select the institution or organization. Faculty/department may be captured in a separate optional field and must not replace the institutional affiliation name.
 
 ROR is preferred but not mandatory.
 
@@ -167,7 +173,9 @@ Reusable institution data may contain:
 - aliases optional;
 - source/provenance.
 
-Do not treat department/faculty as a ROR organization unless it actually has its own valid ROR record.
+Institution name is the canonical affiliation label used for ROR matching and scholarly export.
+
+Do not use faculty/department/study-program names as the primary affiliation identity. They remain optional subdivision metadata unless that unit is genuinely an independent organization with its own valid ROR record.
 
 ## 11. References
 

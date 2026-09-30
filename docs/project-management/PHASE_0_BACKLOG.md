@@ -1,45 +1,74 @@
-# Phase 0 Backlog
+# Phase 0 / Pre-Development Backlog
 
-## EPIC-0001 — Governance Foundation
-- GOV-001 Approve Project Charter & Working Protocol — READY FOR PRODUCT OWNER REVIEW
-- GOV-002 Approve Delivery Role Matrix — ANALYSIS
-- GOV-003 Establish Decision Register — IN PROGRESS
-- GOV-004 Approve Git/GitHub Workflow — ACCEPTED DIRECTION
-- GOV-005 Approve AI Handoff Protocol — ACCEPTED DIRECTION
+**Updated:** 2026-09-30
 
-## EPIC-0002 — Product Requirements Document
-- PRD-001 Establish PRD structure and v0.1 draft — DONE
-- PRD-002 Product Owner guided review of PRD — IN PROGRESS (core lifecycle review complete)
-- PRD-003 Reconcile PRD with decisions/requirements — BLOCKED BY PRD-002
-- PRD-004 PRD v1.0 baseline approval — BLOCKED
+## Current stage
 
-## EPIC-0003 — Actor & Lifecycle Analysis
-- REQ-ACTOR-001 Finalize Actor Catalog — APPROVED BASELINE; detailed permission mapping COMPLETE
-- REQ-AUTH-001 Resolve Authentication / Registration Model — DONE
-- REQ-LIFE-001 Map End-to-End Conference Lifecycle — DONE
-- REQ-PERM-001 Detailed Application Permission Matrix — DONE (Parts 1–10 APPROVED; final consistency audit GREEN)
+PRE-DEVELOPMENT PRODUCT DISCOVERY / WAREK VALIDATION PREPARATION
 
-## EPIC-0004 — Requirements & Standards
-- REQ-REG-001 Expand Functional Requirement Registry — BACKLOG
-- REQ-NFR-001 Define Non-Functional Requirements — DONE (Parts 1–12 APPROVED; 271 requirements; final consistency audit GREEN)
-- INT-STD-001 ORCID Baseline — BACKLOG
-- INT-STD-002 ROR Baseline — BACKLOG
-- INT-STD-003 OJS Integration Baseline — BACKLOG
-- INT-STD-004 Crossref / DOI Metadata Baseline — BACKLOG
-- INT-STD-005 Payment / Refund Integration Baseline — BACKLOG
-- INT-STD-006 WhatsApp FO Integration Baseline — BACKLOG
+## Completed or sufficiently mature
 
-## EPIC-0005 — Localization Foundation
-- REQ-L10N-001 Localization Policy — APPROVED BASELINE via NFR Part 8
-- REQ-L10N-002 Arabic RTL Policy — APPROVED BASELINE via NFR Part 8
+- Product identity and multi-edition direction
+- Participation and registration
+- Payment direction
+- Event Pass / QR
+- Submission UX
+- Contributor / ROR / optional ORCID
+- References
+- Administrative screening
+- Abstract review
+- LoA
+- Full Article
+- Presenter confirmation
+- Scheduling
+- Reviewer presentation workspace
+- Presentation assessment
+- Revision
+- Awards
+- Certificates
+- Documents and communication
+- Publication destination/handoff
+- Public website IA
+- Participant dashboard experience
+- Pre-Presentation Product Audit
 
-## EPIC-0006 — Phase Gate
-- GOV-GATE-001 Phase 0 Consistency Audit — BACKLOG
-- GOV-GATE-002 Define Phase 1 Definition of Ready — BACKLOG
-- GOV-GATE-003 Phase 0 Approval / Closeout — BACKLOG
+## Current work
 
-## Current execution rule
+### GOV-PD-001 — Warek I Product Decision Sheet
+Status: READY FOR DOMAIN VALIDATION
 
-Product Owner does not need to manually navigate GitHub for routine review.
+Goal:
+Present only unresolved business/domain decisions that materially change the product.
 
-Architect/AI conducts guided analysis in chat, records accepted decisions in the repository using scoped branches and PRs, and reports only concrete user actions that cannot be performed through the GitHub connection.
+### GOV-PD-002 — Warek I Validation
+Status: BLOCKED BY GOV-PD-001
+
+### PROD-BP-001 — Product Blueprint v1
+Status: BLOCKED BY WAREK VALIDATION
+
+### GOV-CORR-001 — Corrective Phase 0 Re-baseline
+Status: BLOCKED BY PRODUCT BLUEPRINT v1
+
+Must reconcile:
+- old payment/refund baseline;
+- old lifecycle assumptions;
+- old publication review assumptions;
+- actor/application-authority mapping;
+- old requirement register;
+- current Product DNA.
+
+### META-001 — Submission & Scholarly Metadata Contract
+Status: BLOCKED BY PRODUCT BLUEPRINT / RE-BASELINE
+
+### ARCH-001 — Stack + ERD Freeze
+Status: BLOCKED BY META-001
+
+### PLAN-001 — Development Plan
+Status: BLOCKED BY ARCH-001
+
+### DEV-001 — Coding
+Status: NOT AUTHORIZED
+
+## Preserved prior work
+
+Existing NFR, permission, security, accessibility, localization, auditability, and data-integrity documents remain reusable inputs and are not discarded merely because product lifecycle details changed.

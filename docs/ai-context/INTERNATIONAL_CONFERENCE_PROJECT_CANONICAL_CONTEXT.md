@@ -1,421 +1,275 @@
-# International Conference Platform — Canonical Context
+# ICHES Conference & Event Experience Platform — Canonical Context
 
-**ID:** ICP-CANONICAL-001  
-**Version:** 0.3.0  
-**Status:** ACTIVE — PHASE 0  
-**Updated:** 2026-09-24
+**ID:** ICHES-CANONICAL-001  
+**Version:** 1.0-product-discovery  
+**Status:** ACTIVE WORKING CONTEXT — NOT IMPLEMENTATION FROZEN  
+**Updated:** 2026-09-30
 
 ## Purpose
 
-Durable cross-session context for this project.
+Durable cross-session context for the ICHES / international conference platform.
 
-A new AI session must read:
-- `AGENTS.md`;
-- `PRD.md`;
-- this file;
-- `CURRENT_STATE.md`;
-- decision and requirement registers;
-- active phase backlog;
-- active issue/ticket.
+A new AI/developer session must read:
+- AGENTS.md
+- docs/product-discovery/PRODUCT_DNA.md
+- docs/ai-context/CURRENT_STATE.md
+- PRD.md
+- docs/product-discovery/PRE_PRESENTATION_PRODUCT_AUDIT.md
+- docs/product-discovery/WAREK_I_PRODUCT_DECISION_SHEET.md
+- docs/governance/DECISION_REGISTER.md
 
 ## Product identity
 
-International Academic Conference Lifecycle Management Platform.
+A reusable Conference & Event Experience Platform for recurring academic conference editions.
 
-Not just a website, upload form, or OJS front-end.
+Core promise:
+public information → registration → payment → scholarly submission → review → LoA → Full Article → scheduling → event operations → assessment/revision → publication handoff → awards/certificates.
 
-## Initial reality
+## Product character
 
-- roughly 100 participants/submissions;
-- initially primarily Indonesia;
-- limited operational resources;
-- intended for reuse in recurring editions.
+- Simple where possible.
+- CRUD-first.
+- Strong participant UX.
+- Multi-edition.
+- Mobile-first.
+- id/en/ar with first-class Arabic RTL.
+- Standards-aware scholarly metadata.
+- Auditable consequential actions.
+- Human academic/committee authority retained.
 
-## Locked / accepted directions
+## Series and edition
 
-- multi-edition architecture;
-- mandatory locales `id`, `en`, `ar`;
-- Arabic RTL from first UI foundation;
-- payment around abstract submission;
-- V1 payment uses manual bank transfer + Author payment-proof upload + Finance verification;
-- payment-proof upload is not PAID; only Finance verification after actual receipt cross-check may set PAID;
-- only PAID transitions a paper to OFFICIAL_SUBMISSION;
-- payment gateway is not required for V1, while the payment domain remains future-provider-ready;
-- payment does not imply academic acceptance;
-- refund workflow supported and configurable;
-- academic rejection in V1 receives 100% refund of conference fee actually paid;
-- refund execution is manual by Finance; withdrawal/admin-ineligible refund rules are separate edition policies;
-- first-edition abstract review defaults to single-anonymous;
-- review architecture is flexible by stage/round/assignment, supporting single-anonymous, double-anonymous, committee screening, variable reviewer counts, assignment-specific tasks/forms, and controlled overrides;
-- final academic decision belongs to the authorized editor/Academic Decision Authority, not automatic reviewer majority voting;
-- post-presentation full-paper Publication Review is part of the publication path;
-- V1 Publication Review defaults to double-anonymous while remaining edition/stage configurable;
-- reviewer count/tasks/forms remain policy-driven through the common Review Stage engine;
-- session feedback is distinct from formal Publication Review;
-- publication decision outcomes are revision required / approved / rejected, followed by an auditable Publication Eligibility Gate;
-- publication rejection does not erase presenter history and does not automatically trigger conference-fee refund;
-- conference platform controls PUBLICATION_ELIGIBLE before downstream OJS/proceedings handoff;
-- abstract selection mode configurable;
-- abstract acceptance/LoA means accepted for presentation, not publication;
-- Full Paper is required after acceptance and validated before presentation;
-- presenter is explicitly designated/confirmed; attendance and presentation statuses are separate;
-- NO_SHOW blocks publication by default unless an authorized makeup/waiver exception applies;
-- manual certificate issuance is supported through an individual/bulk Manual Certificate Builder with auditable authority/reason;
-- certificate display date uses the configured activity/event date, while actual record creation/generation timestamps remain immutable internal audit data and need not appear publicly;
-- each generated certificate has its own record and verification identity/link;
-- Presenter Certificate requires actual presentation or qualifying authorized exception;
-- presentation does not imply publication readiness;
-- required post-presentation revision blocks publication;
-- OJS is downstream publication infrastructure;
-- V1 OJS/proceedings handoff is manual/assisted through a Publication Queue; API integration is deferred;
-- PUBLICATION_ELIGIBLE and PUBLISHED are distinct states;
-- final publication metadata is snapshotted and external OJS/DOI/URL/ISBN/ISSN identifiers remain external references;
-- certificate capability includes individual/bulk manual builder, unique verification link/identity, public verification + QR, and controlled revoke/reissue;
-- edition closeout uses a policy-driven checklist and ARCHIVED editions are preserved/primarily read-only with controlled auditable correction;
-- end-to-end lifecycle stages 4A–4F are Product Owner approved; REQ-LIFE-001 is complete at PRD level;
-- one WhatsApp number as Front Office gateway;
-- WhatsApp is not source of truth;
-- scholarly model should be ORCID/ROR/OJS/Crossref/DOI-ready;
-- ORCID is optional; lack of ORCID does not block participation/authorship/review/presentation;
-- if ORCID is supplied, future verification can distinguish manual vs authenticated/verified state;
-- GitHub + docs-as-code is engineering source of truth;
-- Project → Phase → Epic → Ticket;
-- no implementation before Definition of Ready;
-- authorization baseline: default deny + least privilege;
-- effective permission is scope/resource/domain/restriction aware rather than role-name only;
-- visibility does not imply authority;
-- Super Admin/Technical Admin do not automatically inherit business-domain decision authority;
-- Conference Admin coordinates edition operations without automatically owning Finance/Academic/Event/Publication decisions;
-- multi-role is allowed but COI/restrictions override normal allows;
-- sensitive-data access follows need-to-know;
-- overrides/exceptions require distinct authority and audit;
-- server-side authorization is mandatory;
-- Super Admin governs the platform globally but does not automatically verify payments, decide papers, verify presentations, or approve publication;
-- Technical Admin operates the system/diagnostics with minimum-necessary business-data access;
-- Conference Admin is edition-scoped and may configure workflows/policies without automatically executing Finance/Academic/Event/Publication decisions;
-- global/protected roles cannot be assigned through ordinary edition administration;
-- protected-role self-escalation is denied;
-- protected-role assignment/revocation is auditable;
-- controlled break-glass access may exist for serious incidents but must be reasoned, temporary, scoped, audited, and must not rewrite business authority/history;
-- Participant access is own-account/own-membership scoped unless another resource relationship grants more;
-- Corresponding Author is the primary submission manager;
-- Co-author/contributor may exist without an account and does not automatically receive submission-edit authority;
-- submission collaboration/delegation is submission-scoped;
-- Author sees only author-facing review information, not anonymous/confidential/internal review data;
-- Presenter cannot self-verify PRESENTED;
-- exceptional non-author Presenter receives limited presentation access, not Author permissions;
-- Invited Speaker/Keynote is edition-scoped and does not imply administrative/reviewer authority;
-- current profile updates do not rewrite historical snapshots;
-- official submissions use formal withdrawal and later contributor changes are controlled;
-- Finance is edition-scoped and solely authoritative for payment/refund execution;
-- raw payment proof/reconciliation/bank data is Finance-restricted by default while other domains consume derived financial status;
-- refund eligibility is policy/business-event driven, while Finance executes the eligible refund;
-- financial corrections preserve audit/history and operational payment/refund records are not freely hard-deleted;
-- overpayment/partial mismatch does not automatically become PAID;
-- Finance cannot normally verify/process its own payment/refund case;
-- V1 may use one Finance role while remaining ready for future Finance sub-role separation;
-- Academic Committee manages review operations while Academic Decision Authority controls final academic decisions;
-- Reviewer access is assignment/round/version scoped and subject to COI;
-- anonymity is enforced per assignment, including mixed single/double-anonymous cases;
-- double-anonymous review blocks identity-bearing author metadata/files and technical identity leakage;
-- Reviewer cannot see other reviewers' reports by default;
-- reviewer recommendations are advisory, not automatic decisions;
-- Decision Authority may differ by review stage and cannot decide own/conflicted submissions;
-- submitted reviews are locked and reopen only through controlled audit;
-- reviewer assignment history is preserved;
-- confidential editor comments must never leak to Authors;
-- final academic-decision corrections use controlled supersession;
-- Event Operations is edition-scoped while Session Chair/Moderator are session-scoped;
-- event roles receive operationally necessary/derived data only;
-- attendance/check-in is distinct from presentation status and self-check-in never means PRESENTED;
-- Event Operations/Session Chair may verify PRESENTED/NO_SHOW within scope; Moderator verification is configurable;
-- presentation verification is auditable and separate from exception/makeup approval;
-- published schedule changes and presenter substitutions/corrections are traceable;
-- event actors cannot normally verify their own presentation;
-- event-domain authority does not imply Academic/Publication/Certificate issuance authority;
-- Publication Team/Proceeding Editor is edition-scoped publication-operations authority;
-- PUBLICATION_APPROVED, PUBLICATION_ELIGIBLE, and PUBLISHED remain distinct;
-- Publication Team cannot bypass academic/publication-review/eligibility gates;
-- Publication Team receives publication-required metadata plus derived Finance/eligibility status, not raw Finance evidence by default;
-- final publication metadata is snapshotted before/at handoff;
-- substantive authorship/manuscript changes after protected stages require controlled authority;
-- V1 manual/assisted OJS handoff is handled by Publication Team;
-- OJS/DOI/URL/ISBN/ISSN remain external references;
-- publication transfer/status changes are auditable and must reflect known downstream fact;
-- publication failure/withdrawal preserves conference/presentation/certificate history;
-- Publication Team cannot bypass gates on its own paper;
-- publication records are not freely hard-deleted;
-- V1 may combine Publication Team/Proceeding Editor while remaining ready for future sub-role separation;
-- certificate configuration/issue/manual/bulk/revoke/reissue/history are separate capabilities;
-- rule-based and manual individual/bulk certificate issuance are supported, including external/manual recipients;
-- activity/event date is the public certificate date while created/generated timestamps remain truthful internal audit data;
-- every certificate has an individual record/identifier/token/link; public verification and QR expose only minimum credential data;
-- issued certificates use revoke/supersede/reissue, not free edit or hard delete;
-- manual certificate issuance does not silently mutate event/academic/publication states;
-- privileged manual certificate self-issuance is denied by default;
-- edition closeout is checklist-driven and can coexist with continuing publication work according to policy;
-- ARCHIVED is read-only by default;
-- controlled certificate/publication-reference/historical correction may continue post-archive without reopening the whole edition;
-- historical.correct is a dedicated audited capability;
-- unarchive is exceptional and privileged;
-- archive preserves lifecycle records rather than deleting them;
-- role/capability assignments are scoped auditable records and are distinct from resource assignments;
-- temporary/expiring authority is supported;
-- revocation removes future access without erasing historical attribution;
-- protected authorities cannot be self-assigned;
-- V1 does not require dual approval for every assignment, but uses authorized assigner + anti-self-escalation + audit and remains future-ready;
-- COI is a generic restriction layer and direct self-conflicts are blocked across Reviewer/Academic/Finance/Event/Certificate contexts;
-- overrides are domain-specific, never universal, and always preserve before/after state, reason, actor, and history;
-- break-glass is separate from business override, temporary/scoped/reasoned/audited, and never permanent;
-- silent impersonation/account takeover is denied; V1 does not require impersonation;
-- delegation revocation and role-holder replacement preserve historical attribution;
-- sensitive-role revocation stops new authorization immediately at product-policy level;
-- assignment/revocation/expiry/scope-change/reassignment are first-class audit events;
-- Front Office is edition-scoped support with safe operational visibility but no default Finance/Academic/Event/Publication authority or raw confidential-data access;
-- administrative screening uses a distinct submission.admin_screen capability and remains separate from academic judgment;
-- official-submission withdrawal separates author request from authorized edition approval;
-- post-submission contributor/authorship changes require stage-aware protected approval;
-- normal Publication Eligibility is policy/system evaluated from authoritative source facts;
-- Publication Team may remediate its own-domain blockers but cannot rewrite Finance/Academic/Event facts;
-- publication.eligibility.override is protected/domain-specific and preserves the original blocking facts;
-- REQ-PERM-001 Parts 1–10 passed full consistency audit and are complete at product-requirement level;
-- NFR Security Part 1 requires HTTPS/secure transport and server-side authorization on every protected request;
-- MFA is mandatory for high-risk internal authorities; Participant MFA is not mandatory for V1 and Reviewer MFA is configurable;
-- sensitive security/authority actions may use re-authentication/step-up verification;
-- revoked authority must fail at the next protected authorization check even if a prior session remains open;
-- authentication/verification/recovery endpoints require abuse protection and should avoid unnecessary account enumeration;
-- magic-link/OTP tokens are unpredictable, short-lived, single-use, action/account-bound, and excluded from plaintext logs/analytics;
-- uploaded files are untrusted input; secrets stay out of repo/client bundles/plaintext logs; production errors do not expose internals;
-- security-sensitive events are auditable;
-- silent impersonation/account takeover remains prohibited and V1 does not require impersonation;
-- specific MFA/auth/session libraries/providers remain deferred to architecture/implementation;
-- privacy treatment is purpose/sensitivity based; collect only lifecycle-required data;
-- current-profile edits do not rewrite historical records;
-- unpublished manuscripts, payment/refund evidence, reviewer data, and audit/security data are private by default;
-- reviewer anonymity/confidentiality applies across UI/files/API/export/email/notifications/metadata/logs;
-- Finance-restricted evidence does not leak into unrelated domains;
-- notifications and integrations use minimum necessary data and prefer authenticated workspace for sensitive details;
-- public URLs/logs must not expose unnecessary PII, secrets, tokens, or raw restricted content;
-- export/API authorization mirrors UI authorization and sensitive bulk export may be audited;
-- retention is defined by data class/purpose; exact periods remain deferred pending policy/legal basis;
-- account closure does not automatically erase historical scholarly/financial/certificate/publication/audit facts;
-- synthetic/redacted data is preferred for dev/test/demo/staging/AI prompts, and backups inherit source-data privacy restrictions;
-- production availability objective is at least 99.5% monthly outside announced maintenance, with planned maintenance avoided during critical deadlines/event windows;
-- external-service failure must not cause authoritative core-data loss;
-- critical state changes are consistency-safe and sensitive operations are duplicate-safe/idempotent;
-- backup/recovery covers database plus required private files/generated artifacts and recovery-critical state;
-- normal RPO ≤4h, critical-window target RPO ≤1h where infrastructure reasonably supports it;
-- normal RTO ≤4h, critical-window target RTO ≤2h;
-- production backup is automated, monitored, failure-alerted, and restore-tested before first launch, before each major edition, and periodically (quarterly target while active);
-- backups are failure-domain separated and inherit source-data security/privacy restrictions;
-- database↔file/artifact integrity must be verifiable;
-- integration/notification retries must be safe and delivery failure must not rewrite authoritative business truth;
-- graceful degradation and controlled maintenance are required;
-- conference-day continuity pack plus controlled/auditable post-outage reconciliation are required;
-- data integrity/correctness takes priority over accepting unsafe transactions during degraded conditions;
-- common interactive requests target ≤2s with a normal upper expectation ≤3s;
-- V1 capacity baseline supports at least 50 concurrent active users on common workflows without severe degradation;
-- deadline bursts must remain duplicate-safe and state-integrity safe;
-- large operational lists are bounded/paginated and current operational queries are edition-scoped;
-- search/filter is server-side and index-ready; dedicated search infrastructure is not mandatory for V1;
-- heavy operations are asynchronous-capable and bulk certificate/export/notification flows are batch/job-ready;
-- uploads expose progress/failure/retry, use configurable type-specific limits, and avoid unbounded memory usage;
-- cache may optimize reads but is never the authoritative business source of truth;
-- microservices are not required for V1; modular-monolith/single-application architecture is valid if NFRs are met;
-- scaling is incremental/evidence-driven rather than premature distributed-system complexity;
-- slow requests/jobs/database operations and integration latency/failure must be observable;
-- critical workflows receive performance sanity/regression verification before production and major releases;
-- slow external delivery should not unnecessarily block authoritative business transactions;
-- business audit and technical application logs are separate concerns;
-- business audit is append-only/immutable in normal workflow and corrections create new events rather than rewriting history;
-- sensitive lifecycle/security/permission/override/archive/certificate actions and exceptional restricted-data access are auditable;
-- technical logs are structured, correlation-ID capable, severity-aware, and redact secrets/PII/confidential payloads;
-- application/database/storage/critical-job health plus latency/error/job/queue/database/integration signals are observable;
-- backup freshness/failure is monitored;
-- alerts are actionable/severity-based and may become more sensitive during critical edition windows;
-- authorized audit views are searchable and sensitive audit exports are restricted/auditable;
-- business-audit retention is separated from technical-log retention; exact periods remain deferred;
-- technical logs use bounded retention/rotation;
-- internal timestamps are consistent/unambiguous while display timezone may convert to edition/user context;
-- user-facing error references correlate to internal diagnostics without exposing stack traces;
-- production deployments are traceable and incident timelines are reconstructable through timestamps/correlation context;
-- monitoring is not the business source of truth and must not become a core single point of failure;
-- audit/observability behavior must be verified before production;
-- authoritative academic/payment/publication file replacements create new versions/evidence rather than silent overwrite;
-- file versions already used for review/decision/publication or other authoritative evidence are immutable in normal workflow;
-- internal file identity/storage keys are opaque and separate from original filenames, with sanitized application-controlled paths;
-- file validation does not trust extension alone and upload architecture remains scanner/quarantine-ready;
-- protected files require authorized access and double-anonymous reviewer packets are isolated from identity-bearing originals;
-- important stored files support integrity fingerprint/checksum verification;
-- database↔storage partial-failure states must be detectable/reconcilable and orphan cleanup is reference-safe;
-- temporary artifacts are distinguished from authoritative artifacts;
-- certificates/LoA/decision letters and other important generated documents preserve provenance plus template/version/snapshot context;
-- changing the current template does not silently rewrite historical generated documents;
-- important file metadata preserves identity/type/size/storage/uploader/time/resource/version/integrity/validation context as applicable;
-- file retention follows resource purpose/history/privacy policy and authoritative evidence files are not freely hard-deleted;
-- storage failures fail safely and are observable;
-- backup/restore supports post-recovery file-integrity verification;
-- exceptional restricted-file access can be audited;
-- export/publication packages reference authoritative approved file versions;
-- WCAG 2.2 Level AA is the V1 accessibility target;
-- Participant/Author workflows are mobile-first and ordinary critical participant actions cannot be desktop-only;
-- back-office workspaces are desktop-first but responsive; Event Operations must be usable on tablet/mobile;
-- core workflows are keyboard-operable with visible focus, no keyboard traps, semantic roles/labels, and accessible names;
-- status/progress/error feedback is not color-only and must be exposed accessibly;
-- forms use persistent labels, clear field-specific errors, and preserve user-entered data after validation failure;
-- long-form workflows use draft/autosave/recovery safeguards;
-- high-impact actions use proportional confirmation explaining consequences;
-- user-facing workflow presentation emphasizes understandable current state and next required action;
-- deadlines/schedules display absolute date/time and timezone where ambiguity is possible;
-- authoritative success is shown only after confirmed server completion;
-- responsive layouts support reflow/zoom, avoid unnecessary horizontal scrolling, and respect reduced-motion preference;
-- accessibility/usability quality applies equally across id/en/ar including Arabic RTL;
-- accessibility UAT includes representative mobile/tablet/desktop, keyboard, zoom/reflow, semantic/screen-reader sanity, and RTL scenarios;
-- mandatory UI locales are id/en/ar and Arabic is a first-class RTL experience;
-- translatable UI copy comes from localization resources, with requested-locale → English fallback and detectable missing-translation handling;
-- critical id/en/ar translation completeness is a release/UAT gate;
-- RTL applies to layout direction and semantic directional affordances, not merely text alignment;
-- mixed Arabic/Latin content must remain BiDi-safe for email/URL/DOI/ORCID/codes and other identifiers;
-- UI locale is separate from scholarly-content language; locale switching never silently translates/mutates paper metadata;
-- multilingual scholarly metadata is supported/configurable but not mandatory for every V1 submission;
-- CMS/public edition content is locale-aware/translatable with explicit translation availability;
-- date/time/number presentation is locale-aware, while currency follows edition policy and timezone follows edition/user context;
-- critical validation/status/confirmation/error messages and notifications are locale-aware;
-- generated-document language/template is explicit and its language/template/version context is traceable;
-- text storage/search is full-Unicode safe and personal-name modeling supports international naming patterns;
-- personal/scholarly identity is never silently auto-transliterated;
-- layout tolerates translation-length variation and search/filter remains usable across mixed scripts;
-- locale switching preserves current resource context and authenticated users may persist a preferred locale;
-- Arabic RTL receives dedicated UAT and is tested together with accessibility requirements;
-- the conference platform remains the authoritative source of truth for lifecycle state; external systems/channels do not gain business authority from delivery/status alone;
-- authoritative business commit is separated from external notification/integration delivery success;
-- important integration operations preserve attempt/status history and support duplicate-safe/idempotent retry;
-- outbound integration calls use explicit timeout, bounded retry, and backoff/rate-limit-aware behavior;
-- prolonged provider outage should degrade the affected capability rather than unnecessarily blocking unrelated conference domains;
-- critical participant status remains available in the authenticated workspace independent of email/WhatsApp success;
-- WhatsApp remains a Front Office/support channel, not an authoritative transaction/decision channel;
-- OJS remains downstream and failure does not erase PUBLICATION_ELIGIBLE or conference history;
-- external identifiers remain references rather than internal primary keys;
-- optional ORCID/ROR failure does not block core conference workflows;
-- supplied external identity/reference is distinct from authenticated/verified identity/reference;
-- Crossref/DOI deposit state remains separate from publication approval/eligibility;
-- future payment callbacks/webhooks require authenticity, transaction/state/amount/currency validation, duplicate safety, and audit;
-- integration event processing safely handles duplicate and out-of-order provider events;
-- all external payloads are untrusted input and validated before affecting business state;
-- provider credentials remain outside source/client/plaintext logs and outbound data follows minimum-necessary privacy;
-- integration attempt/status history is traceable without unnecessary retention of sensitive raw payloads;
-- critical dependencies retain proportional operational/manual fallback paths where practical;
-- core integration concepts remain provider-neutral enough to permit provider replacement;
-- integration health/latency/failure/backlog is observable separately from core app health and user-facing provider errors remain safe/non-technical;
-- local/development, staging, and production are separated environments, with synthetic/redacted non-production data by default;
-- code, non-secret configuration, and secrets are separate; production credentials are distinct and excluded from repository/client/plaintext logs;
-- production debug/internal-detail disclosure is disabled and required environment configuration is validated/documented;
-- database migration is a controlled/versioned deployment step and destructive data changes require explicit review/recovery awareness;
-- deployment is repeatable, release/version/commit traceable, and protected by quality gates; feature/develop branches are not direct production sources;
-- significant deployment rollback/recovery planning prioritizes preservation of newly-created authoritative data;
-- feature flags may support controlled rollout but do not replace authorization;
-- edition/business configuration is separate from software deployment and releases do not silently change edition policy;
-- unsafe seed/demo/default privileged credentials are prohibited in production;
-- sandbox/test integration endpoints/configuration are separated from production;
-- background workers/schedulers/jobs are part of deployment compatibility/readiness and cannot cross environment boundaries improperly;
-- high-risk production data changes use proportional recovery preparation;
-- post-deployment health/smoke verification is mandatory and must not pollute production business data;
-- environment parity is maintained sufficiently to reduce staging/production configuration drift;
-- production operational access is least-privilege; ad-hoc source/DB changes are avoided and emergency changes remain traceable/reconciled;
-- deployment/rollback/restore/health/failed-job/secret-rotation runbooks are required;
-- secret rotation/revocation is supported without rewriting authoritative business data;
-- first production launch requires a canonical production-readiness checklist covering security, backup/restore, monitoring, HTTPS, mail/storage/database/jobs, privacy, localization/RTL, accessibility, regression, deployment/rollback, and privileged provisioning;
-- official desktop browser support targets the latest 2 stable major versions of Chrome, Edge, Firefox, and Safari at release time;
-- Mobile Safari and Chrome Android are first-class participant targets; Internet Explorer and unsupported legacy browsers are not official targets;
-- unsupported browsers should fail gracefully with upgrade/open-in-supported-browser guidance;
-- frontend implementation is standards-first and uses progressive enhancement/fallback for optional rich capabilities;
-- supported device classes include smartphone/tablet/laptop/desktop according to role, and participant workflows remain usable on realistic mid-range mobile hardware;
-- slow/unstable network yields truthful retry/failure behavior; full offline/PWA capability is not required in V1;
-- essential actions are not hover-only/right-click-only/drag-drop-only/mouse-precision-only or physical-keyboard-dependent;
-- camera/QR flows have manual fallback and scanned payload is only a lookup/reference input until server-validated;
-- PDF content retains an authorized download fallback;
-- refresh/back/forward/retry/reopen-tab/multiple-tab behavior cannot duplicate authoritative effects and stale mutations require server-state revalidation;
-- session-expiry handling should preserve/recover long-form work and authorized context where feasible;
-- browser-native controls/autofill may enhance UX but never replace server-side validation;
-- edition timezone semantics remain correct when device timezone differs;
-- compatibility QA combines browser/device with locale, RTL, accessibility, and timezone scenarios;
-- embedded in-app browsers are best-effort while official modern browsers remain primary supported targets;
-- browser storage/cookie restrictions produce usable guidance and device permissions are requested only when needed;
-- native mobile app/PWA installation is not required for V1;
-- production readiness includes a canonical Browser & Device Support Matrix;
-- architecture preserves clear modular/domain boundaries without requiring microservices;
-- critical business rules and authorization use authoritative centralized/testable implementation patterns rather than scattered duplication;
-- canonical domain/state vocabulary remains consistent across code/tests/docs/logs/interfaces;
-- material architecture decisions require ADR/Decision Record rationale;
-- dependencies are justified, reproducibly locked, maintained for support/security lifecycle, and have planned upgrade paths;
-- automated tests and UAT are complementary; unit/domain, integration/feature, and representative critical-flow verification are used appropriately;
-- high-risk permission/Finance/refund/academic/anonymity/event/publication/certificate/archive/privacy/correction boundaries receive regression protection;
-- reproducible bugs should gain durable regression guardrails where practical; flaky tests are defects;
-- normal CI does not depend on live production third-party services;
-- time-dependent tests use controllable time and test data is deterministic/isolated;
-- critical-rule/boundary coverage matters more than arbitrary line-coverage percentages;
-- required CI checks can block merge/release and verification follows risk-proportional targeted → broader/full regression → UAT;
-- behavior/contract-changing implementation keeps canonical docs/ADRs/requirements synchronized;
-- inter-module contracts expose minimum necessary data and avoid unnecessary cross-domain coupling;
-- high-risk repair/backfill/correction scripts are version-controlled/reviewed/testable operational code;
-- incident support preserves separation of duties and significant incidents require severity/timeline/root-cause/recovery/follow-up guardrails;
-- routine maintenance covers dependency/security, backup/restore, secret/certificate expiry, failed jobs, storage/log health, browser matrix, and translation completeness;
-- critical operational domains have clear owners/capabilities and technical diagnostics remain minimum-necessary;
-- repository canonical sources, not chat alone, remain durable engineering memory for developer/AI continuity;
-- Definition of Done includes relevant implementation/auth/tests/regression/docs/accessibility/localization/UAT/temporary-harness cleanup;
-- technical debt/workarounds remain explicit and traceable;
-- template/form/state evolution must preserve historical record readability/compatibility;
-- REQ-NFR-001 Parts 1–12 contain 271 accepted product-level requirements;
-- the full NFR consistency audit is GREEN with no unresolved critical product-level gap or contradiction;
-- NFR provider/framework/schema/tooling implementation details remain intentionally deferred to Phase 1+/implementation;
-- Phase 1 must translate NFRs into concrete architecture, acceptance criteria, tests, controls, and operational runbooks without weakening the approved baseline;
-- REQ-NFR-001 is DONE at product-requirement level, while application implementation remains unauthorized until the broader Phase 0 gate is passed.
+ICHES = conference series.
 
-## Authentication / registration
+ICHES 2027 or another edition = configurable edition containing:
+- theme;
+- host;
+- organizer;
+- dates;
+- venue;
+- packages/fees;
+- activities;
+- speakers;
+- tracks;
+- deadlines;
+- documents;
+- schedule;
+- publication destinations;
+- committee/authorities.
 
-Progressive/Hybrid Account Model is accepted:
-- participant workspace uses verified email;
-- password is not mandatory at initial participant registration;
-- secure email link/code may support normal participant access;
-- account is reusable across editions;
-- co-author account is optional;
-- reviewer requires authenticated account;
-- privileged internal roles require stronger-auth/MFA readiness;
-- FO cannot perform informal recovery/account takeover;
-- ORCID remains separate from login identity.
+Do not hardcode UNISYA as permanent series owner merely because UNISYA hosts a particular edition.
 
-## Benchmark lessons
+## Participation lifecycle
 
-### AICIS
-Benchmark product/workflow, not infrastructure to copy blindly.
+Register
+→ select participation package
+→ payment
+→ proof
+→ Finance verification
+→ Registration Confirmed
+→ Event Pass / QR
 
-### NgodingPakeAI
-Adopt AI-ready repository discipline:
-PRD → spec → task, agent instructions, docs, and verification.
+Participant package presets are edition-configurable.
 
-### DewaKoding Project Management
-Adopt operational model:
-project, epic, ticket, status, priority, assignee, comment, history, timeline.
+## Academic lifecycle
 
-## Delivery roles
+Confirmed conference participant
+→ Submit Abstract
+→ Administrative Check
+→ Single-anonymous Review
+→ Academic Decision
 
-- Product Owner: human decision authority.
-- Architect/Analyst: requirements, architecture, task preparation, audit.
-- Implementation Agent: Codex/developer implements READY work.
-- GitHub: durable engineering record.
-- UAT Authority: human acceptance.
+If Accepted:
+→ Presentation LoA
+→ Upload Full Article
+→ Confirm Actual Presenter
+→ Ready for Scheduling
+→ Session/Room/Reviewer/Moderator/Slot assignment
+→ Schedule Publish
+→ Reviewer Pre-read
+→ Presentation
+→ PRESENTED / NO_SHOW
+→ Presentation Assessment
+→ No Revision or Revision Required
+→ Final ACC
+→ Ready for Production
 
-## Repository target
+## LoA
 
-`akhmadafnan/international-conference-platform`
+Presentation LoA means accepted for presentation only.
 
-Branch model:
-- `main`: stable/release;
-- `develop`: integration;
-- scoped branches for work.
+It must not be conflated with:
+- room assignment;
+- publication acceptance;
+- certificate.
 
-## Current phase
+## Submission metadata
 
-Phase 0 — Project Definition & Governance.
+Submission language is independent from UI locale.
 
-No application implementation yet.
+Contributor model supports:
+- ordered contributors;
+- corresponding author;
+- single-name authors;
+- optional ORCID;
+- ROR-first affiliation;
+- manual affiliation fallback;
+- contributors without accounts.
+
+References are stored as ordered scholarly metadata with raw citation preserved.
+
+## Scheduling
+
+Scheduling occurs only after Full Article submission.
+
+Core objects:
+- Session
+- Room
+- Presentation Slot
+- Reviewer assignment
+- Moderator assignment
+
+Draft schedule is internal. Published schedule becomes participant truth.
+
+## Event facts
+
+Attendance != Presented.
+
+QR lookup != attendance.
+
+Moderator/Event Operations records event fact.
+
+Reviewer records academic assessment.
+
+## Awards
+
+System assessment may produce candidate data.
+
+Committee owns the final decision.
+
+Committee may:
+- accept system candidates;
+- reject candidates;
+- select a different winner;
+- decide no winner;
+- decide multiple winners if policy allows.
+
+System records:
+- candidate evidence;
+- final winner;
+- decision date;
+- finalized by;
+- optional internal note.
+
+Current direction:
+- Best Presenter: overall edition;
+- Best Article: all authors receive individual certificates.
+
+## Certificates
+
+Generic certificate engine.
+
+Eligibility != Generated != Issued.
+
+Supports Participant, Presenter, Reviewer, Moderator, Committee/Appreciation, Community Service, Best Article, Best Presenter, and optional speaker types.
+
+Presenter may receive both Participant and Presenter certificate.
+
+Issued certificates have immutable snapshots, unique verification identities, QR, and revoke/reissue semantics.
+
+## Documents and communication
+
+Dashboard is source of truth.
+
+Email is personalized notification.
+
+Document Center includes relevant:
+- Event Pass;
+- LoA;
+- templates;
+- guidebook;
+- schedule;
+- certificates;
+- optional publication acceptance.
+
+## Publication
+
+Conference platform drives paper to publication-ready state.
+
+Proceedings:
+Ready for Production → metadata validation → publication snapshot → production → published.
+
+Selected Journal:
+Ready for Production → selected for handoff → metadata validation → publication snapshot → OJS handoff → journal process.
+
+Selected for Journal != Accepted by Journal.
+
+Proceedings may issue Publication Acceptance after final approval. Journal acceptance remains journal authority unless formally delegated.
+
+## Scholarly metadata
+
+Canonical internal metadata is the source of truth.
+
+Adapters:
+- OJS
+- Crossref
+- future JATS/etc.
+
+Never model the database as ojs_title/crossref_title copies.
+
+Final publication snapshot protects historical metadata from later profile edits.
+
+## Public frontend
+
+Public website is edition-aware and supports:
+- Home
+- About
+- Call for Papers
+- Program
+- Speakers
+- Activities
+- Publication
+- Registration & Fees
+- Venue
+- Downloads
+- FAQ
+- News
+- Contact
+- Past Editions
+- Verify
+- Login/Register
+
+Homepage is state-aware before and after event.
+
+## Dashboard
+
+Participant-facing dashboard is state-aware, not role-template-only.
+
+Central concept: Next Action.
+
+Show relevant menus only.
+
+A single person may simultaneously be Participant, Presenter, Reviewer, and Committee member without separate accounts.
+
+## Non-goals
+
+No:
+- ERP;
+- hotel booking engine;
+- travel management;
+- contract lifecycle management;
+- OJS replacement;
+- microservices;
+- AI winner;
+- AI scheduler;
+- no-code workflow builder;
+- full helpdesk;
+- complex refund engine.
+
+## Governance
+
+Current Product DNA supersedes conflicting exploratory/old lifecycle assumptions for discussion purposes.
+
+Formal authoritative reconciliation happens only after Warek I validation during Corrective Phase 0 Re-baseline.
+
+Implementation remains prohibited until that gate is closed.

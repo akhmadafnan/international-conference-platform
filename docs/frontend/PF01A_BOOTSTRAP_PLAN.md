@@ -1,79 +1,59 @@
 # PF-01A — Frontend Prototype Bootstrap Plan
 
-**Status:** READY FOR EXECUTION  
+**Status:** DEFERRED — WAITING FOR DAY 1 FOUNDATION MERGE  
 **Branch:** `proto/public-frontend-v1`  
 **Parent baseline:** PF-00 CLOSED_GREEN
 
-## Goal
+## Why this is deferred
 
-Create the minimum Vue/TypeScript/Vite frontend harness required to begin the ICHES public homepage design proof without coupling the prototype to unfinished Laravel/backend implementation.
+While PF-01A was being prepared, `develop` advanced and froze the implementation architecture plus the Two-Week Development Plan.
 
-## Technical baseline
+The newer canonical plan requires the parallel frontend workstream to begin **after Day 1 foundation is merged**, so frontend work uses the real Laravel 13 + official Vue Starter Kit + Inertia skeleton rather than a temporary standalone Vite harness.
 
+Therefore the temporary standalone bootstrap was removed from the branch HEAD without rewriting history.
+
+## Frozen frontend stack
+
+The current canonical stack is:
+
+- Laravel 13 official Vue Starter Kit
 - Vue 3
 - TypeScript
+- Inertia 3
+- Tailwind CSS 4
+- shadcn-vue
 - Vite
-- Tailwind CSS v4 via `@tailwindcss/vite`
-- shadcn-vue-compatible structure
 - Vue I18n
 - Lucide Vue
-- Reka UI direction provider for RTL-aware primitives
+- id/en/ar
+- Arabic RTL first-class
 
-No Vue Router.
-No REST API.
-No Laravel/Inertia runtime wiring yet.
-No authenticated workflow.
+## Work allowed before Day 1 foundation merge
 
-## Destination-oriented source root
+Continue documentation/design preparation only:
 
-```text
-resources/js/
-├── components/
-│   ├── ui/
-│   ├── shared/
-│   └── public/
-├── layouts/
-├── pages/
-│   └── public/
-├── composables/
-├── i18n/
-├── mocks/
-├── types/
-├── lib/
-├── styles/
-├── App.vue
-└── main.ts
-```
+- public information architecture;
+- visual direction;
+- design tokens;
+- reference register;
+- component inventory;
+- mock scenario design;
+- homepage content hierarchy;
+- visual acceptance criteria.
 
-The `@` alias points to `resources/js`.
+Do not create a competing frontend application skeleton.
 
-## PF-01A deliverables
+## Resume condition
 
-- `package.json`
-- Vite config
-- TypeScript configs
-- `index.html`
-- shadcn-vue `components.json`
-- Tailwind v4 global stylesheet
-- `cn()` utility
-- Vue I18n bootstrap
-- id/en/ar locale proof
-- runtime LTR/RTL document direction proof
-- minimal public prototype status page
+PF-01 implementation resumes after:
 
-## Quality gate
+1. Product Owner GO is granted for V1 implementation;
+2. `phase/01-foundation` completes its gate;
+3. Day 1 foundation is merged into `develop`;
+4. this frontend worktree synchronizes from that new `develop` baseline.
 
-Before PF-01A closes:
+## First implementation after resume
 
-1. `npm install` completes.
-2. `npm run typecheck` passes.
-3. `npm run build` passes.
-4. language switching works for id/en/ar.
-5. Arabic switches the document to RTL.
-6. working tree diff is reviewed.
-7. package lock is committed.
-8. no backend/domain behavior is introduced.
+Use the actual Laravel/Inertia/Vue application skeleton and implement the bounded public homepage design proof directly inside its `resources/js` structure.
 
-## Next
-
-PF-01B — Design Tokens + Public Shell.
+No migration from a separate SPA should be necessary.

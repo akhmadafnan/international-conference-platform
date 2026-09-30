@@ -1,9 +1,9 @@
 # Current Project State
 
-**State ID:** ICHES-STATE-20260930-META-GREEN  
-**Status:** PRE-DEVELOPMENT — SUBMISSION & SCHOLARLY METADATA CONTRACT COMPLETE  
-**Implementation authorization:** NOT GRANTED  
-**Repository:** akhmadafnan/international-conference-platform  
+**State ID:** ICHES-STATE-20260930-PLAN-READY
+**Status:** PRE-DEVELOPMENT — TWO-WEEK PLAN COMPLETE / IMPLEMENTATION START GATE READY
+**Implementation authorization:** WAITING FOR PRODUCT OWNER GO
+**Repository:** akhmadafnan/international-conference-platform
 **Integration branch:** develop
 
 ## Completed
@@ -15,45 +15,62 @@
 - Frontend Product Specification ✓
 - Corrective Phase 0 Re-baseline ✓
 - Submission & Scholarly Metadata Contract ✓
+- Stack + ERD Freeze ✓
+- Two-Week Development Plan ✓
 
-## Metadata contract outcome
+## Frozen implementation baseline
 
-Canonical scholarly metadata is now defined independently from OJS/Crossref schemas.
+Backend:
+- PHP 8.4
+- Laravel 13 modular monolith
+- MySQL 8.4 LTS
+- UUIDv7
+- edition-scoped authorization
+- database queue/cache/session
+- private-by-default storage
+- audit trail
+- PDF/QR support
 
-Defined:
-- Submission identity and Paper ID semantics;
-- primary scholarly locale and optional translations;
-- structured keywords;
-- contributor order/corresponding author;
-- mononym handling;
-- optional ORCID + verification semantics;
-- multiple affiliations and ROR-first/manual fallback;
-- ordered references with raw citation preservation;
-- immutable/versioned manuscript files;
-- immutable publication snapshot;
-- generic external identifiers;
-- OJS profile-based adapter boundary;
-- Crossref conference-proceedings readiness;
-- READY / WARNING / BLOCKED metadata gates.
+Frontend:
+- official Laravel Vue Starter Kit
+- Vue 3 + TypeScript
+- Inertia 3
+- Tailwind CSS 4
+- shadcn-vue
+- Vite
+- Vue I18n
+- Lucide Vue
+- id/en/ar + RTL
+
+## Delivery plan
+
+10 working days:
+
+1. Foundation
+2. Registration + Payment
+3. Submission + Metadata
+4. Review + Decision + LoA
+5. Full Article + Scheduling
+6. Event Day + Assessment
+7. Revision + Publication
+8. Awards + Certificates + Documents
+9. Integration + Regression
+10. Release Candidate + Deployment/UAT
+
+Days 9–10 are protected stabilization days.
 
 ## Current sequence
 
-PRODUCT BLUEPRINT v1 ✓
-→ CORRECTIVE PHASE 0 RE-BASELINE ✓
-→ SUBMISSION & SCHOLARLY METADATA CONTRACT ✓
-→ STACK + ERD FREEZE ← CURRENT
-→ TWO-WEEK DEVELOPMENT PLAN
-→ CODING
+PRODUCT / REQUIREMENTS / META / ARCH ✓
+→ TWO-WEEK DEVELOPMENT PLAN ✓
+→ IMPLEMENTATION START GATE ← CURRENT
+→ phase/01-foundation
+→ bounded daily development gates
+→ V1 RELEASE CANDIDATE
 
-## Authoritative metadata docs
+## Current exact action
 
-- docs/metadata/SUBMISSION_SCHOLARLY_METADATA_CONTRACT_V1.md
-- docs/metadata/METADATA_FIELD_DICTIONARY_V1.md
-- docs/metadata/OJS_CROSSREF_ADAPTER_CONTRACT_V1.md
-- docs/metadata/METADATA_READINESS_RULES_V1.md
+Wait for explicit Product Owner GO, then create/start:
+phase/01-foundation
 
-## Next exact action
-
-Freeze the technical stack and derive the V1 ERD from Product Blueprint + V1 requirements + Metadata Contract.
-
-No coding yet.
+No feature scope should be added between GO and Phase 1 bootstrap unless it is a blocker to the frozen Definition of Done.

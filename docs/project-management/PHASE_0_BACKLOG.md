@@ -4,7 +4,7 @@
 
 ## Current stage
 
-PRE-DEVELOPMENT — PLAN-001 COMPLETE / IMPLEMENTATION START GATE READY
+DEVELOPMENT — DEV-START-001 PASSED / PHASE 01 FOUNDATION ACTIVE
 
 ## Completed
 
@@ -40,10 +40,10 @@ Documents:
 - docs/project-management/IMPLEMENTATION_START_GATE_V1.md
 
 ### DEV-START-001 — Implementation Start Gate
-Status: READY / WAITING FOR PRODUCT OWNER GO
+Status: DONE / GREEN — PRODUCT OWNER GO
 
 ### DEV-001 — Coding
-Status: BLOCKED ONLY BY DEV-START-001
+Status: ACTIVE — PHASE 01 FOUNDATION
 
 First branch after GO:
 - phase/01-foundation

@@ -15,9 +15,13 @@ Before proposing implementation, read in order:
 7. `docs/requirements/v1/V1_ACADEMIC_REVIEW_BASELINE.md`
 8. `docs/requirements/v1/V1_PUBLICATION_BASELINE.md`
 9. `docs/requirements/v1/V1_AUTHORITY_BASELINE.md`
-10. `docs/governance/DECISION_REGISTER.md`
-11. current relevant NFR documents
-12. active issue/ticket
+10. `docs/metadata/SUBMISSION_SCHOLARLY_METADATA_CONTRACT_V1.md`
+11. `docs/metadata/METADATA_FIELD_DICTIONARY_V1.md`
+12. `docs/metadata/OJS_CROSSREF_ADAPTER_CONTRACT_V1.md`
+13. `docs/metadata/METADATA_READINESS_RULES_V1.md`
+14. `docs/governance/DECISION_REGISTER.md`
+15. current relevant NFR documents
+16. active issue/ticket
 
 Frontend-specific work must also read:
 - `docs/frontend/FRONTEND_PRODUCT_SPEC_V1.md`
@@ -43,7 +47,6 @@ Do not silently resolve contradictions.
 ## Current hard gate
 
 Implementation is still NOT authorized until:
-- Submission & Scholarly Metadata Contract is complete;
 - Stack + ERD are frozen;
 - Two-Week Development Plan is approved.
 

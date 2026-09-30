@@ -4,9 +4,9 @@ This repository is the canonical product, architecture, and implementation repos
 
 ## Current state
 
-**PRE-DEVELOPMENT — ARCH-001 GREEN / TWO-WEEK DEVELOPMENT PLAN CURRENT**
+**PRE-DEVELOPMENT — TWO-WEEK PLAN COMPLETE / IMPLEMENTATION START GATE READY**
 
-Feature coding is not yet authorized.
+Coding begins only after explicit Product Owner GO.
 
 Current sequence:
 
@@ -15,8 +15,8 @@ PRODUCT DISCOVERY ✓
 → CORRECTIVE PHASE 0 RE-BASELINE ✓
 → SUBMISSION & SCHOLARLY METADATA CONTRACT ✓
 → STACK + ERD FREEZE ✓
-→ TWO-WEEK DEVELOPMENT PLAN ← CURRENT
-→ IMPLEMENTATION START GATE
+→ TWO-WEEK DEVELOPMENT PLAN ✓
+→ IMPLEMENTATION START GATE ← CURRENT
 → CODING
 
 ## Frozen stack
@@ -34,21 +34,17 @@ PRODUCT DISCOVERY ✓
 - MySQL 8.4 LTS
 - database queue/cache/session
 - private-by-default Laravel Filesystem
-- Spatie Permission with edition/team scope + Laravel Policies
+- edition-scoped Spatie Permission Teams + Laravel Policies
 - PDF driver abstraction with Browsershot default
 
-## Product DNA
+## Development plan
 
-The platform remains:
-- operationally simple for a conference of roughly 100 participants;
-- multi-edition and reusable;
-- participant-friendly and mobile-first;
-- multilingual: Indonesian, English, Arabic with first-class RTL;
-- CRUD-first where CRUD is enough;
-- state-aware rather than menu-heavy;
-- auditable for consequential actions;
-- publication-ready without becoming an OJS replacement;
-- standards-aware through canonical scholarly metadata and adapters.
+See:
+- docs/project-management/TWO_WEEK_DEVELOPMENT_PLAN_V1.md
+- docs/project-management/IMPLEMENTATION_START_GATE_V1.md
+
+First coding branch after GO:
+- phase/01-foundation
 
 ## Canonical reading order
 
@@ -57,14 +53,10 @@ The platform remains:
 3. docs/ai-context/CURRENT_STATE.md
 4. docs/requirements/v1/
 5. docs/metadata/
-6. docs/architecture/TECH_STACK_FREEZE_V1.md
-7. docs/architecture/ERD_V1.md
-8. docs/architecture/ARCHITECTURE_DECISIONS_V1.md
-9. docs/architecture/IMPLEMENTATION_CONVENTIONS_V1.md
-10. docs/governance/DECISION_REGISTER.md
-11. current relevant NFR documents
-
-Historical Phase 0 requirement documents remain provenance only where superseded.
+6. docs/architecture/
+7. docs/project-management/TWO_WEEK_DEVELOPMENT_PLAN_V1.md
+8. docs/governance/DECISION_REGISTER.md
+9. current relevant NFR documents
 
 ## Branch model
 

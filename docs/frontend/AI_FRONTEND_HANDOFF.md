@@ -30,11 +30,14 @@ proto/public-frontend-v1
 Current frontend phase:
 
 ```text
-PF-00 — PUBLIC FRONTEND BASELINE FREEZE
+PF-00 — PUBLIC FRONTEND BASELINE FREEZE ✅
+→ WAIT FOR DAY 1 FOUNDATION MERGE
 → PF-01 — HOMEPAGE DESIGN PROOF
 ```
 
-This branch is a **parallel frontend prototype workstream**. It does not authorize general product/backend implementation.
+The frozen implementation plan now requires frontend implementation to begin after the real Day 1 Laravel/Inertia/Vue foundation is merged into `develop`.
+
+Until then this branch is **documentation/design-preparation only**. Do not create a competing standalone Vite/Vue application skeleton.
 
 ## Mission
 
@@ -65,9 +68,16 @@ Do not:
 
 Use typed mock data and switchable mock scenarios.
 
-## PF-01 bounded scope
+## PF-01 resume gate
 
-The next implementation phase is limited to:
+Do not start PF-01 implementation until:
+
+- Product Owner has given implementation GO;
+- `phase/01-foundation` passes;
+- Day 1 foundation is merged into `develop`;
+- this frontend branch/worktree has synchronized that foundation.
+
+After that gate, PF-01 implementation is limited to:
 
 - public header;
 - announcement bar;

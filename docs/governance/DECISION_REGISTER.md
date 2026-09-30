@@ -133,3 +133,9 @@ Statuses:
 | ARCH-015 | No generic EAV model and no event-sourcing/CQRS architecture | ACCEPTED |
 | ARCH-016 | ERD v1 relationship/cardinality contract is frozen | ACCEPTED |
 | ARCH-017 | Published schedule, certificates, documents and exports are representations of database state, not independent truths | ACCEPTED |
+
+## DEV-START — Implementation Authorization
+
+| ID | Decision | Status |
+|---|---|---|
+| DEV-START-001 | Product Owner authorized V1 implementation under the frozen 10-working-day plan; no new V1 scope is added, frontend parallel work uses frozen contracts, and Days 9–10 remain stabilization/UAT | ACCEPTED |

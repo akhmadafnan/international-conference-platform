@@ -68,7 +68,8 @@ Register
 - legitimate single-name authors are preserved canonically;
 - ORCID is optional and verification state is explicit;
 - affiliation is ROR-first with truthful manual fallback;
-- department/faculty is separate from organization identity;
+- the canonical affiliation/ROR match is the institution or organization name;
+- faculty/department/study program is optional subdivision metadata and never replaces the institutional affiliation identity;
 - raw reference citation is always preserved;
 - manuscript files are immutable/versioned;
 - Finalize for Production creates immutable publication snapshot;

@@ -29,9 +29,9 @@ This dictionary is conceptual. Exact SQL types/table names are deferred to ERD F
 | Contributor | author order | Yes | unique, explicit |
 | Contributor | corresponding author | Yes | exactly one before final submission |
 | Contributor | linked User | No | authors need not have accounts |
-| Affiliation | institution name snapshot | Yes/conditional | unless explicit independent/no affiliation |
-| Affiliation | ROR | No | preferred when confidently matched |
-| Affiliation | department/faculty | No | free text, separate from ROR |
+| Affiliation | institution name snapshot | Yes/conditional | canonical affiliation label; use institution/organization name, not faculty |
+| Affiliation | ROR | No | matched to the institution/organization when confidently identified |
+| Affiliation | department/faculty/subdivision | No | optional free text; never replaces canonical institution affiliation |
 | Affiliation | country | Yes/conditional | when institution affiliation exists |
 | Affiliation | sequence | Yes | supports multiple affiliations |
 | Reference | raw citation | Yes when reference exists | never discard |

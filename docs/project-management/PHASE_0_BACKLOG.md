@@ -4,17 +4,17 @@
 
 ## Current stage
 
-PRE-DEVELOPMENT — CORRECTIVE RE-BASELINE GREEN / METADATA CONTRACT NEXT
+PRE-DEVELOPMENT — META-001 GREEN / STACK + ERD FREEZE NEXT
 
 ## Completed
 
 - Product Discovery
 - Pre-Presentation Product Audit
-- Warek Decision Sheet
 - Accelerated V1 Domain Assumptions
 - Frontend Product Specification
 - Product Blueprint v1
 - Corrective Phase 0 Re-baseline
+- Submission & Scholarly Metadata Contract
 
 ## Work items
 
@@ -24,29 +24,30 @@ Status: DONE
 ### GOV-CORR-001 — Corrective Phase 0 Re-baseline
 Status: DONE / GREEN
 
-Authoritative reconciliation:
-- docs/governance/CORRECTIVE_PHASE0_REBASELINE.md
-- docs/requirements/v1/*
-
 ### META-001 — Submission & Scholarly Metadata Contract
-Status: READY / CURRENT NEXT WORK
+Status: DONE / GREEN
 
-Must define:
-- canonical submission identity;
-- title/abstract/keyword translations;
-- contributor identity/order;
-- affiliations/ROR;
-- ORCID optional semantics;
-- references;
-- file/version types;
-- final publication snapshot;
-- external identifiers;
-- OJS export/handoff payload expectations;
-- Crossref-ready core;
-- readiness blockers/warnings.
+Authoritative documents:
+- docs/metadata/SUBMISSION_SCHOLARLY_METADATA_CONTRACT_V1.md
+- docs/metadata/METADATA_FIELD_DICTIONARY_V1.md
+- docs/metadata/OJS_CROSSREF_ADAPTER_CONTRACT_V1.md
+- docs/metadata/METADATA_READINESS_RULES_V1.md
 
 ### ARCH-001 — Stack + ERD Freeze
-Status: BLOCKED BY META-001
+Status: READY / CURRENT NEXT WORK
+
+Must freeze:
+- application stack;
+- frontend architecture;
+- primary database;
+- UUID/display-ID strategy;
+- domain/entity boundaries;
+- core relations;
+- file/storage model;
+- snapshots/versioning;
+- audit model;
+- queue/notification baseline;
+- adapter/integration boundaries.
 
 ### PLAN-001 — Two-Week Development Plan
 Status: BLOCKED BY ARCH-001
@@ -56,4 +57,4 @@ Status: NOT AUTHORIZED
 
 ## Scope control
 
-Historical Phase 0 requirement documents are provenance, not current V1 behavior where they conflict with `docs/requirements/v1/`.
+New feature ideas do not enter accelerated V1 unless required by Product Blueprint Definition of Done.

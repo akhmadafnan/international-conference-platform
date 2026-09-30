@@ -1,7 +1,7 @@
 # Current Project State
 
-**State ID:** ICHES-STATE-20260930-REBASELINE-GREEN  
-**Status:** PRE-DEVELOPMENT — CORRECTIVE PHASE 0 RE-BASELINE COMPLETE  
+**State ID:** ICHES-STATE-20260930-META-GREEN  
+**Status:** PRE-DEVELOPMENT — SUBMISSION & SCHOLARLY METADATA CONTRACT COMPLETE  
 **Implementation authorization:** NOT GRANTED  
 **Repository:** akhmadafnan/international-conference-platform  
 **Integration branch:** develop
@@ -14,51 +14,46 @@
 - Product Blueprint v1 ✓
 - Frontend Product Specification ✓
 - Corrective Phase 0 Re-baseline ✓
+- Submission & Scholarly Metadata Contract ✓
 
-## Corrective outcome
+## Metadata contract outcome
 
-Superseded:
-- payment-after-abstract-draft behavior;
-- automatic 100% academic-rejection refund;
-- pre-payment abstract draft as standard entry;
-- separate default post-presentation double-anonymous publication review;
-- generic multi-round review engine as a V1 implementation requirement.
+Canonical scholarly metadata is now defined independently from OJS/Crossref schemas.
 
-Preserved:
-- strong security/privacy/NFR baseline;
-- authorization separation;
-- auditability;
-- LoA semantics;
-- Full Article before scheduling;
-- Attendance vs Presented separation;
-- OJS downstream;
-- publication snapshots;
-- certificate integrity;
-- multi-edition model;
-- id/en/ar + RTL.
+Defined:
+- Submission identity and Paper ID semantics;
+- primary scholarly locale and optional translations;
+- structured keywords;
+- contributor order/corresponding author;
+- mononym handling;
+- optional ORCID + verification semantics;
+- multiple affiliations and ROR-first/manual fallback;
+- ordered references with raw citation preservation;
+- immutable/versioned manuscript files;
+- immutable publication snapshot;
+- generic external identifiers;
+- OJS profile-based adapter boundary;
+- Crossref conference-proceedings readiness;
+- READY / WARNING / BLOCKED metadata gates.
 
 ## Current sequence
 
 PRODUCT BLUEPRINT v1 ✓
 → CORRECTIVE PHASE 0 RE-BASELINE ✓
-→ SUBMISSION & SCHOLARLY METADATA CONTRACT ← CURRENT
-→ STACK + ERD FREEZE
+→ SUBMISSION & SCHOLARLY METADATA CONTRACT ✓
+→ STACK + ERD FREEZE ← CURRENT
 → TWO-WEEK DEVELOPMENT PLAN
 → CODING
 
-## Current authoritative requirement docs
+## Authoritative metadata docs
 
-- docs/product/PRODUCT_BLUEPRINT_V1.md
-- docs/governance/ACCELERATED_V1_DOMAIN_DECISIONS.md
-- docs/governance/CORRECTIVE_PHASE0_REBASELINE.md
-- docs/requirements/v1/V1_LIFECYCLE_BASELINE.md
-- docs/requirements/v1/V1_PAYMENT_REFUND_BASELINE.md
-- docs/requirements/v1/V1_ACADEMIC_REVIEW_BASELINE.md
-- docs/requirements/v1/V1_PUBLICATION_BASELINE.md
-- docs/requirements/v1/V1_AUTHORITY_BASELINE.md
+- docs/metadata/SUBMISSION_SCHOLARLY_METADATA_CONTRACT_V1.md
+- docs/metadata/METADATA_FIELD_DICTIONARY_V1.md
+- docs/metadata/OJS_CROSSREF_ADAPTER_CONTRACT_V1.md
+- docs/metadata/METADATA_READINESS_RULES_V1.md
 
 ## Next exact action
 
-Define and freeze the **Submission & Scholarly Metadata Contract**.
+Freeze the technical stack and derive the V1 ERD from Product Blueprint + V1 requirements + Metadata Contract.
 
 No coding yet.

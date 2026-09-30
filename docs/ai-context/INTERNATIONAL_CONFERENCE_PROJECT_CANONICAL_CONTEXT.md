@@ -1,7 +1,7 @@
 # ICHES Conference & Event Experience Platform — Canonical Context
 
 **ID:** ICHES-CANONICAL-001  
-**Version:** 1.1-v1-rebaseline  
+**Version:** 1.2-meta-contract  
 **Status:** ACTIVE  
 **Updated:** 2026-09-30
 
@@ -10,7 +10,8 @@
 The current product truth is:
 - Product Blueprint v1;
 - Accelerated V1 Domain Decisions;
-- V1 requirement baselines in `docs/requirements/v1/`;
+- V1 requirement baselines in docs/requirements/v1/;
+- Submission & Scholarly Metadata Contract in docs/metadata/;
 - current non-conflicting NFR baselines.
 
 Initial Phase 0 lifecycle/payment/publication documents are historical when they conflict.
@@ -58,6 +59,23 @@ Register
 - Proceedings is default publication destination.
 - Selected Journal is an authorized override and is not journal acceptance.
 
+## Scholarly metadata contract
+
+- one Submission identity persists from abstract through publication;
+- primary scholarly locale is separate from UI locale;
+- additional scholarly translations are optional;
+- contributors need not have accounts;
+- legitimate single-name authors are preserved canonically;
+- ORCID is optional and verification state is explicit;
+- affiliation is ROR-first with truthful manual fallback;
+- department/faculty is separate from organization identity;
+- raw reference citation is always preserved;
+- manuscript files are immutable/versioned;
+- Finalize for Production creates immutable publication snapshot;
+- external identifiers never become internal primary keys;
+- OJS and Crossref consume adapter-specific projections from the canonical snapshot;
+- readiness uses READY / WARNING / BLOCKED.
+
 ## Preserved core rules
 
 - LoA = accepted for presentation.
@@ -93,4 +111,4 @@ Admin/backoffice may use modern shadcn-admin-like interaction patterns, but must
 
 ## Current next gate
 
-Submission & Scholarly Metadata Contract.
+Stack + ERD Freeze.

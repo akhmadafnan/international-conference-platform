@@ -1,12 +1,15 @@
-# Product Decision Register — Current Discovery
+# Product Decision Register — Current Product Baseline
 
 **ID:** ICHES-DECISION-REGISTER  
-**Status:** ACTIVE WORKING REGISTER — PRE-WAREK VALIDATION  
+**Status:** ACTIVE — PRODUCT BLUEPRINT v1  
 **Updated:** 2026-09-30
 
-This register records current Product Discovery decisions. It intentionally replaces the earlier long Phase 0 decision list as the primary working decision register. Historical decisions remain recoverable in Git history and detailed requirement documents.
+This register records current Product Discovery and accelerated V1 decisions.
 
-Accepted here means accepted conceptually by the Product Owner during Product Discovery. Items marked WAREK_CONFIRM require domain validation before Product Blueprint v1.
+Statuses:
+- ACCEPTED — concept accepted by Product Owner;
+- ASSUMED_V1 — Product Owner authorized the rational/simple default for accelerated planning; does not claim external Warek signature;
+- CANDIDATE — intentionally not yet frozen.
 
 | ID | Decision | Status |
 |---|---|---|
@@ -45,7 +48,7 @@ Accepted here means accepted conceptually by the Product Owner during Product Di
 | PD-033 | Best Article and Best Presenter are native awards | ACCEPTED |
 | PD-034 | System scores/candidates are evidence; Committee owns final award decision | ACCEPTED |
 | PD-035 | Committee may disregard or replace system candidates | ACCEPTED |
-| PD-036 | Best Presenter is currently designed as Overall edition award | ACCEPTED |
+| PD-036 | Best Presenter is Overall edition award for accelerated V1 | ASSUMED_V1 |
 | PD-037 | Best Article certificate is issued individually to all listed authors | ACCEPTED |
 | PD-038 | Presenter may receive both Participant and Presenter certificates | ACCEPTED |
 | PD-039 | Committee/Appreciation certificates are supported | ACCEPTED |
@@ -67,20 +70,16 @@ Accepted here means accepted conceptually by the Product Owner during Product Di
 | PD-055 | One account can hold multiple scoped functions without account switching | ACCEPTED |
 | PD-056 | Community Service remains lightweight CRUD, not mini-KKN | ACCEPTED |
 | PD-057 | Evening/MoU remains lightweight CRUD, not contract management | ACCEPTED |
-| PD-058 | Laravel + Vue + TypeScript + Inertia + Tailwind + shadcn-vue is candidate stack only | CANDIDATE |
-| PD-059 | Paid participant + rejected abstract policy requires Warek decision | WAREK_CONFIRM |
-| PD-060 | Fixed package vs participant customization requires Warek confirmation | WAREK_CONFIRM |
-| PD-061 | Final fee matrix and participant fee categories require Warek confirmation | WAREK_CONFIRM |
-| PD-062 | Default reviewer count requires Warek confirmation | WAREK_CONFIRM |
-| PD-063 | Abstract revision cycle limits require Warek confirmation | WAREK_CONFIRM |
-| PD-064 | Slides requirement for the edition requires Warek confirmation | WAREK_CONFIRM |
-| PD-065 | Offline/online/hybrid mode for the edition requires Warek confirmation | WAREK_CONFIRM |
-| PD-066 | Default publication destination policy requires Warek confirmation | WAREK_CONFIRM |
-| PD-067 | Formal application authorities require Warek confirmation | WAREK_CONFIRM |
-| PD-068 | Publication Acceptance / Journal Handoff document policy requires Warek confirmation | WAREK_CONFIRM |
-
-## Governance note
-
-Old NFR, permission, security, accessibility, localization, audit, and data-integrity work is not discarded. It will be reconciled against this product register during Corrective Phase 0 Re-baseline.
-
-Do not infer implementation authorization from this register.
+| PD-058 | Laravel 13 official Vue Starter Kit + Vue 3 + TypeScript + Inertia + Tailwind + shadcn-vue is the preferred stack direction pending Stack Freeze | CANDIDATE |
+| PD-059 | Paid participant with rejected abstract remains participant; no automatic academic-rejection refund | ASSUMED_V1 |
+| PD-060 | Participation packages are fixed choices but edition-configurable | ASSUMED_V1 |
+| PD-061 | Fee model is Package + optional simple Participant Category | ASSUMED_V1 |
+| PD-062 | Abstract reviewer count defaults to 1 and remains configurable | ASSUMED_V1 |
+| PD-063 | Abstract review uses one normal revision cycle with authorized exception | ASSUMED_V1 |
+| PD-064 | Slides are optional/configurable and not a V1 blocker | ASSUMED_V1 |
+| PD-065 | Accelerated first V1 is offline-first; edition mode remains conceptually configurable | ASSUMED_V1 |
+| PD-066 | Proceedings is default publication destination; Selected Journal is an authorized override | ASSUMED_V1 |
+| PD-067 | Finance, Academic, Event, Award, Publication and Certificate authorities are separated | ASSUMED_V1 |
+| PD-068 | Proceedings may use Publication Acceptance; Selected Journal uses Selection/Handoff until journal acceptance | ASSUMED_V1 |
+| PD-069 | Admin/backoffice adopts shadcn-admin-like interaction language implemented with shadcn-vue; not the React template architecture | ACCEPTED |
+| PD-070 | Public/participant frontend may be developed in parallel using typed mock scenarios without changing domain rules | ACCEPTED |

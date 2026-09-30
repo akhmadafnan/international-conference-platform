@@ -4,7 +4,7 @@
 
 ## Current stage
 
-PRE-DEVELOPMENT PRODUCT DISCOVERY / WAREK VALIDATION PREPARATION
+PRE-DEVELOPMENT — READY FOR WAREK I PRODUCT VALIDATION
 
 ## Completed or sufficiently mature
 
@@ -31,17 +31,16 @@ PRE-DEVELOPMENT PRODUCT DISCOVERY / WAREK VALIDATION PREPARATION
 - Public website IA
 - Participant dashboard experience
 - Pre-Presentation Product Audit
+- Warek I Product Decision Sheet
+- Warek I Presentation Brief
 
 ## Current work
 
 ### GOV-PD-001 — Warek I Product Decision Sheet
-Status: READY FOR DOMAIN VALIDATION
-
-Goal:
-Present only unresolved business/domain decisions that materially change the product.
+Status: DONE / READY FOR PRESENTATION
 
 ### GOV-PD-002 — Warek I Validation
-Status: BLOCKED BY GOV-PD-001
+Status: CURRENT / WAITING FOR DOMAIN DECISION
 
 ### PROD-BP-001 — Product Blueprint v1
 Status: BLOCKED BY WAREK VALIDATION

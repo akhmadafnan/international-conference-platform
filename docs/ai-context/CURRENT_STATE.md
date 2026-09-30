@@ -1,21 +1,23 @@
 # Current Project State
 
-**State ID:** ICHES-STATE-20260930-PD-AUDIT  
-**Status:** PRE-DEVELOPMENT PRODUCT DISCOVERY — PRE-PRESENTATION AUDIT COMPLETE  
+**State ID:** ICHES-STATE-20260930-WAREK-READY  
+**Status:** PRE-DEVELOPMENT — READY FOR WAREK I PRODUCT VALIDATION  
 **Implementation authorization:** NOT GRANTED  
 **Repository:** akhmadafnan/international-conference-platform  
 **Integration branch:** develop
 
 ## Current position
 
-The initial Phase 0 documentation completed substantial lifecycle, permission, and NFR work. Subsequent direct Product Discovery with the Product Owner materially refined the product toward a simpler conference experience.
+Product Discovery is substantially complete and has passed a Pre-Presentation Product Audit with no RED product blocker.
+
+The Warek I Product Decision Sheet has been refined into a presentation-ready domain validation document.
 
 Current sequence:
 
-PRODUCT DISCOVERY
-→ PRE-PRESENTATION PRODUCT AUDIT
-→ WAREK I PRODUCT DECISION SHEET
-→ WAREK I VALIDATION
+PRODUCT DISCOVERY ✓
+→ PRE-PRESENTATION PRODUCT AUDIT ✓
+→ WAREK I PRODUCT DECISION SHEET ✓
+→ WAREK I VALIDATION ← CURRENT
 → PRODUCT BLUEPRINT v1
 → CORRECTIVE PHASE 0 RE-BASELINE
 → SUBMISSION & SCHOLARLY METADATA CONTRACT
@@ -69,49 +71,30 @@ Sufficiently mature:
 - Revision Required opens a new Revised Article version.
 - Awards are Committee decisions recorded by the system; ranking/candidates are evidence only.
 - Best Article certificates go to all listed authors individually.
-- Best Presenter is currently designed as an overall edition award.
-- Presenter may receive both Participant and Presenter certificates.
-- Committee certificates are supported.
+- Best Presenter is designed as an overall edition award, pending Warek confirmation.
+- Presenter may receive both Participant and Presenter certificates, pending Warek confirmation.
+- Committee certificates are supported, pending Warek confirmation.
 - Publication destination is Proceedings or Selected Journal.
 - Selected for Journal does not equal Accepted by Journal.
 - Canonical scholarly metadata feeds OJS/Crossref adapters.
 - Public UI is id/en/ar with Arabic RTL.
 - Dashboard is state-aware and centered on Next Action.
 
-## Open domain decisions for Warek I
+## Warek I validation package
 
-Primary unresolved business/policy questions include:
-- treatment of paid participant when abstract is rejected;
-- fixed package vs package customization;
-- final fee matrix / participant categories;
-- default reviewer count;
-- abstract revision cycle policy;
-- required presentation slides;
-- hybrid/offline mode per edition;
-- publication default destination;
-- exact application authority holders;
-- formal certificate/award wording and publication-acceptance use.
+Primary document:
+- docs/product-discovery/WAREK_I_PRODUCT_DECISION_SHEET.md
 
-## Legacy Phase 0 status
+Speaking guide:
+- docs/product-discovery/WAREK_I_PRESENTATION_BRIEF.md
 
-Previous detailed permission and NFR work remains valuable.
-
-However, old lifecycle/payment/refund/publication documents may conflict with the current Product DNA. They are retained for evidence and must be reconciled during Corrective Phase 0 Re-baseline.
-
-Do not silently treat old conflicting decisions as current.
-
-## Candidate stack
-
-NOT FROZEN:
-- Laravel 13
-- Vue 3
-- TypeScript
-- Inertia
-- Tailwind
-- shadcn-vue
+Supporting context:
+- docs/product-discovery/PRODUCT_DNA.md
+- docs/product-discovery/PRE_PRESENTATION_PRODUCT_AUDIT.md
+- PRD.md
 
 ## Next exact action
 
-Prepare and validate the Warek I Product Decision Sheet.
+Present the Product Decision Sheet to Warek I and record the domain decisions.
 
-No coding, ERD freeze, or implementation planning before domain validation.
+Do not code, freeze ERD, or perform the Corrective Phase 0 Re-baseline before that validation.

@@ -1,7 +1,7 @@
 # Implementation Start Gate — V1
 
-**Gate ID:** ICHES-DEV-START-001
-**Status:** READY FOR PRODUCT OWNER GO
+**Gate ID:** ICHES-DEV-START-001  
+**Status:** PASSED / PRODUCT OWNER GO  
 **Updated:** 2026-09-30
 
 ## Preconditions
@@ -11,22 +11,27 @@
 - Submission & Scholarly Metadata Contract — GREEN
 - Stack + ERD Freeze — GREEN
 - Two-Week Development Plan — documented
+- Product Owner GO — CONFIRMED
 
-## Start conditions
+## Product Owner GO
 
-Implementation may begin when the Product Owner confirms:
-1. the 10-working-day scope is accepted;
-2. no new V1 feature is inserted before development starts;
+On 2026-09-30, the Product Owner explicitly authorized continuation into implementation.
+
+The accepted implementation conditions are:
+
+1. the frozen 10-working-day scope is accepted;
+2. no new V1 feature is inserted before or during implementation unless required by the frozen Definition of Done or a security/integrity blocker;
 3. frontend parallel work uses the frozen stack/contracts;
 4. Days 9–10 remain stabilization/UAT rather than feature-expansion days.
 
 ## First implementation branch
 
-phase/01-foundation
+`phase/01-foundation`
 
 ## First branch objective
 
 Produce the real Laravel 13 + Vue Starter Kit application skeleton with:
+
 - MySQL connectivity;
 - auth/email verification/2FA baseline;
 - UUIDv7;
@@ -38,3 +43,11 @@ Produce the real Laravel 13 + Vue Starter Kit application skeleton with:
 - initial migration foundation.
 
 No conference business feature should be coded before this foundation passes its gate.
+
+## Gate result
+
+```text
+ICHES-DEV-START-001 = GREEN
+IMPLEMENTATION AUTHORIZED
+NEXT = phase/01-foundation
+```

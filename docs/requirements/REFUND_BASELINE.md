@@ -1,3 +1,5 @@
+> **SUPERSEDED FOR CURRENT V1 BEHAVIOR** — Academic rejection no longer creates automatic refund eligibility. See `docs/requirements/v1/V1_PAYMENT_REFUND_BASELINE.md`.
+
 # Refund Baseline — V1
 
 **ID:** ICP-REQ-REF-001  

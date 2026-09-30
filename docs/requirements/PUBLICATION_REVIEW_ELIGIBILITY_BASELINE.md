@@ -1,3 +1,5 @@
+> **SUPERSEDED/SIMPLIFIED FOR ACCELERATED V1** — Current publication flow is defined in `docs/requirements/v1/V1_PUBLICATION_BASELINE.md`; V1 does not implement a separate default double-anonymous publication-review engine.
+
 # Publication Review & Eligibility Baseline
 
 **ID:** ICP-REQ-PUB-001  

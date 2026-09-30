@@ -1,60 +1,71 @@
 # ICHES Platform — Agent Instructions
 
-This repository is documentation-governed. AI agents and developers must not invent product policy or treat exploratory discussion as implementation authorization.
+This repository is documentation-governed. AI agents and developers must not invent product policy.
 
 ## Mandatory first read
 
 Before proposing implementation, read in order:
 
-1. docs/product-discovery/PRODUCT_DNA.md
-2. docs/ai-context/CURRENT_STATE.md
-3. PRD.md
-4. docs/product-discovery/PRE_PRESENTATION_PRODUCT_AUDIT.md
-5. docs/product-discovery/WAREK_I_PRODUCT_DECISION_SHEET.md
-6. docs/governance/DECISION_REGISTER.md
-7. docs/ai-context/INTERNATIONAL_CONFERENCE_PROJECT_CANONICAL_CONTEXT.md
-8. relevant requirement/NFR documents
-9. active issue/ticket
+1. `docs/product/PRODUCT_BLUEPRINT_V1.md`
+2. `docs/governance/ACCELERATED_V1_DOMAIN_DECISIONS.md`
+3. `docs/ai-context/CURRENT_STATE.md`
+4. `docs/governance/CORRECTIVE_PHASE0_REBASELINE.md`
+5. `docs/requirements/v1/V1_LIFECYCLE_BASELINE.md`
+6. `docs/requirements/v1/V1_PAYMENT_REFUND_BASELINE.md`
+7. `docs/requirements/v1/V1_ACADEMIC_REVIEW_BASELINE.md`
+8. `docs/requirements/v1/V1_PUBLICATION_BASELINE.md`
+9. `docs/requirements/v1/V1_AUTHORITY_BASELINE.md`
+10. `docs/governance/DECISION_REGISTER.md`
+11. current relevant NFR documents
+12. active issue/ticket
 
-## Source-of-truth order during current discovery stage
+Frontend-specific work must also read:
+- `docs/frontend/FRONTEND_PRODUCT_SPEC_V1.md`
+- `docs/frontend/AI_FRONTEND_HANDOFF.md`
+
+## Source-of-truth order
 
 When sources conflict:
 
-1. current Product DNA and explicitly accepted Product Discovery decisions;
-2. CURRENT_STATE;
-3. current PRD;
-4. current Decision Register;
-5. accepted NFR/security/accessibility/localization baselines that do not conflict;
-6. older Phase 0 requirement documents;
-7. GitHub issue/ticket;
-8. chat context;
-9. AI assumptions.
+1. Product Blueprint v1;
+2. authoritative V1 requirement baselines in `docs/requirements/v1/`;
+3. Accelerated V1 Domain Decisions;
+4. Current State;
+5. current Decision Register;
+6. non-conflicting NFR/security/privacy/accessibility/localization baselines;
+7. historical Phase 0 documents;
+8. GitHub issue/ticket;
+9. chat context;
+10. AI assumptions.
 
-Do not silently resolve contradictions. Record them for Corrective Phase 0 Re-baseline.
+Do not silently resolve contradictions.
 
 ## Current hard gate
 
-Implementation is NOT authorized.
+Implementation is still NOT authorized until:
+- Submission & Scholarly Metadata Contract is complete;
+- Stack + ERD are frozen;
+- Two-Week Development Plan is approved.
 
 Do not:
-- generate application code;
-- freeze ERD;
-- freeze stack;
-- treat old Phase 0 lifecycle/payment/publication assumptions as current when they conflict with Product DNA;
-- perform corrective re-baseline before Warek I validation.
+- code from historical superseded lifecycle rules;
+- restore automatic academic-rejection refund;
+- create abstract drafts before registration/payment confirmation;
+- build a separate publication peer-review engine for accelerated V1;
+- invent admin authorities;
+- mix unrelated frontend architectures.
 
 ## Product principles
 
 - Simple CRUD where CRUD is enough.
 - Smart/personal UX with a strong Next Action model.
-- Dashboard is the participant source of truth.
+- Dashboard is participant source of truth.
 - Email is notification, not business truth.
-- Public UI supports id/en/ar; Arabic RTL is first-class.
-- Participant account role is not a substitute for lifecycle facts.
+- id/en/ar; Arabic RTL first-class.
 - Payment, academic acceptance, presentation, publication, awards, and certificates are separate facts.
-- OJS is downstream; this platform must not become OJS 2.0.
-- Canonical scholarly metadata feeds OJS/Crossref adapters.
-- Committee decisions remain human-authoritative; the system supplies evidence and records the final decision.
+- OJS is downstream.
+- Canonical scholarly metadata feeds adapters.
+- Committee decisions remain human-authoritative.
 
 ## Working workflow
 
@@ -78,20 +89,8 @@ Do not continue through a failed gate.
 - Preserve history.
 - Prefer PR to develop.
 - Exact-scope commits only.
-- Documentation that changes product truth must update CURRENT_STATE and canonical context.
+- Update canonical docs when accepted behavior changes.
 
 ## Implementation handoff
 
-When implementation eventually begins, report:
-- ticket;
-- branch;
-- scope;
-- files changed;
-- behavior delivered;
-- migrations;
-- tests;
-- regression;
-- UAT;
-- docs updated;
-- known limitations;
-- commit/PR.
+Report ticket, branch, scope, files changed, behavior delivered, migrations, tests, regression, UAT, docs updated, known limitations, and commit/PR.

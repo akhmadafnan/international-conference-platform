@@ -111,3 +111,12 @@ Statuses:
 | META-021 | General production readiness and Crossref deposit readiness are separate gates | ACCEPTED |
 | META-022 | Metadata readiness vocabulary is READY / WARNING / BLOCKED | ACCEPTED |
 | META-023 | ROR-backed affiliation uses the institution/organization as canonical affiliation identity; faculty/department/study program is optional subdivision metadata only | ACCEPTED |
+
+## PF-00 — Public Frontend Baseline Decisions
+
+| ID | Decision | Status |
+|---|---|---|
+| PD-071 | Public frontend uses AICIS+ as a product/information-architecture reference and ForumX Conference as a visual/composition reference while retaining an original ICHES identity | ACCEPTED |
+| PD-072 | Public frontend prototype remains in the same repository on a scoped branch/worktree from develop; no separate frontend repository | ACCEPTED |
+| PD-073 | PF-01 is bounded to public homepage/header/footer, id/en/ar + RTL proof, responsive design, reusable public components and typed mock fixtures; authenticated workflow remains out of scope | ACCEPTED |
+| PD-074 | Prototype code must be destination-oriented for later Laravel/Inertia integration; mock data must be centralized and replaceable by typed Inertia page props without UI redesign | ACCEPTED |

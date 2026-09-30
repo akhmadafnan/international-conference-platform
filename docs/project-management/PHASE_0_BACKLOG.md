@@ -4,68 +4,46 @@
 
 ## Current stage
 
-PRE-DEVELOPMENT — PRODUCT BLUEPRINT v1 COMPLETE / CORRECTIVE RE-BASELINE NEXT
+PRE-DEVELOPMENT — CORRECTIVE RE-BASELINE GREEN / METADATA CONTRACT NEXT
 
 ## Completed
 
-- Product identity and multi-edition direction
-- Registration / participation
-- Payment direction
-- Event Pass / QR
-- Submission UX
-- Contributor / ROR / optional ORCID
-- References
-- Administrative screening
-- Abstract review
-- LoA
-- Full Article
-- Presenter confirmation
-- Scheduling
-- Reviewer workspace
-- Presentation assessment
-- Revision
-- Awards
-- Certificates
-- Documents / communication
-- Publication handoff
-- Public website IA
-- Participant dashboard
+- Product Discovery
 - Pre-Presentation Product Audit
-- Warek I Product Decision Sheet
-- Accelerated V1 Domain Assumption Baseline
+- Warek Decision Sheet
+- Accelerated V1 Domain Assumptions
 - Frontend Product Specification
 - Product Blueprint v1
+- Corrective Phase 0 Re-baseline
 
 ## Work items
-
-### GOV-PD-001 — Warek I Product Decision Sheet
-Status: DONE
-
-### GOV-PD-002 — Warek I Validation
-Status: ASSUMED FOR ACCELERATED V1 PLANNING
-
-Note:
-No false claim of physical Warek approval. Product Owner authorized rational/default domain assumptions for schedule planning.
 
 ### PROD-BP-001 — Product Blueprint v1
 Status: DONE
 
-Authoritative document:
-- docs/product/PRODUCT_BLUEPRINT_V1.md
-
 ### GOV-CORR-001 — Corrective Phase 0 Re-baseline
-Status: READY / CURRENT NEXT WORK
+Status: DONE / GREEN
 
-Must reconcile:
-- old payment/refund baseline;
-- old lifecycle assumptions;
-- old publication review assumptions;
-- actor/application-authority mapping;
-- requirement register;
-- Product Blueprint v1.
+Authoritative reconciliation:
+- docs/governance/CORRECTIVE_PHASE0_REBASELINE.md
+- docs/requirements/v1/*
 
 ### META-001 — Submission & Scholarly Metadata Contract
-Status: BLOCKED BY GOV-CORR-001
+Status: READY / CURRENT NEXT WORK
+
+Must define:
+- canonical submission identity;
+- title/abstract/keyword translations;
+- contributor identity/order;
+- affiliations/ROR;
+- ORCID optional semantics;
+- references;
+- file/version types;
+- final publication snapshot;
+- external identifiers;
+- OJS export/handoff payload expectations;
+- Crossref-ready core;
+- readiness blockers/warnings.
 
 ### ARCH-001 — Stack + ERD Freeze
 Status: BLOCKED BY META-001
@@ -76,6 +54,6 @@ Status: BLOCKED BY ARCH-001
 ### DEV-001 — Coding
 Status: NOT AUTHORIZED
 
-## Scope-control rule
+## Scope control
 
-New feature ideas must not enter accelerated V1 unless required for the end-to-end Definition of Done in Product Blueprint v1.
+Historical Phase 0 requirement documents are provenance, not current V1 behavior where they conflict with `docs/requirements/v1/`.

@@ -1,27 +1,28 @@
-# Requirement Documents — Reconciliation Notice
+# Requirement Documents
 
-The detailed requirement, permission, and NFR documents in this folder were produced during the initial Phase 0 work.
+## Current V1 authority
 
-They remain valuable evidence, especially for:
-- security;
-- access control;
-- privacy;
-- auditability;
-- localization/RTL;
-- accessibility;
-- reliability;
-- file/document integrity;
-- maintainability/testing.
+For current V1 behavior, read:
 
-However, Product Discovery completed on/around 2026-09-30 materially refined several lifecycle assumptions, especially:
-- payment timing and refund implications;
-- LoA timing;
-- Full Article timing;
-- scheduling;
-- presentation assessment;
-- publication review/handoff;
-- awards/certificates.
+1. `../product/PRODUCT_BLUEPRINT_V1.md`
+2. `../governance/ACCELERATED_V1_DOMAIN_DECISIONS.md`
+3. `v1/V1_LIFECYCLE_BASELINE.md`
+4. `v1/V1_PAYMENT_REFUND_BASELINE.md`
+5. `v1/V1_ACADEMIC_REVIEW_BASELINE.md`
+6. `v1/V1_PUBLICATION_BASELINE.md`
+7. `v1/V1_AUTHORITY_BASELINE.md`
+8. NFR baselines that do not conflict with the above.
 
-Where a requirement document conflicts with docs/product-discovery/PRODUCT_DNA.md, do not silently apply the old requirement.
+## Historical Phase 0 documents
 
-Formal reconciliation is deferred to Corrective Phase 0 Re-baseline after Warek I validation.
+The root-level requirement documents in this folder were produced during the initial Phase 0.
+
+They remain useful provenance and contain strong reusable work, especially security, privacy, permissions, auditability, localization/RTL, accessibility, reliability, file/document integrity, and maintainability/testing.
+
+Several old lifecycle assumptions were superseded during Product Discovery.
+
+The corrective mapping is documented in:
+
+`../governance/CORRECTIVE_PHASE0_REBASELINE.md`
+
+Do not silently apply an old requirement that conflicts with the authoritative V1 baseline.

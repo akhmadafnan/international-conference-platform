@@ -1,8 +1,8 @@
 # Current Project State
 
-**State ID:** ICHES-STATE-20260930-ARCH-GREEN
-**Status:** PRE-DEVELOPMENT — STACK + ERD FREEZE COMPLETE
-**Implementation authorization:** NOT YET GRANTED
+**State ID:** ICHES-STATE-20260930-PLAN-READY
+**Status:** PRE-DEVELOPMENT — TWO-WEEK PLAN COMPLETE / IMPLEMENTATION START GATE READY
+**Implementation authorization:** WAITING FOR PRODUCT OWNER GO
 **Repository:** akhmadafnan/international-conference-platform
 **Integration branch:** develop
 
@@ -16,75 +16,61 @@
 - Corrective Phase 0 Re-baseline ✓
 - Submission & Scholarly Metadata Contract ✓
 - Stack + ERD Freeze ✓
+- Two-Week Development Plan ✓
 
-## Frozen architecture
+## Frozen implementation baseline
 
-Application:
+Backend:
+- PHP 8.4
 - Laravel 13 modular monolith
-- PHP 8.4 target
+- MySQL 8.4 LTS
+- UUIDv7
+- edition-scoped authorization
+- database queue/cache/session
+- private-by-default storage
+- audit trail
+- PDF/QR support
+
+Frontend:
 - official Laravel Vue Starter Kit
-- Inertia 3
 - Vue 3 + TypeScript
+- Inertia 3
 - Tailwind CSS 4
 - shadcn-vue
+- Vite
 - Vue I18n
 - Lucide Vue
+- id/en/ar + RTL
 
-Data/infrastructure:
-- MySQL 8.4 LTS
-- UUIDv7 CHAR(36) internal IDs
-- human edition-scoped display/document codes
-- database queue/cache/session
-- private-by-default Laravel Filesystem
-- Spatie Permission with Teams/Edition scope + Laravel Policies
-- append-only activity audit
-- Spatie Laravel PDF abstraction, Browsershot default
-- server-side QR
-- no Redis dependency
-- no microservices
-- no separate internal REST SPA architecture
+## Delivery plan
 
-## ERD result
+10 working days:
 
-The frozen V1 relational contract covers:
-- identity/profile/membership/authorization
-- series/editions/public configuration
-- packages/activities/registration
-- payment/proof/exceptional refunds
-- canonical submissions/translations/keywords
-- submission contributors/institution-first ROR affiliations
-- references/files/snapshots
-- screening/review/academic decisions
-- rooms/sessions/presentation slots
-- presentation reviewer assignment/assessment
-- activity attendance/community service groups
-- publication outlets/records/snapshots/handoffs/identifiers
-- award candidates/finalization/recipients
-- certificates/generated documents/public verification
-- CMS/news/FAQ/edition documents
-- notifications/jobs/audit
-- number sequences
+1. Foundation
+2. Registration + Payment
+3. Submission + Metadata
+4. Review + Decision + LoA
+5. Full Article + Scheduling
+6. Event Day + Assessment
+7. Revision + Publication
+8. Awards + Certificates + Documents
+9. Integration + Regression
+10. Release Candidate + Deployment/UAT
+
+Days 9–10 are protected stabilization days.
 
 ## Current sequence
 
-PRODUCT BLUEPRINT v1 ✓
-→ CORRECTIVE PHASE 0 RE-BASELINE ✓
-→ SUBMISSION & SCHOLARLY METADATA CONTRACT ✓
-→ STACK + ERD FREEZE ✓
-→ TWO-WEEK DEVELOPMENT PLAN ← CURRENT
-→ IMPLEMENTATION START GATE
-→ CODING
+PRODUCT / REQUIREMENTS / META / ARCH ✓
+→ TWO-WEEK DEVELOPMENT PLAN ✓
+→ IMPLEMENTATION START GATE ← CURRENT
+→ phase/01-foundation
+→ bounded daily development gates
+→ V1 RELEASE CANDIDATE
 
-## Architecture documents
+## Current exact action
 
-- docs/architecture/TECH_STACK_FREEZE_V1.md
-- docs/architecture/ARCHITECTURE_DECISIONS_V1.md
-- docs/architecture/IMPLEMENTATION_CONVENTIONS_V1.md
-- docs/architecture/ERD_V1.md
-- docs/architecture/ARCH_FREEZE_AUDIT_V1.md
+Wait for explicit Product Owner GO, then create/start:
+phase/01-foundation
 
-## Next exact action
-
-Produce PLAN-001 — the bounded ten-working-day / two-week development plan.
-
-No feature coding before PLAN-001 is complete.
+No feature scope should be added between GO and Phase 1 bootstrap unless it is a blocker to the frozen Definition of Done.

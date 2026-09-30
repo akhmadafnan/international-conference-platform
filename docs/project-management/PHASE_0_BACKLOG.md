@@ -4,7 +4,7 @@
 
 ## Current stage
 
-PRE-DEVELOPMENT — ARCH-001 GREEN / TWO-WEEK DEVELOPMENT PLAN NEXT
+PRE-DEVELOPMENT — PLAN-001 COMPLETE / IMPLEMENTATION START GATE READY
 
 ## Completed
 
@@ -16,6 +16,7 @@ PRE-DEVELOPMENT — ARCH-001 GREEN / TWO-WEEK DEVELOPMENT PLAN NEXT
 - Corrective Phase 0 Re-baseline
 - Submission & Scholarly Metadata Contract
 - Stack + ERD Freeze
+- Two-Week Development Plan
 
 ## Work items
 
@@ -31,30 +32,22 @@ Status: DONE / GREEN
 ### ARCH-001 — Stack + ERD Freeze
 Status: DONE / GREEN
 
-Authoritative documents:
-- docs/architecture/TECH_STACK_FREEZE_V1.md
-- docs/architecture/ARCHITECTURE_DECISIONS_V1.md
-- docs/architecture/IMPLEMENTATION_CONVENTIONS_V1.md
-- docs/architecture/ERD_V1.md
-- docs/architecture/ARCH_FREEZE_AUDIT_V1.md
-
 ### PLAN-001 — Two-Week Development Plan
-Status: READY / CURRENT NEXT WORK
+Status: DONE / READY
 
-Must produce:
-- 10 working-day scope;
-- bounded implementation batches;
-- dependencies;
-- branch/ticket/checkpoint strategy;
-- test/regression/UAT gates per batch;
-- parallel frontend integration plan;
-- deployment/bootstrap/UAT buffer;
-- explicit V1.1 deferrals;
-- end-to-end Definition of Done.
+Documents:
+- docs/project-management/TWO_WEEK_DEVELOPMENT_PLAN_V1.md
+- docs/project-management/IMPLEMENTATION_START_GATE_V1.md
+
+### DEV-START-001 — Implementation Start Gate
+Status: READY / WAITING FOR PRODUCT OWNER GO
 
 ### DEV-001 — Coding
-Status: BLOCKED BY PLAN-001
+Status: BLOCKED ONLY BY DEV-START-001
+
+First branch after GO:
+- phase/01-foundation
 
 ## Scope control
 
-New feature ideas do not enter accelerated V1 unless required by the Product Blueprint end-to-end Definition of Done.
+New feature ideas are V1.1 unless required by the frozen end-to-end Definition of Done or a security/integrity blocker.

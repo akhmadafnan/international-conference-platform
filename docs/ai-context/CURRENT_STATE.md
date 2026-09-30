@@ -1,9 +1,9 @@
 # Current Project State
 
-**State ID:** ICHES-STATE-20260930-META-GREEN  
-**Status:** PRE-DEVELOPMENT — SUBMISSION & SCHOLARLY METADATA CONTRACT COMPLETE  
-**Implementation authorization:** NOT GRANTED  
-**Repository:** akhmadafnan/international-conference-platform  
+**State ID:** ICHES-STATE-20260930-ARCH-GREEN
+**Status:** PRE-DEVELOPMENT — STACK + ERD FREEZE COMPLETE
+**Implementation authorization:** NOT YET GRANTED
+**Repository:** akhmadafnan/international-conference-platform
 **Integration branch:** develop
 
 ## Completed
@@ -15,45 +15,76 @@
 - Frontend Product Specification ✓
 - Corrective Phase 0 Re-baseline ✓
 - Submission & Scholarly Metadata Contract ✓
+- Stack + ERD Freeze ✓
 
-## Metadata contract outcome
+## Frozen architecture
 
-Canonical scholarly metadata is now defined independently from OJS/Crossref schemas.
+Application:
+- Laravel 13 modular monolith
+- PHP 8.4 target
+- official Laravel Vue Starter Kit
+- Inertia 3
+- Vue 3 + TypeScript
+- Tailwind CSS 4
+- shadcn-vue
+- Vue I18n
+- Lucide Vue
 
-Defined:
-- Submission identity and Paper ID semantics;
-- primary scholarly locale and optional translations;
-- structured keywords;
-- contributor order/corresponding author;
-- mononym handling;
-- optional ORCID + verification semantics;
-- multiple affiliations and ROR-first/manual fallback;
-- ordered references with raw citation preservation;
-- immutable/versioned manuscript files;
-- immutable publication snapshot;
-- generic external identifiers;
-- OJS profile-based adapter boundary;
-- Crossref conference-proceedings readiness;
-- READY / WARNING / BLOCKED metadata gates.
+Data/infrastructure:
+- MySQL 8.4 LTS
+- UUIDv7 CHAR(36) internal IDs
+- human edition-scoped display/document codes
+- database queue/cache/session
+- private-by-default Laravel Filesystem
+- Spatie Permission with Teams/Edition scope + Laravel Policies
+- append-only activity audit
+- Spatie Laravel PDF abstraction, Browsershot default
+- server-side QR
+- no Redis dependency
+- no microservices
+- no separate internal REST SPA architecture
+
+## ERD result
+
+The frozen V1 relational contract covers:
+- identity/profile/membership/authorization
+- series/editions/public configuration
+- packages/activities/registration
+- payment/proof/exceptional refunds
+- canonical submissions/translations/keywords
+- submission contributors/institution-first ROR affiliations
+- references/files/snapshots
+- screening/review/academic decisions
+- rooms/sessions/presentation slots
+- presentation reviewer assignment/assessment
+- activity attendance/community service groups
+- publication outlets/records/snapshots/handoffs/identifiers
+- award candidates/finalization/recipients
+- certificates/generated documents/public verification
+- CMS/news/FAQ/edition documents
+- notifications/jobs/audit
+- number sequences
 
 ## Current sequence
 
 PRODUCT BLUEPRINT v1 ✓
 → CORRECTIVE PHASE 0 RE-BASELINE ✓
 → SUBMISSION & SCHOLARLY METADATA CONTRACT ✓
-→ STACK + ERD FREEZE ← CURRENT
-→ TWO-WEEK DEVELOPMENT PLAN
+→ STACK + ERD FREEZE ✓
+→ TWO-WEEK DEVELOPMENT PLAN ← CURRENT
+→ IMPLEMENTATION START GATE
 → CODING
 
-## Authoritative metadata docs
+## Architecture documents
 
-- docs/metadata/SUBMISSION_SCHOLARLY_METADATA_CONTRACT_V1.md
-- docs/metadata/METADATA_FIELD_DICTIONARY_V1.md
-- docs/metadata/OJS_CROSSREF_ADAPTER_CONTRACT_V1.md
-- docs/metadata/METADATA_READINESS_RULES_V1.md
+- docs/architecture/TECH_STACK_FREEZE_V1.md
+- docs/architecture/ARCHITECTURE_DECISIONS_V1.md
+- docs/architecture/IMPLEMENTATION_CONVENTIONS_V1.md
+- docs/architecture/ERD_V1.md
+- docs/architecture/ARCH_FREEZE_AUDIT_V1.md
 
 ## Next exact action
 
-Freeze the technical stack and derive the V1 ERD from Product Blueprint + V1 requirements + Metadata Contract.
+Produce PLAN-001 — the bounded ten-working-day / two-week development plan.
 
-No coding yet.
+No feature coding before PLAN-001 is complete.

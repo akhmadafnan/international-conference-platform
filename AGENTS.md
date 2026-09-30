@@ -19,9 +19,13 @@ Before proposing implementation, read in order:
 11. `docs/metadata/METADATA_FIELD_DICTIONARY_V1.md`
 12. `docs/metadata/OJS_CROSSREF_ADAPTER_CONTRACT_V1.md`
 13. `docs/metadata/METADATA_READINESS_RULES_V1.md`
-14. `docs/governance/DECISION_REGISTER.md`
-15. current relevant NFR documents
-16. active issue/ticket
+14. `docs/architecture/TECH_STACK_FREEZE_V1.md`
+15. `docs/architecture/ERD_V1.md`
+16. `docs/architecture/ARCHITECTURE_DECISIONS_V1.md`
+17. `docs/architecture/IMPLEMENTATION_CONVENTIONS_V1.md`
+18. `docs/governance/DECISION_REGISTER.md`
+19. current relevant NFR documents
+20. active issue/ticket
 
 Frontend-specific work must also read:
 - `docs/frontend/FRONTEND_PRODUCT_SPEC_V1.md`
@@ -47,8 +51,9 @@ Do not silently resolve contradictions.
 ## Current hard gate
 
 Implementation is still NOT authorized until:
-- Stack + ERD are frozen;
 - Two-Week Development Plan is approved.
+
+Stack + ERD are already frozen.
 
 Do not:
 - code from historical superseded lifecycle rules;

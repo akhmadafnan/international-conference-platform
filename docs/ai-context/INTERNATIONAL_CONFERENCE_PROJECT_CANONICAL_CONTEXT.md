@@ -110,6 +110,24 @@ Preferred technical direction, pending formal Stack Freeze:
 
 Admin/backoffice may use modern shadcn-admin-like interaction patterns, but must use ICHES domain behavior and shadcn-vue rather than importing React/template architecture.
 
+## Frozen architecture
+
+- Laravel 13 modular monolith
+- PHP 8.4 target
+- official Laravel Vue Starter Kit
+- Inertia 3 + Vue 3 + TypeScript
+- Tailwind CSS 4 + shadcn-vue
+- MySQL 8.4 LTS
+- UUIDv7 CHAR(36) internal IDs
+- database queue/cache/session
+- private-by-default files
+- edition-scoped Spatie Permission Teams + Policies/Gates
+- immutable/versioned file and publication history
+- no Redis/microservices/internal REST requirement for V1
+
+ERD contract:
+- docs/architecture/ERD_V1.md
+
 ## Current next gate
 
-Stack + ERD Freeze.
+Two-Week Development Plan.

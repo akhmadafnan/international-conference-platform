@@ -70,7 +70,7 @@ Statuses:
 | PD-055 | One account can hold multiple scoped functions without account switching | ACCEPTED |
 | PD-056 | Community Service remains lightweight CRUD, not mini-KKN | ACCEPTED |
 | PD-057 | Evening/MoU remains lightweight CRUD, not contract management | ACCEPTED |
-| PD-058 | Laravel 13 official Vue Starter Kit + Vue 3 + TypeScript + Inertia + Tailwind + shadcn-vue is the preferred stack direction pending Stack Freeze | CANDIDATE |
+| PD-058 | Laravel 13 official Vue Starter Kit + Vue 3 + TypeScript + Inertia 3 + Tailwind CSS 4 + shadcn-vue is the frozen frontend stack | ACCEPTED |
 | PD-059 | Paid participant with rejected abstract remains participant; no automatic academic-rejection refund | ASSUMED_V1 |
 | PD-060 | Participation packages are fixed choices but edition-configurable | ASSUMED_V1 |
 | PD-061 | Fee model is Package + optional simple Participant Category | ASSUMED_V1 |
@@ -111,3 +111,25 @@ Statuses:
 | META-021 | General production readiness and Crossref deposit readiness are separate gates | ACCEPTED |
 | META-022 | Metadata readiness vocabulary is READY / WARNING / BLOCKED | ACCEPTED |
 | META-023 | ROR-backed affiliation uses the institution/organization as canonical affiliation identity; faculty/department/study program is optional subdivision metadata only | ACCEPTED |
+
+## ARCH-001 — Stack & ERD Decisions
+
+| ID | Decision | Status |
+|---|---|---|
+| ARCH-001 | V1 is one Laravel 13 modular monolith | ACCEPTED |
+| ARCH-002 | PHP 8.4 is the target runtime | ACCEPTED |
+| ARCH-003 | MySQL 8.4 LTS is the production relational database | ACCEPTED |
+| ARCH-004 | UUIDv7 CHAR(36) is the internal first-class domain ID strategy; human codes are separate | ACCEPTED |
+| ARCH-005 | Normal first-party UI uses Laravel routes/controllers + Inertia, not a separate internal REST SPA | ACCEPTED |
+| ARCH-006 | Official Laravel Vue Starter Kit is the application skeleton | ACCEPTED |
+| ARCH-007 | Frontend stack is Vue 3 + TypeScript + Inertia 3 + Tailwind CSS 4 + shadcn-vue + Vite + Vue I18n + Lucide Vue | ACCEPTED |
+| ARCH-008 | Spatie Permission Teams uses conference_edition_id as edition-scoped authority context, with Policies/Gates for resource rules | ACCEPTED |
+| ARCH-009 | Database queue/cache/session is the V1 baseline; Redis is not required | ACCEPTED |
+| ARCH-010 | Protected files are private-by-default through Laravel Filesystem; S3 remains future-compatible | ACCEPTED |
+| ARCH-011 | Spatie Laravel PDF abstraction with Browsershot/Chromium is the default official-document renderer | ACCEPTED |
+| ARCH-012 | QR carries verification/lookup URL or opaque token, not unrestricted PII | ACCEPTED |
+| ARCH-013 | No external search engine is required for V1 | ACCEPTED |
+| ARCH-014 | Relational core is normalized; JSON is reserved for snapshots/evidence/configuration/localized CMS edges | ACCEPTED |
+| ARCH-015 | No generic EAV model and no event-sourcing/CQRS architecture | ACCEPTED |
+| ARCH-016 | ERD v1 relationship/cardinality contract is frozen | ACCEPTED |
+| ARCH-017 | Published schedule, certificates, documents and exports are representations of database state, not independent truths | ACCEPTED |

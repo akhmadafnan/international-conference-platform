@@ -1,3 +1,5 @@
+> **SUPERSEDED FOR CURRENT V1 BEHAVIOR** — See `docs/requirements/v1/V1_LIFECYCLE_BASELINE.md`. The content below is preserved as historical Phase 0 provenance.
+
 # End-to-End Conference Lifecycle Baseline
 
 **ID:** ICP-REQ-LIFE-001  

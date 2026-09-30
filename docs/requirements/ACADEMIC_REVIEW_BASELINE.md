@@ -1,3 +1,5 @@
+> **SUPERSEDED/SIMPLIFIED FOR ACCELERATED V1** — See `docs/requirements/v1/V1_ACADEMIC_REVIEW_BASELINE.md`. The generic flexible review architecture below is historical/future-ready context, not a V1 implementation requirement.
+
 # Academic Review & Decision Baseline
 
 **ID:** ICP-REQ-ACA-001  

@@ -1,3 +1,5 @@
+> **SUPERSEDED FOR CURRENT V1 BEHAVIOR** — See `docs/requirements/v1/V1_PAYMENT_REFUND_BASELINE.md` and `docs/governance/CORRECTIVE_PHASE0_REBASELINE.md`. The content below is preserved as historical Phase 0 provenance.
+
 # Payment Baseline — V1 Manual Bank Transfer
 
 **ID:** ICP-REQ-PAY-001  

@@ -1,3 +1,5 @@
+> **NOT A V1 IMPLEMENTATION REQUIREMENT** — Accelerated V1 uses the simpler model in `docs/requirements/v1/V1_ACADEMIC_REVIEW_BASELINE.md`. This file is preserved as future-ready historical architecture.
+
 # Review Stage Architecture Baseline
 
 **ID:** ICP-REQ-ACA-REVIEW-STAGE-001  

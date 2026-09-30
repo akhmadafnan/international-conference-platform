@@ -4,12 +4,12 @@
 
 ## Current stage
 
-PRE-DEVELOPMENT — READY FOR WAREK I PRODUCT VALIDATION
+PRE-DEVELOPMENT — PRODUCT BLUEPRINT v1 COMPLETE / CORRECTIVE RE-BASELINE NEXT
 
-## Completed or sufficiently mature
+## Completed
 
 - Product identity and multi-edition direction
-- Participation and registration
+- Registration / participation
 - Payment direction
 - Event Pass / QR
 - Submission UX
@@ -21,53 +21,61 @@ PRE-DEVELOPMENT — READY FOR WAREK I PRODUCT VALIDATION
 - Full Article
 - Presenter confirmation
 - Scheduling
-- Reviewer presentation workspace
+- Reviewer workspace
 - Presentation assessment
 - Revision
 - Awards
 - Certificates
-- Documents and communication
-- Publication destination/handoff
+- Documents / communication
+- Publication handoff
 - Public website IA
-- Participant dashboard experience
+- Participant dashboard
 - Pre-Presentation Product Audit
 - Warek I Product Decision Sheet
-- Warek I Presentation Brief
+- Accelerated V1 Domain Assumption Baseline
+- Frontend Product Specification
+- Product Blueprint v1
 
-## Current work
+## Work items
 
 ### GOV-PD-001 — Warek I Product Decision Sheet
-Status: DONE / READY FOR PRESENTATION
+Status: DONE
 
 ### GOV-PD-002 — Warek I Validation
-Status: CURRENT / WAITING FOR DOMAIN DECISION
+Status: ASSUMED FOR ACCELERATED V1 PLANNING
+
+Note:
+No false claim of physical Warek approval. Product Owner authorized rational/default domain assumptions for schedule planning.
 
 ### PROD-BP-001 — Product Blueprint v1
-Status: BLOCKED BY WAREK VALIDATION
+Status: DONE
+
+Authoritative document:
+- docs/product/PRODUCT_BLUEPRINT_V1.md
 
 ### GOV-CORR-001 — Corrective Phase 0 Re-baseline
-Status: BLOCKED BY PRODUCT BLUEPRINT v1
+Status: READY / CURRENT NEXT WORK
 
 Must reconcile:
 - old payment/refund baseline;
 - old lifecycle assumptions;
 - old publication review assumptions;
 - actor/application-authority mapping;
-- old requirement register;
-- current Product DNA.
+- requirement register;
+- Product Blueprint v1.
 
 ### META-001 — Submission & Scholarly Metadata Contract
-Status: BLOCKED BY PRODUCT BLUEPRINT / RE-BASELINE
+Status: BLOCKED BY GOV-CORR-001
 
 ### ARCH-001 — Stack + ERD Freeze
 Status: BLOCKED BY META-001
 
-### PLAN-001 — Development Plan
+### PLAN-001 — Two-Week Development Plan
 Status: BLOCKED BY ARCH-001
 
 ### DEV-001 — Coding
 Status: NOT AUTHORIZED
 
-## Preserved prior work
+## Scope-control rule
 
-Existing NFR, permission, security, accessibility, localization, auditability, and data-integrity documents remain reusable inputs and are not discarded merely because product lifecycle details changed.
+New feature ideas must not enter accelerated V1 unless required for the end-to-end Definition of Done in Product Blueprint v1.

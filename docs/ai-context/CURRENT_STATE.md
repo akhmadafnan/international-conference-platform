@@ -1,100 +1,76 @@
 # Current Project State
 
-**State ID:** ICHES-STATE-20260930-WAREK-READY  
-**Status:** PRE-DEVELOPMENT — READY FOR WAREK I PRODUCT VALIDATION  
+**State ID:** ICHES-STATE-20260930-BLUEPRINT-V1  
+**Status:** PRE-DEVELOPMENT — PRODUCT BLUEPRINT v1 COMPLETE  
 **Implementation authorization:** NOT GRANTED  
 **Repository:** akhmadafnan/international-conference-platform  
 **Integration branch:** develop
 
 ## Current position
 
-Product Discovery is substantially complete and has passed a Pre-Presentation Product Audit with no RED product blocker.
+Product Discovery and Pre-Presentation Product Audit are complete.
 
-The Warek I Product Decision Sheet has been refined into a presentation-ready domain validation document.
+For accelerated planning, the Product Owner instructed the project to assume the rational/simple Warek-domain choices that preserve a two-week V1 target. This is an explicit planning assumption and does not claim a real Warek signature.
+
+Completed:
+- Product Discovery ✓
+- Pre-Presentation Product Audit ✓
+- Warek I Decision Sheet ✓
+- Accelerated domain assumption baseline ✓
+- Product Blueprint v1 ✓
+- Frontend Product Specification ✓
 
 Current sequence:
 
-PRODUCT DISCOVERY ✓
-→ PRE-PRESENTATION PRODUCT AUDIT ✓
-→ WAREK I PRODUCT DECISION SHEET ✓
-→ WAREK I VALIDATION ← CURRENT
-→ PRODUCT BLUEPRINT v1
-→ CORRECTIVE PHASE 0 RE-BASELINE
+PRODUCT BLUEPRINT v1 ✓
+→ CORRECTIVE PHASE 0 RE-BASELINE ← CURRENT
 → SUBMISSION & SCHOLARLY METADATA CONTRACT
 → STACK + ERD FREEZE
-→ DEVELOPMENT PLAN
+→ TWO-WEEK DEVELOPMENT PLAN
 → CODING
 
-## Product Discovery status
+## Accelerated V1 assumptions
 
-Sufficiently mature:
-- Registration & participation packages
-- Payment at beginning
-- Event Pass / QR
-- Abstract submission
-- Contributors / ROR / optional ORCID
-- References
-- Administrative screening
-- Single-anonymous abstract review
-- Presentation LoA
-- Full Article after acceptance
-- Presenter confirmation
-- Scheduling Pool and bulk scheduling
-- Reviewer presentation workspace
-- PRESENTED / NO_SHOW split
-- Presentation assessment
-- Revision / No Revision
-- Best Article / Best Presenter
-- Committee-finalized award model
-- Document & Communication model
-- Certificate eligibility/generation/issuance
-- Publication Destination & Production Handoff
-- Canonical scholarly metadata direction
-- Public Website IA
-- Participant/Presenter dashboard experience
-- Multi-edition Series vs Edition model
+- payment is event participation fee;
+- rejected abstract remains participant, no automatic academic-rejection refund;
+- fixed edition-configurable participation packages;
+- package + optional simple participant category pricing;
+- single-anonymous abstract review;
+- one reviewer default;
+- one normal abstract revision cycle;
+- slides optional/configurable;
+- offline-first accelerated edition;
+- actual presenter confirmed after Full Article;
+- Proceedings default publication destination;
+- Selected Journal is an authorized override;
+- award decision remains Committee-authoritative;
+- Presenter may receive Participant + Presenter certificates;
+- Best Article certificates go individually to all listed authors;
+- Committee certificates supported;
+- separated Finance / Academic / Event / Award / Publication / Certificate authorities.
 
-## Critical current rules
+## Frontend status
 
-- All participants pay before entering the academic submission path.
-- Payment verification confirms registration.
-- Presenter is not chosen as a registration role; submitting an abstract starts the author/presenter lifecycle.
-- LoA means accepted for presentation.
-- Full Article upload opens after acceptance/LoA.
-- Only Full Article submissions enter Scheduling Pool.
-- Actual presenter is explicitly confirmed from contributors.
-- Room/session are assigned after Full Article submission.
-- Reviewer access is assignment-scoped.
-- Moderator/Event Operations records PRESENTED/NO_SHOW.
-- Reviewer records academic assessment.
-- No Revision means no extra manuscript upload.
-- Revision Required opens a new Revised Article version.
-- Awards are Committee decisions recorded by the system; ranking/candidates are evidence only.
-- Best Article certificates go to all listed authors individually.
-- Best Presenter is designed as an overall edition award, pending Warek confirmation.
-- Presenter may receive both Participant and Presenter certificates, pending Warek confirmation.
-- Committee certificates are supported, pending Warek confirmation.
-- Publication destination is Proceedings or Selected Journal.
-- Selected for Journal does not equal Accepted by Journal.
-- Canonical scholarly metadata feeds OJS/Crossref adapters.
-- Public UI is id/en/ar with Arabic RTL.
-- Dashboard is state-aware and centered on Next Action.
+Public + participant/presenter/reviewer frontend specification is ready for parallel prototyping.
 
-## Warek I validation package
+Technical direction remains candidate until Stack Freeze:
+- Laravel 13 official Vue Starter Kit
+- Vue 3
+- TypeScript
+- Inertia
+- Tailwind
+- shadcn-vue
+- Vite
+- Vue I18n
+- Lucide Vue
+- optional Inertia SSR for public pages
 
-Primary document:
-- docs/product-discovery/WAREK_I_PRODUCT_DECISION_SHEET.md
-
-Speaking guide:
-- docs/product-discovery/WAREK_I_PRESENTATION_BRIEF.md
-
-Supporting context:
-- docs/product-discovery/PRODUCT_DNA.md
-- docs/product-discovery/PRE_PRESENTATION_PRODUCT_AUDIT.md
-- PRD.md
+Admin/backoffice visual direction is shadcn-admin-like in interaction language, implemented using shadcn-vue and ICHES domain components. Detailed admin behavior waits for backend/ERD contracts.
 
 ## Next exact action
 
-Present the Product Decision Sheet to Warek I and record the domain decisions.
+Execute **Corrective Phase 0 Re-baseline**.
 
-Do not code, freeze ERD, or perform the Corrective Phase 0 Re-baseline before that validation.
+The re-baseline must explicitly reconcile old payment/refund, lifecycle, publication-review, permission/authority, and requirement documents against Product Blueprint v1.
+
+No coding yet.

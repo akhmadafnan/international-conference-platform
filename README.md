@@ -1,39 +1,57 @@
-# International Conference Platform
+# ICHES Conference & Event Experience Platform
 
-International academic conference lifecycle management platform — governance, architecture, and application.
+This repository is the working product-definition repository for a reusable international academic conference platform, currently shaped around the ICHES series and its recurring editions.
 
 ## Current state
 
-**Phase 0 — Project Definition & Governance**
+**PRE-DEVELOPMENT PRODUCT DISCOVERY — substantially complete, not yet frozen**
 
-Application implementation has **not started**. Technical stack, ERD, migrations, authentication model, and production architecture are not yet locked.
+No application implementation is authorized yet.
 
-## Read first
+Current sequence:
 
-1. `AGENTS.md`
-2. `PRD.md`
-3. `docs/ai-context/INTERNATIONAL_CONFERENCE_PROJECT_CANONICAL_CONTEXT.md`
-4. `docs/ai-context/CURRENT_STATE.md`
-5. `docs/governance/DECISION_REGISTER.md`
-6. `docs/requirements/REQUIREMENT_REGISTER.md`
-7. `docs/project-management/PHASE_0_BACKLOG.md`
+PRODUCT DISCOVERY
+→ PRE-PRESENTATION PRODUCT AUDIT
+→ WAREK I PRODUCT DECISION SHEET
+→ WAREK I VALIDATION
+→ PRODUCT BLUEPRINT v1
+→ CORRECTIVE PHASE 0 RE-BASELINE
+→ SUBMISSION & SCHOLARLY METADATA CONTRACT
+→ STACK + ERD FREEZE
+→ DEVELOPMENT PLAN
+→ CODING
 
-## Working principle
+## Product DNA
 
-```text
-AUDIT
-→ PLAN
-→ READY GATE
-→ IMPLEMENT
-→ REVIEW
-→ TARGETED REGRESSION
-→ BROADER/FULL REGRESSION
-→ UAT
-→ CLOSEOUT
-```
+The platform must remain:
 
-Routine work never goes directly to `main`.
+- operationally simple for a conference of roughly 100 participants;
+- multi-edition and reusable;
+- participant-friendly and mobile-first;
+- multilingual: Indonesian, English, Arabic with first-class RTL;
+- CRUD-first where CRUD is enough;
+- state-aware rather than menu-heavy;
+- auditable for consequential actions;
+- publication-ready without becoming an OJS replacement;
+- standards-aware through canonical scholarly metadata and export/adapters.
 
-- `main`: stable/release baseline
-- `develop`: integration baseline
-- scoped branches: actual work
+## Canonical reading order
+
+1. AGENTS.md
+2. docs/product-discovery/PRODUCT_DNA.md
+3. docs/ai-context/CURRENT_STATE.md
+4. PRD.md
+5. docs/product-discovery/PRE_PRESENTATION_PRODUCT_AUDIT.md
+6. docs/product-discovery/WAREK_I_PRODUCT_DECISION_SHEET.md
+7. docs/governance/DECISION_REGISTER.md
+8. docs/ai-context/INTERNATIONAL_CONFERENCE_PROJECT_CANONICAL_CONTEXT.md
+
+Older requirement and NFR documents remain valuable historical evidence. Where they conflict with the current Product DNA, they are not authoritative until the formal Corrective Phase 0 Re-baseline reconciles them.
+
+## Branch model
+
+- main: stable/release baseline
+- develop: integration baseline
+- scoped branches: all work
+
+Routine work must not be performed directly on main.

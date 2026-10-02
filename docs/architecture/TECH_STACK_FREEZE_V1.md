@@ -48,7 +48,7 @@ Business actions use dedicated Actions such as:
 - Laravel 13
 - Laravel built-in authentication / Fortify-backed Starter Kit features
 - email verification required before active participant workflow
-- built-in TOTP 2FA available; mandatory policy for high-risk internal authorities may be enabled
+- Authentication V1 includes registration, password authentication/reset/confirmation, and required email verification; 2FA and passkeys are excluded from V1
 - Eloquent ORM
 - Laravel Policies / Gates for resource authorization
 - Spatie Laravel Permission compatible with Laravel 13 for role/permission vocabulary and edition-scoped authority implementation

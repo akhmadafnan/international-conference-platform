@@ -72,6 +72,6 @@ PRODUCT / REQUIREMENTS / META / ARCH ✓
 
 ## Current exact action
 
-Start `phase/01-foundation` with an environment/toolchain audit before scaffolding the real Laravel 13 + official Vue Starter Kit application skeleton.
+Environment/toolchain and database baseline are GREEN. Bootstrap the real Laravel 13 + official Vue Starter Kit application skeleton directly for Phase 01, using the existing MySQL97 service on 127.0.0.1:3306.
 
-No conference business feature should be coded before the Phase 01 foundation gate is GREEN.
+Do not spend further Phase 01 time on redundant local database infrastructure. No conference business feature should be coded before the Phase 01 foundation gate is GREEN.

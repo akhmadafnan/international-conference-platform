@@ -3,7 +3,7 @@
 **Phase:** 01 — Engineering Foundation  
 **Branch:** `phase/01-foundation`  
 **Date:** 2026-09-30  
-**Status:** TOOLCHAIN GREEN / MYSQL AVAILABILITY BLOCKED
+**Status:** TOOLCHAIN GREEN / MYSQL 9.7 DETECTED / TARGET VERSION MISMATCH
 
 ## Verified local toolchain
 
@@ -47,20 +47,21 @@ PHP MySQL connectivity support is therefore present.
 
 ## MySQL status
 
-`mysql --version` is not currently available and `where.exe mysql` returns no executable.
+`mysql --version` is not available through PATH, but the follow-up audit confirms an installed and running MySQL 9.7 instance.
 
-This does **not** prove that no MySQL server exists; it proves only that no MySQL client executable is currently discoverable through PATH.
+Observed:
 
-Before installation, verify:
+- Windows service: `MySQL97`;
+- TCP 3306: LISTENING;
+- X Protocol 33060: LISTENING;
+- executable directory: `C:\\Program Files\\MySQL\\MySQL Server 9.7\\bin`;
+- `mysql.exe` and `mysqld.exe` are present there.
 
-- Windows MySQL services;
-- port 3306 listeners;
-- Herd-managed services if Herd Pro is active;
-- common MySQL installation paths.
+Therefore MySQL availability is resolved; the remaining issue is **version alignment**. The frozen ICHES V1 database target is MySQL 8.4 LTS, while this laptop currently runs MySQL 9.7.
 
 ## Gate
 
-Do not scaffold the production Laravel application until MySQL 8.4 availability is resolved or deliberately installed/configured.
+Do not point the ICHES development environment at MySQL 9.7 as the canonical database target. Align local development with the frozen MySQL 8.4 LTS baseline first.
 
 Frozen database baseline remains:
 
@@ -73,7 +74,8 @@ Edition IANA timezone
 
 ## Next
 
-1. Audit existing MySQL service/install.
-2. If absent, install/configure MySQL 8.4 LTS.
-3. Verify client/server/version/connectivity.
-4. Bootstrap official Laravel 13 Vue Starter Kit directly into the real repository.
+1. Confirm the installed 9.7 client/server version through its absolute path.
+2. Install/configure MySQL 8.4 LTS as a separate Windows service/instance without disturbing MySQL97.
+3. Use a unique service name and port for the 8.4 instance (recommended project-local baseline: `MySQL84` on `3307` while MySQL97 remains on `3306`).
+4. Verify MySQL 8.4 client/server/connectivity.
+5. Bootstrap official Laravel 13 Vue Starter Kit directly into the real repository and point the project `.env` to the 8.4 instance.

@@ -3,7 +3,7 @@
 **Phase:** 01 — Engineering Foundation  
 **Branch:** `phase/01-foundation`  
 **Date:** 2026-09-30  
-**Status:** TOOLCHAIN GREEN / MYSQL 9.7 DETECTED / TARGET VERSION MISMATCH
+**Status:** TOOLCHAIN GREEN / MYSQL 9.7 LTS ACCEPTED
 
 ## Verified local toolchain
 
@@ -57,16 +57,16 @@ Observed:
 - executable directory: `C:\\Program Files\\MySQL\\MySQL Server 9.7\\bin`;
 - `mysql.exe` and `mysqld.exe` are present there.
 
-Therefore MySQL availability is resolved; the remaining issue is **version alignment**. The frozen ICHES V1 database target is MySQL 8.4 LTS, while this laptop currently runs MySQL 9.7.
+Therefore MySQL availability and version alignment are both resolved. The installed MySQL 9.7.0 server is the accepted ICHES V1 local database baseline.
 
 ## Gate
 
-Do not point the ICHES development environment at MySQL 9.7 as the canonical database target. Align local development with the frozen MySQL 8.4 LTS baseline first.
+Use the existing MySQL97 service on 127.0.0.1:3306 for ICHES local development. A second MySQL service/port is not required.
 
 Frozen database baseline remains:
 
 ```text
-MySQL 8.4 LTS
+MySQL 9.7 LTS
 utf8mb4
 UTC storage
 Edition IANA timezone
@@ -74,8 +74,6 @@ Edition IANA timezone
 
 ## Next
 
-1. Confirm the installed 9.7 client/server version through its absolute path.
-2. Install/configure MySQL 8.4 LTS as a separate Windows service/instance without disturbing MySQL97.
-3. Use a unique service name and port for the 8.4 instance (recommended project-local baseline: `MySQL84` on `3307` while MySQL97 remains on `3306`).
-4. Verify MySQL 8.4 client/server/connectivity.
-5. Bootstrap official Laravel 13 Vue Starter Kit directly into the real repository and point the project `.env` to the 8.4 instance.
+1. Verify application credentials/connectivity to the existing MySQL97 service on 127.0.0.1:3306.
+2. Create a dedicated ICHES database (and preferably a dedicated database user) in the existing server.
+3. Bootstrap official Laravel 13 Vue Starter Kit directly into the real repository and point the project `.env` to the existing MySQL97 instance.

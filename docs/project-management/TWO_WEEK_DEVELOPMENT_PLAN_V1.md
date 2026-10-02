@@ -49,7 +49,7 @@ Everything else becomes V1.1.
 Scope:
 - official Laravel 13 Vue Starter Kit bootstrap;
 - PHP/composer/npm baseline;
-- MySQL 8.4 configuration;
+- MySQL 9.7 configuration;
 - UUIDv7 model convention;
 - edition timezone convention;
 - Spatie Permission with Teams enabled and conference_edition_id scope;

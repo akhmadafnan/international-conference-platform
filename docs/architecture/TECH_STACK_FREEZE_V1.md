@@ -107,7 +107,9 @@ The admin/backoffice may visually resemble modern shadcn-admin interaction patte
 ## 5. Database
 
 Primary relational database:
-**MySQL 8.4 LTS**
+**MySQL 9.7 LTS**
+
+The existing local MySQL97 service on 127.0.0.1:3306 is the accepted development instance. A second MySQL service is not required.
 
 Rules:
 - charset/collation must support full utf8mb4;
@@ -286,7 +288,7 @@ Target:
 - Linux VPS
 - Nginx
 - PHP-FPM
-- MySQL 8.4
+- MySQL 9.7
 - Node.js where build/PDF runtime requires it
 - queue worker managed by systemd or Supervisor
 - scheduler cron

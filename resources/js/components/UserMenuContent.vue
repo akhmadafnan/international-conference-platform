@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { Link, router } from '@inertiajs/vue3';
 import { LogOut, Settings } from '@lucide/vue';
+import { useI18n } from 'vue-i18n';
 import {
     DropdownMenuGroup,
     DropdownMenuItem,
@@ -16,29 +17,35 @@ type Props = {
     user: User;
 };
 
+defineProps<Props>();
+
+const { t } = useI18n();
+
 const handleLogout = () => {
     router.flushAll();
 };
-
-defineProps<Props>();
 </script>
 
 <template>
     <DropdownMenuLabel class="p-0 font-normal">
-        <div class="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
+        <div class="flex items-center gap-2 px-1 py-1.5 text-start text-sm">
             <UserInfo :user="user" :show-email="true" />
         </div>
     </DropdownMenuLabel>
+
     <DropdownMenuSeparator />
+
     <DropdownMenuGroup>
         <DropdownMenuItem :as-child="true">
             <Link class="block w-full cursor-pointer" :href="edit()" prefetch>
-                <Settings class="mr-2 h-4 w-4" />
-                Settings
+                <Settings class="me-2 h-4 w-4" />
+                {{ t('account.settings') }}
             </Link>
         </DropdownMenuItem>
     </DropdownMenuGroup>
+
     <DropdownMenuSeparator />
+
     <DropdownMenuItem :as-child="true">
         <Link
             class="block w-full cursor-pointer"
@@ -47,8 +54,8 @@ defineProps<Props>();
             as="button"
             data-test="logout-button"
         >
-            <LogOut class="mr-2 h-4 w-4" />
-            Log out
+            <LogOut class="me-2 h-4 w-4" />
+            {{ t('account.logout') }}
         </Link>
     </DropdownMenuItem>
 </template>

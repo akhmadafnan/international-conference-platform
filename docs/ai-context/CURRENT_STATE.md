@@ -1,6 +1,6 @@
 # Current Project State
 
-**State ID:** ICHES-STATE-20261003-DEV01-AUTHZ
+**State ID:** ICHES-STATE-20261003-DEV01-I18N
 **Status:** DEVELOPMENT — PHASE 01 FOUNDATION IN PROGRESS  
 **Implementation authorization:** GRANTED  
 **Repository:** akhmadafnan/international-conference-platform  
@@ -31,6 +31,8 @@
 - Global superadmin authority contract frozen ✓
 - Active Conference Edition authorization context ✓
 - Global superadmin authorization enforcement ✓
+- Vue I18n id/en/ar application shell ✓
+- Arabic RTL application-shell behavior ✓
 
 ## Verified implementation checkpoint
 
@@ -144,25 +146,27 @@ PRODUCT / REQUIREMENTS / META / ARCH ✓
 
 ## Current exact action
 
-Laravel/Vue application baseline, Authentication V1, MySQL baseline, UUIDv7 identity, UTC persistence, Spatie Permission Teams infrastructure, UUID-aware Activity Log, Active Conference Edition permission context, and global superadmin authorization enforcement are GREEN.
+Laravel/Vue application baseline, Authentication V1, MySQL baseline, UUIDv7 identity, UTC persistence, authorization/audit foundation, Active Conference Edition permission context, global superadmin enforcement, and Vue I18n id/en/ar + Arabic RTL shell are GREEN.
 
-Authorization baseline now follows:
+Localization foundation now includes:
+- canonical application locales `id`, `en`, and `ar`;
+- typed Laravel/Inertia/Vue locale contract;
+- encrypted persistent locale cookie;
+- Vue I18n application plugin;
+- native `<html lang>` and `dir` handling;
+- Arabic RTL application shell;
+- RTL-aware sidebar placement;
+- browser UAT for EN/LTR, ID/LTR, AR/RTL, persistence, and return-to-LTR.
 
-`Superadmin → global authorization bypass`
+UI localization is separate from multilingual scholarly metadata.
 
-or, for normal users:
-
-`Active Conference Edition → Spatie Permission → Policy/Gate → Domain Action`
-
-Superadmin bypasses ordinary authorization only. Validation, domain invariants, state-transition rules, database constraints, transactions, immutable/versioned history, and audit requirements remain mandatory.
-
-Continue the remaining Phase 01 Foundation scope:
-- Vue I18n id/en/ar shell;
-- Arabic RTL shell;
+Remaining Phase 01 Foundation scope:
 - ICHES design-token foundation;
 - private/public filesystem foundation;
 - foundational seeders;
 - final Phase 01 clean-migration and regression gate.
+
+Foundational seeders will include trusted bootstrap provisioning for the initial global superadmin. Public registration must never be able to assign `is_super_admin`; production bootstrap credentials must not be hardcoded in Git.
 
 Concrete domain Policies will be implemented with their real domain models beginning in Phase 02 rather than creating placeholder Policies in Foundation.
 

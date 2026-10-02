@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\ApplyLocale;
 use App\Http\Middleware\ApplyPermissionTeamContext;
 use App\Http\Middleware\HandleAppearance;
 use App\Http\Middleware\HandleInertiaRequests;
@@ -24,6 +25,7 @@ return Application::configure(basePath: dirname(__DIR__))
         );
 
         $middleware->web(append: [
+            ApplyLocale::class,
             ApplyPermissionTeamContext::class,
             HandleAppearance::class,
             HandleInertiaRequests::class,

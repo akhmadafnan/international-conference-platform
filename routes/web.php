@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\Localization\UpdateLocaleController;
 use Illuminate\Support\Facades\Route;
+
+Route::post('locale', UpdateLocaleController::class)->name('locale.update');
 
 Route::inertia('/', 'Welcome')->name('home');
 

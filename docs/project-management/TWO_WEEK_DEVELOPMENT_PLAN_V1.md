@@ -54,7 +54,7 @@ Scope:
 - edition timezone convention;
 - Spatie Permission with Teams enabled and conference_edition_id scope;
 - Laravel Policies baseline;
-- authentication/email verification/2FA baseline;
+- authentication/email verification/password confirmation baseline; 2FA and passkeys are excluded from V1;
 - Vue I18n id/en/ar shell;
 - Arabic RTL shell;
 - ICHES design-token foundation;

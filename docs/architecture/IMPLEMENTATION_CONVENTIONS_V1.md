@@ -1,7 +1,7 @@
 # Implementation Conventions v1
 
 **Status:** FROZEN BASELINE
-**Updated:** 2026-09-30
+**Updated:** 2026-10-02
 
 ## Backend convention
 
@@ -17,6 +17,22 @@ Use Actions for consequential behavior:
 - is directly testable.
 
 Avoid Service classes that merely proxy one Eloquent call.
+
+## Identifier convention
+
+First-class application and domain entities use UUIDv7 primary keys stored as standard UUID strings (`CHAR(36)` on MySQL).
+
+Laravel models use the framework-native `HasUuids` concern. In the Laravel 13 baseline this concern generates UUIDv7 identifiers.
+
+`users.id` follows the same UUIDv7 convention as other first-class domain entities.
+
+Foreign keys referencing UUID-backed entities must use UUID-compatible columns. Prefer `foreignUuid()` where an explicit foreign-key constraint is appropriate and `uuid()` where an unconstrained reference is intentional.
+
+Laravel infrastructure tables retain their framework-native identifiers unless compatibility with a UUID-backed entity requires otherwise. `sessions.user_id` is UUID-compatible because it references `users.id`.
+
+Human-facing identifiers such as Registration ID, Paper ID, certificate number, and document number remain separate from technical primary keys.
+
+UUIDs reduce predictable sequential enumeration but are not secrets and do not replace Policies/Gates, authorization checks, signed URLs, random verification tokens, rate limiting, or other security controls.
 
 ## Status convention
 

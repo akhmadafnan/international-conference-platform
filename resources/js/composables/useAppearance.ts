@@ -10,6 +10,12 @@ export type UseAppearanceReturn = {
     updateAppearance: (value: Appearance) => void;
 };
 
+const DEFAULT_APPEARANCE: Appearance = 'light';
+
+function isAppearance(value: string | null): value is Appearance {
+    return value === 'light' || value === 'dark' || value === 'system';
+}
+
 export function updateTheme(value: Appearance): void {
     if (typeof window === 'undefined') {
         return;
@@ -19,18 +25,19 @@ export function updateTheme(value: Appearance): void {
         const mediaQueryList = window.matchMedia(
             '(prefers-color-scheme: dark)',
         );
-        const systemTheme = mediaQueryList.matches ? 'dark' : 'light';
 
         document.documentElement.classList.toggle(
             'dark',
-            systemTheme === 'dark',
+            mediaQueryList.matches,
         );
-    } else {
-        document.documentElement.classList.toggle('dark', value === 'dark');
+
+        return;
     }
+
+    document.documentElement.classList.toggle('dark', value === 'dark');
 }
 
-const setCookie = (name: string, value: string, days = 365) => {
+const setCookie = (name: string, value: string, days = 365): void => {
     if (typeof document === 'undefined') {
         return;
     }
@@ -40,7 +47,7 @@ const setCookie = (name: string, value: string, days = 365) => {
     document.cookie = `${name}=${value};path=/;max-age=${maxAge};SameSite=Lax`;
 };
 
-const mediaQuery = () => {
+const mediaQuery = (): MediaQueryList | null => {
     if (typeof window === 'undefined') {
         return null;
     }
@@ -48,12 +55,14 @@ const mediaQuery = () => {
     return window.matchMedia('(prefers-color-scheme: dark)');
 };
 
-const getStoredAppearance = () => {
+const getStoredAppearance = (): Appearance | null => {
     if (typeof window === 'undefined') {
         return null;
     }
 
-    return localStorage.getItem('appearance') as Appearance | null;
+    const storedAppearance = localStorage.getItem('appearance');
+
+    return isAppearance(storedAppearance) ? storedAppearance : null;
 };
 
 const prefersDark = (): boolean => {
@@ -64,10 +73,10 @@ const prefersDark = (): boolean => {
     return window.matchMedia('(prefers-color-scheme: dark)').matches;
 };
 
-const handleSystemThemeChange = () => {
-    const currentAppearance = getStoredAppearance();
-
-    updateTheme(currentAppearance || 'system');
+const handleSystemThemeChange = (): void => {
+    if (getStoredAppearance() === 'system') {
+        updateTheme('system');
+    }
 };
 
 export function initializeTheme(): void {
@@ -75,25 +84,18 @@ export function initializeTheme(): void {
         return;
     }
 
-    // Initialize theme from saved preference or default to system...
     const savedAppearance = getStoredAppearance();
-    updateTheme(savedAppearance || 'system');
 
-    // Set up system theme change listener...
+    updateTheme(savedAppearance ?? DEFAULT_APPEARANCE);
+
     mediaQuery()?.addEventListener('change', handleSystemThemeChange);
 }
 
-const appearance = ref<Appearance>('system');
+const appearance = ref<Appearance>(DEFAULT_APPEARANCE);
 
 export function useAppearance(): UseAppearanceReturn {
     onMounted(() => {
-        const savedAppearance = localStorage.getItem(
-            'appearance',
-        ) as Appearance | null;
-
-        if (savedAppearance) {
-            appearance.value = savedAppearance;
-        }
+        appearance.value = getStoredAppearance() ?? DEFAULT_APPEARANCE;
     });
 
     const resolvedAppearance = computed<ResolvedAppearance>(() => {
@@ -104,15 +106,11 @@ export function useAppearance(): UseAppearanceReturn {
         return appearance.value;
     });
 
-    function updateAppearance(value: Appearance) {
+    function updateAppearance(value: Appearance): void {
         appearance.value = value;
 
-        // Store in localStorage for client-side persistence...
         localStorage.setItem('appearance', value);
-
-        // Store in cookie for SSR...
         setCookie('appearance', value);
-
         updateTheme(value);
     }
 

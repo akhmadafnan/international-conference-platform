@@ -12,11 +12,23 @@ class HandleAppearance
     /**
      * Handle an incoming request.
      *
-     * @param  Closure(Request): (Response)  $next
+     * @param  Closure(Request): Response  $next
      */
-    public function handle(Request $request, Closure $next): Response
-    {
-        View::share('appearance', $request->cookie('appearance') ?? 'system');
+    public function handle(
+        Request $request,
+        Closure $next,
+    ): Response {
+        $appearance = $request->cookie('appearance');
+
+        if (! in_array(
+            $appearance,
+            ['light', 'dark', 'system'],
+            true,
+        )) {
+            $appearance = 'light';
+        }
+
+        View::share('appearance', $appearance);
 
         return $next($request);
     }

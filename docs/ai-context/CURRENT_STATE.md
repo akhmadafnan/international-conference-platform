@@ -1,6 +1,6 @@
 # Current Project State
 
-**State ID:** ICHES-STATE-20261003-DEV01-I18N
+**State ID:** ICHES-STATE-20261003-DEV01-UI
 **Status:** DEVELOPMENT — PHASE 01 FOUNDATION IN PROGRESS  
 **Implementation authorization:** GRANTED  
 **Repository:** akhmadafnan/international-conference-platform  
@@ -33,6 +33,7 @@
 - Global superadmin authorization enforcement ✓
 - Vue I18n id/en/ar application shell ✓
 - Arabic RTL application-shell behavior ✓
+- ICHES design-token and appearance foundation ✓
 
 ## Verified implementation checkpoint
 
@@ -146,28 +147,37 @@ PRODUCT / REQUIREMENTS / META / ARCH ✓
 
 ## Current exact action
 
-Laravel/Vue application baseline, Authentication V1, MySQL baseline, UUIDv7 identity, UTC persistence, authorization/audit foundation, Active Conference Edition permission context, global superadmin enforcement, and Vue I18n id/en/ar + Arabic RTL shell are GREEN.
+Phase 01 Foundation remains in progress.
 
-Localization foundation now includes:
-- canonical application locales `id`, `en`, and `ar`;
-- typed Laravel/Inertia/Vue locale contract;
-- encrypted persistent locale cookie;
-- Vue I18n application plugin;
-- native `<html lang>` and `dir` handling;
+GREEN implementation baseline now includes:
+- Laravel 13 + Vue/Inertia application foundation;
+- Authentication V1;
+- MySQL + UUIDv7 + UTC persistence;
+- edition-scoped authorization and audit infrastructure;
+- global superadmin authorization enforcement;
+- Vue I18n `id/en/ar`;
 - Arabic RTL application shell;
-- RTL-aware sidebar placement;
-- browser UAT for EN/LTR, ID/LTR, AR/RTL, persistence, and return-to-LTR.
+- ICHES design-token and appearance foundation.
 
-UI localization is separate from multilingual scholarly metadata.
+ICHES appearance baseline:
+- first visit defaults to Light mode;
+- Light/Dark is selectable without authentication;
+- explicit appearance preference persists;
+- System appearance remains available as an optional user preference;
+- institutional green is the primary UI, interaction, and focus identity;
+- orange is reserved for secondary branding/accent use rather than primary interaction;
+- semantic design tokens support Light and Dark;
+- reduced-motion handling is part of the global UI foundation;
+- Browser UAT is GREEN for Light, Dark, responsive shell, locale switching, and Arabic RTL.
 
 Remaining Phase 01 Foundation scope:
-- ICHES design-token foundation;
 - private/public filesystem foundation;
 - foundational seeders;
 - final Phase 01 clean-migration and regression gate.
 
-Foundational seeders will include trusted bootstrap provisioning for the initial global superadmin. Public registration must never be able to assign `is_super_admin`; production bootstrap credentials must not be hardcoded in Git.
+Foundational seeders will include trusted idempotent bootstrap provisioning for the initial global superadmin. Public registration must never assign `is_super_admin`, and production bootstrap credentials must not be hardcoded in Git.
 
-Concrete domain Policies will be implemented with their real domain models beginning in Phase 02 rather than creating placeholder Policies in Foundation.
+Current next gate:
+`F01-STORAGE-001 — Private/Public Filesystem Foundation`
 
-Do not begin Phase 02 / Day 2 conference business features until the Phase 01 Foundation exit gate is GREEN.
+Do not begin Phase 02 business features until the remaining Phase 01 exit gate is GREEN.

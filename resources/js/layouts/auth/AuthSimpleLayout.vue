@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { Link } from '@inertiajs/vue3';
 import AppLogoIcon from '@/components/AppLogoIcon.vue';
+import AppearanceToggle from '@/components/AppearanceToggle.vue';
 import LocaleSwitcher from '@/components/LocaleSwitcher.vue';
 import { home } from '@/routes';
 
@@ -14,7 +15,10 @@ defineProps<{
     <div
         class="relative flex min-h-svh flex-col items-center justify-center gap-6 bg-background p-6 md:p-10"
     >
-        <div class="absolute end-4 top-4 md:end-6 md:top-6">
+        <div
+            class="absolute end-4 top-4 flex items-center gap-1 md:end-6 md:top-6"
+        >
+            <AppearanceToggle />
             <LocaleSwitcher />
         </div>
 

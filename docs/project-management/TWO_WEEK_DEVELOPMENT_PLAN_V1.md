@@ -55,7 +55,6 @@ Scope:
 - Spatie Permission with Teams enabled and conference_edition_id scope;
 - Laravel Policies baseline;
 - authentication/email verification/password confirmation baseline; 2FA and passkeys are excluded from V1;
-- ICHES design-token foundation;
 - database queue/cache/session;
 - private/public filesystem disks;
 - core CI/test/lint/static-analysis commands;
@@ -76,13 +75,13 @@ Completed:
 - Active Conference Edition permission context and global superadmin enforcement;
 - edition-scoped authority enforcement smoke tests;
 - Vue I18n id/en/ar + Arabic RTL application shell;
+- ICHES design-token + Light/Dark appearance foundation;
 - repository runtime/cache hygiene;
 - focused authorization/audit smoke tests;
 - Pint/PHPStan/regression gates.
 
 Remaining before Day 1 / Phase 01 closure:
 - concrete domain Policies/Gates as real domain models are introduced;
-- ICHES design-token foundation;
 - private/public filesystem foundation;
 - foundational seeders.
 

@@ -31,7 +31,7 @@ PRODUCT DISCOVERY ✓
 - Vite
 - Vue I18n
 - Lucide Vue
-- MySQL 8.4 LTS
+- MySQL 9.7 LTS
 - database queue/cache/session
 - private-by-default Laravel Filesystem
 - edition-scoped Spatie Permission Teams + Laravel Policies

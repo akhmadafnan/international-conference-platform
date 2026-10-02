@@ -1,6 +1,6 @@
 # Current Project State
 
-**State ID:** ICHES-STATE-20261002-DEV01-SECURITY-INFRA
+**State ID:** ICHES-STATE-20261003-DEV01-AUTHZ
 **Status:** DEVELOPMENT — PHASE 01 FOUNDATION IN PROGRESS  
 **Implementation authorization:** GRANTED  
 **Repository:** akhmadafnan/international-conference-platform  
@@ -29,6 +29,8 @@
 - Spatie Permission edition-scoped authorization infrastructure ✓
 - UTC persistence timezone foundation ✓
 - Global superadmin authority contract frozen ✓
+- Active Conference Edition authorization context ✓
+- Global superadmin authorization enforcement ✓
 
 ## Verified implementation checkpoint
 
@@ -142,17 +144,26 @@ PRODUCT / REQUIREMENTS / META / ARCH ✓
 
 ## Current exact action
 
-Laravel/Vue application baseline, Authentication V1, MySQL baseline, UUIDv7 identity, UTC persistence, Spatie Permission Teams infrastructure, and UUID-aware Activity Log infrastructure are GREEN.
+Laravel/Vue application baseline, Authentication V1, MySQL baseline, UUIDv7 identity, UTC persistence, Spatie Permission Teams infrastructure, UUID-aware Activity Log, Active Conference Edition permission context, and global superadmin authorization enforcement are GREEN.
+
+Authorization baseline now follows:
+
+`Superadmin → global authorization bypass`
+
+or, for normal users:
+
+`Active Conference Edition → Spatie Permission → Policy/Gate → Domain Action`
+
+Superadmin bypasses ordinary authorization only. Validation, domain invariants, state-transition rules, database constraints, transactions, immutable/versioned history, and audit requirements remain mandatory.
 
 Continue the remaining Phase 01 Foundation scope:
-- active Conference Edition permission-context middleware;
-- Laravel Policies/Gates baseline;
-- global superadmin authorization bypass with explicit domain-integrity boundaries;
-- edition-scoped authority smoke tests;
 - Vue I18n id/en/ar shell;
 - Arabic RTL shell;
 - ICHES design-token foundation;
 - private/public filesystem foundation;
-- foundational seeders.
+- foundational seeders;
+- final Phase 01 clean-migration and regression gate.
+
+Concrete domain Policies will be implemented with their real domain models beginning in Phase 02 rather than creating placeholder Policies in Foundation.
 
 Do not begin Phase 02 / Day 2 conference business features until the Phase 01 Foundation exit gate is GREEN.

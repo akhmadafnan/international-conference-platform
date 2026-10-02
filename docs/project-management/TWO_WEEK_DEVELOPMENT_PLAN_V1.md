@@ -75,15 +75,14 @@ Completed:
 - Spatie Permission Teams infrastructure with `conference_edition_id`;
 - UUIDv7 User/Role/Permission compatibility;
 - Spatie Activitylog UUID-aware audit infrastructure;
+- Active Conference Edition permission context and global superadmin enforcement;
+- edition-scoped authority enforcement smoke tests;
 - repository runtime/cache hygiene;
 - focused authorization/audit smoke tests;
 - Pint/PHPStan/regression gates.
 
 Remaining before Day 1 / Phase 01 closure:
-- active Conference Edition permission-context middleware;
-- Laravel Policies/Gates baseline;
-- global superadmin authorization bypass with explicit domain-integrity boundaries;
-- edition-scoped authority smoke tests through the enforcement layer;
+- concrete domain Policies/Gates as real domain models are introduced;
 - Vue I18n id/en/ar shell;
 - Arabic RTL shell;
 - ICHES design-token foundation;

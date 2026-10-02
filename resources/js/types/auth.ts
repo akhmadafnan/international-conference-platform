@@ -2,6 +2,7 @@ export type User = {
     id: string;
     name: string;
     email: string;
+    is_super_admin: boolean;
     avatar?: string;
     email_verified_at: string | null;
     created_at: string;

@@ -6,7 +6,7 @@ This repository is the canonical product, architecture, and implementation repos
 
 **DEVELOPMENT — PHASE 01 FOUNDATION IN PROGRESS**
 
-Coding begins only after explicit Product Owner GO.
+The Implementation Start Gate has passed. Phase 01 Foundation development is active on `phase/01-foundation`.
 
 Current sequence:
 
@@ -19,7 +19,7 @@ PRODUCT / REQUIREMENTS / METADATA / ARCHITECTURE ✓
 
 ## Frozen stack
 
-- PHP 8.4
+- PHP 8.4 target runtime
 - Laravel 13 modular monolith
 - Official Laravel Vue Starter Kit
 - Inertia 3

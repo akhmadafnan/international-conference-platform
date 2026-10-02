@@ -2,7 +2,7 @@
 
 **Document ID:** ICHES-ARCH-STACK-001
 **Status:** FROZEN FOR ACCELERATED V1
-**Updated:** 2026-09-30
+**Updated:** 2026-10-02
 
 ## 1. Application shape
 
@@ -18,10 +18,12 @@ Primary request flow:
 Route
 → Controller
 → Form Request
-→ Action / Service only when business behavior warrants it
+→ Policy / Gate
+→ Action when consequential business behavior warrants it
 → Eloquent / domain model
+→ Persistence / Audit
 → Inertia
-→ Vue page/component
+→ Vue page / feature component
 
 Simple CRUD may remain Controller + Request + Eloquent.
 

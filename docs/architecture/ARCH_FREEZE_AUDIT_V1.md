@@ -2,7 +2,7 @@
 
 **Document ID:** ICHES-ARCH-AUDIT-001
 **Status:** GREEN
-**Updated:** 2026-09-30
+**Updated:** 2026-10-02
 
 ## Scope audited
 
@@ -84,7 +84,6 @@ The following may be chosen while writing migrations/code:
 
 ARCH-001 — **GREEN / CLOSED**
 
-The project may proceed to:
-**PLAN-001 — Two-Week Development Plan**.
+ARCH-001 remains GREEN / CLOSED as a historical architecture gate.
 
-Coding remains blocked until PLAN-001 is complete and the implementation start gate is opened.
+PLAN-001 was completed and ICHES-DEV-START-001 subsequently passed. Implementation is now active on `phase/01-foundation`. This audit must not be interpreted as a current coding block.

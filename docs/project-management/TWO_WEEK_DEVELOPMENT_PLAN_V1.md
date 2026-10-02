@@ -1,9 +1,9 @@
 # Two-Week Development Plan — ICHES V1
 
 **Document ID:** ICHES-PLAN-001
-**Status:** READY FOR IMPLEMENTATION START GATE
+**Status:** ACTIVE — DAY 1 / PHASE 01 FOUNDATION
 **Duration:** 10 working days / approximately 2 calendar weeks
-**Updated:** 2026-09-30
+**Updated:** 2026-10-02
 
 ## 1. Delivery target
 
@@ -62,6 +62,33 @@ Scope:
 - private/public filesystem disks;
 - core CI/test/lint/static-analysis commands;
 - foundational migrations/seeds.
+
+#### Current Day 1 checkpoint
+
+Completed:
+- Laravel 13 Vue/Inertia application baseline;
+- PHP/composer/npm engineering baseline;
+- MySQL 9.7 local configuration;
+- UUIDv7 identity convention;
+- UTC application persistence timezone;
+- Authentication V1;
+- Spatie Permission Teams infrastructure with `conference_edition_id`;
+- UUIDv7 User/Role/Permission compatibility;
+- Spatie Activitylog UUID-aware audit infrastructure;
+- repository runtime/cache hygiene;
+- focused authorization/audit smoke tests;
+- Pint/PHPStan/regression gates.
+
+Remaining before Day 1 / Phase 01 closure:
+- active Conference Edition permission-context middleware;
+- Laravel Policies/Gates baseline;
+- global technical super-admin path with explicit business-integrity boundaries;
+- edition-scoped authority smoke tests through the enforcement layer;
+- Vue I18n id/en/ar shell;
+- Arabic RTL shell;
+- ICHES design-token foundation;
+- private/public filesystem foundation;
+- foundational seeders.
 
 Exit gate:
 - app boots;

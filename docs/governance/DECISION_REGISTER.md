@@ -2,7 +2,7 @@
 
 **ID:** ICHES-DECISION-REGISTER  
 **Status:** ACTIVE — PRODUCT BLUEPRINT v1  
-**Updated:** 2026-09-30
+**Updated:** 2026-10-02
 
 This register records current Product Discovery and accelerated V1 decisions.
 
@@ -118,7 +118,7 @@ Statuses:
 |---|---|---|
 | ARCH-001 | V1 is one Laravel 13 modular monolith | ACCEPTED |
 | ARCH-002 | PHP 8.4 is the target runtime | ACCEPTED |
-| ARCH-003 | MySQL 8.4 LTS is the production relational database | ACCEPTED |
+| ARCH-003 | MySQL 9.7 LTS is the frozen relational database baseline for V1 | ACCEPTED |
 | ARCH-004 | UUIDv7 CHAR(36) is the internal first-class domain ID strategy; human codes are separate | ACCEPTED |
 | ARCH-005 | Normal first-party UI uses Laravel routes/controllers + Inertia, not a separate internal REST SPA | ACCEPTED |
 | ARCH-006 | Official Laravel Vue Starter Kit is the application skeleton | ACCEPTED |
@@ -133,6 +133,8 @@ Statuses:
 | ARCH-015 | No generic EAV model and no event-sourcing/CQRS architecture | ACCEPTED |
 | ARCH-016 | ERD v1 relationship/cardinality contract is frozen | ACCEPTED |
 | ARCH-017 | Published schedule, certificates, documents and exports are representations of database state, not independent truths | ACCEPTED |
+| ARCH-018 | Authentication V1 includes registration, password authentication/reset/confirmation and required email verification; 2FA and passkeys are excluded from V1 | ACCEPTED |
+| ARCH-019 | User, Role and Permission security identities use UUIDv7-compatible identifiers; Activity Log is audit evidence and not a replacement for explicit business-history records | ACCEPTED |
 
 ## DEV-START — Implementation Authorization
 

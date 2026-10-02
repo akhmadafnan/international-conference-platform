@@ -25,7 +25,7 @@
 Backend:
 - PHP 8.4
 - Laravel 13 modular monolith
-- MySQL 8.4 LTS
+- MySQL 9.7 LTS
 - UUIDv7
 - edition-scoped authorization
 - database queue/cache/session

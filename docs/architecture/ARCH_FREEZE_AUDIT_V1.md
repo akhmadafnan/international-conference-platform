@@ -38,7 +38,7 @@
 | Audit/history | GREEN | append-only activity approach |
 | Frontend/backend fit | GREEN | Laravel/Inertia/Vue single codebase |
 | Two-week operational simplicity | GREEN | no Redis/microservices/mandatory external APIs |
-| V1 infrastructure | GREEN | MySQL/database queue/private storage/PDF abstraction |
+| V1 infrastructure | GREEN | MySQL 9.7 LTS/database queue/private storage/PDF abstraction |
 
 ## Authorization implementation decision
 

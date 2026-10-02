@@ -10,7 +10,7 @@ It is not a generated migration file. Column lengths, indexes, and framework-spe
 
 ## 1. Modeling principles
 
-- MySQL 8.4 relational core.
+- MySQL 9.7 relational core.
 - UUIDv7 CHAR(36) primary keys for first-class domain entities.
 - Human business/document codes remain separate.
 - Core relationships use explicit foreign keys.

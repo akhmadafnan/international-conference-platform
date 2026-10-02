@@ -28,6 +28,7 @@
 - UUIDv7 Role/Permission security identities ✓
 - Spatie Permission edition-scoped authorization infrastructure ✓
 - UTC persistence timezone foundation ✓
+- Global superadmin authority contract frozen ✓
 
 ## Verified implementation checkpoint
 
@@ -146,7 +147,7 @@ Laravel/Vue application baseline, Authentication V1, MySQL baseline, UUIDv7 iden
 Continue the remaining Phase 01 Foundation scope:
 - active Conference Edition permission-context middleware;
 - Laravel Policies/Gates baseline;
-- global technical super-admin path with explicit business-integrity boundaries;
+- global superadmin authorization bypass with explicit domain-integrity boundaries;
 - edition-scoped authority smoke tests;
 - Vue I18n id/en/ar shell;
 - Arabic RTL shell;

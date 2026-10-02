@@ -147,7 +147,7 @@ Baseline:
 - edition-scoped assignments are mandatory for business roles;
 - Laravel Policies/Gates enforce actual resource access;
 - COI restriction overrides normal allow rules;
-- super-admin technical access does not silently become business decision authority.
+- superadmin is a global application authority and bypasses ordinary role/permission/policy authorization across all Conference Editions; this bypass does not bypass domain invariants, validation, state-transition rules, database constraints, immutable/versioned history, transaction safety, or mandatory audit recording.
 
 The implementation must support one user holding multiple edition-scoped authorities.
 

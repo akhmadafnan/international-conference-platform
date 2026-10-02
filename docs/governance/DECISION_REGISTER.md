@@ -135,6 +135,7 @@ Statuses:
 | ARCH-017 | Published schedule, certificates, documents and exports are representations of database state, not independent truths | ACCEPTED |
 | ARCH-018 | Authentication V1 includes registration, password authentication/reset/confirmation and required email verification; 2FA and passkeys are excluded from V1 | ACCEPTED |
 | ARCH-019 | User, Role and Permission security identities use UUIDv7-compatible identifiers; Activity Log is audit evidence and not a replacement for explicit business-history records | ACCEPTED |
+| ARCH-020 | Superadmin is a global application authority across all Conference Editions and application abilities. It bypasses ordinary role/permission/policy authorization but never bypasses validation, business invariants, state-transition rules, database constraints, immutable/versioned history, transaction safety, or mandatory audit logging | ACCEPTED |
 
 ## DEV-START — Implementation Authorization
 

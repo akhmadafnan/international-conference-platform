@@ -82,7 +82,7 @@ Completed:
 Remaining before Day 1 / Phase 01 closure:
 - active Conference Edition permission-context middleware;
 - Laravel Policies/Gates baseline;
-- global technical super-admin path with explicit business-integrity boundaries;
+- global superadmin authorization bypass with explicit domain-integrity boundaries;
 - edition-scoped authority smoke tests through the enforcement layer;
 - Vue I18n id/en/ar shell;
 - Arabic RTL shell;

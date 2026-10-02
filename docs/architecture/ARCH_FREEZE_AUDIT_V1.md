@@ -49,7 +49,7 @@ For accelerated V1:
 - role/permission migrations are UUID-compatible;
 - active Edition middleware sets the current permission team;
 - Laravel Policies/Gates still apply resource relationship and COI rules;
-- global/super-admin mechanics do not bypass explicit business-domain integrity rules.
+- global superadmin authority bypasses ordinary role/permission/policy authorization across editions, but never bypasses explicit business-domain integrity rules, validation, state transitions, database constraints, immutable history, or mandatory audit.
 
 This provides edition-scoped authorities without creating a second custom RBAC engine.
 

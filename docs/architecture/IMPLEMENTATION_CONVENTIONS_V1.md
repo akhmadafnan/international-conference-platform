@@ -89,6 +89,32 @@ Policies and domain guards remain authoritative for:
 - state-transition eligibility;
 - other business integrity rules.
 
+### Global superadmin authority
+
+Superadmin is a global application authority and is not edition-scoped.
+
+Superadmin may:
+- access every Conference Edition;
+- access every application module;
+- execute every application ability;
+- bypass ordinary Spatie role/permission checks;
+- bypass normal Policy/Gate authorization denials that exist only to restrict user authority.
+
+The authorization bypass does not bypass application integrity.
+
+Superadmin remains subject to:
+- Form Request and domain validation;
+- database constraints;
+- business/domain invariants;
+- mandatory workflow/state-transition rules;
+- immutable and versioned history;
+- transaction boundaries;
+- required audit/activity logging.
+
+Superadmin is implemented as an explicit global user capability, not by assigning every edition-scoped business role.
+
+Business Actions remain the canonical execution path for consequential mutations regardless of whether the actor is a normal authority or superadmin.
+
 Spatie Activitylog records consequential operator/system actions where audit evidence is required.
 
 Activity Log is audit evidence, not the source of truth for business history. Versioned manuscripts, decisions, payments, publication snapshots, certificate lifecycle records, and other consequential facts remain explicit domain records.

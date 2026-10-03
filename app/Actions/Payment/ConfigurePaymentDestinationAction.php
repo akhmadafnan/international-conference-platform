@@ -10,6 +10,19 @@ use Illuminate\Support\Facades\DB;
 
 class ConfigurePaymentDestinationAction
 {
+    /**
+     * @param array{
+     *     code: string,
+     *     label: string,
+     *     bank_name: string,
+     *     account_number: string,
+     *     account_holder: string,
+     *     instructions_i18n?: array<string, string>|null,
+     *     is_default?: bool,
+     *     active?: bool,
+     *     display_order?: int
+     * } $data
+     */
     public function handle(
         ConferenceEdition $edition,
         User $actor,

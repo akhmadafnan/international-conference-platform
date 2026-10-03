@@ -93,6 +93,9 @@ Statuses:
 | PD-078 | ICHES supports single and bulk OJS production bundles derived from immutable publication snapshots and readiness guards | ACCEPTED |
 | PD-079 | OJS/publisher is the system of record for copyediting, final publication, DOI and Crossref operations; ICHES may record downstream identifiers/results | ACCEPTED |
 | PD-080 | Public SEO/sitemap/discoverability is an ICHES responsibility, but scholarly Google Scholar publication indexing remains a downstream publication concern when OJS hosts the final article | ACCEPTED |
+| PD-081 | Participation Package billing mode is explicit FREE or PAID; FREE creates no Payment row, proof-upload requirement, or Finance verification requirement | ACCEPTED |
+| PD-082 | A normally PAID Registration may receive an explicit audited fee exemption/complimentary decision from an authorized actor | ACCEPTED |
+| PD-083 | Free/waived financial resolution is a business fact distinct from VERIFIED payment; configuration changes never silently rewrite resolved financial history | ACCEPTED |
 
 ## META-001 — Scholarly Metadata Decisions
 

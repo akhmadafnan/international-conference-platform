@@ -39,7 +39,7 @@
 ## Verified implementation checkpoint
 
 Latest integrated implementation baseline:
-- `develop @ 5175c6b` — Phase 01 engineering foundation plus META-AUDIT-001 governance baseline
+- `develop @ 01e5482` — Phase 01 foundation plus META-AUDIT-001 and Pre-Phase 02 rebaseline
 
 Phase 01 source checkpoint:
 - `d269534` — final Phase 01 branch closeout
@@ -189,6 +189,9 @@ Accepted corrections now include:
 - participant-only payment remains available without academic submission;
 - configurable Edition/package payment destinations with copyable account number UX;
 - payment amount/package/destination snapshot at obligation creation;
+- explicit FREE/PAID package billing mode;
+- FREE participation skips payment/proof/Finance verification without creating a synthetic payment;
+- authorized audited fee exemption/complimentary path for normally PAID registrations;
 - bounded operational workflow windows;
 - bounded localized custom pages/navigation without a generic plugin/page-builder engine;
 - current snapshot-based abstract review traceability retained; no generic multi-round engine added to accelerated V1;

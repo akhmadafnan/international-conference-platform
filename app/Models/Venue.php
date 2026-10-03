@@ -29,6 +29,9 @@ class Venue extends Model
         ];
     }
 
+    /**
+     * @return BelongsTo<ConferenceEdition, $this>
+     */
     public function edition(): BelongsTo
     {
         return $this->belongsTo(ConferenceEdition::class, 'edition_id');

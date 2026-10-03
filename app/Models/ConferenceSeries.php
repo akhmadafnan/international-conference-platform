@@ -27,11 +27,17 @@ class ConferenceSeries extends Model
         ];
     }
 
+    /**
+     * @return HasMany<ConferenceEdition, $this>
+     */
     public function editions(): HasMany
     {
         return $this->hasMany(ConferenceEdition::class, 'series_id');
     }
 
+    /**
+     * @return BelongsTo<StoredFile, $this>
+     */
     public function logoFile(): BelongsTo
     {
         return $this->belongsTo(StoredFile::class, 'logo_file_id');

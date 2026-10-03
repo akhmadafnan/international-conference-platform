@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
+/**
+ * @property string $id
+ * @property bool $active
+ */
 class Activity extends Model
 {
     use HasUuids;
@@ -36,16 +40,25 @@ class Activity extends Model
         ];
     }
 
+    /**
+     * @return BelongsTo<ConferenceEdition, $this>
+     */
     public function edition(): BelongsTo
     {
         return $this->belongsTo(ConferenceEdition::class, 'edition_id');
     }
 
+    /**
+     * @return BelongsTo<Venue, $this>
+     */
     public function venue(): BelongsTo
     {
         return $this->belongsTo(Venue::class);
     }
 
+    /**
+     * @return HasMany<PackageActivityEntitlement, $this>
+     */
     public function packageEntitlements(): HasMany
     {
         return $this->hasMany(PackageActivityEntitlement::class, 'activity_id');

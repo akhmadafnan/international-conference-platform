@@ -136,7 +136,7 @@ class ConfigureParticipationPackageAction
     }
 
     /**
-     * @param array<string, string> $names
+     * @param  array<string, string>  $names
      */
     private function hasDisplayName(array $names): bool
     {

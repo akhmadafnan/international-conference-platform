@@ -1,10 +1,13 @@
 # Phase 0 / Pre-Development Backlog
 
-**Updated:** 2026-09-30
+**Status:** HISTORICAL / CLOSED
+**Updated:** 2026-10-03
 
-## Current stage
+> This file records the completed pre-development backlog. It is preserved as historical provenance and is not the current project-state authority. For current state, read `docs/ai-context/CURRENT_STATE.md`.
 
-DEVELOPMENT — DEV-START-001 PASSED / PHASE 01 FOUNDATION ACTIVE
+## Final stage
+
+PHASE 0 / PRE-DEVELOPMENT — CLOSED_GREEN
 
 ## Completed
 
@@ -43,10 +46,12 @@ Documents:
 Status: DONE / GREEN — PRODUCT OWNER GO
 
 ### DEV-001 — Coding
-Status: ACTIVE — PHASE 01 FOUNDATION
+Status: STARTED / HANDED OFF TO IMPLEMENTATION PHASES
 
-First branch after GO:
-- phase/01-foundation
+First implementation branch after GO:
+- `phase/01-foundation`
+
+Phase 01 subsequently reached `CLOSED_GREEN` and was merged to `develop` through PR #57. Later implementation status is tracked in `docs/ai-context/CURRENT_STATE.md`.
 
 ## Scope control
 

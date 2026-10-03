@@ -4,17 +4,22 @@ This repository is the canonical product, architecture, and implementation repos
 
 ## Current state
 
-**DEVELOPMENT — PHASE 01 FOUNDATION IN PROGRESS**
+**META-AUDIT-001 CLOSED_GREEN — PRODUCT OWNER DISCUSSION HOLD / PHASE 02 LOCKED**
 
-The Implementation Start Gate has passed. Phase 01 Foundation development is active on `phase/01-foundation`.
+Phase 01 Foundation is `CLOSED_GREEN` and merged into `develop` through PR #57 at `e8141e9`.
+
+The documentation/workflow meta-audit is complete. Application development remains paused for Product Owner discussion/review before any Phase 02 authorization.
 
 Current sequence:
 
 PRODUCT / REQUIREMENTS / METADATA / ARCHITECTURE ✓
 → TWO-WEEK DEVELOPMENT PLAN ✓
 → IMPLEMENTATION START GATE ✓
-→ PHASE 01 FOUNDATION ← CURRENT
-→ bounded implementation gates
+→ PHASE 01 FOUNDATION ✓ CLOSED_GREEN
+→ PR #57 / MERGE TO develop ✓
+→ META-AUDIT-001 ✓ CLOSED_GREEN
+→ PRODUCT OWNER DISCUSSION / REVIEW ← CURRENT
+→ PHASE 02 only after explicit new GO
 → V1 RELEASE CANDIDATE
 
 ## Frozen stack
@@ -41,20 +46,22 @@ See:
 - docs/project-management/TWO_WEEK_DEVELOPMENT_PLAN_V1.md
 - docs/project-management/IMPLEMENTATION_START_GATE_V1.md
 
-First coding branch after GO:
-- phase/01-foundation
+Historical Phase 01 implementation branch:
+- `phase/01-foundation`
+
+META-AUDIT work follows the normal scoped-branch → PR → `develop` integration workflow.
 
 ## Canonical reading order
 
-1. AGENTS.md
-2. docs/product/PRODUCT_BLUEPRINT_V1.md
-3. docs/ai-context/CURRENT_STATE.md
-4. docs/requirements/v1/
-5. docs/metadata/
-6. docs/architecture/
-7. docs/project-management/TWO_WEEK_DEVELOPMENT_PLAN_V1.md
-8. docs/governance/DECISION_REGISTER.md
-9. current relevant NFR documents
+Start every substantial development session with:
+
+1. `docs/ai-context/CURRENT_STATE.md`
+2. `docs/governance/WORKING_PROTOCOL.md`
+3. `docs/ai-context/INTERNATIONAL_CONFERENCE_PROJECT_CANONICAL_CONTEXT.md`
+
+Then load only the additional authoritative product, architecture, testing, or domain documents required by the current gate.
+
+Historical/provenance documents do not override later accepted canonical decisions.
 
 ## Branch model
 

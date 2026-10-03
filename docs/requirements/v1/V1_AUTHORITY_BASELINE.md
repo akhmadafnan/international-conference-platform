@@ -39,8 +39,31 @@ May assign/override publication destination, finalize handoff/production operati
 ### Certificate Authority
 May generate, preview, issue, revoke, reissue, and manage authorized external/manual recipients. Manual certificate action does not rewrite attendance/presentation facts.
 
-### Technical / Super Admin
-Technical/system authority does not automatically become business-domain authority.
+### Technical Admin
+Technical/system authority is limited to system operations and does not automatically become business-domain authority.
+
+### Global Super Admin
+Super Admin is an explicit global application authority.
+
+Super Admin may:
+- access every Conference Edition;
+- access every application module;
+- execute every application ability;
+- bypass ordinary role/permission checks;
+- bypass ordinary Policy/Gate authorization denials whose purpose is only to restrict actor authority.
+
+This authorization bypass does **not** bypass application integrity.
+
+Super Admin remains subject to:
+- validation;
+- business/domain invariants;
+- mandatory workflow and state-transition rules;
+- database constraints;
+- transaction safety;
+- immutable/versioned history;
+- mandatory audit/activity logging.
+
+Super Admin is not implemented by assigning every edition-scoped business role.
 
 ## Multi-role
 

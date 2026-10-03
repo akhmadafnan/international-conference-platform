@@ -1,20 +1,34 @@
 # ICHES Conference & Event Experience Platform — Canonical Context
 
 **ID:** ICHES-CANONICAL-001  
-**Version:** 1.2-meta-contract  
+**Version:** 1.3-meta-audit
 **Status:** ACTIVE  
-**Updated:** 2026-09-30
+**Updated:** 2026-10-03
 
 ## Current authority
 
-The current product truth is:
-- Product Blueprint v1;
-- Accelerated V1 Domain Decisions;
-- V1 requirement baselines in docs/requirements/v1/;
-- Submission & Scholarly Metadata Contract in docs/metadata/;
-- current non-conflicting NFR baselines.
+Authority is intentionally layered.
 
-Initial Phase 0 lifecycle/payment/publication documents are historical when they conflict.
+For current session/gate state:
+1. `docs/ai-context/CURRENT_STATE.md`
+
+For current product behavior:
+1. `docs/product/PRODUCT_BLUEPRINT_V1.md`
+2. `docs/governance/DECISION_REGISTER.md`
+3. `docs/governance/ACCELERATED_V1_DOMAIN_DECISIONS.md`
+4. `docs/requirements/v1/` authoritative V1 baselines
+5. `docs/metadata/SUBMISSION_SCHOLARLY_METADATA_CONTRACT_V1.md`
+6. current NFR baselines where they do not conflict with later accepted V1 decisions
+
+For implementation:
+1. `docs/architecture/ARCHITECTURE_DECISIONS_V1.md`
+2. `docs/architecture/IMPLEMENTATION_CONVENTIONS_V1.md`
+3. `docs/architecture/ERD_V1.md`
+4. accepted architecture decisions in `docs/governance/DECISION_REGISTER.md`
+
+The root-level `docs/requirements/REQUIREMENT_REGISTER.md` and superseded Phase 0 requirement documents are provenance/history, not current V1 implementation authority when they conflict with the hierarchy above.
+
+Later accepted decisions explicitly supersede earlier conflicting statements. Historical documents are preserved for traceability rather than silently rewritten.
 
 ## Product identity
 
@@ -94,9 +108,9 @@ Register
 
 ## Frontend direction
 
-Public + participant/presenter/reviewer experience may be developed in parallel with typed mocks.
+Public + participant/presenter/reviewer experience may be developed in parallel with typed mocks only when authorized by the current delivery gate.
 
-Preferred technical direction, pending formal Stack Freeze:
+Frozen technical direction:
 - Laravel 13 official Vue Starter Kit;
 - Vue 3;
 - TypeScript;
@@ -117,7 +131,7 @@ Admin/backoffice may use modern shadcn-admin-like interaction patterns, but must
 - official Laravel Vue Starter Kit
 - Inertia 3 + Vue 3 + TypeScript
 - Tailwind CSS 4 + shadcn-vue
-- MySQL 8.4 LTS
+- MySQL 9.7 LTS
 - UUIDv7 CHAR(36) internal IDs
 - database queue/cache/session
 - private-by-default files
@@ -128,6 +142,13 @@ Admin/backoffice may use modern shadcn-admin-like interaction patterns, but must
 ERD contract:
 - docs/architecture/ERD_V1.md
 
-## Current next gate
+## Current project gate
 
-Two-Week Development Plan.
+Phase 01 Foundation is CLOSED_GREEN and merged into `develop`.
+
+META-AUDIT-001 is CLOSED_GREEN.
+
+Current:
+`PRODUCT OWNER DISCUSSION / REVIEW — HOLD BEFORE PHASE 02`
+
+Phase 02 remains LOCKED until the Product Owner has reviewed the workflow/documentation model and frontend/flyer direction and gives an explicit new GO.

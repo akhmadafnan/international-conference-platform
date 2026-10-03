@@ -1,9 +1,11 @@
 # Two-Week Development Plan — ICHES V1
 
 **Document ID:** ICHES-PLAN-001
-**Status:** DAY 1 / PHASE 01 FOUNDATION CLOSED_GREEN — READY FOR INTEGRATION
+**Status:** ACTIVE DELIVERY ROADMAP — PHASE 01 CLOSED_GREEN / MERGED; META-AUDIT-001 CURRENT
 **Duration:** 10 working days / approximately 2 calendar weeks
-**Updated:** 2026-10-02
+**Updated:** 2026-10-03
+
+> This plan remains the delivery roadmap. Current execution state is authoritative in `docs/ai-context/CURRENT_STATE.md`; a completed day/phase entry in this plan is historical evidence, not permission to begin the next phase.
 
 ## 1. Delivery target
 
@@ -291,7 +293,9 @@ Exit gate:
 
 ## 4. Parallel frontend workstream
 
-Frontend work begins **after Day 1 foundation is merged** so it uses the actual Laravel/Inertia/Vue skeleton.
+Phase 01 foundation is already merged. Any new frontend implementation still follows the current project gate and requires the applicable explicit authorization; this roadmap does not override `CURRENT_STATE.md`.
+
+Frontend work uses the actual Laravel/Inertia/Vue skeleton.
 
 Preferred isolated branch:
 - feat/frontend-experience-v1

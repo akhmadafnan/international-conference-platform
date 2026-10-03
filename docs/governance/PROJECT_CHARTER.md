@@ -1,8 +1,8 @@
 # Project Charter — ICHES Conference & Event Experience Platform
 
-**ID:** ICHES-GOV-CHARTER-001  
-**Status:** WORKING PRODUCT DISCOVERY CHARTER  
-**Updated:** 2026-09-30
+**ID:** ICHES-GOV-CHARTER-001
+**Status:** HISTORICAL FOUNDATION CHARTER / PURPOSE PRESERVED
+**Updated:** 2026-10-03
 
 ## Purpose
 
@@ -51,15 +51,14 @@ The product is not intended to become:
 - standards-oriented OJS/Crossref handoff;
 - no one-event disposable schema.
 
-## Current gate
+## Historical gate note
 
-Product Discovery is substantially complete and Pre-Presentation Product Audit has been performed.
+This charter originated during Product Discovery.
 
-Before implementation:
-- Warek I decisions must be validated;
-- Product Blueprint v1 must be produced;
-- old Phase 0 documents must be reconciled;
-- Submission & Scholarly Metadata Contract must be frozen;
-- stack and ERD must then be frozen.
+The gates listed in the original discovery sequence were subsequently completed or superseded through the canonical V1 decision, requirement, metadata, architecture, and implementation-start documents.
 
-Implementation is not authorized before those gates.
+This charter continues to define project purpose, boundaries, and non-negotiable principles, but it is not the authority for the current delivery gate.
+
+For current project state and implementation authorization, read:
+
+`docs/ai-context/CURRENT_STATE.md`

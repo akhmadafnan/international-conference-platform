@@ -79,6 +79,8 @@ Register
 - Rejected abstract creates no presenter payment obligation; participant-only continuation remains possible when permitted.
 - Payment verification confirms participation and Event Pass entitlement; it does not create academic acceptance or LoA.
 - Payment destination and amount are Edition/package configurable and snapshotted when the obligation is created.
+- Participation Package billing mode is explicit FREE or PAID; FREE skips payment obligation/proof/Finance verification rather than creating a fake zero-value payment.
+- Authorized complimentary/fee exemption may waive a normally PAID registration with explicit reason and audit history.
 - Abstract review defaults to one single-anonymous reviewer.
 - One normal abstract revision cycle.
 - Accelerated V1 has no separate double-anonymous publication-review engine.

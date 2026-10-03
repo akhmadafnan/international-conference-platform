@@ -679,3 +679,197 @@ test('another user cannot upload payment proof for a registration they do not ow
     expect($payment?->proofs()->count())->toBe(0)
         ->and(StoredFile::query()->count())->toBe(0);
 });
+
+
+test('participant can download own protected payment proof but another participant cannot', function () {
+    Storage::fake('private');
+
+    $edition = makePhase02Edition();
+    $destination = makePhase02Destination($edition);
+    $package = makePhase02Package(
+        $edition,
+        BillingMode::PAID,
+        'FULL',
+        '750000.00',
+        $destination,
+    );
+    $participant = User::factory()->create();
+    $otherUser = User::factory()->create();
+
+    $registration = app(CreateRegistrationIntentAction::class)->handle(
+        $participant,
+        $edition,
+        $package,
+    );
+
+    $payment = app(ResolveRegistrationFeeRequirementAction::class)
+        ->handle($registration);
+
+    $this->actingAs($participant)->post(
+        route('payments.proofs.store', $payment),
+        [
+            'proof' => UploadedFile::fake()->create(
+                'receipt.pdf',
+                128,
+                'application/pdf',
+            ),
+            'submitted_amount' => '750000.00',
+        ],
+    )->assertStatus(303);
+
+    $proof = $payment?->proofs()->sole();
+
+    $this->actingAs($participant)->get(
+        route('payments.proofs.download', [
+            'payment' => $payment,
+            'proof' => $proof,
+        ]),
+    )->assertOk()
+        ->assertHeader('content-disposition');
+
+    $this->actingAs($otherUser)->get(
+        route('payments.proofs.download', [
+            'payment' => $payment,
+            'proof' => $proof,
+        ]),
+    )->assertForbidden();
+});
+
+test('finance can verify submitted payment through active edition HTTP context', function () {
+    Storage::fake('private');
+
+    $edition = makePhase02Edition();
+    $destination = makePhase02Destination($edition);
+    $package = makePhase02Package(
+        $edition,
+        BillingMode::PAID,
+        'FULL',
+        '750000.00',
+        $destination,
+    );
+    $participant = User::factory()->create();
+    $finance = User::factory()->create();
+
+    Permission::query()->create([
+        'name' => 'payment.verify',
+        'guard_name' => 'web',
+    ]);
+
+    setPermissionsTeamId($edition->id);
+
+    $role = Role::query()->create([
+        'name' => 'finance',
+        'guard_name' => 'web',
+    ]);
+
+    $role->givePermissionTo('payment.verify');
+    $finance->assignRole($role);
+
+    setPermissionsTeamId(null);
+    $finance->unsetRelation('roles')->unsetRelation('permissions');
+
+    $registration = app(CreateRegistrationIntentAction::class)->handle(
+        $participant,
+        $edition,
+        $package,
+    );
+
+    $payment = app(ResolveRegistrationFeeRequirementAction::class)
+        ->handle($registration);
+
+    $this->actingAs($participant)->post(
+        route('payments.proofs.store', $payment),
+        [
+            'proof' => UploadedFile::fake()->create(
+                'receipt.pdf',
+                128,
+                'application/pdf',
+            ),
+            'submitted_amount' => '750000.00',
+        ],
+    )->assertStatus(303);
+
+    $this->actingAs($finance)
+        ->withSession([
+            ActiveConferenceEditionContext::SESSION_KEY => $edition->id,
+        ])
+        ->post(route('payments.verify', $payment))
+        ->assertStatus(303);
+
+    $payment?->refresh();
+    $registration->refresh();
+
+    expect($payment?->status)->toBe(PaymentStatus::VERIFIED)
+        ->and($payment?->verified_by_user_id)->toBe($finance->id)
+        ->and($registration->status)->toBe(RegistrationStatus::CONFIRMED);
+});
+
+test('finance correction endpoint preserves submitted proof and requests correction', function () {
+    Storage::fake('private');
+
+    $edition = makePhase02Edition();
+    $destination = makePhase02Destination($edition);
+    $package = makePhase02Package(
+        $edition,
+        BillingMode::PAID,
+        'FULL',
+        '750000.00',
+        $destination,
+    );
+    $participant = User::factory()->create();
+    $finance = User::factory()->create();
+
+    Permission::query()->create([
+        'name' => 'payment.verify',
+        'guard_name' => 'web',
+    ]);
+
+    setPermissionsTeamId($edition->id);
+
+    $role = Role::query()->create([
+        'name' => 'finance',
+        'guard_name' => 'web',
+    ]);
+
+    $role->givePermissionTo('payment.verify');
+    $finance->assignRole($role);
+
+    setPermissionsTeamId(null);
+    $finance->unsetRelation('roles')->unsetRelation('permissions');
+
+    $registration = app(CreateRegistrationIntentAction::class)->handle(
+        $participant,
+        $edition,
+        $package,
+    );
+    $payment = app(ResolveRegistrationFeeRequirementAction::class)
+        ->handle($registration);
+
+    $this->actingAs($participant)->post(
+        route('payments.proofs.store', $payment),
+        [
+            'proof' => UploadedFile::fake()->create(
+                'receipt.pdf',
+                128,
+                'application/pdf',
+            ),
+            'submitted_amount' => '750000.00',
+        ],
+    )->assertStatus(303);
+
+    $this->actingAs($finance)
+        ->withSession([
+            ActiveConferenceEditionContext::SESSION_KEY => $edition->id,
+        ])
+        ->post(
+            route('payments.correction.store', $payment),
+            ['reason' => 'Receipt image is not readable.'],
+        )->assertStatus(303);
+
+    $payment?->refresh();
+
+    expect($payment?->status)->toBe(PaymentStatus::CORRECTION_REQUIRED)
+        ->and($payment?->correction_reason)
+        ->toBe('Receipt image is not readable.')
+        ->and($payment?->proofs()->count())->toBe(1);
+});

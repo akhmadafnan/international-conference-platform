@@ -20,8 +20,11 @@ Registration confirmation is a later finance-backed fact.
 Minimum lifecycle semantics:
 - pending/intended registration may exist before academic decision;
 - accepted author/presenter path creates payment obligation after ACCEPT;
-- participant-only path may create payment obligation without an academic submission;
-- Finance verification changes registration to confirmed;
+- participant-only PAID path may create payment obligation without an academic submission;
+- FREE package or active fee exemption satisfies the fee requirement without creating a Payment row;
+- accepted author/presenter FREE path does not create payment obligation after ACCEPT;
+- Finance verification changes a PAID registration to confirmed after successful payment;
+- FREE/waived registration may confirm without Finance verification once its non-financial prerequisites are satisfied;
 - academic acceptance/LoA never depends on Finance authority.
 
 Exact stored enum labels may be finalized during the bounded Registration/Payment implementation as long as these state boundaries are preserved.
@@ -53,9 +56,15 @@ Constraints:
 ### participation_packages amendment
 
 Add:
+- billing_mode: FREE / PAID
 - payment_destination_id nullable FK payment_destinations
 
-Null means use the Edition active default destination.
+Rules:
+- FREE requires price = 0 and does not require a payment destination;
+- PAID requires a positive configured price and must resolve an active payment destination through package override or Edition default;
+- billing mode is explicit and must not be inferred only from whether the numeric amount happens to be zero.
+
+Null `payment_destination_id` on a PAID package means use the Edition active default destination.
 
 The existing package price/currency remains the default expected fee source.
 
@@ -74,6 +83,30 @@ Add/snapshot at payment-obligation creation:
 Historical payment display and verification read the snapshot, not mutable current payment-destination configuration.
 
 Payment proof versioning remains unchanged.
+
+No Payment row is created for FREE or actively exempted/complimentary registrations.
+
+### registration_fee_exemptions
+
+Provides an explicit exception for a specific Registration whose selected package is normally PAID.
+
+Fields:
+- id UUID
+- registration_id FK
+- reason_code nullable
+- reason_text
+- granted_by_user_id FK users
+- granted_at
+- revoked_by_user_id nullable FK users
+- revoked_at nullable
+- timestamps
+
+Rules:
+- at most one active exemption per Registration;
+- active exemption means payment is not required for that Registration;
+- granting/revoking exemption is a consequential audited action;
+- exemption cannot silently rewrite or erase an already verified Payment;
+- if a Payment has already been submitted/verified, correction follows the explicit Finance correction/refund policy instead of converting history into a free registration.
 
 ## 5. Operational workflow windows
 

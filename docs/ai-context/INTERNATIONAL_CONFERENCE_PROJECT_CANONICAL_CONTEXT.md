@@ -1,7 +1,7 @@
 # ICHES Conference & Event Experience Platform — Canonical Context
 
 **ID:** ICHES-CANONICAL-001  
-**Version:** 1.3-meta-audit  
+**Version:** 1.3-meta-audit
 **Status:** ACTIVE  
 **Updated:** 2026-10-03
 

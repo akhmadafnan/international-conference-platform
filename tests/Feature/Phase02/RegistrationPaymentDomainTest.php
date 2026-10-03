@@ -586,7 +586,6 @@ test('edition scoped operator cannot mutate another edition with permission from
     }
 });
 
-
 test('registered participant can upload payment proof into protected storage through HTTP', function () {
     Storage::fake('private');
 

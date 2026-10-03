@@ -1,5 +1,27 @@
 # Requirement Register
 
+**Status:** HISTORICAL COMPOSITE REGISTER / PROVENANCE — NOT CURRENT V1 IMPLEMENTATION AUTHORITY
+
+## Authority notice
+
+This register accumulated requirements across multiple discovery and Phase 0 iterations.
+
+The status values recorded in the tables below reflect the state when each requirement was captured. They do **not** by themselves establish current V1 implementation authority.
+
+For current V1 behavior, use this precedence:
+
+1. `docs/product/PRODUCT_BLUEPRINT_V1.md`
+2. `docs/governance/DECISION_REGISTER.md`
+3. `docs/governance/ACCELERATED_V1_DOMAIN_DECISIONS.md`
+4. `docs/requirements/v1/` authoritative V1 baselines
+5. `docs/metadata/SUBMISSION_SCHOLARLY_METADATA_CONTRACT_V1.md`
+6. current non-conflicting NFR baselines
+7. architecture decisions and implementation conventions for implementation-level behavior
+
+Known superseded areas inside this historical register include earlier payment/submission timing, automatic academic-rejection refund, the generic post-presentation publication-review engine, and earlier Super Admin business-authority assumptions.
+
+Do not implement a requirement from this file when it conflicts with a later authoritative V1 decision. Preserve this file as provenance until a separately approved requirement-register normalization is performed.
+
 | ID | Requirement | Status |
 |---|---|---|
 | REQ-L10N-001 | Support Indonesian `id` | ACCEPTED |

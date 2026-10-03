@@ -48,7 +48,7 @@ This matrix is product-level authorization truth. It does not prescribe the phys
 | Front Office | EDITION | Safe status lookup, guidance, permitted resend, support case, escalation | No raw Finance/confidential review, business decisions, impersonation/account takeover |
 | Conference Admin | EDITION | Edition configuration, deadlines, tracks, workflow configuration, operational dashboards, ordinary edition coordination | Configuration ≠ Finance/Academic/Event/Publication decision; no protected self-escalation |
 | Technical Admin | Technical/global assignment | System health/configuration/diagnostics/maintenance | Minimum-necessary business data; no default business decisions/confidential access |
-| Super Admin | GLOBAL | Platform governance, global access/security administration, editions, audit oversight | Not automatic Finance/Academic/Event/Publication authority |
+| Super Admin | GLOBAL | Global application authority across all Conference Editions, modules and application abilities; bypasses ordinary role/permission/policy authorization | Authorization bypass never bypasses validation, domain invariants, workflow/state rules, database constraints, immutable/versioned history, transaction safety, or mandatory audit |
 | Finance | EDITION | Payment verification, reconciliation, refund execution, controlled financial correction | Raw finance restricted; no Academic authority; no own-case verification/refund |
 | Academic Committee | EDITION / assigned academic resources | Manage review process, assignments, COI, monitoring, relevant review visibility | No automatic final academic decision |
 | Reviewer | REVIEW ASSIGNMENT | Accept/decline, COI declaration, assigned packet, review/comments/recommendation | Assignment/round/version only; no final decision; anonymity enforced |
@@ -118,6 +118,7 @@ PUBLICATION ELIGIBLE ≠ PUBLISHED
 CERTIFICATE ISSUED ≠ UNDERLYING EVENT FACT CREATED
 ARCHIVED ≠ DELETED
 BREAK-GLASS ≠ BUSINESS OVERRIDE
+SUPERADMIN AUTHORIZATION BYPASS ≠ APPLICATION-INTEGRITY BYPASS
 ```
 
 ## Completion

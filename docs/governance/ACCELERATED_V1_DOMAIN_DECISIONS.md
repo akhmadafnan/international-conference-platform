@@ -4,6 +4,8 @@
 **Status:** PRODUCT-OWNER ASSUMED BASELINE FOR ACCELERATED PLANNING  
 **Updated:** 2026-09-30
 
+> **Pre-Phase 02 supersession notice (2026-10-03):** The earlier paid-rejected-abstract/payment-at-start assumption is superseded by `docs/governance/PRE_PHASE02_PRODUCT_REBASELINE.md`. Presenter/author payment obligation now follows authorized abstract ACCEPT; participant-only payment remains a separate path. Non-conflicting assumptions below remain active.
+
 ## Important governance note
 
 These entries do **not** claim that Warek I has physically reviewed or signed the decision sheet.

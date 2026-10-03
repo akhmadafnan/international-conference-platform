@@ -131,7 +131,7 @@ class ConfigureParticipationPackageAction
     private function hasDisplayName(array $names): bool
     {
         foreach ($names as $name) {
-            if (is_string($name) && trim($name) !== '') {
+            if (trim($name) !== '') {
                 return true;
             }
         }

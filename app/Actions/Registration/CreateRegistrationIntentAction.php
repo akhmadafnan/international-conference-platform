@@ -139,12 +139,6 @@ class CreateRegistrationIntentAction
     ): string {
         $names = $package->name_i18n;
 
-        if (! is_array($names)) {
-            throw new DomainException(
-                'Participation package name translations are invalid.',
-            );
-        }
-
         foreach (['id', 'en', 'ar'] as $locale) {
             $name = $names[$locale] ?? null;
 
@@ -154,7 +148,7 @@ class CreateRegistrationIntentAction
         }
 
         foreach ($names as $name) {
-            if (is_string($name) && trim($name) !== '') {
+            if (trim($name) !== '') {
                 return trim($name);
             }
         }

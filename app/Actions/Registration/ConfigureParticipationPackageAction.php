@@ -12,6 +12,19 @@ use Illuminate\Support\Facades\DB;
 
 class ConfigureParticipationPackageAction
 {
+    /**
+     * @param array{
+     *     code: string,
+     *     name_i18n: array<string, string>,
+     *     description_i18n?: array<string, string>|null,
+     *     billing_mode: BillingMode|string,
+     *     price: string,
+     *     currency_code?: string,
+     *     payment_destination_id?: string|null,
+     *     active?: bool,
+     *     display_order?: int
+     * } $data
+     */
     public function handle(
         ConferenceEdition $edition,
         User $actor,
@@ -119,6 +132,9 @@ class ConfigureParticipationPackageAction
         });
     }
 
+    /**
+     * @param array<string, string> $names
+     */
     private function hasDisplayName(array $names): bool
     {
         foreach ($names as $name) {

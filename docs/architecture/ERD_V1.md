@@ -4,6 +4,8 @@
 **Status:** FROZEN RELATIONAL CONTRACT FOR V1
 **Updated:** 2026-09-30
 
+> **Pre-Phase 02 architecture notice (2026-10-03):** `docs/architecture/PRE_PHASE02_ARCHITECTURE_AMENDMENT.md` supersedes only the conflicting Registration/Payment, bounded CMS, publication-boundary, and production-export portions of this ERD. All non-conflicting relationships and invariants remain frozen.
+
 This document freezes the V1 relational model at architecture level.
 
 It is not a generated migration file. Column lengths, indexes, and framework-specific migration syntax will be implemented from this contract.

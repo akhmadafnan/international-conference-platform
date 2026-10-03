@@ -5,6 +5,8 @@
 **Updated:** 2026-09-30  
 **Gate:** META-001 — GREEN
 
+> **Pre-Phase 02 publication-boundary notice (2026-10-03):** Canonical scholarly metadata, immutable publication snapshots, READY/WARNING/BLOCKED readiness, and OJS-oriented export/handoff remain required. Direct DOI generation and direct Crossref deposit are not accelerated-V1 ICHES responsibilities; OJS/publisher owns those downstream publication operations. See `docs/governance/PRE_PHASE02_PRODUCT_REBASELINE.md`.
+
 ## 1. Purpose
 
 This contract defines the canonical scholarly metadata model from abstract submission through publication handoff.

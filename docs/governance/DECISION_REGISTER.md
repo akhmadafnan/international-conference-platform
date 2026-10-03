@@ -18,9 +18,9 @@ Statuses:
 | PD-003 | Public UI locales are id/en/ar; Arabic RTL is first-class | ACCEPTED |
 | PD-004 | Conference Series and Edition are separate; host is edition-configurable | ACCEPTED |
 | PD-005 | Participation is selected through edition-configurable package presets | ACCEPTED |
-| PD-006 | All participants pay at the beginning as commitment gate | ACCEPTED |
+| PD-006 | Presenter/author path does not pay before abstract review; ACCEPT creates the payment obligation. Participant-only users pay through the participant registration path | ACCEPTED |
 | PD-007 | Manual bank transfer + proof + Finance verification is V1 payment model | ACCEPTED |
-| PD-008 | Payment verification confirms registration and unlocks Event Pass/QR | ACCEPTED |
+| PD-008 | Finance verification confirms registration and unlocks Event Pass/QR; it does not create academic acceptance or LoA | ACCEPTED |
 | PD-009 | QR is participant lookup identity; scan alone is not attendance | ACCEPTED |
 | PD-010 | Presenter is not chosen as registration role; academic path begins through abstract submission | ACCEPTED |
 | PD-011 | Abstract submission UX is OJS-inspired but simpler | ACCEPTED |
@@ -62,7 +62,7 @@ Statuses:
 | PD-047 | Author does not freely choose publication destination | ACCEPTED |
 | PD-048 | Selected for Journal does not mean Accepted by Journal | ACCEPTED |
 | PD-049 | Conference platform stops at publication-ready/handoff rather than becoming OJS | ACCEPTED |
-| PD-050 | Canonical scholarly metadata feeds OJS/Crossref adapters | ACCEPTED |
+| PD-050 | Canonical scholarly metadata feeds OJS-oriented export/handoff. Direct Crossref deposit and DOI registration are downstream publishing responsibilities in accelerated V1 | ACCEPTED |
 | PD-051 | Finalize for Production creates protected publication snapshot | ACCEPTED |
 | PD-052 | Metadata readiness uses READY/WARNING/BLOCKED, not synthetic score | ACCEPTED |
 | PD-053 | Public frontend and authenticated dashboard are one coherent product journey | ACCEPTED |
@@ -71,7 +71,7 @@ Statuses:
 | PD-056 | Community Service remains lightweight CRUD, not mini-KKN | ACCEPTED |
 | PD-057 | Evening/MoU remains lightweight CRUD, not contract management | ACCEPTED |
 | PD-058 | Laravel 13 official Vue Starter Kit + Vue 3 + TypeScript + Inertia 3 + Tailwind CSS 4 + shadcn-vue is the frozen frontend stack | ACCEPTED |
-| PD-059 | Paid participant with rejected abstract remains participant; no automatic academic-rejection refund | ASSUMED_V1 |
+| PD-059 | Rejected abstract creates no presenter payment obligation. The user may continue as participant-only and pay through the participant path when permitted | ACCEPTED |
 | PD-060 | Participation packages are fixed choices but edition-configurable | ASSUMED_V1 |
 | PD-061 | Fee model is Package + optional simple Participant Category | ASSUMED_V1 |
 | PD-062 | Abstract reviewer count defaults to 1 and remains configurable | ASSUMED_V1 |
@@ -83,6 +83,16 @@ Statuses:
 | PD-068 | Proceedings may use Publication Acceptance; Selected Journal uses Selection/Handoff until journal acceptance | ASSUMED_V1 |
 | PD-069 | Admin/backoffice adopts shadcn-admin-like interaction language implemented with shadcn-vue; not the React template architecture | ACCEPTED |
 | PD-070 | Public/participant frontend may be developed in parallel using typed mock scenarios without changing domain rules | ACCEPTED |
+| PD-071 | LeConfe is a mature-platform benchmark only; no fork, runtime integration, or roadmap replacement is authorized | ACCEPTED |
+| PD-072 | Payment destinations/bank accounts are Edition-configurable; package may use the Edition default or an explicit destination | ACCEPTED |
+| PD-073 | Payment obligation snapshots amount, currency, package context, and participant-visible destination details | ACCEPTED |
+| PD-074 | Account number on participant payment instruction supports one-action copy UX | ACCEPTED |
+| PD-075 | Operational workflow windows/deadlines are configurable separately from public Important Dates | ACCEPTED |
+| PD-076 | V1 CMS supports bounded localized custom pages and configurable navigation without a generic plugin/page-builder engine | ACCEPTED |
+| PD-077 | Final Approved Manuscript is the publication-authoritative file after revision/Final ACC; newest upload alone is never sufficient | ACCEPTED |
+| PD-078 | ICHES supports single and bulk OJS production bundles derived from immutable publication snapshots and readiness guards | ACCEPTED |
+| PD-079 | OJS/publisher is the system of record for copyediting, final publication, DOI and Crossref operations; ICHES may record downstream identifiers/results | ACCEPTED |
+| PD-080 | Public SEO/sitemap/discoverability is an ICHES responsibility, but scholarly Google Scholar publication indexing remains a downstream publication concern when OJS hosts the final article | ACCEPTED |
 
 ## META-001 — Scholarly Metadata Decisions
 
@@ -107,10 +117,14 @@ Statuses:
 | META-017 | Post-finalization correction creates a superseding snapshot/version with audit | ACCEPTED |
 | META-018 | External identifiers use generic scheme/value relationships and never become internal primary keys | ACCEPTED |
 | META-019 | OJS adapter is destination-profile/version aware, not one universal XML assumption | ACCEPTED |
-| META-020 | Crossref proceedings adapter consumes Edition/proceedings + paper snapshot metadata | ACCEPTED |
-| META-021 | General production readiness and Crossref deposit readiness are separate gates | ACCEPTED |
+| META-020 | Direct Crossref proceedings deposit is not an accelerated-V1 ICHES responsibility; OJS/publisher owns DOI/Crossref publication operations | ACCEPTED |
+| META-021 | General production readiness and OJS handoff readiness are explicit gates; downstream publisher-specific deposit readiness is outside accelerated V1 | ACCEPTED |
 | META-022 | Metadata readiness vocabulary is READY / WARNING / BLOCKED | ACCEPTED |
 | META-023 | ROR-backed affiliation uses the institution/organization as canonical affiliation identity; faculty/department/study program is optional subdivision metadata only | ACCEPTED |
+| META-024 | Final Approved Manuscript must be explicitly identified by the finalized publication snapshot after Final ACC | ACCEPTED |
+| META-025 | OJS production export is generated from canonical immutable metadata; target transformation never rewrites canonical data | ACCEPTED |
+| META-026 | Production bundle may include metadata, final manuscript, approved supplementary files and manifest, but excludes confidential review/internal notes | ACCEPTED |
+| META-027 | Downstream DOI/OJS publication IDs/URLs may be recorded as external identifiers after handoff/publication | ACCEPTED |
 
 ## ARCH-001 — Stack & ERD Decisions
 

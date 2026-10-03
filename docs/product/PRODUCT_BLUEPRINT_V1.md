@@ -6,6 +6,8 @@
 **Updated:** 2026-09-30  
 **Implementation authorization:** NOT YET — corrective re-baseline, metadata contract, stack/ERD freeze, and development plan remain required.
 
+> **Pre-Phase 02 supersession notice (2026-10-03):** Payment-before-abstract and related publication-boundary statements in this historical working blueprint are superseded by `docs/governance/PRE_PHASE02_PRODUCT_REBASELINE.md` and the current Decision Register. Non-conflicting blueprint content remains authoritative.
+
 ## 1. Purpose
 
 This blueprint converts Product Discovery into an implementation-oriented product contract for the first operational ICHES release.

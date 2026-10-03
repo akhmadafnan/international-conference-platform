@@ -1,7 +1,7 @@
 # ICHES Conference & Event Experience Platform — Canonical Context
 
 **ID:** ICHES-CANONICAL-001  
-**Version:** 1.3-meta-audit
+**Version:** 1.4-pre-phase02-rebaseline
 **Status:** ACTIVE  
 **Updated:** 2026-10-03
 
@@ -13,18 +13,20 @@ For current session/gate state:
 1. `docs/ai-context/CURRENT_STATE.md`
 
 For current product behavior:
-1. `docs/product/PRODUCT_BLUEPRINT_V1.md`
+1. `docs/governance/PRE_PHASE02_PRODUCT_REBASELINE.md` — supersedes conflicting older payment/publication/CMS statements
 2. `docs/governance/DECISION_REGISTER.md`
-3. `docs/governance/ACCELERATED_V1_DOMAIN_DECISIONS.md`
-4. `docs/requirements/v1/` authoritative V1 baselines
-5. `docs/metadata/SUBMISSION_SCHOLARLY_METADATA_CONTRACT_V1.md`
-6. current NFR baselines where they do not conflict with later accepted V1 decisions
+3. `docs/product/PRODUCT_BLUEPRINT_V1.md` where not superseded by the Pre-Phase 02 rebaseline
+4. `docs/governance/ACCELERATED_V1_DOMAIN_DECISIONS.md` where not superseded by later accepted decisions
+5. `docs/requirements/v1/` authoritative V1 baselines where not superseded
+6. `docs/metadata/SUBMISSION_SCHOLARLY_METADATA_CONTRACT_V1.md` plus later accepted metadata amendments
+7. current NFR baselines where they do not conflict with later accepted V1 decisions
 
 For implementation:
 1. `docs/architecture/ARCHITECTURE_DECISIONS_V1.md`
 2. `docs/architecture/IMPLEMENTATION_CONVENTIONS_V1.md`
-3. `docs/architecture/ERD_V1.md`
-4. accepted architecture decisions in `docs/governance/DECISION_REGISTER.md`
+3. `docs/architecture/PRE_PHASE02_ARCHITECTURE_AMENDMENT.md` — supersedes only conflicting portions of ERD v1
+4. `docs/architecture/ERD_V1.md` where not superseded by the amendment
+5. accepted architecture decisions in `docs/governance/DECISION_REGISTER.md`
 
 The root-level `docs/requirements/REQUIREMENT_REGISTER.md` and superseded Phase 0 requirement documents are provenance/history, not current V1 implementation authority when they conflict with the hierarchy above.
 
@@ -38,16 +40,17 @@ Not an ERP, OJS replacement, hotel/travel engine, contract lifecycle engine, or 
 
 ## Accelerated V1 lifecycle
 
-Register
-→ Select Package
-→ Pay
-→ Finance Verify
-→ Registration Confirmed
-→ Event Pass
+Register / establish Edition participation intent
+→ Select intended Package
 → Submit Abstract
 → Administrative Screening
 → Single-anonymous Review
 → Academic Decision
+→ ACCEPT
+→ Payment Obligation
+→ Finance Verify
+→ Registration Confirmed
+→ Event Pass
 → Presentation LoA
 → Full Article
 → Confirm Presenter
@@ -57,19 +60,32 @@ Register
 → Presentation Assessment
 → Revision / No Revision
 → Final ACC
-→ Ready for Production
-→ Proceedings / Selected Journal
+→ Finalize for Production
+→ OJS/Publication Handoff
 → Certificates / Awards
+
+Participant-only path:
+Register
+→ Select Package
+→ Payment Obligation
+→ Finance Verify
+→ Registration Confirmed
+→ Event Pass
 
 ## Critical changed rules
 
-- Payment happens before the academic submission path.
-- Rejected abstract remains participant.
-- Academic rejection has no automatic refund.
+- Presenter/author payment happens only after an authorized abstract ACCEPT decision.
+- Participant-only users may pay without entering the academic submission path.
+- Rejected abstract creates no presenter payment obligation; participant-only continuation remains possible when permitted.
+- Payment verification confirms participation and Event Pass entitlement; it does not create academic acceptance or LoA.
+- Payment destination and amount are Edition/package configurable and snapshotted when the obligation is created.
 - Abstract review defaults to one single-anonymous reviewer.
 - One normal abstract revision cycle.
 - Accelerated V1 has no separate double-anonymous publication-review engine.
 - Presentation assessment drives revision/no-revision before Final ACC.
+- Final Approved Manuscript is explicitly identified after revision/Final ACC.
+- OJS production handoff supports single and bulk bundles from immutable publication snapshots.
+- ICHES does not register DOI or deposit Crossref metadata in accelerated V1; OJS/publisher owns final publication operations.
 - Proceedings is default publication destination.
 - Selected Journal is an authorized override and is not journal acceptance.
 
@@ -88,7 +104,7 @@ Register
 - manuscript files are immutable/versioned;
 - Finalize for Production creates immutable publication snapshot;
 - external identifiers never become internal primary keys;
-- OJS and Crossref consume adapter-specific projections from the canonical snapshot;
+- OJS-oriented export/handoff consumes an adapter-specific projection from the canonical snapshot; direct Crossref/DOI publication operations are downstream in accelerated V1;
 - readiness uses READY / WARNING / BLOCKED.
 
 ## Preserved core rules
@@ -149,6 +165,8 @@ Phase 01 Foundation is CLOSED_GREEN and merged into `develop`.
 META-AUDIT-001 is CLOSED_GREEN.
 
 Current:
-`PRODUCT OWNER DISCUSSION / REVIEW — HOLD BEFORE PHASE 02`
+`PRE-PHASE02 PRODUCT/ARCHITECTURE REBASELINE — IN PROGRESS`
 
-Phase 02 remains LOCKED until the Product Owner has reviewed the workflow/documentation model and frontend/flyer direction and gives an explicit new GO.
+Phase 02 remains LOCKED until the accepted payment/publication/CMS corrections are reconciled in canonical documentation, the documentation-only gate is verified, and the Product Owner gives an explicit Phase 02 GO.
+
+Frontend visual-reference selection remains a later bounded workstream and is not a blocker for closing this product/architecture rebaseline.

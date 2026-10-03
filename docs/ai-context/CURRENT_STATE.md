@@ -1,6 +1,6 @@
 # Current Project State
 
-**State ID:** ICHES-STATE-20261003-DEV01-UI
+**State ID:** ICHES-STATE-20261003-DEV01-STORAGE
 **Status:** DEVELOPMENT — PHASE 01 FOUNDATION IN PROGRESS  
 **Implementation authorization:** GRANTED  
 **Repository:** akhmadafnan/international-conference-platform  
@@ -34,6 +34,7 @@
 - Vue I18n id/en/ar application shell ✓
 - Arabic RTL application-shell behavior ✓
 - ICHES design-token and appearance foundation ✓
+- Private/public filesystem foundation ✓
 
 ## Verified implementation checkpoint
 
@@ -41,11 +42,9 @@ Latest verified branch:
 - `phase/01-foundation`
 
 Latest synchronized remote checkpoint:
-- `d0eead6` — edition-scoped authorization and audit foundation
-- `dff27ac` — bootstrap cache runtime-artifact hygiene
-- `c257985` — UTC timezone foundation
-- `a1021c6` — compiled framework view cleanup
-- `ce1063e` — UUIDv7 identity foundation
+- `27ef26f` — private/public filesystem foundation
+- `9f6c6a6` — ICHES design-token and appearance foundation
+- `1588047` — multilingual and RTL application shell
 
 Verified implementation state:
 - Laravel 13 + Vue/Inertia application bootstrap GREEN;
@@ -59,11 +58,17 @@ Verified implementation state:
 - Spatie Activitylog 4.12 installed with UUID-compatible subject/causer morphs;
 - edition-scoped authorization behavior tested;
 - Activity Log UUID causer/subject behavior tested;
-- latest engineering regression reported GREEN after migration static-analysis normalization;
+- private/public filesystem boundary established with `private` as the canonical default disk;
+- protected application files resolve under `storage/app/private` without direct public URL/serve exposure;
+- public files remain isolated under `storage/app/public` and are exposed only through `public/storage`;
+- Laravel `local` compatibility disk remains private;
+- storage foundation focused regression GREEN: 4 passed / 16 assertions;
+- full regression GREEN: 61 passed / 215 assertions;
 - Pint GREEN;
-- PHPStan GREEN;
+- PHPStan GREEN with 0 errors;
 - Git diff check GREEN;
-- worktree synchronized with `origin/phase/01-foundation`.
+- operational `storage:link` verification GREEN;
+- worktree synchronized with `origin/phase/01-foundation` at `27ef26f`.
 
 Local environment baseline:
 - PHP 8.3.33 for current development;
@@ -157,7 +162,8 @@ GREEN implementation baseline now includes:
 - global superadmin authorization enforcement;
 - Vue I18n `id/en/ar`;
 - Arabic RTL application shell;
-- ICHES design-token and appearance foundation.
+- ICHES design-token and appearance foundation;
+- private/public filesystem foundation.
 
 ICHES appearance baseline:
 - first visit defaults to Light mode;
@@ -171,13 +177,15 @@ ICHES appearance baseline:
 - Browser UAT is GREEN for Light, Dark, responsive shell, locale switching, and Arabic RTL.
 
 Remaining Phase 01 Foundation scope:
-- private/public filesystem foundation;
 - foundational seeders;
 - final Phase 01 clean-migration and regression gate.
 
 Foundational seeders will include trusted idempotent bootstrap provisioning for the initial global superadmin. Public registration must never assign `is_super_admin`, and production bootstrap credentials must not be hardcoded in Git.
 
+Filesystem foundation gate:
+`F01-STORAGE-001 — CLOSED_GREEN`
+
 Current next gate:
-`F01-STORAGE-001 — Private/Public Filesystem Foundation`
+`F01-SEED-001 — Foundational Seeders`
 
 Do not begin Phase 02 business features until the remaining Phase 01 exit gate is GREEN.

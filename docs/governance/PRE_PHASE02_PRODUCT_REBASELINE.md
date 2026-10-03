@@ -88,6 +88,48 @@ Payment proof remains versioned and auditable.
 
 Invoice is optional for V1. Receipt/payment confirmation is supported as an operational document where enabled.
 
+### 3.1 Free, paid, and complimentary participation
+
+Participation pricing must not assume that every package requires payment.
+
+Each Participation Package has an explicit billing mode:
+- `FREE` — no payment obligation is created;
+- `PAID` — payment obligation is required using the configured amount/currency/destination.
+
+For a `FREE` package:
+- configured amount is zero;
+- payment destination is not required;
+- participant UI clearly shows that participation is free;
+- bank-transfer instructions are hidden;
+- no payment proof is requested;
+- no Finance verification is required merely to satisfy the fee requirement;
+- no synthetic/fake Payment row is created to represent "Rp0 paid".
+
+For the author/presenter path, billing mode is evaluated after authorized abstract ACCEPT:
+- accepted + FREE package → no payment obligation; registration may proceed to confirmation once non-financial prerequisites are satisfied;
+- accepted + PAID package → payment obligation → proof → Finance verification → confirmation.
+
+For participant-only registration:
+- FREE package → registration may be confirmed without payment once non-financial prerequisites are satisfied;
+- PAID package → normal payment flow.
+
+A normally PAID registration may also receive an explicit admin-authorized fee exemption/complimentary decision for legitimate cases such as invited guest, keynote/speaker, committee/staff, sponsorship, institutional waiver, or other approved reason.
+
+Fee exemption is an auditable business fact, not a price edit and not a fake verified payment.
+
+Rules:
+- exemption requires an authorized actor, reason, and timestamp;
+- an active exemption removes the payment requirement for that registration;
+- an exemption does not create a Payment row;
+- it must not retroactively erase an already verified payment;
+- revocation/correction must preserve audit history;
+- package configuration changes never silently rewrite already resolved financial history.
+
+The participant dashboard should distinguish clearly:
+- `GRATIS / FREE`;
+- `DIBEBASKAN / COMPLIMENTARY` when a paid package is explicitly waived;
+- payable amount when payment is required.
+
 ## 4. Operational configuration learned from mature platforms
 
 ICHES should support bounded, Edition-configurable operational windows rather than requiring developer edits for ordinary conference dates.

@@ -503,7 +503,6 @@ test('registration intent rejects package from another edition', function () {
     ))->toThrow(DomainException::class);
 });
 
-
 test('operator actions enforce server side capabilities', function () {
     $edition = makePhase02Edition();
     $normalUser = User::factory()->create();

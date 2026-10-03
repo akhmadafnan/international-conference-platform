@@ -11,6 +11,16 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
+/**
+ * @property string $id
+ * @property string $membership_id
+ * @property string $package_id
+ * @property string $package_name_snapshot
+ * @property BillingMode $billing_mode
+ * @property string $fee_amount
+ * @property string $currency_code
+ * @property RegistrationStatus $status
+ */
 class Registration extends Model
 {
     use HasUuids;
@@ -40,31 +50,49 @@ class Registration extends Model
         ];
     }
 
+    /**
+     * @return BelongsTo<EditionMembership, $this>
+     */
     public function membership(): BelongsTo
     {
         return $this->belongsTo(EditionMembership::class, 'membership_id');
     }
 
+    /**
+     * @return BelongsTo<ParticipationPackage, $this>
+     */
     public function package(): BelongsTo
     {
         return $this->belongsTo(ParticipationPackage::class, 'package_id');
     }
 
+    /**
+     * @return HasMany<RegistrationActivity, $this>
+     */
     public function activities(): HasMany
     {
         return $this->hasMany(RegistrationActivity::class);
     }
 
+    /**
+     * @return HasMany<Payment, $this>
+     */
     public function payments(): HasMany
     {
         return $this->hasMany(Payment::class);
     }
 
+    /**
+     * @return HasMany<RegistrationFeeExemption, $this>
+     */
     public function feeExemptions(): HasMany
     {
         return $this->hasMany(RegistrationFeeExemption::class);
     }
 
+    /**
+     * @return HasOne<RegistrationFeeExemption, $this>
+     */
     public function activeFeeExemption(): HasOne
     {
         return $this->hasOne(RegistrationFeeExemption::class)

@@ -26,11 +26,17 @@ class RegistrationActivity extends Model
         ];
     }
 
+    /**
+     * @return BelongsTo<Registration, $this>
+     */
     public function registration(): BelongsTo
     {
         return $this->belongsTo(Registration::class);
     }
 
+    /**
+     * @return BelongsTo<Activity, $this>
+     */
     public function activity(): BelongsTo
     {
         return $this->belongsTo(Activity::class);

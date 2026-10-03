@@ -8,6 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
+/**
+ * @property string $id
+ * @property string $edition_id
+ * @property string $code
+ * @property array<string, string> $name_i18n
+ * @property BillingMode $billing_mode
+ * @property string $price
+ * @property string $currency_code
+ * @property string|null $payment_destination_id
+ * @property bool $active
+ */
 class ParticipationPackage extends Model
 {
     use HasUuids;
@@ -37,16 +48,25 @@ class ParticipationPackage extends Model
         ];
     }
 
+    /**
+     * @return BelongsTo<ConferenceEdition, $this>
+     */
     public function edition(): BelongsTo
     {
         return $this->belongsTo(ConferenceEdition::class, 'edition_id');
     }
 
+    /**
+     * @return BelongsTo<PaymentDestination, $this>
+     */
     public function paymentDestination(): BelongsTo
     {
         return $this->belongsTo(PaymentDestination::class, 'payment_destination_id');
     }
 
+    /**
+     * @return HasMany<PackageActivityEntitlement, $this>
+     */
     public function entitlements(): HasMany
     {
         return $this->hasMany(PackageActivityEntitlement::class, 'package_id');

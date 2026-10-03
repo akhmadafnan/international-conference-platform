@@ -8,8 +8,8 @@ use App\Http\Requests\Payment\RequestPaymentCorrectionRequest;
 use App\Models\Payment;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
-use LogicException;
 use Inertia\Inertia;
+use LogicException;
 
 final class RequestPaymentCorrectionController extends Controller
 {

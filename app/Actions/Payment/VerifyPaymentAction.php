@@ -8,6 +8,7 @@ use App\Models\Payment;
 use App\Models\User;
 use DomainException;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 
 class VerifyPaymentAction
 {
@@ -15,6 +16,8 @@ class VerifyPaymentAction
         Payment $payment,
         User $actor,
     ): Payment {
+        Gate::forUser($actor)->authorize('payment.verify');
+
         return DB::transaction(function () use ($payment, $actor): Payment {
             $payment = Payment::query()
                 ->with('registration')

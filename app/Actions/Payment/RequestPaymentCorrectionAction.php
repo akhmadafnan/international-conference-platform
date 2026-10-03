@@ -7,6 +7,7 @@ use App\Models\Payment;
 use App\Models\User;
 use DomainException;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 
 class RequestPaymentCorrectionAction
 {
@@ -15,6 +16,8 @@ class RequestPaymentCorrectionAction
         User $actor,
         string $reason,
     ): Payment {
+        Gate::forUser($actor)->authorize('payment.verify');
+
         return DB::transaction(function () use ($payment, $actor, $reason): Payment {
             $payment = Payment::query()
                 ->lockForUpdate()

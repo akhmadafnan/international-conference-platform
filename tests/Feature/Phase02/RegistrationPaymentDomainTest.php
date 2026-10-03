@@ -19,6 +19,7 @@ use App\Models\ParticipationPackage;
 use App\Models\PaymentDestination;
 use App\Models\StoredFile;
 use App\Models\User;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Support\Str;
 
 function makePhase02Edition(): ConferenceEdition
@@ -500,4 +501,23 @@ test('registration intent rejects package from another edition', function () {
         $editionA,
         $package,
     ))->toThrow(DomainException::class);
+});
+
+
+test('operator actions enforce server side capabilities', function () {
+    $edition = makePhase02Edition();
+    $normalUser = User::factory()->create();
+
+    expect(fn () => app(ConfigurePaymentDestinationAction::class)->handle(
+        $edition,
+        $normalUser,
+        [
+            'code' => 'BSI',
+            'label' => 'Rekening ICHES',
+            'bank_name' => 'Bank Syariah Indonesia',
+            'account_number' => '7123456789',
+            'account_holder' => 'Panitia ICHES 2027',
+            'is_default' => true,
+        ],
+    ))->toThrow(AuthorizationException::class);
 });

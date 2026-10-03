@@ -9,6 +9,7 @@ use App\Models\PaymentDestination;
 use App\Models\User;
 use DomainException;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 
 class ConfigureParticipationPackageAction
 {
@@ -31,6 +32,8 @@ class ConfigureParticipationPackageAction
         array $data,
         ?ParticipationPackage $package = null,
     ): ParticipationPackage {
+        Gate::forUser($actor)->authorize('registration.configure');
+
         return DB::transaction(function () use ($edition, $actor, $data, $package): ParticipationPackage {
             if ($package !== null && $package->edition_id !== $edition->id) {
                 throw new DomainException(

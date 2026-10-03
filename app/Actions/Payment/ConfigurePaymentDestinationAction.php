@@ -7,6 +7,7 @@ use App\Models\PaymentDestination;
 use App\Models\User;
 use DomainException;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 
 class ConfigurePaymentDestinationAction
 {
@@ -29,6 +30,8 @@ class ConfigurePaymentDestinationAction
         array $data,
         ?PaymentDestination $destination = null,
     ): PaymentDestination {
+        Gate::forUser($actor)->authorize('payment.configure');
+
         return DB::transaction(function () use ($edition, $actor, $data, $destination): PaymentDestination {
             if ($destination !== null && $destination->edition_id !== $edition->id) {
                 throw new DomainException(

@@ -9,6 +9,7 @@ use App\Models\RegistrationFeeExemption;
 use App\Models\User;
 use DomainException;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 
 class GrantRegistrationFeeExemptionAction
 {
@@ -18,6 +19,8 @@ class GrantRegistrationFeeExemptionAction
         string $reasonText,
         ?string $reasonCode = null,
     ): RegistrationFeeExemption {
+        Gate::forUser($actor)->authorize('registration.fee_exempt');
+
         return DB::transaction(function () use ($registration, $actor, $reasonText, $reasonCode): RegistrationFeeExemption {
             $registration = Registration::query()
                 ->with('activeFeeExemption')

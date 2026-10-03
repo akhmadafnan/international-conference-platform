@@ -1,7 +1,7 @@
 # Two-Week Development Plan — ICHES V1
 
 **Document ID:** ICHES-PLAN-001
-**Status:** ACTIVE — DAY 1 / PHASE 01 FOUNDATION
+**Status:** DAY 1 / PHASE 01 FOUNDATION CLOSED_GREEN — READY FOR INTEGRATION
 **Duration:** 10 working days / approximately 2 calendar weeks
 **Updated:** 2026-10-02
 
@@ -80,19 +80,33 @@ Completed:
 - focused authorization/audit smoke tests;
 - Pint/PHPStan/regression gates.
 
-Remaining before Day 1 / Phase 01 closure:
-- concrete domain Policies/Gates as real domain models are introduced;
-- private/public filesystem foundation;
-- foundational seeders.
+Phase 01 closure result:
+- private/public filesystem foundation GREEN;
+- foundational permission and trusted superadmin seeders GREEN;
+- clean MySQL migration from zero GREEN;
+- clean foundational seed from zero GREEN;
+- edition-scoped authorization smoke coverage GREEN;
+- full CI regression GREEN: 67 passed / 250 assertions;
+- frontend lint/format and TypeScript checks GREEN;
+- Pint GREEN;
+- PHPStan GREEN with 0 errors;
+- production frontend build GREEN;
+- final worktree hygiene GREEN.
+
+Concrete domain Policies/Gates remain intentionally deferred to the phases where their real domain models and business state transitions are introduced. They are not a Phase 01 blocker.
 
 Exit gate:
-- app boots;
-- auth works;
-- MySQL migrations GREEN;
-- edition-scoped authority smoke test GREEN;
-- id/en/ar + RTL shell visible;
-- test/Pint/static-analysis baseline runs;
-- worktree clean after checkpoint.
+- app boots ✓
+- auth works ✓
+- MySQL migrations GREEN ✓
+- edition-scoped authority smoke test GREEN ✓
+- id/en/ar + RTL shell visible ✓
+- test/Pint/static-analysis baseline GREEN ✓
+- clean migration + seed from zero GREEN ✓
+- production build GREEN ✓
+- worktree clean after checkpoint ✓
+
+**Phase 01 result: CLOSED_GREEN.**
 
 ### Day 2 — Conference Configuration + Registration + Payment
 

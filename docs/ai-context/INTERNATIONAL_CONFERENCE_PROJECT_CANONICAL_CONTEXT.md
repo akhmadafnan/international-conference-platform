@@ -167,8 +167,12 @@ Phase 01 Foundation is CLOSED_GREEN and merged into `develop`.
 META-AUDIT-001 is CLOSED_GREEN.
 
 Current:
-`PRE-PHASE02 PRODUCT/ARCHITECTURE REBASELINE — IN PROGRESS`
+`PHASE 02 — REGISTRATION + PAYMENT — IN PROGRESS`
 
-Phase 02 remains LOCKED until the accepted payment/publication/CMS corrections are reconciled in canonical documentation, the documentation-only gate is verified, and the Product Owner gives an explicit Phase 02 GO.
+The Product Owner gave explicit Phase 02 GO on 2026-10-03.
 
-Frontend visual-reference selection remains a later bounded workstream and is not a blocker for closing this product/architecture rebaseline.
+Current bounded implementation starts with the Registration + Payment domain backbone: Conference/Edition support required by the domain, package/activity entitlements, FREE/PAID/complimentary fee resolution, payment destinations, immutable payment snapshots, versioned payment proof, correction, and Finance verification.
+
+Phase 02 is not CLOSED_GREEN until required focused tests, related regression, Pint, PHPStan/static analysis, migration verification, and any relevant UAT have actual GREEN evidence.
+
+Frontend visual-reference selection remains a later bounded workstream; Phase 02 must not broaden into a public visual redesign.

@@ -1,8 +1,8 @@
 # Current Project State
 
-**State ID:** ICHES-STATE-20261003-PRE02-REBASELINE-CLOSED
-**Status:** PRE-PHASE02-REBASELINE — CLOSED_GREEN / AWAITING EXPLICIT PHASE 02 GO
-**Implementation authorization:** PHASE 01 COMPLETE; PHASE 02 NOT AUTHORIZED
+**State ID:** ICHES-STATE-20261003-PHASE02-IN-PROGRESS
+**Status:** PHASE 02 — REGISTRATION + PAYMENT — IN_PROGRESS
+**Implementation authorization:** PHASE 01 COMPLETE; PHASE 02 AUTHORIZED / IN PROGRESS
 **Repository:** akhmadafnan/international-conference-platform
 **Integration branch:** develop
 
@@ -39,7 +39,7 @@
 ## Verified implementation checkpoint
 
 Latest integrated implementation baseline:
-- `develop @ 01e5482` — Phase 01 foundation plus META-AUDIT-001 and Pre-Phase 02 rebaseline
+- `develop @ 59c0e3e` — Phase 01 foundation + META-AUDIT-001 + accepted Pre-Phase 02 rebaseline including FREE/PAID/complimentary policy
 
 Phase 01 source checkpoint:
 - `d269534` — final Phase 01 branch closeout
@@ -175,38 +175,53 @@ PRODUCT / REQUIREMENTS / META / ARCH ✓
 → META-AUDIT-001 ✓ CLOSED_GREEN
 → PRODUCT OWNER DISCUSSION / LECONFE BENCHMARK ✓
 → PRE-PHASE02 PRODUCT + ARCHITECTURE REBASELINE ✓ CLOSED_GREEN
-→ EXPLICIT PRODUCT OWNER PHASE 02 GO ← CURRENT REQUIRED ACTION
-→ bounded development gates
+→ EXPLICIT PRODUCT OWNER PHASE 02 GO ✓
+→ PHASE 02 — REGISTRATION + PAYMENT ← IN PROGRESS
+→ bounded Phase 02 gates
+→ Phase 02 exit / integration
 → V1 RELEASE CANDIDATE
 
 ## Current exact action
 
-Pre-Phase 02 product/architecture rebaseline is CLOSED_GREEN at documentation level.
+PHASE 02 — Registration + Payment is AUTHORIZED and IN PROGRESS.
 
-Accepted corrections now include:
-- LeConfe retained only as a mature-platform benchmark; no fork/integration/roadmap replacement;
-- presenter/author payment obligation occurs after authorized abstract ACCEPT, not before abstract submission;
-- participant-only payment remains available without academic submission;
-- configurable Edition/package payment destinations with copyable account number UX;
-- payment amount/package/destination snapshot at obligation creation;
-- explicit FREE/PAID package billing mode;
-- FREE participation skips payment/proof/Finance verification without creating a synthetic payment;
-- authorized audited fee exemption/complimentary path for normally PAID registrations;
-- bounded operational workflow windows;
-- bounded localized custom pages/navigation without a generic plugin/page-builder engine;
-- current snapshot-based abstract review traceability retained; no generic multi-round engine added to accelerated V1;
-- OJS/publisher remains downstream system of record for copyediting, publication, DOI and Crossref operations;
-- ICHES retains OJS-ready canonical metadata and immutable publication snapshot;
-- Final Approved Manuscript is explicitly selected after revision/Final ACC;
-- single and bulk OJS Production Bundles are required from READY/WARNING publication records and exclude confidential review material;
-- downstream DOI/OJS/publication results may be recorded as external identifiers;
-- public sitemap/SEO/discoverability remains an ICHES website concern, distinct from scholarly publication indexing.
+Branch:
+- `phase/02-registration-payment`
+- based on `develop @ 59c0e3e`
 
-Authoritative corrective documents:
-- `docs/governance/PRE_PHASE02_PRODUCT_REBASELINE.md`
-- `docs/architecture/PRE_PHASE02_ARCHITECTURE_AMENDMENT.md`
+Implemented domain checkpoint so far:
+- Phase 02 relational backbone for Conference Series / Edition, Venue, Edition Membership, Activities, Participation Packages, Package Activity Entitlements, Payment Destinations, Workflow Windows, Number Sequences, Registrations, Registration Activities, Payments, Payment Proofs, Fee Exemptions, Refund records, and Stored Files;
+- first-class domain models use UUIDv7;
+- explicit FREE / PAID package billing mode;
+- FREE fee resolution confirms registration without creating a synthetic Payment;
+- normally PAID registration may receive an audited complimentary/fee exemption before submitted financial evidence exists;
+- PAID obligation snapshots package, expected amount, currency, and participant-visible payment destination;
+- package-specific payment destination falls back to the active Edition default;
+- payment proof is immutable/versioned and corrected proof supersedes rather than overwrites prior evidence;
+- Finance verification is a separate consequential action and confirms Registration without changing academic state;
+- package/activity entitlements are snapshotted into Registration Activities;
+- human Registration code uses an Edition-scoped locked Number Sequence;
+- focused Phase 02 regression specification has been added.
 
-No application code was changed by this rebaseline.
+Latest implementation-code checkpoint:
+- `dbc0df0` — static-analysis input-type hardening after F02-A1 through F02-A5.
 
-Phase 02 implementation remains LOCKED. The next required action is an explicit Product Owner Phase 02 GO. After GO, create the bounded Phase 02 implementation branch and implement Registration + Payment against the corrected contracts.
+Verified evidence currently available:
+- PHP parse syntax for the reconstructed Phase 02 PHP scope: GREEN via `php -l`.
+- branch diff against `develop`: bounded to Phase 02 backend/domain/tests plus Phase 02 governance state.
+
+Required gates still UNVERIFIED in the current execution environment:
+- Laravel migration execution from a clean database;
+- focused Pest tests;
+- related regression;
+- Pint;
+- PHPStan/Larastan;
+- full Phase 02 exit regression;
+- browser/UAT for any later user-visible Phase 02 surface.
+
+Do not call Phase 02 GREEN or merge it into `develop` until those required gates have actual evidence.
+
+Next bounded action:
+- continue F02-B with authorization + HTTP/application interfaces and protected payment-proof file ingestion, while keeping frontend visual redesign deferred;
+- execute the first available Laravel quality/test gate before integration.
 

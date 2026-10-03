@@ -44,7 +44,22 @@ jobs:
 
       - name: Pint scoped check
         run: |
-          vendor/bin/pint --test \
+          vendor/bin/pint \
+            app/Actions/Payment \
+            app/Actions/Registration \
+            app/Enums \
+            app/Models \
+            database/migrations/2026_10_03_120000_create_phase02_registration_payment_tables.php \
+            tests/Feature/Phase02
+          git diff --check
+          git diff -- \
+            app/Actions/Payment \
+            app/Actions/Registration \
+            app/Enums \
+            app/Models \
+            database/migrations/2026_10_03_120000_create_phase02_registration_payment_tables.php \
+            tests/Feature/Phase02
+          git diff --quiet -- \
             app/Actions/Payment \
             app/Actions/Registration \
             app/Enums \

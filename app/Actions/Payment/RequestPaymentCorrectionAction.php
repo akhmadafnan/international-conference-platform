@@ -7,16 +7,29 @@ use App\Models\Payment;
 use App\Models\User;
 use DomainException;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Gate;
+use App\Support\Authorization\EditionScopedAuthorizer;
 
 class RequestPaymentCorrectionAction
 {
+    public function __construct(
+        private readonly EditionScopedAuthorizer $authorizer,
+    ) {}
+
     public function handle(
         Payment $payment,
         User $actor,
         string $reason,
     ): Payment {
-        Gate::forUser($actor)->authorize('payment.verify');
+        $targetRegistration = $payment->registration()->firstOrFail();
+        $editionId = $targetRegistration->membership()->value('edition_id');
+
+        if (! is_string($editionId)) {
+            throw new DomainException(
+                'Payment is not attached to a valid Conference Edition.',
+            );
+        }
+
+        $this->authorizer->authorize($actor, 'payment.verify', $editionId);
 
         return DB::transaction(function () use ($payment, $actor, $reason): Payment {
             $payment = Payment::query()

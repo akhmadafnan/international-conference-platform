@@ -9,10 +9,14 @@ use App\Models\PaymentDestination;
 use App\Models\User;
 use DomainException;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Gate;
+use App\Support\Authorization\EditionScopedAuthorizer;
 
 class ConfigureParticipationPackageAction
 {
+    public function __construct(
+        private readonly EditionScopedAuthorizer $authorizer,
+    ) {}
+
     /**
      * @param  array<string, mixed>  $data
      */
@@ -22,7 +26,7 @@ class ConfigureParticipationPackageAction
         array $data,
         ?ParticipationPackage $package = null,
     ): ParticipationPackage {
-        Gate::forUser($actor)->authorize('registration.configure');
+        $this->authorizer->authorize($actor, 'registration.configure', $edition->id);
 
         return DB::transaction(function () use ($edition, $actor, $data, $package): ParticipationPackage {
             if ($package !== null && $package->edition_id !== $edition->id) {

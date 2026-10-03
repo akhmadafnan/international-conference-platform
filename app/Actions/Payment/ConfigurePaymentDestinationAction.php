@@ -7,10 +7,14 @@ use App\Models\PaymentDestination;
 use App\Models\User;
 use DomainException;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Gate;
+use App\Support\Authorization\EditionScopedAuthorizer;
 
 class ConfigurePaymentDestinationAction
 {
+    public function __construct(
+        private readonly EditionScopedAuthorizer $authorizer,
+    ) {}
+
     /**
      * @param  array<string, mixed>  $data
      */
@@ -20,7 +24,7 @@ class ConfigurePaymentDestinationAction
         array $data,
         ?PaymentDestination $destination = null,
     ): PaymentDestination {
-        Gate::forUser($actor)->authorize('payment.configure');
+        $this->authorizer->authorize($actor, 'payment.configure', $edition->id);
 
         return DB::transaction(function () use ($edition, $actor, $data, $destination): PaymentDestination {
             if ($destination !== null && $destination->edition_id !== $edition->id) {

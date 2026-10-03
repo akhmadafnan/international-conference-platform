@@ -17,8 +17,11 @@ use App\Models\ConferenceSeries;
 use App\Models\PackageActivityEntitlement;
 use App\Models\ParticipationPackage;
 use App\Models\PaymentDestination;
+use App\Models\Permission;
+use App\Models\Role;
 use App\Models\StoredFile;
 use App\Models\User;
+use App\Support\Authorization\ActiveConferenceEditionContext;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Support\Str;
 
@@ -519,4 +522,65 @@ test('operator actions enforce server side capabilities', function () {
             'is_default' => true,
         ],
     ))->toThrow(AuthorizationException::class);
+});
+
+
+test('edition scoped operator cannot mutate another edition with permission from active edition', function () {
+    $editionA = makePhase02Edition();
+
+    $seriesB = ConferenceSeries::query()->create([
+        'code' => 'ICHES-B',
+        'name' => 'ICHES Secondary Edition Series',
+        'status' => 'ACTIVE',
+    ]);
+
+    $editionB = ConferenceEdition::query()->create([
+        'series_id' => $seriesB->id,
+        'edition_code' => 'ICHES28',
+        'year' => 2028,
+        'host_name' => 'Universitas Islam Syarifuddin Lumajang',
+        'mode' => 'OFFLINE',
+        'timezone' => 'Asia/Jakarta',
+        'starts_at' => now()->addYear(),
+        'ends_at' => now()->addYear()->addDay(),
+        'lifecycle_status' => 'DRAFT',
+    ]);
+
+    $operator = User::factory()->create();
+
+    Permission::query()->create([
+        'name' => 'payment.configure',
+        'guard_name' => 'web',
+    ]);
+
+    setPermissionsTeamId($editionA->id);
+
+    $role = Role::query()->create([
+        'name' => 'conference_admin',
+        'guard_name' => 'web',
+    ]);
+
+    $role->givePermissionTo('payment.configure');
+    $operator->assignRole($role);
+    $operator->unsetRelation('roles')->unsetRelation('permissions');
+
+    app(ActiveConferenceEditionContext::class)->activate($editionA->id);
+
+    try {
+        expect(fn () => app(ConfigurePaymentDestinationAction::class)->handle(
+            $editionB,
+            $operator,
+            [
+                'code' => 'BSI',
+                'label' => 'Rekening ICHES',
+                'bank_name' => 'Bank Syariah Indonesia',
+                'account_number' => '7123456789',
+                'account_holder' => 'Panitia ICHES 2028',
+                'is_default' => true,
+            ],
+        ))->toThrow(AuthorizationException::class);
+    } finally {
+        app(ActiveConferenceEditionContext::class)->clear();
+        setPermissionsTeamId(null);
+    }
 });

@@ -9,17 +9,29 @@ use App\Models\RegistrationFeeExemption;
 use App\Models\User;
 use DomainException;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Gate;
+use App\Support\Authorization\EditionScopedAuthorizer;
 
 class GrantRegistrationFeeExemptionAction
 {
+    public function __construct(
+        private readonly EditionScopedAuthorizer $authorizer,
+    ) {}
+
     public function handle(
         Registration $registration,
         User $actor,
         string $reasonText,
         ?string $reasonCode = null,
     ): RegistrationFeeExemption {
-        Gate::forUser($actor)->authorize('registration.fee_exempt');
+        $editionId = $registration->membership()->value('edition_id');
+
+        if (! is_string($editionId)) {
+            throw new DomainException(
+                'Registration is not attached to a valid Conference Edition.',
+            );
+        }
+
+        $this->authorizer->authorize($actor, 'registration.fee_exempt', $editionId);
 
         return DB::transaction(function () use ($registration, $actor, $reasonText, $reasonCode): RegistrationFeeExemption {
             $registration = Registration::query()

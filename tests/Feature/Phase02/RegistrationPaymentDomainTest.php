@@ -524,7 +524,6 @@ test('operator actions enforce server side capabilities', function () {
     ))->toThrow(AuthorizationException::class);
 });
 
-
 test('edition scoped operator cannot mutate another edition with permission from active edition', function () {
     $editionA = makePhase02Edition();
 

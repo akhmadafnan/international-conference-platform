@@ -6,9 +6,9 @@ use App\Enums\PaymentStatus;
 use App\Enums\RegistrationStatus;
 use App\Models\Payment;
 use App\Models\User;
+use App\Support\Authorization\EditionScopedAuthorizer;
 use DomainException;
 use Illuminate\Support\Facades\DB;
-use App\Support\Authorization\EditionScopedAuthorizer;
 
 class VerifyPaymentAction
 {

@@ -5,9 +5,9 @@ namespace App\Actions\Payment;
 use App\Models\ConferenceEdition;
 use App\Models\PaymentDestination;
 use App\Models\User;
+use App\Support\Authorization\EditionScopedAuthorizer;
 use DomainException;
 use Illuminate\Support\Facades\DB;
-use App\Support\Authorization\EditionScopedAuthorizer;
 
 class ConfigurePaymentDestinationAction
 {

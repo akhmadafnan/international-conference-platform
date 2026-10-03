@@ -7,9 +7,9 @@ use App\Enums\PaymentStatus;
 use App\Models\Registration;
 use App\Models\RegistrationFeeExemption;
 use App\Models\User;
+use App\Support\Authorization\EditionScopedAuthorizer;
 use DomainException;
 use Illuminate\Support\Facades\DB;
-use App\Support\Authorization\EditionScopedAuthorizer;
 
 class GrantRegistrationFeeExemptionAction
 {

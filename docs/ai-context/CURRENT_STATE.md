@@ -1,7 +1,7 @@
 # Current Project State
 
-**State ID:** ICHES-STATE-20261003-META-AUDIT-CLOSED
-**Status:** META-AUDIT-001 — CLOSED_GREEN / PRODUCT OWNER DISCUSSION HOLD
+**State ID:** ICHES-STATE-20261003-PRE02-REBASELINE-CLOSED
+**Status:** PRE-PHASE02-REBASELINE — CLOSED_GREEN / AWAITING EXPLICIT PHASE 02 GO
 **Implementation authorization:** PHASE 01 COMPLETE; PHASE 02 NOT AUTHORIZED
 **Repository:** akhmadafnan/international-conference-platform
 **Integration branch:** develop
@@ -39,7 +39,7 @@
 ## Verified implementation checkpoint
 
 Latest integrated implementation baseline:
-- `develop @ e8141e9` — Phase 01 engineering foundation merged through PR #57
+- `develop @ 5175c6b` — Phase 01 engineering foundation plus META-AUDIT-001 governance baseline
 
 Phase 01 source checkpoint:
 - `d269534` — final Phase 01 branch closeout
@@ -173,78 +173,37 @@ PRODUCT / REQUIREMENTS / META / ARCH ✓
 → PHASE 01 FOUNDATION ✓ CLOSED_GREEN
 → PR #57 / merge to develop ✓
 → META-AUDIT-001 ✓ CLOSED_GREEN
-→ PRODUCT OWNER DISCUSSION / REVIEW ← CURRENT
-→ Phase 02 only after explicit new authorization
+→ PRODUCT OWNER DISCUSSION / LECONFE BENCHMARK ✓
+→ PRE-PHASE02 PRODUCT + ARCHITECTURE REBASELINE ✓ CLOSED_GREEN
+→ EXPLICIT PRODUCT OWNER PHASE 02 GO ← CURRENT REQUIRED ACTION
 → bounded development gates
 → V1 RELEASE CANDIDATE
 
 ## Current exact action
 
-Phase 01 Foundation is CLOSED_GREEN and merged into `develop` through PR #57 at `e8141e9`. `META-AUDIT-001` is now CLOSED_GREEN. Application development remains intentionally paused for Product Owner discussion/review before any Phase 02 authorization.
+Pre-Phase 02 product/architecture rebaseline is CLOSED_GREEN at documentation level.
 
-GREEN implementation baseline now includes:
-- Laravel 13 + Vue/Inertia application foundation;
-- Authentication V1;
-- MySQL + UUIDv7 + UTC persistence;
-- edition-scoped authorization and audit infrastructure;
-- global superadmin authorization enforcement;
-- Vue I18n `id/en/ar`;
-- Arabic RTL application shell;
-- ICHES design-token and appearance foundation;
-- private/public filesystem foundation;
-- foundational permission vocabulary and trusted global-superadmin bootstrap seeders.
+Accepted corrections now include:
+- LeConfe retained only as a mature-platform benchmark; no fork/integration/roadmap replacement;
+- presenter/author payment obligation occurs after authorized abstract ACCEPT, not before abstract submission;
+- participant-only payment remains available without academic submission;
+- configurable Edition/package payment destinations with copyable account number UX;
+- payment amount/package/destination snapshot at obligation creation;
+- bounded operational workflow windows;
+- bounded localized custom pages/navigation without a generic plugin/page-builder engine;
+- current snapshot-based abstract review traceability retained; no generic multi-round engine added to accelerated V1;
+- OJS/publisher remains downstream system of record for copyediting, publication, DOI and Crossref operations;
+- ICHES retains OJS-ready canonical metadata and immutable publication snapshot;
+- Final Approved Manuscript is explicitly selected after revision/Final ACC;
+- single and bulk OJS Production Bundles are required from READY/WARNING publication records and exclude confidential review material;
+- downstream DOI/OJS/publication results may be recorded as external identifiers;
+- public sitemap/SEO/discoverability remains an ICHES website concern, distinct from scholarly publication indexing.
 
-ICHES appearance baseline:
-- first visit defaults to Light mode;
-- Light/Dark is selectable without authentication;
-- explicit appearance preference persists;
-- System appearance remains available as an optional user preference;
-- institutional green is the primary UI, interaction, and focus identity;
-- orange is reserved for secondary branding/accent use rather than primary interaction;
-- semantic design tokens support Light and Dark;
-- reduced-motion handling is part of the global UI foundation;
-- Browser UAT is GREEN for Light, Dark, responsive shell, locale switching, and Arabic RTL.
+Authoritative corrective documents:
+- `docs/governance/PRE_PHASE02_PRODUCT_REBASELINE.md`
+- `docs/architecture/PRE_PHASE02_ARCHITECTURE_AMENDMENT.md`
 
-Remaining Phase 01 implementation scope:
-- none.
+No application code was changed by this rebaseline.
 
-META-AUDIT-001 closeout result:
-- documentation source-of-truth hierarchy reconciled;
-- historical/provenance requirements explicitly separated from current V1 authority;
-- Super Admin authority contradiction reconciled with the implemented/frozen architecture;
-- Development Working Protocol V2 established as canonical;
-- Quality Gates V2 established as canonical;
-- Git/GitHub Workflow V2 established as canonical;
-- durable AI/new-chat handoff protocol and reusable bootstrap prompt established;
-- stale phase/gate markers cleaned without rewriting historical evidence;
-- application code remained unchanged during META-AUDIT.
+Phase 02 implementation remains LOCKED. The next required action is an explicit Product Owner Phase 02 GO. After GO, create the bounded Phase 02 implementation branch and implement Registration + Payment against the corrected contracts.
 
-Current next action:
-- Product Owner discussion/review;
-- revisit flyer/branding/frontend direction;
-- review any desired workflow refinements;
-- keep Phase 02 locked until explicit new authorization.
-
-Foundational seeders are now CLOSED_GREEN. The initial global superadmin bootstrap is trusted and idempotent, uses `users.is_super_admin`, is disabled by default, and receives credentials only through environment-backed configuration. Public registration cannot assign `is_super_admin`.
-
-Filesystem foundation gate:
-`F01-STORAGE-001 — CLOSED_GREEN`
-
-Foundational seeder gate:
-`F01-SEED-001 — CLOSED_GREEN`
-
-Phase 01 exit gate:
-`F01-EXIT-001 — CLOSED_GREEN`
-
-Integration gate:
-`F01-INTEGRATE-001 — CLOSED_GREEN / PR #57 MERGED`
-
-Completed governance gate:
-`META-AUDIT-001 — CLOSED_GREEN`
-
-Current gate:
-`PRODUCT OWNER DISCUSSION / REVIEW — HOLD BEFORE PHASE 02`
-
-`PHASE 02 — LOCKED`
-
-Do not create a Phase 02 implementation branch or begin Phase 02 business features until `META-AUDIT-001` is complete and explicit authorization is given.

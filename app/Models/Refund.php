@@ -34,16 +34,25 @@ class Refund extends Model
         ];
     }
 
+    /**
+     * @return BelongsTo<Payment, $this>
+     */
     public function payment(): BelongsTo
     {
         return $this->belongsTo(Payment::class);
     }
 
+    /**
+     * @return BelongsTo<User, $this>
+     */
     public function processedBy(): BelongsTo
     {
         return $this->belongsTo(User::class, 'processed_by_user_id');
     }
 
+    /**
+     * @return BelongsTo<StoredFile, $this>
+     */
     public function proofFile(): BelongsTo
     {
         return $this->belongsTo(StoredFile::class, 'proof_file_id');

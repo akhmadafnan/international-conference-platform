@@ -28,16 +28,25 @@ class PaymentProof extends Model
         ];
     }
 
+    /**
+     * @return BelongsTo<Payment, $this>
+     */
     public function payment(): BelongsTo
     {
         return $this->belongsTo(Payment::class);
     }
 
+    /**
+     * @return BelongsTo<StoredFile, $this>
+     */
     public function storedFile(): BelongsTo
     {
         return $this->belongsTo(StoredFile::class);
     }
 
+    /**
+     * @return BelongsTo<User, $this>
+     */
     public function submittedBy(): BelongsTo
     {
         return $this->belongsTo(User::class, 'submitted_by_user_id');

@@ -1,7 +1,7 @@
 # Implementation Start Gate — V1
 
 **Gate ID:** ICHES-DEV-START-001  
-**Status:** PASSED / PRODUCT OWNER GO  
+**Status:** PASSED / PRODUCT OWNER GO — HISTORICAL GATE  
 **Updated:** 2026-09-30
 
 ## Preconditions
@@ -33,7 +33,7 @@ The accepted implementation conditions are:
 Produce the real Laravel 13 + Vue Starter Kit application skeleton with:
 
 - MySQL connectivity;
-- auth/email verification/2FA baseline;
+- Authentication V1: registration, password authentication/reset/confirmation, and required email verification; 2FA and passkeys are excluded;
 - UUIDv7;
 - edition-scoped authorization;
 - Inertia/Vue/shadcn-vue;

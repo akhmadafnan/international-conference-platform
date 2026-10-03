@@ -1,7 +1,7 @@
 # Implementation Conventions v1
 
 **Status:** FROZEN BASELINE
-**Updated:** 2026-09-30
+**Updated:** 2026-10-02
 
 ## Backend convention
 
@@ -17,6 +17,109 @@ Use Actions for consequential behavior:
 - is directly testable.
 
 Avoid Service classes that merely proxy one Eloquent call.
+
+## Code organization convention
+
+The application remains one Laravel modular monolith with explicit backend and frontend boundaries.
+
+Canonical backend request flow:
+
+`Route → Controller → FormRequest → Policy/Gate → Action → Model → Persistence/Audit`
+
+Rules:
+- Controllers stay thin and coordinate HTTP concerns only.
+- Form Requests own validation and request-level authorization entry checks.
+- Policies/Gates own server-side resource authorization.
+- Actions represent one consequential business intent and contain transactional orchestration.
+- Models own relationships, casts, query scopes, and limited domain behavior.
+- Business history remains in explicit domain records/version tables.
+- Shared technical helpers belong in focused Support or Concern classes, not generic catch-all Service classes.
+- Do not introduce Repository or Service abstractions that merely proxy Eloquent.
+
+Canonical frontend flow:
+
+`Inertia Page → Feature Component → Composable → Typed Props/Domain Types → UI Primitive`
+
+Rules:
+- Vue uses Composition API + TypeScript.
+- Server-authoritative business rules stay in Laravel, not Vue.
+- Pages are Inertia entry points, not business-logic containers.
+- Feature-specific UI belongs with its feature.
+- Shared visual primitives live separately from domain components.
+- Inertia props and domain-facing frontend contracts are explicitly typed.
+- Do not introduce Vue Router or a duplicate client REST architecture for normal first-party flows.
+
+Backend and frontend naming should follow the same domain vocabulary so a feature can be traced vertically through the codebase.
+
+## Identifier convention
+
+First-class application and domain entities use UUIDv7 primary keys stored as standard UUID strings (`CHAR(36)` on MySQL).
+
+Laravel models use the framework-native `HasUuids` concern. In the Laravel 13 baseline this concern generates UUIDv7 identifiers.
+
+`users.id` follows the same UUIDv7 convention as other first-class domain entities.
+
+Foreign keys referencing UUID-backed entities must use UUID-compatible columns. Prefer `foreignUuid()` where an explicit foreign-key constraint is appropriate and `uuid()` where an unconstrained reference is intentional.
+
+Laravel infrastructure tables retain their framework-native identifiers unless compatibility with a UUID-backed entity requires otherwise. `sessions.user_id` is UUID-compatible because it references `users.id`.
+
+Human-facing identifiers such as Registration ID, Paper ID, certificate number, and document number remain separate from technical primary keys.
+
+UUIDs reduce predictable sequential enumeration but are not secrets and do not replace Policies/Gates, authorization checks, signed URLs, random verification tokens, rate limiting, or other security controls.
+
+## Authorization and audit convention
+
+Authorization uses Spatie Laravel Permission with Teams enabled.
+
+The team scope is `conference_edition_id`.
+
+Security identities use UUIDv7:
+- users;
+- roles;
+- permissions;
+- model authorization pivots;
+- conference edition team keys.
+
+Roles and permissions provide edition-scoped capability vocabulary. They do not replace Laravel Policies/Gates.
+
+Policies and domain guards remain authoritative for:
+- resource ownership/relationship;
+- edition membership;
+- conflict of interest;
+- state-transition eligibility;
+- other business integrity rules.
+
+### Global superadmin authority
+
+Superadmin is a global application authority and is not edition-scoped.
+
+Superadmin may:
+- access every Conference Edition;
+- access every application module;
+- execute every application ability;
+- bypass ordinary Spatie role/permission checks;
+- bypass normal Policy/Gate authorization denials that exist only to restrict user authority.
+
+The authorization bypass does not bypass application integrity.
+
+Superadmin remains subject to:
+- Form Request and domain validation;
+- database constraints;
+- business/domain invariants;
+- mandatory workflow/state-transition rules;
+- immutable and versioned history;
+- transaction boundaries;
+- required audit/activity logging.
+
+Superadmin is implemented as an explicit global user capability, not by assigning every edition-scoped business role.
+
+Business Actions remain the canonical execution path for consequential mutations regardless of whether the actor is a normal authority or superadmin.
+
+Spatie Activitylog records consequential operator/system actions where audit evidence is required.
+
+Activity Log is audit evidence, not the source of truth for business history. Versioned manuscripts, decisions, payments, publication snapshots, certificate lifecycle records, and other consequential facts remain explicit domain records.
+
+`activity_log.id` remains an infrastructure sequence, while subject and causer polymorphic identifiers are UUID-compatible.
 
 ## Status convention
 

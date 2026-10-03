@@ -1,9 +1,9 @@
 # Two-Week Development Plan — ICHES V1
 
 **Document ID:** ICHES-PLAN-001
-**Status:** READY FOR IMPLEMENTATION START GATE
+**Status:** DAY 1 / PHASE 01 FOUNDATION CLOSED_GREEN — READY FOR INTEGRATION
 **Duration:** 10 working days / approximately 2 calendar weeks
-**Updated:** 2026-09-30
+**Updated:** 2026-10-02
 
 ## 1. Delivery target
 
@@ -54,23 +54,59 @@ Scope:
 - edition timezone convention;
 - Spatie Permission with Teams enabled and conference_edition_id scope;
 - Laravel Policies baseline;
-- authentication/email verification/2FA baseline;
-- Vue I18n id/en/ar shell;
-- Arabic RTL shell;
-- ICHES design-token foundation;
+- authentication/email verification/password confirmation baseline; 2FA and passkeys are excluded from V1;
 - database queue/cache/session;
 - private/public filesystem disks;
 - core CI/test/lint/static-analysis commands;
 - foundational migrations/seeds.
 
+#### Current Day 1 checkpoint
+
+Completed:
+- Laravel 13 Vue/Inertia application baseline;
+- PHP/composer/npm engineering baseline;
+- MySQL 9.7 local configuration;
+- UUIDv7 identity convention;
+- UTC application persistence timezone;
+- Authentication V1;
+- Spatie Permission Teams infrastructure with `conference_edition_id`;
+- UUIDv7 User/Role/Permission compatibility;
+- Spatie Activitylog UUID-aware audit infrastructure;
+- Active Conference Edition permission context and global superadmin enforcement;
+- edition-scoped authority enforcement smoke tests;
+- Vue I18n id/en/ar + Arabic RTL application shell;
+- ICHES design-token + Light/Dark appearance foundation;
+- repository runtime/cache hygiene;
+- focused authorization/audit smoke tests;
+- Pint/PHPStan/regression gates.
+
+Phase 01 closure result:
+- private/public filesystem foundation GREEN;
+- foundational permission and trusted superadmin seeders GREEN;
+- clean MySQL migration from zero GREEN;
+- clean foundational seed from zero GREEN;
+- edition-scoped authorization smoke coverage GREEN;
+- full CI regression GREEN: 67 passed / 250 assertions;
+- frontend lint/format and TypeScript checks GREEN;
+- Pint GREEN;
+- PHPStan GREEN with 0 errors;
+- production frontend build GREEN;
+- final worktree hygiene GREEN.
+
+Concrete domain Policies/Gates remain intentionally deferred to the phases where their real domain models and business state transitions are introduced. They are not a Phase 01 blocker.
+
 Exit gate:
-- app boots;
-- auth works;
-- MySQL migrations GREEN;
-- edition-scoped authority smoke test GREEN;
-- id/en/ar + RTL shell visible;
-- test/Pint/static-analysis baseline runs;
-- worktree clean after checkpoint.
+- app boots ✓
+- auth works ✓
+- MySQL migrations GREEN ✓
+- edition-scoped authority smoke test GREEN ✓
+- id/en/ar + RTL shell visible ✓
+- test/Pint/static-analysis baseline GREEN ✓
+- clean migration + seed from zero GREEN ✓
+- production build GREEN ✓
+- worktree clean after checkpoint ✓
+
+**Phase 01 result: CLOSED_GREEN.**
 
 ### Day 2 — Conference Configuration + Registration + Payment
 

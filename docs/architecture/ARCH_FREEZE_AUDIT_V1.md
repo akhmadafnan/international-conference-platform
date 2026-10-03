@@ -2,7 +2,7 @@
 
 **Document ID:** ICHES-ARCH-AUDIT-001
 **Status:** GREEN
-**Updated:** 2026-09-30
+**Updated:** 2026-10-02
 
 ## Scope audited
 
@@ -38,7 +38,7 @@
 | Audit/history | GREEN | append-only activity approach |
 | Frontend/backend fit | GREEN | Laravel/Inertia/Vue single codebase |
 | Two-week operational simplicity | GREEN | no Redis/microservices/mandatory external APIs |
-| V1 infrastructure | GREEN | MySQL 9.7 LTS/database queue/private storage/PDF abstraction |
+| V1 infrastructure | GREEN | MySQL/database queue/private storage/PDF abstraction |
 
 ## Authorization implementation decision
 
@@ -49,7 +49,7 @@ For accelerated V1:
 - role/permission migrations are UUID-compatible;
 - active Edition middleware sets the current permission team;
 - Laravel Policies/Gates still apply resource relationship and COI rules;
-- global/super-admin mechanics do not bypass explicit business-domain integrity rules.
+- global superadmin authority bypasses ordinary role/permission/policy authorization across editions, but never bypasses explicit business-domain integrity rules, validation, state transitions, database constraints, immutable history, or mandatory audit.
 
 This provides edition-scoped authorities without creating a second custom RBAC engine.
 
@@ -84,7 +84,6 @@ The following may be chosen while writing migrations/code:
 
 ARCH-001 — **GREEN / CLOSED**
 
-The project may proceed to:
-**PLAN-001 — Two-Week Development Plan**.
+ARCH-001 remains GREEN / CLOSED as a historical architecture gate.
 
-Coding remains blocked until PLAN-001 is complete and the implementation start gate is opened.
+PLAN-001 was completed and ICHES-DEV-START-001 subsequently passed. Implementation is now active on `phase/01-foundation`. This audit must not be interpreted as a current coding block.

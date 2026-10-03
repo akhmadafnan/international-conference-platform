@@ -143,7 +143,7 @@ Spatie Permission tables are package-managed.
 V1 requirement:
 - edition-scoped business-role assignment;
 - UUID-compatible morph keys;
-- global technical super-admin path;
+- global superadmin authority path with application-wide abilities across editions;
 - roles/permissions never replace Policies/Gates.
 
 ## 4. Conference model

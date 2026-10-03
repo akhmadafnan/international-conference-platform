@@ -2,7 +2,7 @@
 
 **Document ID:** ICHES-ARCH-STACK-001
 **Status:** FROZEN FOR ACCELERATED V1
-**Updated:** 2026-09-30
+**Updated:** 2026-10-02
 
 ## 1. Application shape
 
@@ -18,10 +18,12 @@ Primary request flow:
 Route
 → Controller
 → Form Request
-→ Action / Service only when business behavior warrants it
+→ Policy / Gate
+→ Action when consequential business behavior warrants it
 → Eloquent / domain model
+→ Persistence / Audit
 → Inertia
-→ Vue page/component
+→ Vue page / feature component
 
 Simple CRUD may remain Controller + Request + Eloquent.
 
@@ -48,7 +50,7 @@ Business actions use dedicated Actions such as:
 - Laravel 13
 - Laravel built-in authentication / Fortify-backed Starter Kit features
 - email verification required before active participant workflow
-- built-in TOTP 2FA available; mandatory policy for high-risk internal authorities may be enabled
+- Authentication V1 includes registration, password authentication/reset/confirmation, and required email verification; 2FA and passkeys are excluded from V1
 - Eloquent ORM
 - Laravel Policies / Gates for resource authorization
 - Spatie Laravel Permission compatible with Laravel 13 for role/permission vocabulary and edition-scoped authority implementation
@@ -145,7 +147,7 @@ Baseline:
 - edition-scoped assignments are mandatory for business roles;
 - Laravel Policies/Gates enforce actual resource access;
 - COI restriction overrides normal allow rules;
-- super-admin technical access does not silently become business decision authority.
+- superadmin is a global application authority and bypasses ordinary role/permission/policy authorization across all Conference Editions; this bypass does not bypass domain invariants, validation, state-transition rules, database constraints, immutable/versioned history, transaction safety, or mandatory audit recording.
 
 The implementation must support one user holding multiple edition-scoped authorities.
 

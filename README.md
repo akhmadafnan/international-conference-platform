@@ -4,24 +4,22 @@ This repository is the canonical product, architecture, and implementation repos
 
 ## Current state
 
-**PRE-DEVELOPMENT — TWO-WEEK PLAN COMPLETE / IMPLEMENTATION START GATE READY**
+**DEVELOPMENT — PHASE 01 FOUNDATION IN PROGRESS**
 
-Coding begins only after explicit Product Owner GO.
+The Implementation Start Gate has passed. Phase 01 Foundation development is active on `phase/01-foundation`.
 
 Current sequence:
 
-PRODUCT DISCOVERY ✓
-→ PRODUCT BLUEPRINT v1 ✓
-→ CORRECTIVE PHASE 0 RE-BASELINE ✓
-→ SUBMISSION & SCHOLARLY METADATA CONTRACT ✓
-→ STACK + ERD FREEZE ✓
+PRODUCT / REQUIREMENTS / METADATA / ARCHITECTURE ✓
 → TWO-WEEK DEVELOPMENT PLAN ✓
-→ IMPLEMENTATION START GATE ← CURRENT
-→ CODING
+→ IMPLEMENTATION START GATE ✓
+→ PHASE 01 FOUNDATION ← CURRENT
+→ bounded implementation gates
+→ V1 RELEASE CANDIDATE
 
 ## Frozen stack
 
-- PHP 8.4
+- PHP 8.4 target runtime
 - Laravel 13 modular monolith
 - Official Laravel Vue Starter Kit
 - Inertia 3

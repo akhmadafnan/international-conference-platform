@@ -1,6 +1,6 @@
 # Current Project State
 
-**State ID:** ICHES-STATE-20261003-DEV01-STORAGE
+**State ID:** ICHES-STATE-20261003-DEV01-SEED
 **Status:** DEVELOPMENT — PHASE 01 FOUNDATION IN PROGRESS  
 **Implementation authorization:** GRANTED  
 **Repository:** akhmadafnan/international-conference-platform  
@@ -35,6 +35,7 @@
 - Arabic RTL application-shell behavior ✓
 - ICHES design-token and appearance foundation ✓
 - Private/public filesystem foundation ✓
+- Foundational access and trusted superadmin seeders ✓
 
 ## Verified implementation checkpoint
 
@@ -42,9 +43,10 @@ Latest verified branch:
 - `phase/01-foundation`
 
 Latest synchronized remote checkpoint:
+- `ff55a69` — foundational access and trusted superadmin seeders
+- `ac6d877` — filesystem foundation gate closeout
 - `27ef26f` — private/public filesystem foundation
 - `9f6c6a6` — ICHES design-token and appearance foundation
-- `1588047` — multilingual and RTL application shell
 
 Verified implementation state:
 - Laravel 13 + Vue/Inertia application bootstrap GREEN;
@@ -68,7 +70,20 @@ Verified implementation state:
 - PHPStan GREEN with 0 errors;
 - Git diff check GREEN;
 - operational `storage:link` verification GREEN;
-- worktree synchronized with `origin/phase/01-foundation` at `27ef26f`.
+- canonical foundational permission vocabulary seeded idempotently;
+- canonical payment verification capability normalized to `payment.verify`;
+- edition-scoped business Role rows are intentionally not seeded before real Conference Edition records exist;
+- trusted initial global superadmin bootstrap uses `users.is_super_admin`, not a Spatie role;
+- initial superadmin bootstrap is disabled by default and accepts credentials only through environment-backed configuration;
+- rerunning the bootstrap does not duplicate the account or reset an existing password;
+- default Laravel `test@example.com` seeding path removed;
+- foundational seeder focused tests GREEN: 6 passed / 35 assertions;
+- authorization + superadmin + seeder related regression GREEN: 16 passed / 72 assertions;
+- scoped Pint GREEN;
+- scoped PHPStan GREEN with 0 errors;
+- isolated SQLite seed UAT GREEN with 21 permissions, 0 roles, 1 user, 1 superadmin and 1 bootstrap activity after repeated seeding;
+- temporary seed-UAT database cleanup GREEN;
+- worktree synchronized with `origin/phase/01-foundation` at `ff55a69`.
 
 Local environment baseline:
 - PHP 8.3.33 for current development;
@@ -163,7 +178,8 @@ GREEN implementation baseline now includes:
 - Vue I18n `id/en/ar`;
 - Arabic RTL application shell;
 - ICHES design-token and appearance foundation;
-- private/public filesystem foundation.
+- private/public filesystem foundation;
+- foundational permission vocabulary and trusted global-superadmin bootstrap seeders.
 
 ICHES appearance baseline:
 - first visit defaults to Light mode;
@@ -177,15 +193,17 @@ ICHES appearance baseline:
 - Browser UAT is GREEN for Light, Dark, responsive shell, locale switching, and Arabic RTL.
 
 Remaining Phase 01 Foundation scope:
-- foundational seeders;
-- final Phase 01 clean-migration and regression gate.
+- final Phase 01 clean-migration and regression exit gate.
 
-Foundational seeders will include trusted idempotent bootstrap provisioning for the initial global superadmin. Public registration must never assign `is_super_admin`, and production bootstrap credentials must not be hardcoded in Git.
+Foundational seeders are now CLOSED_GREEN. The initial global superadmin bootstrap is trusted and idempotent, uses `users.is_super_admin`, is disabled by default, and receives credentials only through environment-backed configuration. Public registration cannot assign `is_super_admin`.
 
 Filesystem foundation gate:
 `F01-STORAGE-001 — CLOSED_GREEN`
 
+Foundational seeder gate:
+`F01-SEED-001 — CLOSED_GREEN`
+
 Current next gate:
-`F01-SEED-001 — Foundational Seeders`
+`F01-EXIT-001 — Final Phase 01 Clean Migration & Regression Exit Gate`
 
 Do not begin Phase 02 business features until the remaining Phase 01 exit gate is GREEN.

@@ -680,7 +680,6 @@ test('another user cannot upload payment proof for a registration they do not ow
         ->and(StoredFile::query()->count())->toBe(0);
 });
 
-
 test('participant can download own protected payment proof but another participant cannot', function () {
     Storage::fake('private');
 

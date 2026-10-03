@@ -1,6 +1,8 @@
 # Product Discovery
 
-This folder holds the current working Product DNA created after the initial Phase 0 baseline.
+**Status:** HISTORICAL PRODUCT-DISCOVERY PROVENANCE
+
+This folder preserves the Product DNA and discovery material that informed the current V1 baseline after the initial Phase 0 work.
 
 These documents are intentionally separated from older detailed requirement/NFR material because Product Discovery materially simplified and refined the lifecycle.
 
@@ -10,10 +12,12 @@ These documents are intentionally separated from older detailed requirement/NFR 
 2. PRE_PRESENTATION_PRODUCT_AUDIT.md
 3. WAREK_I_PRODUCT_DECISION_SHEET.md
 
-## Status
+## Authority
 
-Working product truth for discussion and validation.
+These documents are retained for product-discovery provenance and rationale.
 
-Not implementation authorization.
+They are not current implementation authorization and do not override later accepted canonical decisions.
 
-After Warek I validation, these documents feed Product Blueprint v1 and the formal Corrective Phase 0 Re-baseline.
+Their outcomes have already fed the Product Blueprint v1, Corrective Phase 0 Re-baseline, V1 requirement baselines, and subsequent architecture/implementation decisions.
+
+For current state, begin with `docs/ai-context/CURRENT_STATE.md`.

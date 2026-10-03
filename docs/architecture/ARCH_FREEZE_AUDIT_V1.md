@@ -86,4 +86,6 @@ ARCH-001 — **GREEN / CLOSED**
 
 ARCH-001 remains GREEN / CLOSED as a historical architecture gate.
 
-PLAN-001 was completed and ICHES-DEV-START-001 subsequently passed. Implementation is now active on `phase/01-foundation`. This audit must not be interpreted as a current coding block.
+PLAN-001 was completed and ICHES-DEV-START-001 subsequently passed. Phase 01 Foundation later reached `CLOSED_GREEN` and was merged into `develop` through PR #57.
+
+This file is historical evidence for the ARCH-001 freeze. It must not be interpreted as the authority for the current implementation phase or gate; use `docs/ai-context/CURRENT_STATE.md`.

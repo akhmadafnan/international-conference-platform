@@ -25,7 +25,7 @@ beforeEach(function () {
             ]);
         });
 
-    Route::middleware(['web', 'auth', 'can:payments.verify'])
+    Route::middleware(['web', 'auth', 'can:payment.verify'])
         ->get(
             '/_foundation/authz/payments-verify',
             static fn () => response()->noContent(),
@@ -90,7 +90,7 @@ test('permission middleware follows active conference edition context', function
     $user = User::factory()->create();
 
     Permission::create([
-        'name' => 'payments.verify',
+        'name' => 'payment.verify',
         'guard_name' => 'web',
     ]);
 
@@ -101,7 +101,7 @@ test('permission middleware follows active conference edition context', function
         'guard_name' => 'web',
     ]);
 
-    $role->givePermissionTo('payments.verify');
+    $role->givePermissionTo('payment.verify');
     $user->assignRole($role);
 
     setPermissionsTeamId(null);

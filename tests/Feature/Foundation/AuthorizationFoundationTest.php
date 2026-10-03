@@ -13,7 +13,7 @@ test('roles permissions and users use UUIDv7 identifiers', function () {
     $user = User::factory()->create();
 
     $permission = Permission::create([
-        'name' => 'payments.verify',
+        'name' => 'payment.verify',
         'guard_name' => 'web',
     ]);
 
@@ -34,7 +34,7 @@ test('role assignment is scoped to the active conference edition', function () {
     $user = User::factory()->create();
 
     Permission::create([
-        'name' => 'payments.verify',
+        'name' => 'payment.verify',
         'guard_name' => 'web',
     ]);
 
@@ -45,27 +45,27 @@ test('role assignment is scoped to the active conference edition', function () {
         'guard_name' => 'web',
     ]);
 
-    $role->givePermissionTo('payments.verify');
+    $role->givePermissionTo('payment.verify');
     $user->assignRole($role);
 
     $user->unsetRelation('roles')
         ->unsetRelation('permissions');
 
-    expect($user->can('payments.verify'))->toBeTrue();
+    expect($user->can('payment.verify'))->toBeTrue();
 
     setPermissionsTeamId($editionB);
 
     $user->unsetRelation('roles')
         ->unsetRelation('permissions');
 
-    expect($user->can('payments.verify'))->toBeFalse();
+    expect($user->can('payment.verify'))->toBeFalse();
 
     setPermissionsTeamId($editionA);
 
     $user->unsetRelation('roles')
         ->unsetRelation('permissions');
 
-    expect($user->can('payments.verify'))->toBeTrue();
+    expect($user->can('payment.verify'))->toBeTrue();
 });
 
 test('activity log supports UUIDv7 causer and subject', function () {

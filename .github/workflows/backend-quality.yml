@@ -48,7 +48,10 @@ jobs:
             app/Actions/Payment \
             app/Actions/Registration \
             app/Enums \
+            app/Http/Controllers/Payment \
+            app/Http/Requests/Payment \
             app/Models \
+            routes/web.php \
             database/migrations/2026_10_03_120000_create_phase02_registration_payment_tables.php \
             tests/Feature/Phase02
           git diff --check
@@ -56,7 +59,10 @@ jobs:
             app/Actions/Payment \
             app/Actions/Registration \
             app/Enums \
+            app/Http/Controllers/Payment \
+            app/Http/Requests/Payment \
             app/Models \
+            routes/web.php \
             database/migrations/2026_10_03_120000_create_phase02_registration_payment_tables.php \
             tests/Feature/Phase02
           git diff --quiet -- \
@@ -79,7 +85,7 @@ jobs:
             --no-progress
 
       - name: Phase 02 focused Pest
-        run: php artisan test tests/Feature/Phase02/RegistrationPaymentDomainTest.php
+        run: php artisan test tests/Feature/Phase02
 
       - name: Related foundation regression
         run: |

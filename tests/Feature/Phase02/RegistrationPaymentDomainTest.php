@@ -23,6 +23,8 @@ use App\Models\StoredFile;
 use App\Models\User;
 use App\Support\Authorization\ActiveConferenceEditionContext;
 use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 function makePhase02Edition(): ConferenceEdition
@@ -582,4 +584,99 @@ test('edition scoped operator cannot mutate another edition with permission from
         app(ActiveConferenceEditionContext::class)->clear();
         setPermissionsTeamId(null);
     }
+});
+
+
+test('registered participant can upload payment proof into protected storage through HTTP', function () {
+    Storage::fake('private');
+
+    $edition = makePhase02Edition();
+    $destination = makePhase02Destination($edition);
+    $package = makePhase02Package(
+        $edition,
+        BillingMode::PAID,
+        'FULL',
+        '750000.00',
+        $destination,
+    );
+    $participant = User::factory()->create();
+
+    $registration = app(CreateRegistrationIntentAction::class)->handle(
+        $participant,
+        $edition,
+        $package,
+    );
+
+    $payment = app(ResolveRegistrationFeeRequirementAction::class)
+        ->handle($registration);
+
+    $response = $this->actingAs($participant)->post(
+        route('payments.proofs.store', $payment),
+        [
+            'proof' => UploadedFile::fake()->create(
+                'receipt.pdf',
+                128,
+                'application/pdf',
+            ),
+            'submitted_amount' => '750000.00',
+            'sender_name' => 'Akhmad Afnan',
+            'transfer_date' => now()->toDateString(),
+        ],
+    );
+
+    $response->assertStatus(303);
+
+    $payment?->refresh();
+    $proof = $payment?->proofs()->sole();
+    $storedFile = $proof?->storedFile;
+
+    expect($payment?->status)->toBe(PaymentStatus::SUBMITTED)
+        ->and($storedFile)->not->toBeNull()
+        ->and($storedFile?->disk)->toBe('private')
+        ->and($storedFile?->visibility_class)->toBe('PRIVATE')
+        ->and($storedFile?->original_name)->toBe('receipt.pdf')
+        ->and($storedFile?->checksum_sha256)->toHaveLength(64)
+        ->and($storedFile?->path)->not->toContain('receipt');
+
+    Storage::disk('private')->assertExists($storedFile?->path);
+});
+
+test('another user cannot upload payment proof for a registration they do not own', function () {
+    Storage::fake('private');
+
+    $edition = makePhase02Edition();
+    $destination = makePhase02Destination($edition);
+    $package = makePhase02Package(
+        $edition,
+        BillingMode::PAID,
+        'FULL',
+        '750000.00',
+        $destination,
+    );
+    $participant = User::factory()->create();
+    $otherUser = User::factory()->create();
+
+    $registration = app(CreateRegistrationIntentAction::class)->handle(
+        $participant,
+        $edition,
+        $package,
+    );
+
+    $payment = app(ResolveRegistrationFeeRequirementAction::class)
+        ->handle($registration);
+
+    $this->actingAs($otherUser)->post(
+        route('payments.proofs.store', $payment),
+        [
+            'proof' => UploadedFile::fake()->create(
+                'receipt.pdf',
+                128,
+                'application/pdf',
+            ),
+            'submitted_amount' => '750000.00',
+        ],
+    )->assertForbidden();
+
+    expect($payment?->proofs()->count())->toBe(0)
+        ->and(StoredFile::query()->count())->toBe(0);
 });

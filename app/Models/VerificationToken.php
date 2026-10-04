@@ -32,6 +32,9 @@ class VerificationToken extends Model
         ];
     }
 
+    /**
+     * @return MorphTo<Model, $this>
+     */
     public function subject(): MorphTo
     {
         return $this->morphTo();

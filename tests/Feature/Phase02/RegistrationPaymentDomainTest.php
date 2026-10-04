@@ -734,6 +734,95 @@ test('participant can download own protected payment proof but another participa
     )->assertForbidden();
 });
 
+test('participant cannot download a payment proof through a different payment they also own', function () {
+    Storage::fake('private');
+
+    $participant = User::factory()->create();
+
+    $editionA = makePhase02Edition();
+    $destinationA = makePhase02Destination($editionA);
+    $packageA = makePhase02Package(
+        $editionA,
+        BillingMode::PAID,
+        'FULL',
+        '750000.00',
+        $destinationA,
+    );
+
+    $registrationA = app(CreateRegistrationIntentAction::class)->handle(
+        $participant,
+        $editionA,
+        $packageA,
+    );
+
+    $paymentA = app(ResolveRegistrationFeeRequirementAction::class)
+        ->handle($registrationA);
+
+    $seriesB = ConferenceSeries::query()->create([
+        'code' => 'ICHES-B',
+        'name' => 'ICHES Secondary Edition Series',
+        'status' => 'ACTIVE',
+    ]);
+
+    $editionB = ConferenceEdition::query()->create([
+        'series_id' => $seriesB->id,
+        'edition_code' => 'ICHES28',
+        'year' => 2028,
+        'host_name' => 'Other Host',
+        'mode' => 'OFFLINE',
+        'timezone' => 'Asia/Jakarta',
+        'starts_at' => now()->addYear(),
+        'ends_at' => now()->addYear()->addDay(),
+        'lifecycle_status' => 'DRAFT',
+    ]);
+
+    $destinationB = makePhase02Destination($editionB);
+    $packageB = makePhase02Package(
+        $editionB,
+        BillingMode::PAID,
+        'FULL',
+        '750000.00',
+        $destinationB,
+    );
+
+    $registrationB = app(CreateRegistrationIntentAction::class)->handle(
+        $participant,
+        $editionB,
+        $packageB,
+    );
+
+    $paymentB = app(ResolveRegistrationFeeRequirementAction::class)
+        ->handle($registrationB);
+
+    $this->actingAs($participant)->post(
+        route('payments.proofs.store', $paymentA),
+        [
+            'proof' => UploadedFile::fake()->create(
+                'receipt-a.pdf',
+                128,
+                'application/pdf',
+            ),
+            'submitted_amount' => '750000.00',
+        ],
+    )->assertStatus(303);
+
+    $proofA = $paymentA?->proofs()->sole();
+    $storedFile = $proofA?->storedFile;
+
+    expect($paymentA?->id)->not->toBe($paymentB?->id)
+        ->and($proofA?->payment_id)->toBe($paymentA?->id)
+        ->and($storedFile)->not->toBeNull();
+
+    $this->actingAs($participant)->get(
+        route('payments.proofs.download', [
+            'payment' => $paymentB,
+            'proof' => $proofA,
+        ]),
+    )->assertForbidden();
+
+    Storage::disk('private')->assertExists($storedFile?->path);
+});
+
 test('finance can verify submitted payment through active edition HTTP context', function () {
     Storage::fake('private');
 

@@ -2,8 +2,8 @@
 
 namespace App\Actions\Payment;
 
-use App\Enums\PaymentStatus;
 use App\Actions\Registration\EnsureEventPassAction;
+use App\Enums\PaymentStatus;
 use App\Enums\RegistrationStatus;
 use App\Models\Payment;
 use App\Models\User;

@@ -35,7 +35,7 @@ Completed scoped work is merged here through reviewed PRs.
 
 ### scoped branch
 
-One coherent bounded scope created from a synchronized `develop`.
+One coherent bounded scope. Ordinary work is created from synchronized `develop`; a bounded child issue inside an active phase is created from the current active phase branch.
 
 Examples:
 - `phase/01-foundation`
@@ -44,6 +44,28 @@ Examples:
 - `fix/rtl-dialog-overflow`
 
 A new implementation phase branch must not be created before explicit Product Owner authorization for that phase.
+
+## Nested Bounded Work Inside an Active Phase
+
+When an active phase has its own branch and phase PR, a small implementation/security/quality issue may use a child branch.
+
+```text
+develop
+↑
+phase/NN-<scope>           ← phase PR targets develop
+↑
+agent/<issue>-<scope>      ← bounded Draft PR targets the active phase branch
+```
+
+Rules:
+- child branch starts from the current active phase branch, not from stale `develop`;
+- the child PR targets the active phase branch, never `develop` directly;
+- exact issue scope and scope-appropriate quality evidence are required;
+- structural wrapper success alone does not prove application behavior;
+- after human acceptance, merge the child PR into the active phase branch and close the bounded issue;
+- only the phase PR integrates the completed phase into `develop`;
+- no automatic merge to the active phase branch, `develop`, or `main`;
+- worker Git capability must be least-privilege and prepared before execution; do not use broad recursive ownership/permission changes.
 
 ## Standard Workflow
 

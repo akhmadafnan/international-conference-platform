@@ -2,7 +2,7 @@
 
 **ID:** ICHES-DECISION-REGISTER  
 **Status:** ACTIVE — PRODUCT BLUEPRINT v1  
-**Updated:** 2026-10-02
+**Updated:** 2026-10-04
 
 This register records current Product Discovery and accelerated V1 decisions.
 
@@ -96,6 +96,7 @@ Statuses:
 | PD-081 | Participation Package billing mode is explicit FREE or PAID; FREE creates no Payment row, proof-upload requirement, or Finance verification requirement | ACCEPTED |
 | PD-082 | A normally PAID Registration may receive an explicit audited fee exemption/complimentary decision from an authorized actor | ACCEPTED |
 | PD-083 | Free/waived financial resolution is a business fact distinct from VERIFIED payment; configuration changes never silently rewrite resolved financial history | ACCEPTED |
+| PD-084 | Workflow-window enforcement uses Edition-scoped `edition_workflow_windows`: missing or inactive rows impose no restriction; null bounds are open-ended; active bounds are inclusive; active `opens_at > closes_at` is invalid and must fail explicitly. `REGISTRATION` gates Registration creation. `ACCEPTED_AUTHOR_PAYMENT` is reserved for the accepted-author/presenter path and is not used for participant-only payment | ACCEPTED |
 
 ## META-001 — Scholarly Metadata Decisions
 

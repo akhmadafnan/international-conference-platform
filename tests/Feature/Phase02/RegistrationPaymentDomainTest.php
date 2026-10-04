@@ -6,6 +6,7 @@ use App\Actions\Payment\SubmitPaymentProofAction;
 use App\Actions\Payment\VerifyPaymentAction;
 use App\Actions\Registration\ConfigureParticipationPackageAction;
 use App\Actions\Registration\CreateRegistrationIntentAction;
+use App\Actions\Registration\EnsureEventPassAction;
 use App\Actions\Registration\GrantRegistrationFeeExemptionAction;
 use App\Actions\Registration\ResolveRegistrationFeeRequirementAction;
 use App\Enums\BillingMode;
@@ -14,12 +15,15 @@ use App\Enums\RegistrationStatus;
 use App\Models\Activity;
 use App\Models\ConferenceEdition;
 use App\Models\ConferenceSeries;
+use App\Models\GeneratedDocument;
+use App\Models\ImportantDate;
 use App\Models\PackageActivityEntitlement;
 use App\Models\ParticipationPackage;
 use App\Models\PaymentDestination;
 use App\Models\Permission;
 use App\Models\Role;
 use App\Models\StoredFile;
+use App\Models\Track;
 use App\Models\User;
 use App\Support\Authorization\ActiveConferenceEditionContext;
 use Illuminate\Auth\Access\AuthorizationException;
@@ -103,6 +107,92 @@ test('phase 02 first class domain records use UUIDv7 identifiers', function () {
     expect(Str::isUuid($edition->id, 7))->toBeTrue()
         ->and(Str::isUuid($destination->id, 7))->toBeTrue()
         ->and(Str::isUuid($package->id, 7))->toBeTrue();
+});
+
+test('phase 02 provides edition scoped tracks and public important dates as presentation data', function () {
+    $edition = makePhase02Edition();
+
+    $importantDate = ImportantDate::query()->create([
+        'edition_id' => $edition->id,
+        'code' => 'ABSTRACT_DEADLINE',
+        'label_i18n' => [
+            'id' => 'Batas Pengiriman Abstrak',
+            'en' => 'Abstract Submission Deadline',
+            'ar' => 'الموعد النهائي لتقديم الملخص',
+        ],
+        'starts_at' => now()->addWeeks(2),
+        'public' => true,
+        'display_order' => 1,
+    ]);
+
+    $track = Track::query()->create([
+        'edition_id' => $edition->id,
+        'code' => 'EDUCATION',
+        'name_i18n' => [
+            'id' => 'Pendidikan',
+            'en' => 'Education',
+            'ar' => 'التعليم',
+        ],
+        'active' => true,
+    ]);
+
+    expect(Str::isUuid($importantDate->id, 7))->toBeTrue()
+        ->and(Str::isUuid($track->id, 7))->toBeTrue()
+        ->and($edition->importantDates()->count())->toBe(1)
+        ->and($edition->tracks()->count())->toBe(1)
+        ->and($importantDate->public)->toBeTrue()
+        ->and($track->active)->toBeTrue();
+});
+
+test('Event Pass cannot be issued before registration confirmation', function () {
+    $edition = makePhase02Edition();
+    $package = makePhase02Package($edition, BillingMode::FREE, 'FREE', '0.00');
+    $participant = User::factory()->create();
+
+    $registration = app(CreateRegistrationIntentAction::class)->handle(
+        $participant,
+        $edition,
+        $package,
+    );
+
+    expect(fn () => app(EnsureEventPassAction::class)->handle($registration))
+        ->toThrow(DomainException::class);
+});
+
+test('free registration confirmation issues one idempotent Event Pass with opaque lookup identity', function () {
+    $edition = makePhase02Edition();
+    $package = makePhase02Package($edition, BillingMode::FREE, 'FREE', '0.00');
+    $participant = User::factory()->create([
+        'name' => 'Akhmad Participant',
+        'email' => 'participant@example.test',
+    ]);
+
+    $registration = app(CreateRegistrationIntentAction::class)->handle(
+        $participant,
+        $edition,
+        $package,
+    );
+
+    app(ResolveRegistrationFeeRequirementAction::class)->handle($registration);
+    app(ResolveRegistrationFeeRequirementAction::class)->handle($registration->refresh());
+
+    $registration->refresh();
+    $eventPass = $registration->generatedDocuments()
+        ->where('document_type', GeneratedDocument::TYPE_EVENT_PASS)
+        ->sole();
+    $lookup = $eventPass->verificationTokens()->sole();
+
+    expect($registration->status)->toBe(RegistrationStatus::CONFIRMED)
+        ->and($registration->generatedDocuments()->count())->toBe(1)
+        ->and($eventPass->status)->toBe(GeneratedDocument::STATUS_ISSUED)
+        ->and($eventPass->snapshot_json['registration_code'])->toBe($registration->registration_code)
+        ->and($eventPass->snapshot_json['participant_name'])->toBe('Akhmad Participant')
+        ->and(array_key_exists('email', $eventPass->snapshot_json))->toBeFalse()
+        ->and($lookup->purpose)->toBe('EVENT_PASS_LOOKUP')
+        ->and($lookup->public_code)->toStartWith('EP-')
+        ->and($lookup->public_code)->not->toContain('Akhmad')
+        ->and($lookup->token_hash)->toHaveLength(64)
+        ->and($lookup->active)->toBeTrue();
 });
 
 test('free registration resolves without synthetic payment and snapshots entitlements', function () {
@@ -887,9 +977,15 @@ test('finance can verify submitted payment through active edition HTTP context',
     $payment?->refresh();
     $registration->refresh();
 
+    $eventPass = $registration->generatedDocuments()
+        ->where('document_type', GeneratedDocument::TYPE_EVENT_PASS)
+        ->sole();
+
     expect($payment?->status)->toBe(PaymentStatus::VERIFIED)
         ->and($payment?->verified_by_user_id)->toBe($finance->id)
-        ->and($registration->status)->toBe(RegistrationStatus::CONFIRMED);
+        ->and($registration->status)->toBe(RegistrationStatus::CONFIRMED)
+        ->and($eventPass->status)->toBe(GeneratedDocument::STATUS_ISSUED)
+        ->and($eventPass->verificationTokens()->count())->toBe(1);
 });
 
 test('finance correction endpoint preserves submitted proof and requests correction', function () {

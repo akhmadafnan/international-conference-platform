@@ -2,7 +2,9 @@
 
 namespace App\Actions\Registration;
 
+use App\Actions\Conference\AssertEditionWorkflowWindowOpenAction;
 use App\Enums\BillingMode;
+use App\Enums\WorkflowWindowCode;
 use App\Enums\MembershipStatus;
 use App\Enums\RegistrationActivityStatus;
 use App\Enums\RegistrationStatus;
@@ -18,6 +20,7 @@ class CreateRegistrationIntentAction
 {
     public function __construct(
         private readonly NextEditionNumberAction $nextEditionNumber,
+        private readonly AssertEditionWorkflowWindowOpenAction $workflowWindowGuard,
     ) {}
 
     public function handle(
@@ -26,6 +29,11 @@ class CreateRegistrationIntentAction
         ParticipationPackage $package,
         ?string $participantCategory = null,
     ): Registration {
+        $this->workflowWindowGuard->handle(
+            $edition,
+            WorkflowWindowCode::REGISTRATION,
+        );
+
         return DB::transaction(function () use ($user, $edition, $package, $participantCategory): Registration {
             $package->refresh();
 

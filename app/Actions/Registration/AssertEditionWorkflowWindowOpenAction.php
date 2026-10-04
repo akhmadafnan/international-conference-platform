@@ -22,7 +22,9 @@ final class AssertEditionWorkflowWindowOpenAction
             return;
         }
 
+        /** @var CarbonInterface|null $opensAt */
         $opensAt = $window->opens_at;
+        /** @var CarbonInterface|null $closesAt */
         $closesAt = $window->closes_at;
 
         if (

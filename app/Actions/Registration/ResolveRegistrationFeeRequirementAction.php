@@ -13,10 +13,6 @@ use Illuminate\Support\Facades\DB;
 
 class ResolveRegistrationFeeRequirementAction
 {
-    public function __construct(
-        private readonly EnsureEventPassAction $ensureEventPass,
-    ) {}
-
     public function handle(Registration $registration): ?Payment
     {
         return DB::transaction(function () use ($registration): ?Payment {
@@ -36,8 +32,6 @@ class ResolveRegistrationFeeRequirementAction
             }
 
             if ($registration->status === RegistrationStatus::CONFIRMED) {
-                $this->ensureEventPass->handle($registration);
-
                 return $registration->payments()
                     ->where('status', PaymentStatus::VERIFIED->value)
                     ->latest('verified_at')
@@ -52,8 +46,6 @@ class ResolveRegistrationFeeRequirementAction
                     'status' => RegistrationStatus::CONFIRMED,
                     'confirmed_at' => $registration->confirmed_at ?? now(),
                 ])->save();
-
-                $this->ensureEventPass->handle($registration);
 
                 activity('registration')
                     ->performedOn($registration)
@@ -82,10 +74,6 @@ class ResolveRegistrationFeeRequirementAction
                         ? ($registration->confirmed_at ?? $existingPayment->verified_at ?? now())
                         : $registration->confirmed_at,
                 ])->save();
-
-                if ($registration->status === RegistrationStatus::CONFIRMED) {
-                    $this->ensureEventPass->handle($registration);
-                }
 
                 return $existingPayment;
             }

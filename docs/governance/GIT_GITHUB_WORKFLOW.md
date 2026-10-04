@@ -80,7 +80,7 @@ SYNC / ORIENT
 → PUSH
 → CONTINUE BOUNDED WORK
 → MILESTONE CLOSEOUT
-→ PR TO develop
+→ PR TO APPROPRIATE TARGET
 → PR SCOPE AUDIT
 → MERGE
 → SYNCHRONIZE LOCAL develop
@@ -109,12 +109,20 @@ Do not use destructive reset merely to force local state to match remote.
 
 ## Creating a Scoped Branch
 
-Start from synchronized `develop`:
+For ordinary work, start from synchronized `develop`:
 
 ```bash
 git switch develop
 git pull --ff-only origin develop
 git switch -c <scoped-branch>
+```
+
+For a bounded child issue inside an active phase, start from the synchronized active phase branch instead:
+
+```bash
+git switch phase/NN-<scope>
+git pull --ff-only origin phase/NN-<scope>
+git switch -c agent/<issue>-<scope>
 ```
 
 Verify:

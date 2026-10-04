@@ -11,19 +11,27 @@ use App\Actions\Registration\ResolveRegistrationFeeRequirementAction;
 use App\Enums\BillingMode;
 use App\Enums\PaymentStatus;
 use App\Enums\RegistrationStatus;
+use App\Enums\WorkflowWindowCode;
 use App\Models\Activity;
 use App\Models\ConferenceEdition;
 use App\Models\ConferenceSeries;
+use App\Models\EditionWorkflowWindow;
 use App\Models\PackageActivityEntitlement;
 use App\Models\ParticipationPackage;
+use App\Models\NumberSequence;
 use App\Models\PaymentDestination;
+use App\Models\Registration;
+use App\Models\RegistrationActivity;
 use App\Models\Permission;
 use App\Models\Role;
 use App\Models\StoredFile;
 use App\Models\User;
 use App\Support\Authorization\ActiveConferenceEditionContext;
+use Carbon\CarbonInterface;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -88,6 +96,26 @@ function makePhase02Destination(
         'display_order' => 1,
     ]);
 }
+
+function makePhase02WorkflowWindow(
+    ConferenceEdition $edition,
+    WorkflowWindowCode $code = WorkflowWindowCode::REGISTRATION,
+    ?CarbonInterface $opensAt = null,
+    ?CarbonInterface $closesAt = null,
+    bool $active = true,
+): EditionWorkflowWindow {
+    return EditionWorkflowWindow::query()->create([
+        'edition_id' => $edition->id,
+        'window_code' => $code->value,
+        'opens_at' => $opensAt,
+        'closes_at' => $closesAt,
+        'active' => $active,
+    ]);
+}
+
+afterEach(function (): void {
+    Carbon::setTestNow();
+});
 
 test('phase 02 first class domain records use UUIDv7 identifiers', function () {
     $edition = makePhase02Edition();
@@ -961,3 +989,283 @@ test('finance correction endpoint preserves submitted proof and requests correct
         ->toBe('Receipt image is not readable.')
         ->and($payment?->proofs()->count())->toBe(1);
 });
+
+test('registration workflow is unrestricted when no registration window row exists', function () {
+    Carbon::setTestNow(Carbon::parse('2026-10-04 10:00:00'));
+
+    $edition = makePhase02Edition();
+    $package = makePhase02Package($edition, BillingMode::FREE, 'FREE', '0.00');
+
+    $registration = app(CreateRegistrationIntentAction::class)->handle(
+        User::factory()->create(),
+        $edition,
+        $package,
+    );
+
+    expect($registration)->toBeInstanceOf(Registration::class)
+        ->and($registration->status)->toBe(RegistrationStatus::PENDING);
+});
+
+test('inactive registration workflow window does not enforce even with an invalid range', function () {
+    Carbon::setTestNow(Carbon::parse('2026-10-04 10:00:00'));
+
+    $edition = makePhase02Edition();
+    makePhase02WorkflowWindow(
+        $edition,
+        WorkflowWindowCode::REGISTRATION,
+        now()->addHour(),
+        now()->subHour(),
+        false,
+    );
+    $package = makePhase02Package($edition, BillingMode::FREE, 'FREE', '0.00');
+
+    $registration = app(CreateRegistrationIntentAction::class)->handle(
+        User::factory()->create(),
+        $edition,
+        $package,
+    );
+
+    expect($registration)->toBeInstanceOf(Registration::class);
+});
+
+test('registration workflow with null opens at has no lower bound', function () {
+    Carbon::setTestNow(Carbon::parse('2026-10-04 10:00:00'));
+
+    $edition = makePhase02Edition();
+    makePhase02WorkflowWindow(
+        $edition,
+        WorkflowWindowCode::REGISTRATION,
+        null,
+        now()->addMinute(),
+    );
+    $package = makePhase02Package($edition, BillingMode::FREE, 'FREE', '0.00');
+
+    expect(fn () => app(CreateRegistrationIntentAction::class)->handle(
+        User::factory()->create(),
+        $edition,
+        $package,
+    ))->not->toThrow(DomainException::class);
+});
+
+test('registration workflow with null closes at has no upper bound', function () {
+    Carbon::setTestNow(Carbon::parse('2026-10-04 10:00:00'));
+
+    $edition = makePhase02Edition();
+    makePhase02WorkflowWindow(
+        $edition,
+        WorkflowWindowCode::REGISTRATION,
+        now()->subMinute(),
+        null,
+    );
+    $package = makePhase02Package($edition, BillingMode::FREE, 'FREE', '0.00');
+
+    expect(fn () => app(CreateRegistrationIntentAction::class)->handle(
+        User::factory()->create(),
+        $edition,
+        $package,
+    ))->not->toThrow(DomainException::class);
+});
+
+test('registration workflow rejects registration before opens at without business side effects', function () {
+    Carbon::setTestNow(Carbon::parse('2026-10-04 10:00:00'));
+
+    $edition = makePhase02Edition();
+    makePhase02WorkflowWindow(
+        $edition,
+        WorkflowWindowCode::REGISTRATION,
+        now()->addMinute(),
+        now()->addHour(),
+    );
+    $package = makePhase02Package($edition, BillingMode::FREE, 'FREE', '0.00');
+
+    $activity = Activity::query()->create([
+        'edition_id' => $edition->id,
+        'code' => 'MAIN',
+        'name_i18n' => ['id' => 'Konferensi Utama'],
+        'activity_type' => 'CONFERENCE',
+        'attendance_required' => true,
+        'active' => true,
+    ]);
+
+    PackageActivityEntitlement::query()->create([
+        'package_id' => $package->id,
+        'activity_id' => $activity->id,
+        'entitlement_type' => 'INCLUDED',
+    ]);
+
+    expect(fn () => app(CreateRegistrationIntentAction::class)->handle(
+        User::factory()->create(),
+        $edition,
+        $package,
+    ))->toThrow(
+        DomainException::class,
+        'The REGISTRATION workflow window is not open yet.',
+    );
+
+    expect($edition->memberships()->count())->toBe(0)
+        ->and(Registration::query()->count())->toBe(0)
+        ->and(NumberSequence::query()->count())->toBe(0)
+        ->and(RegistrationActivity::query()->count())->toBe(0)
+        ->and(DB::table('activity_log')->where('log_name', 'registration')->count())->toBe(0);
+});
+
+test('registration workflow allows the exact opens at boundary', function () {
+    Carbon::setTestNow(Carbon::parse('2026-10-04 10:00:00'));
+
+    $edition = makePhase02Edition();
+    makePhase02WorkflowWindow(
+        $edition,
+        WorkflowWindowCode::REGISTRATION,
+        now(),
+        now()->addHour(),
+    );
+    $package = makePhase02Package($edition, BillingMode::FREE, 'FREE', '0.00');
+
+    expect(fn () => app(CreateRegistrationIntentAction::class)->handle(
+        User::factory()->create(),
+        $edition,
+        $package,
+    ))->not->toThrow(DomainException::class);
+});
+
+test('registration workflow allows the exact closes at boundary', function () {
+    Carbon::setTestNow(Carbon::parse('2026-10-04 10:00:00'));
+
+    $edition = makePhase02Edition();
+    makePhase02WorkflowWindow(
+        $edition,
+        WorkflowWindowCode::REGISTRATION,
+        now()->subHour(),
+        now(),
+    );
+    $package = makePhase02Package($edition, BillingMode::FREE, 'FREE', '0.00');
+
+    expect(fn () => app(CreateRegistrationIntentAction::class)->handle(
+        User::factory()->create(),
+        $edition,
+        $package,
+    ))->not->toThrow(DomainException::class);
+});
+
+test('registration workflow rejects registration after closes at', function () {
+    Carbon::setTestNow(Carbon::parse('2026-10-04 10:00:00'));
+
+    $edition = makePhase02Edition();
+    makePhase02WorkflowWindow(
+        $edition,
+        WorkflowWindowCode::REGISTRATION,
+        now()->subHour(),
+        now()->subMinute(),
+    );
+    $package = makePhase02Package($edition, BillingMode::FREE, 'FREE', '0.00');
+
+    expect(fn () => app(CreateRegistrationIntentAction::class)->handle(
+        User::factory()->create(),
+        $edition,
+        $package,
+    ))->toThrow(
+        DomainException::class,
+        'The REGISTRATION workflow window is closed.',
+    );
+});
+
+test('active registration workflow rejects invalid opens at and closes at configuration', function () {
+    Carbon::setTestNow(Carbon::parse('2026-10-04 10:00:00'));
+
+    $edition = makePhase02Edition();
+    makePhase02WorkflowWindow(
+        $edition,
+        WorkflowWindowCode::REGISTRATION,
+        now()->addHour(),
+        now(),
+    );
+    $package = makePhase02Package($edition, BillingMode::FREE, 'FREE', '0.00');
+
+    expect(fn () => app(CreateRegistrationIntentAction::class)->handle(
+        User::factory()->create(),
+        $edition,
+        $package,
+    ))->toThrow(
+        DomainException::class,
+        'Active REGISTRATION workflow window configuration is invalid: opens_at must be earlier than or equal to closes_at.',
+    );
+
+    expect($edition->memberships()->count())->toBe(0)
+        ->and(Registration::query()->count())->toBe(0)
+        ->and(NumberSequence::query()->count())->toBe(0);
+});
+
+test('registration workflow window remains scoped to its conference edition', function () {
+    Carbon::setTestNow(Carbon::parse('2026-10-04 10:00:00'));
+
+    $editionA = makePhase02Edition();
+    makePhase02WorkflowWindow(
+        $editionA,
+        WorkflowWindowCode::REGISTRATION,
+        now()->addHour(),
+        now()->addHours(2),
+    );
+
+    $seriesB = ConferenceSeries::query()->create([
+        'code' => 'OTHER-WINDOW',
+        'name' => 'Other Window Conference',
+        'status' => 'ACTIVE',
+    ]);
+
+    $editionB = ConferenceEdition::query()->create([
+        'series_id' => $seriesB->id,
+        'edition_code' => 'OTHER-WINDOW-27',
+        'year' => 2027,
+        'host_name' => 'Other Host',
+        'mode' => 'OFFLINE',
+        'timezone' => 'Asia/Jakarta',
+        'starts_at' => now()->addMonth(),
+        'ends_at' => now()->addMonth()->addDay(),
+        'lifecycle_status' => 'DRAFT',
+    ]);
+
+    $packageB = makePhase02Package($editionB, BillingMode::FREE, 'FREE-B', '0.00');
+
+    $registration = app(CreateRegistrationIntentAction::class)->handle(
+        User::factory()->create(),
+        $editionB,
+        $packageB,
+    );
+
+    expect($registration->membership->edition_id)->toBe($editionB->id);
+});
+
+test('participant only paid path does not consume accepted author payment window', function () {
+    Carbon::setTestNow(Carbon::parse('2026-10-04 10:00:00'));
+
+    $edition = makePhase02Edition();
+    makePhase02WorkflowWindow(
+        $edition,
+        WorkflowWindowCode::ACCEPTED_AUTHOR_PAYMENT,
+        now()->addDay(),
+        now()->addDays(2),
+    );
+
+    $destination = makePhase02Destination($edition);
+    $package = makePhase02Package(
+        $edition,
+        BillingMode::PAID,
+        'PARTICIPANT',
+        '500000.00',
+        $destination,
+    );
+
+    $registration = app(CreateRegistrationIntentAction::class)->handle(
+        User::factory()->create(),
+        $edition,
+        $package,
+    );
+
+    $payment = app(ResolveRegistrationFeeRequirementAction::class)
+        ->handle($registration);
+
+    expect($payment)->not->toBeNull()
+        ->and($payment?->status)->toBe(PaymentStatus::PENDING)
+        ->and($registration->refresh()->status)->toBe(RegistrationStatus::PAYMENT_PENDING);
+});
+

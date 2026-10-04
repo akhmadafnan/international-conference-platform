@@ -2,7 +2,6 @@
 
 namespace App\Actions\Registration;
 
-use App\Actions\Conference\AssertEditionWorkflowWindowOpenAction;
 use App\Enums\BillingMode;
 use App\Enums\WorkflowWindowCode;
 use App\Enums\MembershipStatus;

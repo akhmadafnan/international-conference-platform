@@ -105,28 +105,4 @@ class ConferenceEdition extends Model
     {
         return $this->hasMany(NumberSequence::class, 'edition_id');
     }
-
-    /**
-     * @return HasMany<ImportantDate, $this>
-     */
-    public function importantDates(): HasMany
-    {
-        return $this->hasMany(ImportantDate::class, 'edition_id');
-    }
-
-    /**
-     * @return HasMany<Track, $this>
-     */
-    public function tracks(): HasMany
-    {
-        return $this->hasMany(Track::class, 'edition_id');
-    }
-
-    /**
-     * @return HasMany<GeneratedDocument, $this>
-     */
-    public function generatedDocuments(): HasMany
-    {
-        return $this->hasMany(GeneratedDocument::class, 'edition_id');
-    }
 }

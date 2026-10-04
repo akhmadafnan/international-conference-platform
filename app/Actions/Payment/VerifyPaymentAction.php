@@ -2,7 +2,6 @@
 
 namespace App\Actions\Payment;
 
-use App\Actions\Registration\EnsureEventPassAction;
 use App\Enums\PaymentStatus;
 use App\Enums\RegistrationStatus;
 use App\Models\Payment;
@@ -15,7 +14,6 @@ class VerifyPaymentAction
 {
     public function __construct(
         private readonly EditionScopedAuthorizer $authorizer,
-        private readonly EnsureEventPassAction $ensureEventPass,
     ) {}
 
     public function handle(
@@ -64,8 +62,6 @@ class VerifyPaymentAction
                 'status' => RegistrationStatus::CONFIRMED,
                 'confirmed_at' => $payment->registration->confirmed_at ?? $verifiedAt,
             ])->save();
-
-            $this->ensureEventPass->handle($payment->registration);
 
             activity('payment')
                 ->causedBy($actor)

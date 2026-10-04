@@ -16,13 +16,13 @@ use App\Models\Activity;
 use App\Models\ConferenceEdition;
 use App\Models\ConferenceSeries;
 use App\Models\EditionWorkflowWindow;
+use App\Models\NumberSequence;
 use App\Models\PackageActivityEntitlement;
 use App\Models\ParticipationPackage;
-use App\Models\NumberSequence;
 use App\Models\PaymentDestination;
+use App\Models\Permission;
 use App\Models\Registration;
 use App\Models\RegistrationActivity;
-use App\Models\Permission;
 use App\Models\Role;
 use App\Models\StoredFile;
 use App\Models\User;
@@ -1268,4 +1268,3 @@ test('participant only paid path does not consume accepted author payment window
         ->and($payment?->status)->toBe(PaymentStatus::PENDING)
         ->and($registration->refresh()->status)->toBe(RegistrationStatus::PAYMENT_PENDING);
 });
-

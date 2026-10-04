@@ -6,6 +6,7 @@ use App\Enums\BillingMode;
 use App\Enums\MembershipStatus;
 use App\Enums\RegistrationActivityStatus;
 use App\Enums\RegistrationStatus;
+use App\Enums\WorkflowWindowCode;
 use App\Models\ConferenceEdition;
 use App\Models\EditionMembership;
 use App\Models\ParticipationPackage;
@@ -18,6 +19,7 @@ class CreateRegistrationIntentAction
 {
     public function __construct(
         private readonly NextEditionNumberAction $nextEditionNumber,
+        private readonly AssertEditionWorkflowWindowOpenAction $workflowWindowGuard,
     ) {}
 
     public function handle(
@@ -26,6 +28,11 @@ class CreateRegistrationIntentAction
         ParticipationPackage $package,
         ?string $participantCategory = null,
     ): Registration {
+        $this->workflowWindowGuard->handle(
+            $edition,
+            WorkflowWindowCode::REGISTRATION,
+        );
+
         return DB::transaction(function () use ($user, $edition, $package, $participantCategory): Registration {
             $package->refresh();
 

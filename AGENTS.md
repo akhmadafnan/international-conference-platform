@@ -48,12 +48,13 @@ When sources conflict:
 
 Do not silently resolve contradictions.
 
-## Current hard gate
+## Current gate
 
-Implementation is still NOT authorized until:
-- Two-Week Development Plan is approved.
+The live implementation gate is determined by `docs/ai-context/CURRENT_STATE.md` plus current Git/GitHub evidence.
 
-Stack + ERD are already frozen.
+Phase 02 — Registration + Payment is currently AUTHORIZED / IN PROGRESS. The Two-Week Development Plan, stack, and ERD baseline are already approved/frozen for the current V1 direction.
+
+Do not start Phase 03 merely because Phase 02 implementation appears complete. A new phase requires the previous phase exit gate to be CLOSED_GREEN, integration into `develop`, and a new explicit Product Owner GO.
 
 Do not:
 - code from historical superseded lifecycle rules;
@@ -76,6 +77,29 @@ Do not:
 - Committee decisions remain human-authoritative.
 
 ## Working workflow
+
+For ordinary scoped work, branch from synchronized `develop`.
+
+For a bounded issue inside an active phase, use the nested delivery rule:
+
+```text
+active phase branch
+→ agent/<issue>-<scope> or another bounded child branch
+→ bounded implementation + real scope-appropriate gates
+→ Draft PR back to the active phase branch
+→ human review/acceptance
+→ merge to the active phase branch
+→ only the phase PR integrates the completed phase into develop
+```
+
+Agent/AI worker guardrails:
+- keep task contracts tiny and exact;
+- read only the context needed to edit safely;
+- AI execution success is not implementation GREEN—run syntax/tests/static analysis appropriate to the change;
+- do not repeatedly retry the same failing AI strategy; use a deterministic bounded correction when appropriate;
+- prepare least-privilege Git commit capability before execution rather than applying ad-hoc broad permission changes;
+- never auto-merge a phase PR, merge to `develop`/`main`, force-push, change secrets, or deploy production.
+
 
 DISCUSS
 → AUDIT / ANALYZE

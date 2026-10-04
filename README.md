@@ -4,11 +4,13 @@ This repository is the canonical product, architecture, and implementation repos
 
 ## Current state
 
-**META-AUDIT-001 CLOSED_GREEN — PRODUCT OWNER DISCUSSION HOLD / PHASE 02 LOCKED**
+**PHASE 02 — REGISTRATION + PAYMENT — IN PROGRESS**
 
-Phase 01 Foundation is `CLOSED_GREEN` and merged into `develop` through PR #57 at `e8141e9`.
+Phase 01 Foundation is `CLOSED_GREEN` and merged into `develop` through PR #57.
 
-The documentation/workflow meta-audit is complete. Application development remains paused for Product Owner discussion/review before any Phase 02 authorization.
+The Product Owner explicitly authorized Phase 02 on 2026-10-03. The active implementation branch is `phase/02-registration-payment`, with Draft phase PR #61 targeting `develop`.
+
+The bounded security regression for cross-payment proof isolation was accepted and merged through PR #77 into the active Phase 02 branch. Phase 02 is **not** yet CLOSED_GREEN: Event Pass, the participant-facing browser flow, remaining roadmap disposition, and final exit evidence are still required.
 
 Current sequence:
 
@@ -18,9 +20,11 @@ PRODUCT / REQUIREMENTS / METADATA / ARCHITECTURE ✓
 → PHASE 01 FOUNDATION ✓ CLOSED_GREEN
 → PR #57 / MERGE TO develop ✓
 → META-AUDIT-001 ✓ CLOSED_GREEN
-→ PRODUCT OWNER DISCUSSION / REVIEW ← CURRENT
-→ PHASE 02 only after explicit new GO
-→ V1 RELEASE CANDIDATE
+→ PRE-PHASE02 REBASELINE ✓ CLOSED_GREEN
+→ PRODUCT OWNER PHASE 02 GO ✓
+→ PHASE 02 — REGISTRATION + PAYMENT ← CURRENT
+→ PHASE 02 EXIT / PR #61 HUMAN REVIEW
+→ next phase only after explicit new Product Owner GO
 
 ## Frozen stack
 
@@ -48,6 +52,10 @@ See:
 
 Historical Phase 01 implementation branch:
 - `phase/01-foundation`
+
+Active Phase 02 implementation branch:
+- `phase/02-registration-payment`
+- Draft phase PR: #61 → `develop`
 
 META-AUDIT work follows the normal scoped-branch → PR → `develop` integration workflow.
 

@@ -1,8 +1,8 @@
 # Current Project State
 
-**State ID:** ICHES-STATE-20261004-PHASE02-IN-PROGRESS-HANDOFF-REFRESH-01
-**Status:** PHASE 02 — REGISTRATION + PAYMENT — IN_PROGRESS
-**Implementation authorization:** PHASE 01 COMPLETE; PHASE 02 AUTHORIZED / IN PROGRESS
+**State ID:** ICHES-STATE-20261006-PHASE02-EXIT-GREEN-PO-MERGE-GATE-01
+**Status:** PHASE 02 — REGISTRATION + PAYMENT — EXIT_GATE_GREEN / AWAITING_PO_MERGE_APPROVAL
+**Implementation authorization:** PHASE 01 COMPLETE; PHASE 02 EXIT GATE GREEN; PHASE 03 NOT AUTHORIZED
 **Repository:** akhmadafnan/international-conference-platform
 **Integration branch:** develop
 
@@ -168,7 +168,7 @@ Frontend:
 10 working days:
 
 1. Foundation ✓ CLOSED_GREEN
-2. Registration + Payment
+2. Registration + Payment ✓ EXIT_GATE_GREEN — integration pending
 3. Submission + Metadata
 4. Review + Decision + LoA
 5. Full Article + Scheduling
@@ -191,56 +191,61 @@ PRODUCT / REQUIREMENTS / META / ARCH ✓
 → PRODUCT OWNER DISCUSSION / LECONFE BENCHMARK ✓
 → PRE-PHASE02 PRODUCT + ARCHITECTURE REBASELINE ✓ CLOSED_GREEN
 → EXPLICIT PRODUCT OWNER PHASE 02 GO ✓
-→ PHASE 02 — REGISTRATION + PAYMENT ← IN PROGRESS
-→ bounded Phase 02 gates
-→ Phase 02 exit / integration
+→ PHASE 02 — REGISTRATION + PAYMENT ✓ TECHNICAL EXIT GREEN
+→ PR #61 HUMAN REVIEW / PRODUCT OWNER MERGE APPROVAL ← CURRENT
+→ merge Phase 02 to develop only after explicit Product Owner approval
+→ Phase 03 only after Phase 02 integration plus explicit new Product Owner GO
 → V1 RELEASE CANDIDATE
 
 ## Current exact action
 
-PHASE 02 — Registration + Payment is AUTHORIZED and IN PROGRESS.
+PHASE 02 — Registration + Payment has completed its technical exit gate and is awaiting the human-only integration decision.
 
 Branch:
-- `phase/02-registration-payment`
-- based on `develop @ 59c0e3e`
+- `phase/02-registration-payment @ c184c7835571dc7dff38a06aff68676c00b2114a`;
+- aggregate PR #61 targets `develop`, remains Draft, and must not merge without explicit Product Owner approval.
 
-Implemented domain checkpoint so far:
-- Phase 02 relational backbone for Conference Series / Edition, Venue, Edition Membership, Activities, Participation Packages, Package Activity Entitlements, Payment Destinations, Workflow Windows, Number Sequences, Registrations, Registration Activities, Payments, Payment Proofs, Fee Exemptions, Refund records, and Stored Files;
-- first-class domain models use UUIDv7;
-- explicit FREE / PAID package billing mode;
-- FREE fee resolution confirms registration without creating a synthetic Payment;
-- normally PAID registration may receive an audited complimentary/fee exemption before submitted financial evidence exists;
-- PAID obligation snapshots package, expected amount, currency, and participant-visible payment destination;
-- package-specific payment destination falls back to the active Edition default;
-- payment proof is immutable/versioned and corrected proof supersedes rather than overwrites prior evidence;
-- Finance verification is a separate consequential action and confirms Registration without changing academic state;
-- package/activity entitlements are snapshotted into Registration Activities;
-- human Registration code uses an Edition-scoped locked Number Sequence;
-- focused Phase 02 regression specification has been added.
+Completed Phase 02 product scope:
+- Registration + Payment relational/domain backbone for Conference Series / Edition, Venue, Edition Membership, Activities, Participation Packages, Package Activity Entitlements, Payment Destinations, Workflow Windows, Number Sequences, Registrations, Registration Activities, Payments, Payment Proofs, Fee Exemptions, Refund records, and Stored Files;
+- explicit FREE / PAID package billing behavior and audited COMPLIMENTARY/fee exemption path;
+- Registration workflow-window enforcement with Edition-scoped operational semantics;
+- Track and Important Date configuration foundation;
+- generated document + verification-token foundation for EVENT_PASS;
+- immutable Event Pass snapshot and opaque QR/lookup identity;
+- protected payment proof upload/download, correction, replacement, and Finance verification;
+- participant browser flow for Package → Registration → fee/payment state → proof when required → Registration Confirmed → Event Pass;
+- participant dashboard Next Action;
+- id/en/ar coverage, Arabic RTL behavior, and responsive/mobile-critical participant UAT.
 
-Latest Phase 02 repository checkpoint:
-- `phase/02-registration-payment @ 994b129` — bounded security regression from PR #77 integrated after human Product Owner acceptance.
-- Phase PR #61 remains Draft to `develop`; it must not merge until the Phase 02 exit gate is GREEN.
+Integrated completion checkpoints:
+- PR #93 restored the approved CLOSE-A configuration/Event Pass foundation required by Issue #80;
+- PR #94 merged CLOSE-B participant browser flow into the Phase 02 branch;
+- Issues #79 and #80 are CLOSED / COMPLETED;
+- frozen recovery branch `agent/80-phase02-browser-flow` was not merged.
 
-Verified evidence currently available:
-- GitHub Actions Backend Quality at `a16b43f`: scoped Pint GREEN; scoped PHPStan/Larastan GREEN with 0 errors; focused Phase 02 GREEN — 17 tests / 69 assertions; related foundation regression GREEN — 20 tests / 91 assertions.
-- clean MySQL migration + foundational seed from zero GREEN at the same Phase 02 checkpoint.
-- Issue #76 cross-payment proof isolation regression: PHP syntax PASS; Pint PASS; focused Phase 02 GREEN — 18 tests / 75 assertions; full regression GREEN — 85 tests / 328 assertions; `git diff --check` PASS; exact scope one test file.
-- PR #77 merged only into the active Phase 02 branch; Issue #76 is CLOSED / COMPLETED.
-- the Phase 02 branch remains intentionally unmerged into `develop`.
+Verified Phase 02 exit evidence:
+- production frontend build PASS;
+- full Pest regression PASS — 107 tests / 564 assertions;
+- full Pint PASS — 138 files;
+- full PHPStan/Larastan PASS — 0 errors;
+- frontend format/lint PASS;
+- Vue TypeScript check PASS;
+- `git diff --check` PASS;
+- PR #94 source tree is identical to the current Phase 02 application tree at `c184c783`;
+- browser UAT from the exact PR #94 application tree PASS for FREE → Event Pass, PAID → proof → Finance verification → Event Pass, 390x844 mobile coverage, and Arabic RTL;
+- GitHub Actions run `37436622414` PASS for both Phase 02 focused quality and MySQL clean migration + foundational seed from zero;
+- aggregate `develop...phase/02-registration-payment` scope audit contains the expected Phase 02 application, tests, CI, and governance/documentation changes; no Phase 03 implementation is included;
+- repository worktree was clean before the docs-only closeout branch.
 
-Remaining Phase 02 gaps before exit:
-- Event Pass identity/record plus QR lookup semantics required by the Phase 02 product target;
-- participant-facing browser path for Package → Registration → fee/payment state → proof/correction → Registration Confirmed → Event Pass;
-- initial participant Next Action state needed to make the Phase 02 browser flow usable;
-- basic Track / Important Date coverage named in the detailed roadmap must be implemented or explicitly dispositioned before exit rather than silently dropped;
-- browser/UAT for the user-visible Phase 02 slice;
-- final Phase 02/full-project regression and milestone repository hygiene after the remaining functional scope is complete.
+Gate status:
+- Phase 02 technical exit: GREEN;
+- Phase 02 integration into `develop`: PENDING explicit Product Owner approval;
+- Phase 03: NOT AUTHORIZED.
 
-Do not call Phase 02 GREEN or merge PR #61 into `develop` until the remaining functional scope and Phase 02 exit evidence are GREEN.
+Current bounded action:
+- Issue #95 records this docs-only Phase 02 closeout;
+- merge the exact-scope closeout child PR back to `phase/02-registration-payment` after docs/CI review;
+- then STOP at PR #61 and request explicit Product Owner approval for `phase/02-registration-payment → develop`;
+- do not start Phase 03 until Phase 02 is integrated and the Product Owner gives a new explicit GO.
 
-Next bounded action:
-- HANDOFF-REFRESH-01 reconciles durable project state without changing application behavior;
-- then create and execute bounded Phase 02 completion work for the remaining configuration/Event Pass/participant-browser slice;
-- keep frontend visual redesign outside this closure batch;
-- after the remaining Phase 02 implementation is integrated, run the coherent Phase 02 exit gate once and update PR #61 with final evidence.
+[executed on device: DESKTOP-PE5D86C (ab455e6a-0772-446b-810b-d0da08b82c47)]

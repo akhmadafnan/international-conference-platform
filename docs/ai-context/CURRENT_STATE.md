@@ -100,6 +100,20 @@ Local environment baseline:
 - `DB_CHARSET=utf8mb4`;
 - `DB_COLLATION=utf8mb4_0900_ai_ci`.
 
+## Operational workflow baseline
+
+Canonical operational workflow is defined in:
+
+`docs/governance/ENGINEERING_WORKFLOW.md`
+
+Current workstation convention:
+- Laptop 2 application repo: `D:\PINJAM-AFNAN\Herd\international-conference-platform`;
+- Laptop 2 infrastructure/tooling root: `D:\PINJAM-AFNAN\AfnanForge`;
+- application development is workstation/VSCode-first and GitHub-governed;
+- VPS is runtime/infrastructure, not the normal application editing surface;
+- AGENT-05 is a bounded autonomous worker and must not become a non-critical blocker for ordinary product development;
+- substantial checkpoints report **PRODUCT PROGRESS** separately from **INFRA / AGENT PROGRESS**.
+
 ## Handoff and no-repeat rule
 
 A new development session must orient from the repository and this file before proposing implementation.
@@ -119,10 +133,11 @@ When a new chat starts:
 1. verify current branch and HEAD;
 2. read `docs/ai-context/CURRENT_STATE.md`;
 3. read `docs/governance/WORKING_PROTOCOL.md`;
-4. read `docs/ai-context/INTERNATIONAL_CONFERENCE_PROJECT_CANONICAL_CONTEXT.md`;
-5. load only the additional authoritative domain documents required by the current gate;
-6. inspect repository divergence from the verified checkpoint;
-7. continue from `Current exact action` without repeating already-GREEN work.
+4. read `docs/governance/ENGINEERING_WORKFLOW.md`;
+5. read `docs/ai-context/INTERNATIONAL_CONFERENCE_PROJECT_CANONICAL_CONTEXT.md`;
+6. load only the additional authoritative domain documents required by the current gate;
+7. inspect repository divergence and active GitHub Issue/PR/Project state;
+8. continue from `Current exact action` without repeating already-GREEN work.
 
 ## Frozen implementation baseline
 

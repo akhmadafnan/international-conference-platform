@@ -1,9 +1,9 @@
 # Git & GitHub Workflow
 
 **ID:** ICP-GOV-GIT-001
-**Version:** 2.0
+**Version:** 2.1
 **Status:** ACTIVE / CANONICAL
-**Updated:** 2026-10-03
+**Updated:** 2026-10-06
 
 ## Branch Model
 
@@ -52,9 +52,11 @@ When an active phase has its own branch and phase PR, a small implementation/sec
 ```text
 develop
 ↑
-phase/NN-<scope>           ← phase PR targets develop
+phase/NN-<scope>                 ← phase PR targets develop
 ↑
-agent/<issue>-<scope>      ← bounded Draft PR targets the active phase branch
+task/feat/fix/docs/test branch   ← normal bounded child PR targets active phase
+↑
+agent/<issue>-<scope>            ← AGENT-05 bounded child PR targets active phase
 ```
 
 Rules:
@@ -62,9 +64,11 @@ Rules:
 - the child PR targets the active phase branch, never `develop` directly;
 - exact issue scope and scope-appropriate quality evidence are required;
 - structural wrapper success alone does not prove application behavior;
-- after human acceptance, merge the child PR into the active phase branch and close the bounded issue;
+- normal human/assistant child PRs require reviewed acceptance before merge;
+- AGENT-05 may auto-merge only when the machine-readable Issue contract explicitly sets `child_auto_merge=true`, all deterministic scope/head/base/CI gates are GREEN, and the target is the authorized active phase branch;
+- AGENT-05 must never autonomously merge into `develop`, `main`, or `master`;
 - only the phase PR integrates the completed phase into `develop`;
-- no automatic merge to the active phase branch, `develop`, or `main`;
+- phase → `develop` and `develop` → `main` remain human-only gates;
 - worker Git capability must be least-privilege and prepared before execution; do not use broad recursive ownership/permission changes.
 
 ## Standard Workflow
@@ -122,7 +126,13 @@ For a bounded child issue inside an active phase, start from the synchronized ac
 ```bash
 git switch phase/NN-<scope>
 git pull --ff-only origin phase/NN-<scope>
-git switch -c agent/<issue>-<scope>
+git switch -c <task|feat|fix|docs|test>/<issue-or-scope>
+```
+
+AGENT-05 uses the reserved automation branch pattern:
+
+```text
+agent/<issue>-<scope>
 ```
 
 Verify:

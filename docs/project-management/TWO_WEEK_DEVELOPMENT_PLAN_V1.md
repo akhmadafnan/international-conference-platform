@@ -1,9 +1,9 @@
 # Two-Week Development Plan — ICHES V1
 
 **Document ID:** ICHES-PLAN-001
-**Status:** ACTIVE DELIVERY ROADMAP — PHASE 01 CLOSED_GREEN / MERGED; PHASE 02 REGISTRATION + PAYMENT IN PROGRESS
+**Status:** ACTIVE DELIVERY ROADMAP — PHASE 01–02 CLOSED_GREEN / MERGED; PHASE 03 SUBMISSION + METADATA IN PROGRESS
 **Duration:** 10 working days / approximately 2 calendar weeks
-**Updated:** 2026-10-04
+**Updated:** 2026-10-06
 
 > This plan remains the delivery roadmap. Current execution state is authoritative in `docs/ai-context/CURRENT_STATE.md`; a completed day/phase entry in this plan is historical evidence, not permission to begin the next phase.
 
@@ -148,7 +148,7 @@ Scope:
 - draft/submit state.
 
 Exit gate:
-Confirmed participant can create and officially submit a metadata-valid abstract without bypassing rules.
+An authenticated Edition member with a valid participation intent and selected package can create and officially submit a metadata-valid abstract without bypassing rules. Presenter/author payment or Registration Confirmed is not a precondition; those follow authorized ACCEPT when applicable.
 
 ### Day 4 — Screening + Review + Academic Decision + LoA
 

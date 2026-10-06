@@ -1,8 +1,8 @@
 # Current Project State
 
-**State ID:** ICHES-STATE-20261006-PHASE02-CLOSED-GREEN-INTEGRATED-01
-**Status:** PHASE 02 — REGISTRATION + PAYMENT — CLOSED_GREEN / INTEGRATED
-**Implementation authorization:** PHASE 01 COMPLETE; PHASE 02 CLOSED_GREEN; PHASE 03 NOT AUTHORIZED
+**State ID:** ICHES-STATE-20261006-PHASE03-IN-PROGRESS-START-01
+**Status:** PHASE 03 — SUBMISSION + SCHOLARLY METADATA — IN_PROGRESS
+**Implementation authorization:** PHASE 01 COMPLETE; PHASE 02 CLOSED_GREEN; PHASE 03 AUTHORIZED / IN PROGRESS
 **Repository:** akhmadafnan/international-conference-platform
 **Integration branch:** develop
 
@@ -171,8 +171,8 @@ Frontend:
 
 1. Foundation ✓ CLOSED_GREEN
 2. Registration + Payment ✓ CLOSED_GREEN / INTEGRATED
-3. Submission + Metadata — NOT AUTHORIZED
-4. Review + Decision + LoA
+3. Submission + Metadata ← AUTHORIZED / IN PROGRESS
+4. Review + Decision + LoA — NOT AUTHORIZED
 5. Full Article + Scheduling
 6. Event Day + Assessment
 7. Revision + Publication
@@ -195,54 +195,51 @@ PRODUCT / REQUIREMENTS / META / ARCH ✓
 → EXPLICIT PRODUCT OWNER PHASE 02 GO ✓
 → PHASE 02 — REGISTRATION + PAYMENT ✓ CLOSED_GREEN
 → PR #61 / merge to develop ✓ PRODUCT OWNER APPROVED
-→ PHASE 02 POST-MERGE CANONICAL HANDOFF ← CURRENT
-→ Phase 03 only after explicit new Product Owner GO
+→ PHASE 02 POST-MERGE CANONICAL HANDOFF ✓
+→ EXPLICIT PRODUCT OWNER PHASE 03 GO ✓
+→ PHASE 03 — SUBMISSION + SCHOLARLY METADATA ← CURRENT
+→ Phase 03 exit / integration
+→ Phase 04 only after explicit new Product Owner GO
 → V1 RELEASE CANDIDATE
 
 ## Current exact action
 
-PHASE 02 — Registration + Payment is CLOSED_GREEN and integrated into `develop`.
+PHASE 03 — Submission + Scholarly Metadata is AUTHORIZED and IN PROGRESS.
 
-Integration:
-- Product Owner explicitly approved Phase 02 integration on 2026-10-06;
-- aggregate PR #61 is MERGED;
-- Phase 02 source head integrated: `468425b696b1fb1c314f98db3424cf806cb7aca7`;
-- application integration checkpoint: `develop @ ecfb86d8624ce70ed49c08adf9e9774d14549ca1`;
-- Issue #97 is the docs-only post-merge synchronization and does not change application behavior.
+Authorization:
+- Product Owner explicitly gave Phase 03 GO on 2026-10-06;
+- Phase 02 remains CLOSED_GREEN and integrated into `develop`;
+- Phase 03 active branch: `phase/03-submission-metadata`;
+- aggregate Phase 03 PR targets `develop` and remains human-only;
+- umbrella Issue: #63 `[P03] Submission + Scholarly Metadata`;
+- Phase 04 is NOT AUTHORIZED.
 
-Completed Phase 02 product scope:
-- Registration + Payment relational/domain backbone for Conference Series / Edition, Venue, Edition Membership, Activities, Participation Packages, Package Activity Entitlements, Payment Destinations, Workflow Windows, Number Sequences, Registrations, Registration Activities, Payments, Payment Proofs, Fee Exemptions, Refund records, and Stored Files;
-- explicit FREE / PAID package billing behavior and audited COMPLIMENTARY/fee exemption path;
-- Registration workflow-window enforcement with Edition-scoped operational semantics;
-- Track and Important Date configuration foundation;
-- generated document + verification-token foundation for EVENT_PASS;
-- immutable Event Pass snapshot and opaque QR/lookup identity;
-- protected payment proof upload/download, correction, replacement, and Finance verification;
-- participant browser flow for Package → Registration → fee/payment state → proof when required → Registration Confirmed → Event Pass;
-- participant dashboard Next Action;
-- id/en/ar coverage, Arabic RTL behavior, and responsive/mobile-critical participant UAT.
+Canonical Phase 03 scope:
+- persistent Submission/Paper identity and Edition-scoped Paper ID;
+- scholarly translations independent from UI locale;
+- ordered keywords;
+- contributors with explicit order and exactly one corresponding author before official submission;
+- institution-first affiliation identity with ROR/manual fallback and optional subdivision;
+- optional ORCID with explicit verification state;
+- ordered references with raw citation preserved;
+- immutable/versioned submission files and abstract-file policy;
+- official submission snapshots;
+- metadata readiness boundaries;
+- abstract submission workflow window;
+- server-side authorization;
+- five-step abstract wizard;
+- DRAFT → officially SUBMITTED transition;
+- id/en/ar and Arabic RTL for new participant-facing surfaces.
 
-Verified Phase 02 exit evidence:
-- production frontend build PASS;
-- full Pest regression PASS — 107 tests / 564 assertions;
-- full Pint PASS — 138 files;
-- full PHPStan/Larastan PASS — 0 errors;
-- frontend format/lint PASS;
-- Vue TypeScript check PASS;
-- `git diff --check` PASS;
-- browser UAT PASS for FREE → Event Pass, PAID → proof → Finance verification → Event Pass, mobile 390x844, and Arabic RTL;
-- GitHub Actions Phase 02 focused quality PASS;
-- MySQL clean migration + foundational seed from zero PASS;
-- aggregate Phase 02 scope audit found no Phase 03 implementation.
-
-Gate status:
-- Phase 02 technical exit: GREEN;
-- Phase 02 integration into `develop`: COMPLETE;
-- Phase 02 overall: CLOSED_GREEN;
-- Phase 03: NOT AUTHORIZED.
+Critical lifecycle rule:
+- presenter/author abstract submission requires a valid Edition participation intent/package context, not prior payment or Registration Confirmed;
+- canonical path is participation intent + selected package → Submit Abstract → Screening/Review/Decision → ACCEPT → payment obligation → Finance verification → Registration Confirmed;
+- participant-only payment flow remains separate;
+- administrative screening/review/academic decision/LoA are Phase 04 and must not be implemented in Phase 03.
 
 Current bounded action:
-- finish Issue #97 docs-only post-merge synchronization;
-- preserve Phase 02 as the integrated baseline;
-- STOP before Phase 03 implementation;
-- begin Phase 03 only after a new explicit Product Owner GO.
+- Issue #99 records the Phase 03 authorization and canonical-document reconciliation;
+- after the docs-only start checkpoint is merged into the Phase 03 branch, create bounded Phase 03 implementation work units;
+- OpenCode executes the bounded implementation units;
+- each child task returns to `phase/03-submission-metadata` only after scope-appropriate gates are GREEN;
+- do not merge Phase 03 to `develop` without Phase 03 exit GREEN and explicit Product Owner approval.

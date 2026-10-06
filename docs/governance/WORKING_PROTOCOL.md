@@ -1,9 +1,9 @@
 # Development Working Protocol
 
 **ID:** ICP-GOV-WORK-001
-**Version:** 2.0
+**Version:** 2.1
 **Status:** ACTIVE / CANONICAL
-**Updated:** 2026-10-03
+**Updated:** 2026-10-06
 
 ## Purpose
 
@@ -48,9 +48,12 @@ Every substantial development session starts by reading, in order:
 
 1. `docs/ai-context/CURRENT_STATE.md`
 2. `docs/governance/WORKING_PROTOCOL.md`
-3. `docs/ai-context/INTERNATIONAL_CONFERENCE_PROJECT_CANONICAL_CONTEXT.md`
+3. `docs/governance/ENGINEERING_WORKFLOW.md`
+4. `docs/ai-context/INTERNATIONAL_CONFERENCE_PROJECT_CANONICAL_CONTEXT.md`
 
 Then load only the additional authoritative documents required by the current gate.
+
+`ENGINEERING_WORKFLOW.md` defines the operational roles of VSCode/workstations, GitHub surfaces, the Delivery Board, VPS runtime, and AGENT-05.
 
 Historical or provenance documents never override later accepted canonical decisions.
 
@@ -294,6 +297,12 @@ Report:
 - verified result;
 - blocker or inconsistency;
 - exact next bounded action.
+
+For substantial checkpoints, separate:
+- **PRODUCT PROGRESS** — application/domain delivery and its evidence;
+- **INFRA / AGENT PROGRESS** — VPS, AGENT-05, deployment/preflight, or tooling state when relevant.
+
+Infrastructure activity must not be presented as product feature progress.
 
 Do not narrate every low-level command when it does not affect a decision or gate.
 

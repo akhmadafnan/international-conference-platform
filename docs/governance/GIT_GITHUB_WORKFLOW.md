@@ -1,9 +1,9 @@
 # Git & GitHub Workflow
 
 **ID:** ICP-GOV-GIT-001
-**Version:** 2.0
+**Version:** 2.1
 **Status:** ACTIVE / CANONICAL
-**Updated:** 2026-10-03
+**Updated:** 2026-10-06
 
 ## Branch Model
 
@@ -35,7 +35,7 @@ Completed scoped work is merged here through reviewed PRs.
 
 ### scoped branch
 
-One coherent bounded scope created from a synchronized `develop`.
+One coherent bounded scope. Ordinary work is created from synchronized `develop`; a bounded child issue inside an active phase is created from the current active phase branch.
 
 Examples:
 - `phase/01-foundation`
@@ -44,6 +44,32 @@ Examples:
 - `fix/rtl-dialog-overflow`
 
 A new implementation phase branch must not be created before explicit Product Owner authorization for that phase.
+
+## Nested Bounded Work Inside an Active Phase
+
+When an active phase has its own branch and phase PR, a small implementation/security/quality issue may use a child branch.
+
+```text
+develop
+↑
+phase/NN-<scope>                 ← phase PR targets develop
+↑
+task/feat/fix/docs/test branch   ← normal bounded child PR targets active phase
+↑
+agent/<issue>-<scope>            ← AGENT-05 bounded child PR targets active phase
+```
+
+Rules:
+- child branch starts from the current active phase branch, not from stale `develop`;
+- the child PR targets the active phase branch, never `develop` directly;
+- exact issue scope and scope-appropriate quality evidence are required;
+- structural wrapper success alone does not prove application behavior;
+- normal human/assistant child PRs require reviewed acceptance before merge;
+- AGENT-05 may auto-merge only when the machine-readable Issue contract explicitly sets `child_auto_merge=true`, all deterministic scope/head/base/CI gates are GREEN, and the target is the authorized active phase branch;
+- AGENT-05 must never autonomously merge into `develop`, `main`, or `master`;
+- only the phase PR integrates the completed phase into `develop`;
+- phase → `develop` and `develop` → `main` remain human-only gates;
+- worker Git capability must be least-privilege and prepared before execution; do not use broad recursive ownership/permission changes.
 
 ## Standard Workflow
 
@@ -58,7 +84,7 @@ SYNC / ORIENT
 → PUSH
 → CONTINUE BOUNDED WORK
 → MILESTONE CLOSEOUT
-→ PR TO develop
+→ PR TO APPROPRIATE TARGET
 → PR SCOPE AUDIT
 → MERGE
 → SYNCHRONIZE LOCAL develop
@@ -87,12 +113,26 @@ Do not use destructive reset merely to force local state to match remote.
 
 ## Creating a Scoped Branch
 
-Start from synchronized `develop`:
+For ordinary work, start from synchronized `develop`:
 
 ```bash
 git switch develop
 git pull --ff-only origin develop
 git switch -c <scoped-branch>
+```
+
+For a bounded child issue inside an active phase, start from the synchronized active phase branch instead:
+
+```bash
+git switch phase/NN-<scope>
+git pull --ff-only origin phase/NN-<scope>
+git switch -c <task|feat|fix|docs|test>/<issue-or-scope>
+```
+
+AGENT-05 uses the reserved automation branch pattern:
+
+```text
+agent/<issue>-<scope>
 ```
 
 Verify:

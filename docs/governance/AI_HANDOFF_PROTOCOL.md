@@ -1,9 +1,9 @@
 # AI / New-Chat Handoff Protocol
 
 **ID:** ICP-GOV-AI-001
-**Version:** 2.0
+**Version:** 2.1
 **Status:** ACTIVE / CANONICAL
-**Updated:** 2026-10-03
+**Updated:** 2026-10-06
 
 ## Purpose
 
@@ -15,7 +15,8 @@ Every substantial development conversation begins by reading:
 
 1. `docs/ai-context/CURRENT_STATE.md`
 2. `docs/governance/WORKING_PROTOCOL.md`
-3. `docs/ai-context/INTERNATIONAL_CONFERENCE_PROJECT_CANONICAL_CONTEXT.md`
+3. `docs/governance/ENGINEERING_WORKFLOW.md`
+4. `docs/ai-context/INTERNATIONAL_CONFERENCE_PROJECT_CANONICAL_CONTEXT.md`
 
 Then read only the additional authoritative documents required by the current gate.
 
@@ -99,9 +100,10 @@ First orient from the repository.
 Read these files in this exact order:
 1. docs/ai-context/CURRENT_STATE.md
 2. docs/governance/WORKING_PROTOCOL.md
-3. docs/ai-context/INTERNATIONAL_CONFERENCE_PROJECT_CANONICAL_CONTEXT.md
+3. docs/governance/ENGINEERING_WORKFLOW.md
+4. docs/ai-context/INTERNATIONAL_CONFERENCE_PROJECT_CANONICAL_CONTEXT.md
 
-Then inspect the current Git branch, HEAD, worktree status, and repository divergence.
+Then inspect the current Git branch, HEAD, worktree status, repository divergence, and the active GitHub Issue/PR/Project state.
 
 After that, read only the additional authoritative domain, architecture, and testing documents required by the current gate.
 
@@ -137,6 +139,11 @@ Rules:
 - Run browser/UAT checks when behavior is user-visible.
 - Update canonical documentation at material decision/gate/milestone transitions, not after every small edit.
 - Keep the Product Owner informed at meaningful gate transitions with current status, evidence, blockers, and exact next action.
+- Separate substantial checkpoint reporting into PRODUCT PROGRESS and INFRA / AGENT PROGRESS.
+- Treat VSCode/workstation development as the default application-development path.
+- Treat the VPS as runtime/infrastructure, not the default place to manually edit application source.
+- Use AGENT-05 only for bounded tasks whose objective, allowed scope, target branch, and verification contract are already clear.
+- If AGENT-05 has a non-critical infrastructure blocker, do not pause product development indefinitely when the normal workstation/GitHub path remains safe.
 - If a genuine product/policy decision is missing, surface it clearly instead of inventing an answer.
 
 At the start of your response, report:

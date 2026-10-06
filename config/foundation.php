@@ -31,6 +31,9 @@ return [
 
     'permissions' => [
         'submission.admin_screen',
+        'registration.configure',
+        'registration.fee_exempt',
+        'payment.configure',
         'payment.verify',
         'refund.execute',
         'review.assign',
@@ -69,7 +72,11 @@ return [
     'edition_role_blueprints' => [
         'front_office' => [],
 
-        'conference_admin' => [],
+        'conference_admin' => [
+            'registration.configure',
+            'registration.fee_exempt',
+            'payment.configure',
+        ],
 
         'finance' => [
             'payment.verify',

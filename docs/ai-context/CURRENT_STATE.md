@@ -1,8 +1,8 @@
 # Current Project State
 
-**State ID:** ICHES-STATE-20261003-PRE02-REBASELINE-CLOSED
-**Status:** PRE-PHASE02-REBASELINE — CLOSED_GREEN / AWAITING EXPLICIT PHASE 02 GO
-**Implementation authorization:** PHASE 01 COMPLETE; PHASE 02 NOT AUTHORIZED
+**State ID:** ICHES-STATE-20261006-PHASE02-EXIT-GREEN-PO-MERGE-GATE-01
+**Status:** PHASE 02 — REGISTRATION + PAYMENT — EXIT_GATE_GREEN / AWAITING_PO_MERGE_APPROVAL
+**Implementation authorization:** PHASE 01 COMPLETE; PHASE 02 EXIT GATE GREEN; PHASE 03 NOT AUTHORIZED
 **Repository:** akhmadafnan/international-conference-platform
 **Integration branch:** develop
 
@@ -39,7 +39,7 @@
 ## Verified implementation checkpoint
 
 Latest integrated implementation baseline:
-- `develop @ 01e5482` — Phase 01 foundation plus META-AUDIT-001 and Pre-Phase 02 rebaseline
+- `develop @ 59c0e3e` — Phase 01 foundation + META-AUDIT-001 + accepted Pre-Phase 02 rebaseline including FREE/PAID/complimentary policy
 
 Phase 01 source checkpoint:
 - `d269534` — final Phase 01 branch closeout
@@ -100,6 +100,20 @@ Local environment baseline:
 - `DB_CHARSET=utf8mb4`;
 - `DB_COLLATION=utf8mb4_0900_ai_ci`.
 
+## Operational workflow baseline
+
+Canonical operational workflow is defined in:
+
+`docs/governance/ENGINEERING_WORKFLOW.md`
+
+Current workstation convention:
+- Laptop 2 application repo: `D:\PINJAM-AFNAN\Herd\international-conference-platform`;
+- Laptop 2 infrastructure/tooling root: `D:\PINJAM-AFNAN\AfnanForge`;
+- application development is workstation/VSCode-first and GitHub-governed;
+- VPS is runtime/infrastructure, not the normal application editing surface;
+- AGENT-05 is a bounded autonomous worker and must not become a non-critical blocker for ordinary product development;
+- substantial checkpoints report **PRODUCT PROGRESS** separately from **INFRA / AGENT PROGRESS**.
+
 ## Handoff and no-repeat rule
 
 A new development session must orient from the repository and this file before proposing implementation.
@@ -119,10 +133,11 @@ When a new chat starts:
 1. verify current branch and HEAD;
 2. read `docs/ai-context/CURRENT_STATE.md`;
 3. read `docs/governance/WORKING_PROTOCOL.md`;
-4. read `docs/ai-context/INTERNATIONAL_CONFERENCE_PROJECT_CANONICAL_CONTEXT.md`;
-5. load only the additional authoritative domain documents required by the current gate;
-6. inspect repository divergence from the verified checkpoint;
-7. continue from `Current exact action` without repeating already-GREEN work.
+4. read `docs/governance/ENGINEERING_WORKFLOW.md`;
+5. read `docs/ai-context/INTERNATIONAL_CONFERENCE_PROJECT_CANONICAL_CONTEXT.md`;
+6. load only the additional authoritative domain documents required by the current gate;
+7. inspect repository divergence and active GitHub Issue/PR/Project state;
+8. continue from `Current exact action` without repeating already-GREEN work.
 
 ## Frozen implementation baseline
 
@@ -153,7 +168,7 @@ Frontend:
 10 working days:
 
 1. Foundation ✓ CLOSED_GREEN
-2. Registration + Payment
+2. Registration + Payment ✓ EXIT_GATE_GREEN — integration pending
 3. Submission + Metadata
 4. Review + Decision + LoA
 5. Full Article + Scheduling
@@ -175,38 +190,62 @@ PRODUCT / REQUIREMENTS / META / ARCH ✓
 → META-AUDIT-001 ✓ CLOSED_GREEN
 → PRODUCT OWNER DISCUSSION / LECONFE BENCHMARK ✓
 → PRE-PHASE02 PRODUCT + ARCHITECTURE REBASELINE ✓ CLOSED_GREEN
-→ EXPLICIT PRODUCT OWNER PHASE 02 GO ← CURRENT REQUIRED ACTION
-→ bounded development gates
+→ EXPLICIT PRODUCT OWNER PHASE 02 GO ✓
+→ PHASE 02 — REGISTRATION + PAYMENT ✓ TECHNICAL EXIT GREEN
+→ PR #61 HUMAN REVIEW / PRODUCT OWNER MERGE APPROVAL ← CURRENT
+→ merge Phase 02 to develop only after explicit Product Owner approval
+→ Phase 03 only after Phase 02 integration plus explicit new Product Owner GO
 → V1 RELEASE CANDIDATE
 
 ## Current exact action
 
-Pre-Phase 02 product/architecture rebaseline is CLOSED_GREEN at documentation level.
+PHASE 02 — Registration + Payment has completed its technical exit gate and is awaiting the human-only integration decision.
 
-Accepted corrections now include:
-- LeConfe retained only as a mature-platform benchmark; no fork/integration/roadmap replacement;
-- presenter/author payment obligation occurs after authorized abstract ACCEPT, not before abstract submission;
-- participant-only payment remains available without academic submission;
-- configurable Edition/package payment destinations with copyable account number UX;
-- payment amount/package/destination snapshot at obligation creation;
-- explicit FREE/PAID package billing mode;
-- FREE participation skips payment/proof/Finance verification without creating a synthetic payment;
-- authorized audited fee exemption/complimentary path for normally PAID registrations;
-- bounded operational workflow windows;
-- bounded localized custom pages/navigation without a generic plugin/page-builder engine;
-- current snapshot-based abstract review traceability retained; no generic multi-round engine added to accelerated V1;
-- OJS/publisher remains downstream system of record for copyediting, publication, DOI and Crossref operations;
-- ICHES retains OJS-ready canonical metadata and immutable publication snapshot;
-- Final Approved Manuscript is explicitly selected after revision/Final ACC;
-- single and bulk OJS Production Bundles are required from READY/WARNING publication records and exclude confidential review material;
-- downstream DOI/OJS/publication results may be recorded as external identifiers;
-- public sitemap/SEO/discoverability remains an ICHES website concern, distinct from scholarly publication indexing.
+Branch:
+- `phase/02-registration-payment @ c184c7835571dc7dff38a06aff68676c00b2114a`;
+- aggregate PR #61 targets `develop`, remains Draft, and must not merge without explicit Product Owner approval.
 
-Authoritative corrective documents:
-- `docs/governance/PRE_PHASE02_PRODUCT_REBASELINE.md`
-- `docs/architecture/PRE_PHASE02_ARCHITECTURE_AMENDMENT.md`
+Completed Phase 02 product scope:
+- Registration + Payment relational/domain backbone for Conference Series / Edition, Venue, Edition Membership, Activities, Participation Packages, Package Activity Entitlements, Payment Destinations, Workflow Windows, Number Sequences, Registrations, Registration Activities, Payments, Payment Proofs, Fee Exemptions, Refund records, and Stored Files;
+- explicit FREE / PAID package billing behavior and audited COMPLIMENTARY/fee exemption path;
+- Registration workflow-window enforcement with Edition-scoped operational semantics;
+- Track and Important Date configuration foundation;
+- generated document + verification-token foundation for EVENT_PASS;
+- immutable Event Pass snapshot and opaque QR/lookup identity;
+- protected payment proof upload/download, correction, replacement, and Finance verification;
+- participant browser flow for Package → Registration → fee/payment state → proof when required → Registration Confirmed → Event Pass;
+- participant dashboard Next Action;
+- id/en/ar coverage, Arabic RTL behavior, and responsive/mobile-critical participant UAT.
 
-No application code was changed by this rebaseline.
+Integrated completion checkpoints:
+- PR #93 restored the approved CLOSE-A configuration/Event Pass foundation required by Issue #80;
+- PR #94 merged CLOSE-B participant browser flow into the Phase 02 branch;
+- Issues #79 and #80 are CLOSED / COMPLETED;
+- frozen recovery branch `agent/80-phase02-browser-flow` was not merged.
 
-Phase 02 implementation remains LOCKED. The next required action is an explicit Product Owner Phase 02 GO. After GO, create the bounded Phase 02 implementation branch and implement Registration + Payment against the corrected contracts.
+Verified Phase 02 exit evidence:
+- production frontend build PASS;
+- full Pest regression PASS — 107 tests / 564 assertions;
+- full Pint PASS — 138 files;
+- full PHPStan/Larastan PASS — 0 errors;
+- frontend format/lint PASS;
+- Vue TypeScript check PASS;
+- `git diff --check` PASS;
+- PR #94 source tree is identical to the current Phase 02 application tree at `c184c783`;
+- browser UAT from the exact PR #94 application tree PASS for FREE → Event Pass, PAID → proof → Finance verification → Event Pass, 390x844 mobile coverage, and Arabic RTL;
+- GitHub Actions run `37436622414` PASS for both Phase 02 focused quality and MySQL clean migration + foundational seed from zero;
+- aggregate `develop...phase/02-registration-payment` scope audit contains the expected Phase 02 application, tests, CI, and governance/documentation changes; no Phase 03 implementation is included;
+- repository worktree was clean before the docs-only closeout branch.
 
+Gate status:
+- Phase 02 technical exit: GREEN;
+- Phase 02 integration into `develop`: PENDING explicit Product Owner approval;
+- Phase 03: NOT AUTHORIZED.
+
+Current bounded action:
+- Issue #95 records this docs-only Phase 02 closeout;
+- merge the exact-scope closeout child PR back to `phase/02-registration-payment` after docs/CI review;
+- then STOP at PR #61 and request explicit Product Owner approval for `phase/02-registration-payment → develop`;
+- do not start Phase 03 until Phase 02 is integrated and the Product Owner gives a new explicit GO.
+
+[executed on device: DESKTOP-PE5D86C (ab455e6a-0772-446b-810b-d0da08b82c47)]

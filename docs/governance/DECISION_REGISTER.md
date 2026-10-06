@@ -2,7 +2,7 @@
 
 **ID:** ICHES-DECISION-REGISTER  
 **Status:** ACTIVE — PRODUCT BLUEPRINT v1  
-**Updated:** 2026-10-04
+**Updated:** 2026-10-06
 
 This register records current Product Discovery and accelerated V1 decisions.
 
@@ -161,3 +161,4 @@ Statuses:
 |---|---|---|
 | DEV-START-001 | Product Owner authorized V1 implementation under the frozen 10-working-day plan; no new V1 scope is added, frontend parallel work uses frozen contracts, and Days 9–10 remain stabilization/UAT | ACCEPTED |
 | DEV-START-002 | Product Owner explicitly authorized PHASE 02 — Registration + Payment on 2026-10-03 against the accepted Pre-Phase 02 rebaseline, including FREE/PAID/complimentary participation | ACCEPTED |
+| DEV-START-003 | Product Owner explicitly authorized PHASE 03 — Submission + Scholarly Metadata on 2026-10-06. Abstract submission follows the accepted presenter/author lifecycle: participation intent + selected package before abstract submission; presenter payment/Registration Confirmed occurs only after authorized ACCEPT when required | ACCEPTED |

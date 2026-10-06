@@ -1,9 +1,9 @@
 # ICHES Conference & Event Experience Platform — Canonical Context
 
 **ID:** ICHES-CANONICAL-001  
-**Version:** 1.4-pre-phase02-rebaseline
+**Version:** 1.5-phase03-start
 **Status:** ACTIVE  
-**Updated:** 2026-10-03
+**Updated:** 2026-10-06
 
 ## Current authority
 
@@ -164,15 +164,20 @@ ERD contract:
 
 Phase 01 Foundation is CLOSED_GREEN and merged into `develop`.
 
-META-AUDIT-001 is CLOSED_GREEN.
+Phase 02 — Registration + Payment is CLOSED_GREEN and integrated into `develop` through Product Owner-approved PR #61.
+
+The Product Owner explicitly authorized **Phase 03 — Submission + Scholarly Metadata** on 2026-10-06.
 
 Current:
-`PHASE 02 — REGISTRATION + PAYMENT — IN PROGRESS`
+`PHASE 03 — SUBMISSION + SCHOLARLY METADATA — IN PROGRESS`
 
-The Product Owner gave explicit Phase 02 GO on 2026-10-03.
+Active branch:
+`phase/03-submission-metadata`
 
-Current bounded implementation starts with the Registration + Payment domain backbone: Conference/Edition support required by the domain, package/activity entitlements, FREE/PAID/complimentary fee resolution, payment destinations, immutable payment snapshots, versioned payment proof, correction, and Finance verification.
+Phase 03 implements the frozen Submission & Scholarly Metadata Contract: persistent Submission identity, translations, keywords, contributors, affiliation/ROR-ready metadata, optional ORCID, references, immutable/versioned submission files, official submission snapshots, readiness boundaries, author-facing five-step abstract workflow, DRAFT/official submit transition, and server-side authorization.
 
-Phase 02 is not CLOSED_GREEN until required focused tests, related regression, Pint, PHPStan/static analysis, migration verification, and any relevant UAT have actual GREEN evidence.
+The accepted Pre-Phase 02 lifecycle remains authoritative: presenter/author payment does **not** precede abstract submission. A valid Edition participation intent and selected package provide the context for abstract submission; payment obligation and Registration Confirmed occur only after authorized ACCEPT when applicable.
 
-Frontend visual-reference selection remains a later bounded workstream; Phase 02 must not broaden into a public visual redesign.
+Phase 04 screening/review/academic decision/LoA is not part of Phase 03.
+
+No Phase 03 aggregate PR may merge to `develop` without Phase 03 exit evidence GREEN and explicit Product Owner approval.

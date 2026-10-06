@@ -74,6 +74,34 @@ return new class extends Migration
             $table->index(['edition_id', 'name']);
         });
 
+        Schema::create('important_dates', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->foreignUuid('edition_id')
+                ->constrained('conference_editions')->restrictOnDelete();
+            $table->string('code');
+            $table->json('label_i18n');
+            $table->timestamp('starts_at');
+            $table->timestamp('ends_at')->nullable();
+            $table->boolean('public')->default(true);
+            $table->unsignedInteger('display_order')->default(0);
+            $table->timestamps();
+            $table->unique(['edition_id', 'code']);
+            $table->index(['edition_id', 'public', 'display_order']);
+        });
+
+        Schema::create('tracks', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->foreignUuid('edition_id')
+                ->constrained('conference_editions')->restrictOnDelete();
+            $table->string('code');
+            $table->json('name_i18n');
+            $table->json('description_i18n')->nullable();
+            $table->boolean('active')->default(true);
+            $table->timestamps();
+            $table->unique(['edition_id', 'code']);
+            $table->index(['edition_id', 'active']);
+        });
+
         Schema::create('edition_memberships', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->foreignUuid('edition_id')
@@ -292,10 +320,51 @@ return new class extends Migration
             $table->timestamps();
             $table->index(['payment_id', 'status']);
         });
+
+        Schema::create('generated_documents', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->foreignUuid('edition_id')
+                ->constrained('conference_editions')->restrictOnDelete();
+            $table->string('document_type', 64);
+            $table->foreignUuid('registration_id')->nullable()
+                ->constrained('registrations')->restrictOnDelete();
+            $table->uuid('submission_id')->nullable();
+            $table->foreignUuid('recipient_user_id')->nullable()
+                ->constrained('users')->restrictOnDelete();
+            $table->string('status', 32);
+            $table->string('document_number')->nullable();
+            $table->json('snapshot_json');
+            $table->foreignUuid('stored_file_id')->nullable()
+                ->constrained('stored_files')->restrictOnDelete();
+            $table->timestamp('issued_at')->nullable();
+            $table->timestamp('revoked_at')->nullable();
+            $table->foreignUuid('supersedes_document_id')->nullable()
+                ->constrained('generated_documents')->restrictOnDelete();
+            $table->timestamps();
+            $table->index(['edition_id', 'document_type', 'status']);
+            $table->index(['registration_id', 'document_type']);
+            $table->index(['recipient_user_id', 'document_type']);
+        });
+
+        Schema::create('verification_tokens', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->string('subject_type');
+            $table->uuid('subject_id');
+            $table->string('purpose', 64);
+            $table->char('token_hash', 64)->unique();
+            $table->string('public_code', 64)->nullable()->unique();
+            $table->boolean('active')->default(true);
+            $table->timestamp('expires_at')->nullable();
+            $table->timestamp('revoked_at')->nullable();
+            $table->timestamp('created_at')->useCurrent();
+            $table->index(['subject_type', 'subject_id', 'purpose', 'active']);
+        });
     }
 
     public function down(): void
     {
+        Schema::dropIfExists('verification_tokens');
+        Schema::dropIfExists('generated_documents');
         Schema::dropIfExists('refunds');
         Schema::dropIfExists('registration_fee_exemptions');
         Schema::dropIfExists('payment_proofs');
@@ -309,6 +378,8 @@ return new class extends Migration
         Schema::dropIfExists('activities');
         Schema::dropIfExists('payment_destinations');
         Schema::dropIfExists('edition_memberships');
+        Schema::dropIfExists('tracks');
+        Schema::dropIfExists('important_dates');
         Schema::dropIfExists('venues');
         Schema::dropIfExists('conference_editions');
         Schema::dropIfExists('conference_series');

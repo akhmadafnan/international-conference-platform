@@ -91,6 +91,14 @@ class Registration extends Model
     }
 
     /**
+     * @return HasMany<GeneratedDocument, $this>
+     */
+    public function generatedDocuments(): HasMany
+    {
+        return $this->hasMany(GeneratedDocument::class);
+    }
+
+    /**
      * @return HasOne<RegistrationFeeExemption, $this>
      */
     public function activeFeeExemption(): HasOne

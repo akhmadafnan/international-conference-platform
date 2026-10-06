@@ -54,4 +54,24 @@ final class SubmitPaymentProofRequest extends FormRequest
             ],
         ];
     }
+
+    /**
+     * @return array<string, string>
+     */
+    public function messages(): array
+    {
+        return [
+            'proof.required' => 'PROOF_INVALID',
+            'proof.file' => 'PROOF_INVALID',
+            'proof.mimes' => 'PROOF_INVALID',
+            'proof.max' => 'PROOF_INVALID',
+            'submitted_amount.required' => 'AMOUNT_INVALID',
+            'submitted_amount.numeric' => 'AMOUNT_INVALID',
+            'submitted_amount.gt' => 'AMOUNT_INVALID',
+            'submitted_amount.decimal' => 'AMOUNT_INVALID',
+            'sender_name.string' => 'SENDER_INVALID',
+            'sender_name.max' => 'SENDER_INVALID',
+            'transfer_date.date' => 'TRANSFER_DATE_INVALID',
+        ];
+    }
 }

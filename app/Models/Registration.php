@@ -99,6 +99,14 @@ class Registration extends Model
     }
 
     /**
+     * @return HasMany<Submission, $this>
+     */
+    public function submissions(): HasMany
+    {
+        return $this->hasMany(Submission::class, 'registration_id');
+    }
+
+    /**
      * @return HasOne<RegistrationFeeExemption, $this>
      */
     public function activeFeeExemption(): HasOne

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class StoredFile extends Model
 {
@@ -37,5 +38,13 @@ class StoredFile extends Model
     public function uploadedBy(): BelongsTo
     {
         return $this->belongsTo(User::class, 'uploaded_by_user_id');
+    }
+
+    /**
+     * @return HasMany<SubmissionFile, $this>
+     */
+    public function submissionFiles(): HasMany
+    {
+        return $this->hasMany(SubmissionFile::class);
     }
 }

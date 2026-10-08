@@ -82,6 +82,12 @@ class UpdateDraftSubmissionContributorsAction
                 );
             }
 
+            if ($authoritative->actual_presenter_contributor_id !== null) {
+                throw new DomainException(
+                    'A DRAFT Submission with an assigned actual presenter cannot have its Contributors metadata edited.',
+                );
+            }
+
             $existingById = SubmissionContributor::query()
                 ->where('submission_id', $authoritative->id)
                 ->lockForUpdate()

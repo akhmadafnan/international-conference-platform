@@ -8,7 +8,7 @@ final class OrcidNormalizer
 {
     private const COMPACT_PATTERN = '/^[0-9]{15}[0-9X]$/';
 
-    private const URL_PATTERN = '~^(?:https?://)?(?:www\.)?orcid\.org/([^/?#]+)~i';
+    private const URL_PATTERN = '~^(?:https?://)?(?:www\.)?orcid\.org/([^/?#]+)/?$~i';
 
     /**
      * Normalize a supplied ORCID value to its canonical URI form.

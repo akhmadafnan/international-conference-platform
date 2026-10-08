@@ -623,7 +623,15 @@ test('an invalid orcid is rejected atomically before any destructive write', fun
     $before = contributorsMutationSnapshot($submission);
     $action = app(UpdateDraftSubmissionContributorsAction::class);
 
-    foreach (['0000-0002-1825-0098', 'not-an-orcid', '0000-0002-1825-009', 'https://orcid.org/0000-0000-0000-0000'] as $orcid) {
+    foreach ([
+        '0000-0002-1825-0098',
+        'not-an-orcid',
+        '0000-0002-1825-009',
+        'https://orcid.org/0000-0000-0000-0000',
+        'https://orcid.org/0000-0002-1825-0097/extra',
+        'https://orcid.org/0000-0002-1825-0097?foo=bar',
+        'https://orcid.org/0000-0002-1825-0097#profile',
+    ] as $orcid) {
         expect(fn () => $action->handle($user, $submission, contributorsMutationPayload([
             contributorsMutationContributor(['orcid' => $orcid]),
         ])))->toThrow(DomainException::class);
@@ -989,6 +997,33 @@ test('a stale caller draft model cannot bypass the authoritative non draft guard
 
     expect(contributorsMutationSnapshot($submission))->toEqual($before)
         ->and($submission->fresh()->academic_status)->toBe('SUBMITTED');
+});
+
+test('a draft submission with an assigned actual presenter rejects contributor mutation without side effects', function () {
+    ['user' => $user, 'submission' => $submission] = contributorsMutationContext();
+
+    $presenter = contributorsMutationSeedContributor($submission, [
+        'display_name' => 'Presenter Candidate',
+    ]);
+    contributorsMutationSeedAffiliation($presenter);
+
+    $submission->update([
+        'actual_presenter_contributor_id' => $presenter->id,
+    ]);
+
+    $before = contributorsMutationSnapshot($submission);
+    $beforePresenterId = $submission->fresh()->actual_presenter_contributor_id;
+
+    expect(fn () => app(UpdateDraftSubmissionContributorsAction::class)->handle(
+        $user,
+        $submission,
+        contributorsMutationPayload([]),
+    ))->toThrow(DomainException::class);
+
+    expect(contributorsMutationSnapshot($submission))->toEqual($before)
+        ->and($submission->fresh()->actual_presenter_contributor_id)->toBe($beforePresenterId)
+        ->and($submission->fresh()->actualPresenter?->id)->toBe($presenter->id)
+        ->and(contributorsMutationActivityCount())->toBe(0);
 });
 
 test('submission identity relationships remain immutable during contributor mutation', function () {

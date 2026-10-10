@@ -27,6 +27,8 @@ Before proposing implementation, read in order:
 19. current relevant NFR documents
 20. active issue/ticket
 
+**Mandatory supersession check:** Before applying historical payment/lifecycle rules, also read `docs/governance/PRE_PHASE02_PRODUCT_REBASELINE.md` and the current `docs/governance/DECISION_REGISTER.md`.
+
 Frontend-specific work must also read:
 - `docs/frontend/FRONTEND_PRODUCT_SPEC_V1.md`
 - `docs/frontend/AI_FRONTEND_HANDOFF.md`
@@ -46,20 +48,20 @@ When sources conflict:
 9. chat context;
 10. AI assumptions.
 
-Do not silently resolve contradictions.
+**Supersession rule:** Source-of-truth order applies to non-conflicting requirements. Later explicit Product Owner-accepted rebaselines and Decision Register amendments supersede conflicting historical Blueprint/V1 lifecycle statements for their stated scope. In particular, `docs/governance/PRE_PHASE02_PRODUCT_REBASELINE.md` supersedes the earlier pay-before-abstract requirement. Do not silently resolve other contradictions.
 
 ## Current gate
 
 The live implementation gate is determined by `docs/ai-context/CURRENT_STATE.md` plus current Git/GitHub evidence.
 
-Phase 02 — Registration + Payment is currently AUTHORIZED / IN PROGRESS. The Two-Week Development Plan, stack, and ERD baseline are already approved/frozen for the current V1 direction.
+Phase 01 and Phase 02 are **CLOSED_GREEN** and integrated into `develop`. Phase 03 — Submission + Scholarly Metadata is **AUTHORIZED / IN PROGRESS** under Issue #63; Phase 03 child tasks integrate into `phase/03-submission-metadata` and aggregate PR #101 stays **OPEN / DRAFT**. Phase 04 is **NOT AUTHORIZED**.
 
-Do not start Phase 03 merely because Phase 02 implementation appears complete. A new phase requires the previous phase exit gate to be CLOSED_GREEN, integration into `develop`, and a new explicit Product Owner GO.
+Phase 03 A–F are integrated through P03-F Issue #114 / PR #115 (merge `4f74b67`). Next: P03-G Issue #116 has Product Owner-accepted readiness policies but awaits technical BUILD gate; documentation reconciliation is Issue #117. Do not infer authorization for Phase 04 or for aggregate PR #101 merge.
 
 Do not:
 - code from historical superseded lifecycle rules;
 - restore automatic academic-rejection refund;
-- create abstract drafts before registration/payment confirmation;
+- require payment or Registration Confirmed before author abstract DRAFT creation or official abstract submission; an author needs a valid Edition participation intent and selected package, while payment obligation/Finance confirmation follows authorized academic ACCEPT if applicable;
 - build a separate publication peer-review engine for accelerated V1;
 - invent admin authorities;
 - mix unrelated frontend architectures.
@@ -78,7 +80,7 @@ Do not:
 
 ## Working workflow
 
-For ordinary scoped work, branch from synchronized `develop`.
+For ordinary scoped work outside an active phase, branch from synchronized `develop`. **Inside the active Phase 03, branch from synchronized `phase/03-submission-metadata`, not from `develop`.**
 
 For a bounded issue inside an active phase, use the nested delivery rule:
 
@@ -117,9 +119,9 @@ Do not continue through a failed gate.
 ## Git rules
 
 - Do not work directly on main.
-- Use scoped branches from develop.
+- Use scoped branches from `develop` only outside an active phase; nested Phase 03 child branches start from its synchronized phase branch.
 - Preserve history.
-- Prefer PR to develop.
+- Prefer child PRs to the active phase branch; only the reviewed aggregate Phase 03 PR targets `develop`.
 - Exact-scope commits only.
 - Update canonical docs when accepted behavior changes.
 

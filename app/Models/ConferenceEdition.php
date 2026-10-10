@@ -129,4 +129,12 @@ class ConferenceEdition extends Model
     {
         return $this->hasMany(GeneratedDocument::class, 'edition_id');
     }
+
+    /**
+     * @return HasMany<Submission, $this>
+     */
+    public function submissions(): HasMany
+    {
+        return $this->hasMany(Submission::class, 'edition_id');
+    }
 }

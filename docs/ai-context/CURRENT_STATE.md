@@ -1,10 +1,12 @@
 # Current Project State
 
-**State ID:** ICHES-STATE-20261006-PHASE03-IN-PROGRESS-START-01
+**State ID:** ICHES-STATE-20261010-PHASE03-P03F-GREEN-P03G-PLAN-01
+**Updated:** 2026-10-10
 **Status:** PHASE 03 — SUBMISSION + SCHOLARLY METADATA — IN_PROGRESS
 **Implementation authorization:** PHASE 01 COMPLETE; PHASE 02 CLOSED_GREEN; PHASE 03 AUTHORIZED / IN PROGRESS
 **Repository:** akhmadafnan/international-conference-platform
-**Integration branch:** develop
+**Release integration branch:** `develop` (Phase 01–02 completed)
+**Active Phase 03 integration branch:** `phase/03-submission-metadata` (aggregate PR #101 targets `develop`, OPEN/DRAFT)
 
 ## Completed
 
@@ -42,6 +44,19 @@ Latest integrated implementation baseline:
 - `develop @ ecfb86d8624ce70ed49c08adf9e9774d14549ca1` — Product Owner-approved Phase 02 Registration + Payment integration through PR #61.
 - Phase 02 source head integrated: `468425b696b1fb1c314f98db3424cf806cb7aca7`.
 - Phase 02 technical exit evidence is GREEN; subsequent docs-only closeout may advance `develop` without changing this application checkpoint.
+
+Current Phase 03 checkpoint on the **active phase branch**, not yet merged to `develop`:
+- `phase/03-submission-metadata @ 4f74b67e890d84b06ba803948d1bc6719e71b887` after Product Owner-approved P03-F PR #115 merge; local Laptop 2 synchronized and clean at checkpoint.
+- P03-A Issue #102 — canonical Submission/metadata persistence foundation ✓ GREEN / integrated;
+- P03-B Issue #104 — DRAFT creation with Edition-scoped Paper ID ✓ GREEN / integrated;
+- P03-C Issue #106 — DRAFT Details, scholarly translations and keywords ✓ GREEN / integrated;
+- P03-D Issues #108 and corrective #110 — contributors, ordering, affiliations, ORCID and presenter guard ✓ GREEN / integrated;
+- P03-E Issue #112 — ordered draft scholarly references ✓ GREEN / integrated;
+- P03-F Issue #114, PR #115 — private PDF/DOCX abstract file ingestion and immutable versions ✓ CLOSED_GREEN / integrated;
+- P03-F post-merge SQLite full regression: 260 passed, 2 MySQL-only skipped (1,686 assertions); Pint PASS and PHPStan 0 errors. Pre-merge isolated MySQL full regression 262 passed (1,699 assertions) and independent Codex review APPROVED.
+- Phase 03 aggregate PR #101 remains OPEN / DRAFT / unmerged; Phase 04 remains NOT AUTHORIZED.
+- P03-G Issue #116 is the next backend planning work unit; Product Owner readiness policy accepted and technical proposal recorded for review, but **no evaluator implementation or official submit/wizard UI exists yet**.
+- P03-G docs-only prerequisite Issue #117 reconciles agent handoff and records accepted Edition-specific readiness policy.
 
 Phase 01 source checkpoint:
 - `d269534` — final Phase 01 branch closeout
@@ -129,7 +144,7 @@ Specifically, do not:
 - republish/reinstall Permission or Activitylog without a package-change reason;
 - recreate the already-published authorization/audit migrations;
 - reintroduce compiled `storage/framework/views` or `bootstrap/cache` runtime artifacts into Git;
-- create a Phase 02 branch or start Phase 02 business implementation before `META-AUDIT-001` is CLOSED_GREEN and the Product Owner gives an explicit new GO.
+- reopen Phase 01/02 foundations or start a new Phase 02 implementation without new evidence and explicit authorization; these phases are already CLOSED_GREEN.
 
 When a new chat starts:
 1. verify current branch and HEAD;
@@ -198,6 +213,9 @@ PRODUCT / REQUIREMENTS / META / ARCH ✓
 → PHASE 02 POST-MERGE CANONICAL HANDOFF ✓
 → EXPLICIT PRODUCT OWNER PHASE 03 GO ✓
 → PHASE 03 — SUBMISSION + SCHOLARLY METADATA ← CURRENT
+→ P03-A through P03-F child tasks ✓ GREEN / integrated to Phase 03 branch
+→ P03-G readiness policy ✓ PRODUCT OWNER ACCEPTED; technical plan and docs handoff in progress
+→ Phase 03 submission readiness / official submit / author wizard / UAT pending
 → Phase 03 exit / integration
 → Phase 04 only after explicit new Product Owner GO
 → V1 RELEASE CANDIDATE
@@ -210,7 +228,7 @@ Authorization:
 - Product Owner explicitly gave Phase 03 GO on 2026-10-06;
 - Phase 02 remains CLOSED_GREEN and integrated into `develop`;
 - Phase 03 active branch: `phase/03-submission-metadata`;
-- aggregate Phase 03 PR targets `develop` and remains human-only;
+- aggregate Phase 03 PR #101 targets `develop`, remains OPEN / DRAFT / unmerged and human-gated;
 - umbrella Issue: #63 `[P03] Submission + Scholarly Metadata`;
 - Phase 04 is NOT AUTHORIZED.
 
@@ -238,8 +256,11 @@ Critical lifecycle rule:
 - administrative screening/review/academic decision/LoA are Phase 04 and must not be implemented in Phase 03.
 
 Current bounded action:
-- Issue #99 records the Phase 03 authorization and canonical-document reconciliation;
-- after the docs-only start checkpoint is merged into the Phase 03 branch, create bounded Phase 03 implementation work units;
-- OpenCode executes the bounded implementation units;
-- each child task returns to `phase/03-submission-metadata` only after scope-appropriate gates are GREEN;
-- do not merge Phase 03 to `develop` without Phase 03 exit GREEN and explicit Product Owner approval.
+- P03-G Issue #116 — submission metadata readiness evaluator (Step 5 backend dependency): **PRODUCT POLICY LOCKED / TECHNICAL PLAN REVIEW PENDING / NO BUILD**.
+- ICHES 2027 initial Edition policy accepted: 3–5 keywords in the primary scholarly locale; Track required when that Edition uses Tracks; PDF/DOCX abstract file optional; initial V1 requires at least one affiliation per contributor (independent-author exception deferred); Edition-specific rules belong in `ConferenceEdition.settings_json`.
+- The exact settings JSON keys, DTO and validation implementation remain proposed technical details, not existing code. READY/WARNING/BLOCKED has no numeric readiness score.
+- Author path requires valid Edition participation intent and chosen package, **not payment or Registration Confirmed before abstract submission**; presenter fee obligation follows authorized academic ACCEPT when applicable.
+- Docs-only Issue #117 updates `AGENTS.md`, `docs/ai-context/CURRENT_STATE.md`, and `docs/governance/DECISION_REGISTER.md` through a bounded child PR before P03-G backend BUILD.
+- After approved handoff, review the P03-G technical scope/quality matrix, then authorize a separate bounded implementation branch. Later P03-H covers official DRAFT → SUBMITTED + snapshot/window; P03-I covers five-step author wizard with id/en/ar RTL.
+- Each child returns to `phase/03-submission-metadata` only after required gates are GREEN and separate Product Owner merge approval; do not merge Phase 03 aggregate PR #101 to `develop` without its exit GREEN and explicit Product Owner approval.
+- Phase 04 screening/review/decision/LoA is NOT AUTHORIZED.

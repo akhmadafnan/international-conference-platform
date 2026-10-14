@@ -40,6 +40,5 @@ class AppServiceProvider extends ServiceProvider
         // PO-approved usability policy: six characters, no composition rules.
         // Privileged production authority still requires MFA/step-up before release.
         Password::defaults(fn (): Password => Password::min(6));
-        );
     }
 }

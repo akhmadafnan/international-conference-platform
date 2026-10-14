@@ -37,14 +37,8 @@ class AppServiceProvider extends ServiceProvider
             app()->isProduction(),
         );
 
-        Password::defaults(fn (): ?Password => app()->isProduction()
-            ? Password::min(12)
-                ->mixedCase()
-                ->letters()
-                ->numbers()
-                ->symbols()
-                ->uncompromised()
-            : null,
-        );
+        // PO-approved usability policy: six characters, no composition rules.
+        // Privileged production authority still requires MFA/step-up before release.
+        Password::defaults(fn (): Password => Password::min(6));
     }
 }

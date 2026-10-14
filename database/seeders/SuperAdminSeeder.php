@@ -78,10 +78,7 @@ class SuperAdminSeeder extends Seeder
                 'password' => [
                     'required',
                     'string',
-                    Password::min(12)
-                        ->mixedCase()
-                        ->numbers()
-                        ->symbols(),
+                    Password::min(6),
                 ],
             ],
         )->validate();

@@ -105,3 +105,24 @@ The authentication model must satisfy the following non-functional security base
 - silent impersonation remains prohibited and V1 has no impersonation requirement.
 
 Exact MFA technology, authentication framework, token format, session implementation, and re-authentication mechanism remain deferred.
+
+## Password usability policy — Product Owner amendment (2026-10-14)
+
+For the current application's password-based paths (initial registration, reset,
+change password and trusted local/global superadmin bootstrap), the minimum is
+**six characters** with **no required mix of uppercase, lowercase, digits or
+symbols**. Password confirmation and current-password validation still apply
+where relevant. Existing account passwords are never reset by this policy change.
+
+This deliberately prioritizes low-friction onboarding; **six-character passwords
+provide limited brute-force resistance**. The existing authentication controls
+(email verification, credential hashing, session protection and login throttling)
+must be retained. The approved privileged-production MFA/step-up requirement
+**remains mandatory before production release** and is not satisfied by a
+password-policy change.
+
+Google sign-in/OIDC is a separately scoped future feature. Provider-verified email
+and safe account linkage must be evaluated without silently joining accounts on
+unverified email, weakening privilege checks or replacing permission checks.
+The project's password-optional onboarding baseline remains a product intent,
+not a claim that the current Fortify form already supports passwordless registration.

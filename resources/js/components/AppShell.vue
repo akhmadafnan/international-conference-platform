@@ -22,7 +22,7 @@ const isOpen = page.props.sidebarOpen;
     <SidebarProvider
         v-else
         class="workspace-shell"
-        :class="{ 'admin-workspace': page.component === 'admin/Dashboard' }"
+        :class="{ 'admin-workspace': page.component.startsWith('admin/') }"
         :default-open="isOpen"
     >
         <slot />

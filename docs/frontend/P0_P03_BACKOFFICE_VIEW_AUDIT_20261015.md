@@ -63,17 +63,27 @@ The P03-I Batch01 local submission Index screenshot shows no eligible registrati
 - Official submitted snapshot is immutable; no second submission, no data loss from editing.
 - `MAIL_MAILER=log` is currently in Laptop1 local `.env`; verification messages are logged locally, not sent to Gmail. Configure safe local mail viewing (e.g. Mailpit or documented log viewer), not auto-mark accounts verified for production.
 
-## 5. Neutral visual foundation — definitive PO directive
+## 5. WHITE + GREEN visual foundation — latest PO direction (2026-10-16)
 
-**Default look:** official Laravel Vue Starter Kit, monochrome neutral `zinc/slate/white` semantics. Light mode white/off-white; dark mode charcoal/black and white/gray text. Sidebar, forms, links, cards, backgrounds, input focus, primary and secondary buttons are grayscale by default. Keep meaningful red errors and controlled semantic state indication when actually needed; do not make green a compulsory palette. Minimal card/border/shadow styles; standard shadcn-vue primitives.
+**Latest explicit Product Owner visual revision supersedes earlier blanket 'no green' direction.** The PO provided two dashboard reference images (Serrava greenhouse UI, Nexus deals UI) and confirmed **WHITE + GREEN** as the backoffice visual direction. The intended result is **predominantly white/off-white, charcoal/zinc typography, delicate gray borders, green as a deliberate *accent*** — **not** a forest-green sidebar, uniformly green background, green body text or saturated all-green form controls. Existing shadcn-vue default ergonomics remain, with styled active navigation, primary actions, badges or focused highlights when meaningful.
 
-**Root cause audit:**
-- `resources/css/tokens.css` defines globally green-tinted `:root` and `.dark` tokens including `--background`, `--foreground`, `--primary`, `--accent`, `--border`, `--ring`, `--sidebar-background`.
-- `resources/css/workspace.css` neutralizes only `.workspace-shell` and `.dark .workspace-shell`. It does **not** cover `AuthSimpleLayout.vue`; that layout is actually selected by `AuthLayout.vue`.
-- `Login.vue` and `VerifyEmail.vue` contain explicit `text-green-600` successful-status copy, a second independent source of green.
-- The underlying public `Welcome.vue` is separate from authenticated shell; neutral auth should be scoped to auth roots or require explicit public visual regression approval before rewriting global brand tokens.
+**Layout reference assignment:**
+- **Nexus Deals screenshot:** primary CRUD/backoffice reference. White left sidebar, compact header, consistent page heading/actions, concise search/filter toolbar, responsive DataTable, pagination and restrained card geometry.
+- **Serrava Greenhouse screenshot:** operational dashboard reference only. Compact status/attention cards and real-data visual hierarchy are useful, but no fictitious IoT chart, weather, AI assistant, 3D maps, generic SaaS metrics or decorative analytics should be introduced into ICHES. ICHES admin overview should answer 'What requires action?' from authoritative Edition data.
+- **Light mode:** white surfaces, subtle neutral border/shadow, black/dark gray text and deliberately restrained green primary/action emphasis. The green must have proper WCAG contrast; exact hex palette remains **proposed until browser UAT**, not arbitrarily locked by this document.
+- **Dark mode:** black/charcoal white/gray foundation, consistent with previous user feedback; avoid green-tinted dark background or sidebar. Small purposeful green accents may be evaluated, not forced onto all controls.
+- **Auth:** Login/Register/Verify/Reset keep the starter-kit shape and neutral background; scoped green accent for meaningful CTA may be selectively introduced after checking legibility. `text-green-600` hardcoded success notices should be replaced by semantic styles, not blindly green text everywhere.
+- **Public frontend:** its institutional ICHES green/white/gold design remains separate; no blanket global token rewrite that breaks public branding.
 
-**First bounded corrective (P01-UI-01):** share existing neutral workspace semantic CSS overrides with a new `.auth-shell` root on **active** AuthSimpleLayout, and replace nonessential explicit green auth copy with semantic neutral text. Do not overwrite public homepage styles; do not touch domain/session/business state. Verify light/dark and id/en/ar/RTL.
+**Reusable open-source UI authority — source verified on GitHub:**
+- **Primary Vue component / layout benchmark:** `Whbbit1999/shadcn-vue-admin` (MIT). Vue 3 + TS, shadcn-vue/Reka, Tailwind 4, Vite; provides practical sidebar, data-table, filters, pagination, forms and example pages. It is itself forked from `satnaing/shadcn-admin`. Adopt *selective compatible components/patterns only*; preserve required MIT copyright/license attribution for copied substantial material.
+- **Secondary visual/interaction benchmark:** `satnaing/shadcn-admin` (MIT), React-based. Visual reference only; do NOT copy React components into Vue app or adopt Clerk/React/TanStack Router packages.
+- **Integration boundary:** ICHES already uses Laravel 13 + Inertia Vue 3, Vue i18n id/en/ar with Arabic RTL, Wayfinder routes and server-authorized Edition-scoped props. The Vue template ships its own Vue Router, layout plugin, Pinia, Vue Query and form subsystem. **Do not install/merge the template app, replace Inertia with Vue Router, fork the repo as our application, add an independent SPA HTTP contract, or duplicate authorization logic in client state.** Extract/adjust vetted visual atoms only when current shadcn-vue starter primitives cannot already satisfy the feature; keep npm dependencies minimal.
+- **No mock metrics in production:** source screenshots show context-specific greenhouse and sales data. ICHES cards/table rows must only show real Conference Edition registrations, submissions, reviews, payment attention, dates etc., as authorized by the current phase. Menus are state/permission-aware; unimplemented routes stay hidden.
+
+**V01 PR #131 relation:** The existing six-file neutral auth PR is still a valid *foundation* that removes unwanted green-tinted backgrounds and hardcoded green status text. It **does not yet implement the new refined WHITE + GREEN visual accent system**. It remains DRAFT for visual UAT, and should not be described as final PO acceptance of the complete design.
+
+**Source-code cause:** `resources/css/tokens.css` supplies global green-tinted `:root`/`.dark` defaults. Existing `resources/css/workspace.css` neutralizes `.workspace-shell`; `AuthSimpleLayout.vue` in tracked source does not inherit that scope. PR #131 proposes `.auth-shell` and neutral successful status. Any future accent token should be scoped to authenticated roots or deliberately kept independent from public pages, with light/dark/RTL contrast tests.
 
 ## 6. Sequential view rebuild — dependency order, not random feature order
 

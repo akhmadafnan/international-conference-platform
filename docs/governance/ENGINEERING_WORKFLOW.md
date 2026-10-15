@@ -1,5 +1,7 @@
 # Engineering Workflow — Product, GitHub, Workstation, VPS, and AGENT-05
 
+> **2026-10-15 workstation / execution supersession:** Product Owner designated **Laptop 1 (`D:\PROJEKKU\international-conference-platform`) as canonical VSCode-first development workspace**, Laptop 2 backup. `phase/03-submission-metadata` integrates P03-H through commit `472ddf6`. AI/Remote Desktop/OpenCode are optional helpers, not required bottlenecks; routine editing, Git, PHP/npm checks and browser UAT may be performed by Product Owner in VSCode. Child branches/PRs still target the active phase; aggregate PR #101 remains Draft. Existing sections below that call Laptop 2 active are historical and superseded in this respect. UI implementation baseline: `docs/frontend/AUTHENTICATED_WORKSPACE_VIEW_BASELINE_V1.md` (Draft PR #127).
+
 **ID:** ICP-GOV-ENG-001
 **Version:** 1.0
 **Status:** ACTIVE / CANONICAL

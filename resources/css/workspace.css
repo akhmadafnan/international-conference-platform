@@ -1,0 +1,68 @@
+/*
+ * Neutral authenticated workspace (UI-00).
+ * This class is attached ONLY to the authenticated SidebarProvider root.
+ * Public conference pages retain their existing identity and color tokens.
+ */
+.workspace-shell {
+    --background: #fafafa;
+    --foreground: #18181b;
+
+    --card: #ffffff;
+    --card-foreground: #18181b;
+    --popover: #ffffff;
+    --popover-foreground: #18181b;
+
+    --primary: #27272a;
+    --primary-foreground: #fafafa;
+    --secondary: #f4f4f5;
+    --secondary-foreground: #27272a;
+    --muted: #f4f4f5;
+    --muted-foreground: #52525b;
+    --accent: #f4f4f5;
+    --accent-foreground: #27272a;
+
+    --border: #e4e4e7;
+    --input: #d4d4d8;
+    --ring: #71717a;
+
+    --sidebar-background: #fafafa;
+    --sidebar-foreground: #27272a;
+    --sidebar-primary: #27272a;
+    --sidebar-primary-foreground: #fafafa;
+    --sidebar-accent: #e4e4e7;
+    --sidebar-accent-foreground: #18181b;
+    --sidebar-border: #e4e4e7;
+    --sidebar-ring: #a1a1aa;
+}
+
+.dark .workspace-shell {
+    --background: #09090b;
+    --foreground: #fafafa;
+
+    --card: #18181b;
+    --card-foreground: #fafafa;
+    --popover: #18181b;
+    --popover-foreground: #fafafa;
+
+    --primary: #fafafa;
+    --primary-foreground: #18181b;
+    --secondary: #27272a;
+    --secondary-foreground: #fafafa;
+    --muted: #27272a;
+    --muted-foreground: #a1a1aa;
+    --accent: #27272a;
+    --accent-foreground: #fafafa;
+
+    --border: #3f3f46;
+    --input: #52525b;
+    --ring: #a1a1aa;
+
+    --sidebar-background: #18181b;
+    --sidebar-foreground: #fafafa;
+    --sidebar-primary: #fafafa;
+    --sidebar-primary-foreground: #18181b;
+    --sidebar-accent: #27272a;
+    --sidebar-accent-foreground: #fafafa;
+    --sidebar-border: #3f3f46;
+    --sidebar-ring: #a1a1aa;
+}

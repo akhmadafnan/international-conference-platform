@@ -27,16 +27,21 @@ const sidebarSide = computed<'left' | 'right'>(() =>
 
 const mainNavItems = computed<NavItem[]>(() => [
     {
-        title: t('navigation.dashboard'),
-        href: dashboard(),
+        title: page.props.auth.canAccessAdmin
+            ? t('admin.dashboard.title')
+            : t('navigation.dashboard'),
+        href: page.props.auth.canAccessAdmin ? '/admin/dashboard' : dashboard(),
         icon: LayoutGrid,
     },
 ]);
-
 </script>
 
 <template>
-    <Sidebar :side="sidebarSide" collapsible="icon" variant="inset">
+    <Sidebar
+        :side="sidebarSide"
+        collapsible="icon"
+        :variant="page.component === 'admin/Dashboard' ? 'sidebar' : 'inset'"
+    >
         <SidebarHeader>
             <SidebarMenu>
                 <SidebarMenuItem>

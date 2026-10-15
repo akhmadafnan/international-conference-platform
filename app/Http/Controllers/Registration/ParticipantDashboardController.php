@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Registration;
 use App\Models\User;
 use App\Support\Registration\ParticipantRegistrationView;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -16,13 +17,17 @@ final class ParticipantDashboardController extends Controller
     public function __invoke(
         Request $request,
         ParticipantRegistrationView $view,
-    ): Response {
+    ): Response|RedirectResponse {
         $user = $request->user();
 
         if (! $user instanceof User) {
             throw new LogicException(
                 'Authenticated participant is required.',
             );
+        }
+
+        if ($user->isSuperAdmin()) {
+            return to_route('admin.dashboard');
         }
 
         $registration = Registration::query()

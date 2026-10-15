@@ -1,4 +1,31 @@
 export default {
+    admin: {
+        dashboard: {
+            title: 'Administration overview',
+            eyebrow: 'ICHES Superadmin workspace',
+            description:
+                'Global overview of conference editions across all series.',
+            editionCount: 'Total editions',
+            recentEditions: 'Latest editions',
+            recentDescription:
+                'Up to 10 editions, ordered by creation date, newest first.',
+            emptyTitle: 'No conference editions yet',
+            emptyDescription:
+                'Conference editions will appear here once they are available.',
+            seriesUnavailable: 'Series unavailable',
+            year: 'Year',
+            status: 'Status',
+            statuses: {
+                DRAFT: 'Draft',
+                ACTIVE: 'Active',
+                PUBLISHED: 'Published',
+                COMPLETED: 'Completed',
+                CANCELLED: 'Cancelled',
+                ARCHIVED: 'Archived',
+                unknown: 'Status unavailable',
+            },
+        },
+    },
     locale: {
         label: 'Language',
     },

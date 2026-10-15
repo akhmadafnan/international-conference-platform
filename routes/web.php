@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Localization\UpdateLocaleController;
 use App\Http\Controllers\Payment\DownloadPaymentProofController;
 use App\Http\Controllers\Payment\RequestPaymentCorrectionController;
@@ -17,6 +18,9 @@ Route::post('locale', UpdateLocaleController::class)->name('locale.update');
 Route::inertia('/', 'Welcome')->name('home');
 
 Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('admin/dashboard', AdminDashboardController::class)
+        ->name('admin.dashboard');
+
     Route::get(
         'dashboard',
         ParticipantDashboardController::class,

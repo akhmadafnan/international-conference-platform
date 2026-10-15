@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Actions\Registration;
+namespace App\Actions\Numbering;
 
 use App\Models\ConferenceEdition;
 use App\Models\NumberSequence;

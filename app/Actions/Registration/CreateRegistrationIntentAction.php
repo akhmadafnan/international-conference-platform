@@ -2,6 +2,7 @@
 
 namespace App\Actions\Registration;
 
+use App\Actions\Numbering\NextEditionNumberAction;
 use App\Enums\BillingMode;
 use App\Enums\MembershipStatus;
 use App\Enums\RegistrationActivityStatus;

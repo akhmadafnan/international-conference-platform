@@ -1,4 +1,31 @@
 export default {
+    admin: {
+        dashboard: {
+            title: 'Ringkasan administrasi',
+            eyebrow: 'Ruang Superadmin ICHES',
+            description:
+                'Ringkasan global edisi konferensi dari seluruh series.',
+            editionCount: 'Jumlah edisi',
+            recentEditions: 'Edisi terbaru',
+            recentDescription:
+                'Maksimal 10 edisi berdasarkan waktu pembuatan, dari yang terbaru.',
+            emptyTitle: 'Belum ada edisi konferensi',
+            emptyDescription:
+                'Edisi konferensi akan tampil di sini setelah tersedia.',
+            seriesUnavailable: 'Series tidak tersedia',
+            year: 'Tahun',
+            status: 'Status',
+            statuses: {
+                DRAFT: 'Draf',
+                ACTIVE: 'Aktif',
+                PUBLISHED: 'Dipublikasikan',
+                COMPLETED: 'Selesai',
+                CANCELLED: 'Dibatalkan',
+                ARCHIVED: 'Diarsipkan',
+                unknown: 'Status tidak tersedia',
+            },
+        },
+    },
     locale: {
         label: 'Bahasa',
     },

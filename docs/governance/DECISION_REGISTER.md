@@ -2,7 +2,7 @@
 
 **ID:** ICHES-DECISION-REGISTER  
 **Status:** ACTIVE — PRODUCT BLUEPRINT v1  
-**Updated:** 2026-10-04
+**Updated:** 2026-10-10
 
 This register records current Product Discovery and accelerated V1 decisions.
 
@@ -129,6 +129,13 @@ Statuses:
 | META-025 | OJS production export is generated from canonical immutable metadata; target transformation never rewrites canonical data | ACCEPTED |
 | META-026 | Production bundle may include metadata, final manuscript, approved supplementary files and manifest, but excludes confidential review/internal notes | ACCEPTED |
 | META-027 | Downstream DOI/OJS publication IDs/URLs may be recorded as external identifiers after handoff/publication | ACCEPTED |
+| META-028 | For ICHES 2027, the primary scholarly locale requires at least 3 and at most 5 ordered keywords; other Editions may configure different minimum/maximum values | ACCEPTED |
+| META-029 | For ICHES 2027, a valid active same-Edition Track is required when that Edition uses Tracks; Track requirements are configurable per Edition | ACCEPTED |
+| META-030 | For ICHES 2027, the abstract manuscript attachment is optional; PDF/DOCX may be uploaded through private immutable versioning; other Editions may require an abstract file | ACCEPTED |
+| META-031 | In initial V1, contributors must provide at least one valid affiliation; the independent/no-institution exception is deferred until explicitly modeled and separately authorized, rather than inferred from an empty affiliation list | ACCEPTED |
+| META-032 | Abstract submission readiness policies belong to the Conference Edition's `ConferenceEdition.settings_json` and are Edition-configurable, never hardcoded universally; proposed JSON key names, defaults and provisioning are subject to the separate P03-G technical plan | ACCEPTED |
+| META-033 | Presenter/author abstract DRAFT and official submission require a valid Edition participation intent and selected package, not advance payment or Registration Confirmed; payment follows authorized academic ACCEPT when applicable | ACCEPTED |
+| META-034 | Abstract metadata readiness uses READY / WARNING / BLOCKED without a numerical score and does not itself create a submission, change lifecycle state, or create a protected snapshot | ACCEPTED |
 
 ## ARCH-001 — Stack & ERD Decisions
 
@@ -161,3 +168,4 @@ Statuses:
 |---|---|---|
 | DEV-START-001 | Product Owner authorized V1 implementation under the frozen 10-working-day plan; no new V1 scope is added, frontend parallel work uses frozen contracts, and Days 9–10 remain stabilization/UAT | ACCEPTED |
 | DEV-START-002 | Product Owner explicitly authorized PHASE 02 — Registration + Payment on 2026-10-03 against the accepted Pre-Phase 02 rebaseline, including FREE/PAID/complimentary participation | ACCEPTED |
+| DEV-START-003 | Product Owner explicitly authorized PHASE 03 — Submission + Scholarly Metadata on 2026-10-06. Abstract submission follows the accepted presenter/author lifecycle: participation intent + selected package before abstract submission; presenter payment/Registration Confirmed occurs only after authorized ACCEPT when required | ACCEPTED |

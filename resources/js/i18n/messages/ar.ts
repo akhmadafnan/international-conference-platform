@@ -1,4 +1,29 @@
 export default {
+    admin: {
+        dashboard: {
+            title: 'نظرة عامة على الإدارة',
+            eyebrow: 'مساحة المشرف العام في ICHES',
+            description: 'نظرة عامة على دورات المؤتمرات في جميع السلاسل.',
+            editionCount: 'إجمالي الدورات',
+            recentEditions: 'أحدث الدورات',
+            recentDescription:
+                'حتى 10 دورات مرتبة حسب تاريخ الإنشاء، الأحدث أولاً.',
+            emptyTitle: 'لا توجد دورات مؤتمرات بعد',
+            emptyDescription: 'ستظهر دورات المؤتمرات هنا عند توفرها.',
+            seriesUnavailable: 'السلسلة غير متاحة',
+            year: 'السنة',
+            status: 'الحالة',
+            statuses: {
+                DRAFT: 'مسودة',
+                ACTIVE: 'نشطة',
+                PUBLISHED: 'منشورة',
+                COMPLETED: 'مكتملة',
+                CANCELLED: 'ملغاة',
+                ARCHIVED: 'مؤرشفة',
+                unknown: 'الحالة غير متاحة',
+            },
+        },
+    },
     locale: {
         label: 'اللغة',
     },

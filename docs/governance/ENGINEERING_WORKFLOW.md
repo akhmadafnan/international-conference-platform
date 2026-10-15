@@ -1,5 +1,7 @@
 # Engineering Workflow — Product, GitHub, Workstation, VPS, and AGENT-05
 
+> **2026-10-15 workstation / execution supersession:** Product Owner designated **Laptop 1 (`D:\PROJEKKU\international-conference-platform`) as canonical VSCode-first development workspace**, Laptop 2 backup. `phase/03-submission-metadata` integrates P03-H through commit `472ddf6`. AI/Remote Desktop/OpenCode are optional helpers, not required bottlenecks; routine editing, Git, PHP/npm checks and browser UAT may be performed by Product Owner in VSCode. Child branches/PRs still target the active phase; aggregate PR #101 remains Draft. Existing sections below that call Laptop 2 active are historical and superseded in this respect. UI implementation baseline: `docs/frontend/AUTHENTICATED_WORKSPACE_VIEW_BASELINE_V1.md` (Draft PR #127).
+
 **ID:** ICP-GOV-ENG-001
 **Version:** 1.0
 **Status:** ACTIVE / CANONICAL
@@ -126,14 +128,22 @@ phase aggregate PR
 develop
 ```
 
-The active Phase 02 aggregate PR is:
+The completed Phase 02 aggregate PR was:
 
 ```text
 #61
 phase/02-registration-payment → develop
 ```
 
-It remains Draft and human-gated until the Phase 02 exit gate is GREEN.
+It was merged after the Phase 02 exit gate was GREEN and the Product Owner explicitly approved integration.
+
+The active Phase 03 aggregate PR targets:
+
+```text
+phase/03-submission-metadata → develop
+```
+
+It remains Draft/human-gated until the Phase 03 exit gate is GREEN.
 
 ### 5. GitHub Project — ICHES — Product & Engineering
 
@@ -243,7 +253,7 @@ Holds the currently authorized phase.
 Current phase:
 
 ```text
-phase/02-registration-payment
+phase/03-submission-metadata
 ```
 
 ### ordinary bounded child branch
@@ -517,24 +527,25 @@ Current convention:
 
 Never copy an uncommitted working tree between machines and assume it is authoritative. Commit/push meaningful checkpoints or explicitly preserve/reconcile local uncommitted work.
 
-## Current Phase 02 Operational Rule
+## Current Phase 03 Operational Rule
 
 Current active branch:
 
 ```text
-phase/02-registration-payment
+phase/03-submission-metadata
 ```
 
-Current aggregate PR:
+Current umbrella Issue:
 
 ```text
-#61 — PHASE 02: Registration + Payment domain foundation
-phase/02-registration-payment → develop
+#63 — [P03] Submission + Scholarly Metadata
 ```
 
-PR #61 remains Draft and human-only.
+The Phase 03 aggregate PR targets `develop` and remains human-only.
 
-The next product-development work should be represented as a bounded child Issue/branch/PR inside Phase 02, beginning with the remaining Phase 02 completion scope such as Event Pass and the participant-facing registration/payment flow.
+Phase 03 child work must remain bounded to canonical submission and scholarly metadata. Administrative screening, review, academic decision, LoA, Full Article, scheduling, event-day operations, and publication-finalization implementation remain later phases.
+
+OpenCode is the implementation executor for bounded Phase 03 work units. The normal contract remains Issue → child branch → OpenCode implementation → gates → child PR to `phase/03-submission-metadata` → review/merge.
 
 ## Related Canonical Documents
 

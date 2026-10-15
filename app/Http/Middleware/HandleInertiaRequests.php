@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Enums\Locale;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 
@@ -33,6 +34,8 @@ class HandleInertiaRequests extends Middleware
 
             'auth' => [
                 'user' => $request->user(),
+                'canAccessAdmin' => $request->user() instanceof User
+                    && $request->user()->isSuperAdmin(),
             ],
 
             'localization' => [

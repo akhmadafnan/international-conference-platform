@@ -1,5 +1,17 @@
 # Current Project State
 
+## Latest operational checkpoint — 2026-10-15 (supersedes older phase-progress paragraphs below)
+
+**Canonical workstation:** Laptop 1 `D:\PROJEKKU\international-conference-platform` (VSCode-first), Laptop 2 backup. Both use independently populated local MySQL databases; do not transfer `.env` or database data between them.
+
+**Integrated phase branch:** `phase/03-submission-metadata @ 472ddf6641714801b44e3e22dc22e74bef627824` (merge of P03-H PR #121; Product Owner approved). P03-A–P03-H backend implementation is integrated. Phase 03 aggregate PR #101 remains **OPEN / DRAFT / NOT merged into develop**; Phase 04 remains NOT AUTHORIZED.
+
+**Verified P03-H gate:** official DRAFT → SUBMITTED, strict active bounded Edition window, frozen INITIAL_SUBMISSION snapshot/checksum, safe audit. Local focused Pest 27 passed / 151 assertions; isolated MySQL Phase03 203 passed / 1,276 assertions; true two-process isolated MySQL concurrent submit **PASS** (one success, one expected duplicate, one snapshot/audit). All disposable DBs cleaned. Post-merge GitHub checks completed SUCCESS for the configured Phase02-quality and clean-MySQL-migration jobs; these jobs are NOT P03-H-specific CI coverage.
+
+**Product Owner UX/delivery rebaseline:** Restart **authenticated Views & User Interaction only**, retain Laravel domain/migrations/services. VSCode-first on Laptop 1; small vertical features, browser UAT by Product Owner. Use default Laravel Vue Starter Kit + shadcn-vue with neutral gray/white workspace styling, no dominant green backend sidebar; preserve public conference design. See `docs/frontend/AUTHENTICATED_WORKSPACE_VIEW_BASELINE_V1.md` (Draft PR #127), UI-00 Issue #125 and neutral-shell Draft PR #128. P03-I Issue #126 is next Phase03 vertical slice: real five-step author abstract wizard bound to existing P03-A–H actions. **Do not treat Draft PR #127/#128 as merged code.** No Phase04 workflows, no fake admin/reviewer routes.
+
+The remainder of this file contains historical time-stamped Phase 01–P03-G evidence and may still refer to previous laptops/branches; do **not** interpret an older "next action" paragraph as overriding this latest checkpoint. Reconcile it comprehensively only in a separately scoped documentation cleanup.
+
 **State ID:** ICHES-STATE-20261010-PHASE03-P03F-GREEN-P03G-PLAN-01
 **Updated:** 2026-10-10
 **Status:** PHASE 03 — SUBMISSION + SCHOLARLY METADATA — IN_PROGRESS

@@ -4,6 +4,18 @@
  * AuthSimpleLayout (.auth-shell), including dark appearance.
  * Public pages retain their own branding and color tokens.
  */
+.workspace-shell.admin-workspace {
+    --sidebar-background: #ffffff;
+    --sidebar-accent: #dcfce7;
+    --sidebar-accent-foreground: #166534;
+}
+
+.dark .workspace-shell.admin-workspace {
+    --sidebar-background: #18181b;
+    --sidebar-accent: #14532d;
+    --sidebar-accent-foreground: #dcfce7;
+}
+
 .workspace-shell,
 .auth-shell {
     --background: #fafafa;

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Link, usePage } from '@inertiajs/vue3';
-import { LayoutGrid } from '@lucide/vue';
+import { Layers, LayoutGrid } from '@lucide/vue';
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 import AppLogo from '@/components/AppLogo.vue';
@@ -33,6 +33,15 @@ const mainNavItems = computed<NavItem[]>(() => [
         href: page.props.auth.canAccessAdmin ? '/admin/dashboard' : dashboard(),
         icon: LayoutGrid,
     },
+    ...(page.props.auth.canAccessAdmin
+        ? [
+              {
+                  title: t('admin.series.title'),
+                  href: '/admin/series',
+                  icon: Layers,
+              },
+          ]
+        : []),
 ]);
 </script>
 
@@ -40,7 +49,7 @@ const mainNavItems = computed<NavItem[]>(() => [
     <Sidebar
         :side="sidebarSide"
         collapsible="icon"
-        :variant="page.component === 'admin/Dashboard' ? 'sidebar' : 'inset'"
+        :variant="page.component.startsWith('admin/') ? 'sidebar' : 'inset'"
     >
         <SidebarHeader>
             <SidebarMenu>

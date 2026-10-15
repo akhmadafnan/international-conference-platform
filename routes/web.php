@@ -10,6 +10,7 @@ use App\Http\Controllers\Registration\ParticipantDashboardController;
 use App\Http\Controllers\Registration\ShowEventPassController;
 use App\Http\Controllers\Registration\ShowParticipantRegistrationController;
 use App\Http\Controllers\Registration\StoreParticipantRegistrationController;
+use App\Http\Controllers\Submission\AuthorSubmissionController;
 use Illuminate\Support\Facades\Route;
 
 Route::post('locale', UpdateLocaleController::class)->name('locale.update');
@@ -21,6 +22,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
         'dashboard',
         ParticipantDashboardController::class,
     )->name('dashboard');
+
+    // P03-I Step 1: real author-only submission routes.
+    Route::get('dashboard/submissions', [AuthorSubmissionController::class, 'index'])->name('submissions.index');
+    Route::post('dashboard/submissions', [AuthorSubmissionController::class, 'store'])->name('submissions.store');
+    Route::get('dashboard/submissions/{submission}/details', [AuthorSubmissionController::class, 'details'])->name('submissions.details');
+    Route::put('dashboard/submissions/{submission}/details', [AuthorSubmissionController::class, 'update'])->name('submissions.details.update');
 
     Route::get(
         'editions/{edition}/registration',

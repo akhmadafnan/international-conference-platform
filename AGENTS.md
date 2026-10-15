@@ -1,5 +1,7 @@
 # ICHES Platform — Agent Instructions
 
+> **Latest gate / Product Owner rebaseline (2026-10-15):** Phase03 integrated P03-A–P03-H on `phase/03-submission-metadata @ 472ddf6`; PR #101 to develop stays Draft; Phase04 not authorized. Laptop 1 `D:\PROJEKKU\international-conference-platform` is canonical and VSCode-first; Laptop 2 backup, local DB data independent. New work is **authenticated Views & User Interaction**, preserving the integrated backend. UI-00 Issue #125 (neutral starter-kit workspace, Draft PRs #127/#128) and P03-I Issue #126 (real five-step wizard). Earlier P03-G and Laptop 2 "current gate" paragraphs are historical. Remote Desktop/OpenCode optional, NOT mandatory. Do not assume Draft UI PRs are merged. See `docs/frontend/AUTHENTICATED_WORKSPACE_VIEW_BASELINE_V1.md` in Draft PR #127.
+
 This repository is documentation-governed. AI agents and developers must not invent product policy.
 
 ## Mandatory first read

@@ -1,9 +1,11 @@
 /*
  * Neutral authenticated workspace (UI-00).
- * This class is attached ONLY to the authenticated SidebarProvider root.
- * Public conference pages retain their existing identity and color tokens.
+ * Scoped to the SidebarProvider (.workspace-shell) and active Fortify
+ * AuthSimpleLayout (.auth-shell), including dark appearance.
+ * Public pages retain their own branding and color tokens.
  */
-.workspace-shell {
+.workspace-shell,
+.auth-shell {
     --background: #fafafa;
     --foreground: #18181b;
 
@@ -35,7 +37,8 @@
     --sidebar-ring: #a1a1aa;
 }
 
-.dark .workspace-shell {
+.dark .workspace-shell,
+.dark .auth-shell {
     --background: #09090b;
     --foreground: #fafafa;
 

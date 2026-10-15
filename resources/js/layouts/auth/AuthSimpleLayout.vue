@@ -13,7 +13,7 @@ defineProps<{
 
 <template>
     <div
-        class="relative flex min-h-svh flex-col items-center justify-center gap-6 bg-background p-6 md:p-10"
+        class="auth-shell relative flex min-h-svh flex-col items-center justify-center gap-6 bg-background p-6 md:p-10"
     >
         <div
             class="absolute end-4 top-4 flex items-center gap-1 md:end-6 md:top-6"

@@ -19,6 +19,8 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->encryptCookies(except: ['appearance', 'sidebar_state']);
+        // Typed destructive confirmation must match byte-for-byte, including spaces.
+        $middleware->trimStrings(except: ['confirmation_code']);
         $middleware->prependToPriorityList(
             SubstituteBindings::class,
             ApplyPermissionTeamContext::class,

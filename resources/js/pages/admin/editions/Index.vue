@@ -3,6 +3,7 @@ import { Head, Link } from '@inertiajs/vue3';
 import { CalendarDays, Plus } from '@lucide/vue';
 import { useI18n } from 'vue-i18n';
 import DataTablePagination from '@/components/DataTablePagination.vue';
+import DeleteConferenceRecordDialog from '@/components/DeleteConferenceRecordDialog.vue';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -26,6 +27,7 @@ defineProps<{
         }[];
     };
     created: boolean;
+    deleted: boolean;
 }>();
 const { t, te, locale } = useI18n();
 const number = (value: number) =>
@@ -75,6 +77,13 @@ const modeLabel = (mode: string) =>
             class="rounded-lg border border-green-200 bg-green-50 p-4 text-sm text-green-800 dark:border-green-800 dark:bg-green-950 dark:text-green-200"
         >
             {{ t('admin.editions.created') }}
+        </p>
+        <p
+            v-if="deleted"
+            role="status"
+            class="rounded-lg border border-green-200 bg-green-50 p-4 text-sm text-green-800 dark:border-green-800 dark:bg-green-950 dark:text-green-200"
+        >
+            {{ t('admin.deletion.editionDeleted') }}
         </p>
         <Card>
             <CardContent class="pt-6">
@@ -129,6 +138,12 @@ const modeLabel = (mode: string) =>
                                     class="px-4 py-3 text-start font-semibold whitespace-nowrap"
                                 >
                                     {{ t(`admin.editions.${column}`) }}
+                                </th>
+                                <th
+                                    scope="col"
+                                    class="w-28 px-4 py-3 text-end font-semibold whitespace-nowrap"
+                                >
+                                    {{ t('admin.deletion.actions') }}
                                 </th>
                             </tr>
                         </thead>
@@ -216,10 +231,20 @@ const modeLabel = (mode: string) =>
                                         statusLabel(edition.status)
                                     }}</Badge>
                                 </td>
+                                <td
+                                    class="px-4 py-4 text-end whitespace-nowrap"
+                                >
+                                    <DeleteConferenceRecordDialog
+                                        kind="edition"
+                                        :code="edition.code"
+                                        :identity="edition.hostName"
+                                        :url="`/admin/editions/${edition.id}`"
+                                    />
+                                </td>
                             </tr>
                             <tr v-if="editions.data.length === 0">
                                 <td
-                                    colspan="6"
+                                    colspan="7"
                                     class="px-4 py-8 text-center text-muted-foreground"
                                 >
                                     {{ t('admin.editions.noPageResults') }}

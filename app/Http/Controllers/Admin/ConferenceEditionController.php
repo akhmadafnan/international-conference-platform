@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Actions\Admin\CreateConferenceEditionAction;
+use App\Actions\Admin\DeleteConferenceRecordAction;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\DeleteConferenceRecordRequest;
 use App\Http\Requests\Admin\StoreConferenceEditionRequest;
 use App\Models\ConferenceEdition;
 use App\Models\ConferenceSeries;
@@ -14,6 +16,7 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
 use Inertia\Response;
+use Throwable;
 
 final class ConferenceEditionController extends Controller
 {
@@ -60,6 +63,7 @@ final class ConferenceEditionController extends Controller
                     ])->values()->all(),
             ],
             'created' => (bool) $request->session()->get('edition_created', false),
+            'deleted' => (bool) $request->session()->get('edition_deleted', false),
         ]);
     }
 
@@ -84,6 +88,24 @@ final class ConferenceEditionController extends Controller
         }
 
         return to_route('admin.editions.index')->with('edition_created', true);
+    }
+
+    public function destroy(DeleteConferenceRecordRequest $request, ConferenceEdition $edition, DeleteConferenceRecordAction $action): RedirectResponse
+    {
+        $this->authorizeSuperAdmin($request);
+        $actor = $request->user();
+        abort_unless($actor instanceof User, 403);
+
+        try {
+            $action->handle($actor, $edition, (string) $request->validated('confirmation_code'));
+        } catch (ValidationException $exception) {
+            throw $exception;
+        } catch (Throwable $exception) {
+            report($exception);
+            throw ValidationException::withMessages(['delete' => 'failed']);
+        }
+
+        return to_route('admin.editions.index')->with('edition_deleted', true);
     }
 
     private function authorizeSuperAdmin(Request $request): void

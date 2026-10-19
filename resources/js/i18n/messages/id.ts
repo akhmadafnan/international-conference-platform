@@ -10,6 +10,36 @@ export default {
         ellipsis: 'Halaman lainnya',
     },
     admin: {
+        deletion: {
+            actions: 'Aksi',
+            delete: 'Hapus',
+            cancel: 'Batal',
+            deleteIdentity: 'Hapus {code}',
+            confirm: 'Hapus permanen',
+            deleting: 'Menghapus…',
+            seriesTitle: 'Hapus Conference Series',
+            editionTitle: 'Hapus Conference Edition',
+            seriesDescription:
+                'Series akan dihapus permanen dan tidak dapat dipulihkan. Hanya series tanpa edisi yang dapat dihapus.',
+            editionDescription:
+                'Edisi akan dihapus permanen dan tidak dapat dipulihkan. Hanya edisi draf tanpa data terkait yang dapat dihapus.',
+            confirmLabel: 'Konfirmasi kode',
+            confirmHelp:
+                'Ketik {code} persis, termasuk huruf besar/kecil, untuk mengonfirmasi.',
+            seriesDeleted: 'Conference Series berhasil dihapus.',
+            editionDeleted: 'Conference Edition berhasil dihapus.',
+            errors: {
+                confirmation:
+                    'Kode harus sama persis. Periksa huruf besar/kecil dan spasi tambahan.',
+                seriesHasEditions:
+                    'Series ini masih memiliki edisi konferensi sehingga tidak dapat dihapus.',
+                editionNotDraft:
+                    'Hanya edisi yang masih berstatus draf yang dapat dihapus.',
+                editionHasData:
+                    'Edisi ini memiliki data terkait sehingga tidak dapat dihapus. Seluruh datanya tetap tersimpan.',
+                failed: 'Penghapusan belum berhasil. Tidak ada perubahan yang disimpan. Silakan coba kembali.',
+            },
+        },
         editions: {
             title: 'Conference Edition',
             description:

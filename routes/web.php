@@ -29,6 +29,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         ->name('admin.editions.create');
     Route::post('admin/editions', [ConferenceEditionController::class, 'store'])
         ->name('admin.editions.store');
+    Route::delete('admin/editions/{edition}', [ConferenceEditionController::class, 'destroy'])
+        ->name('admin.editions.destroy');
 
     Route::get('admin/series', [ConferenceSeriesController::class, 'index'])
         ->name('admin.series.index');
@@ -36,6 +38,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         ->name('admin.series.create');
     Route::post('admin/series', [ConferenceSeriesController::class, 'store'])
         ->name('admin.series.store');
+    Route::delete('admin/series/{series}', [ConferenceSeriesController::class, 'destroy'])
+        ->name('admin.series.destroy');
 
     Route::get(
         'dashboard',

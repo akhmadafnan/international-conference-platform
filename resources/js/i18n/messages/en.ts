@@ -10,6 +10,36 @@ export default {
         ellipsis: 'More pages',
     },
     admin: {
+        deletion: {
+            actions: 'Actions',
+            delete: 'Delete',
+            cancel: 'Cancel',
+            deleteIdentity: 'Delete {code}',
+            confirm: 'Delete permanently',
+            deleting: 'Deleting…',
+            seriesTitle: 'Delete Conference Series',
+            editionTitle: 'Delete Conference Edition',
+            seriesDescription:
+                'This permanently deletes the series and cannot be undone. Only a series without editions can be deleted.',
+            editionDescription:
+                'This permanently deletes the edition and cannot be undone. Only a draft edition without related data can be deleted.',
+            confirmLabel: 'Confirm the code',
+            confirmHelp:
+                'Type {code} exactly, including letter case, to confirm.',
+            seriesDeleted: 'Conference Series deleted successfully.',
+            editionDeleted: 'Conference Edition deleted successfully.',
+            errors: {
+                confirmation:
+                    'The code must match exactly. Check letter case and extra spaces.',
+                seriesHasEditions:
+                    'This series has conference editions and cannot be deleted.',
+                editionNotDraft:
+                    'Only an edition that is still a draft can be deleted.',
+                editionHasData:
+                    'This edition has related data and cannot be deleted. Its records have been preserved.',
+                failed: 'Deletion could not be completed. No changes were saved. Please try again.',
+            },
+        },
         editions: {
             title: 'Conference Editions',
             description:

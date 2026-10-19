@@ -2,6 +2,7 @@
 import { Head, Link } from '@inertiajs/vue3';
 import { useI18n } from 'vue-i18n';
 import DataTablePagination from '@/components/DataTablePagination.vue';
+import DeleteConferenceRecordDialog from '@/components/DeleteConferenceRecordDialog.vue';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -18,6 +19,7 @@ defineProps<{
         }[];
     };
     created: boolean;
+    deleted: boolean;
 }>();
 
 const { t, te } = useI18n();
@@ -56,6 +58,14 @@ const statusLabel = (status: string) => {
             class="rounded-lg border bg-card p-4 text-sm"
         >
             {{ t('admin.series.created') }}
+        </p>
+
+        <p
+            v-if="deleted"
+            role="status"
+            class="rounded-lg border border-green-200 bg-green-50 p-4 text-sm text-green-800 dark:border-green-800 dark:bg-green-950 dark:text-green-200"
+        >
+            {{ t('admin.deletion.seriesDeleted') }}
         </p>
 
         <Card>
@@ -108,6 +118,12 @@ const statusLabel = (status: string) => {
                                 >
                                     {{ t('admin.series.status') }}
                                 </th>
+                                <th
+                                    scope="col"
+                                    class="w-28 px-4 py-3 text-end font-semibold whitespace-nowrap"
+                                >
+                                    {{ t('admin.deletion.actions') }}
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -137,6 +153,16 @@ const statusLabel = (status: string) => {
                                     <Badge variant="secondary">{{
                                         statusLabel(item.status)
                                     }}</Badge>
+                                </td>
+                                <td
+                                    class="px-4 py-3 text-end whitespace-nowrap"
+                                >
+                                    <DeleteConferenceRecordDialog
+                                        kind="series"
+                                        :code="item.code"
+                                        :identity="item.name"
+                                        :url="`/admin/series/${item.id}`"
+                                    />
                                 </td>
                             </tr>
                         </tbody>

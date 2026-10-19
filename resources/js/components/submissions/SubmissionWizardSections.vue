@@ -9,6 +9,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
+import InstitutionLookup from '@/components/submissions/InstitutionLookup.vue';
 
 type Aff = {
     institution_id: string | null;
@@ -285,11 +286,32 @@ function finding(code: string) {
                                         <Label :for="'inst-' + i + '-' + j">{{
                                             c('institution')
                                         }}</Label>
-                                        <Input
-                                            :id="'inst-' + i + '-' + j"
-                                            v-model="aff.institution_name"
-                                            required
-                                            maxlength="255"
+                                        <InstitutionLookup
+                                            :input-id="'inst-' + i + '-' + j"
+                                            :value="aff.institution_name"
+                                            :selected-id="aff.institution_id"
+                                            :disabled="
+                                                !draft ||
+                                                contributorForm.processing
+                                            "
+                                            @manual="
+                                                (value) => {
+                                                    aff.institution_id = null;
+                                                    aff.institution_name =
+                                                        value;
+                                                }
+                                            "
+                                            @selected="
+                                                (item) => {
+                                                    aff.institution_id =
+                                                        item.id;
+                                                    aff.institution_name =
+                                                        item.name;
+                                                    if (item.country_code)
+                                                        aff.country_code =
+                                                            item.country_code;
+                                                }
+                                            "
                                         />
                                     </div>
                                     <div class="grid gap-1">

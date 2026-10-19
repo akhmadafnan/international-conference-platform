@@ -17,6 +17,7 @@ use App\Http\Controllers\Registration\ShowParticipantRegistrationController;
 use App\Http\Controllers\Registration\StoreParticipantRegistrationController;
 use App\Http\Controllers\Submission\AuthorSubmissionController;
 use App\Http\Controllers\Submission\AuthorSubmissionStagesController;
+use App\Http\Controllers\Submission\InstitutionLookupController;
 use App\Http\Controllers\Workspace\RoleOverviewController;
 use App\Http\Controllers\Workspace\SwitchSuperAdminWorkspaceController;
 use Illuminate\Support\Facades\Route;
@@ -71,6 +72,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         ParticipantDashboardController::class,
     )->name('dashboard');
 
+    Route::get('dashboard/institutions/search', [InstitutionLookupController::class, 'search'])->middleware('throttle:30,1')->name('institutions.search');
+    Route::post('dashboard/institutions/resolve', [InstitutionLookupController::class, 'resolve'])->middleware('throttle:12,1')->name('institutions.resolve');
     Route::get('dashboard/submissions', [AuthorSubmissionController::class, 'index'])->name('submissions.index');
     Route::post('dashboard/submissions', [AuthorSubmissionController::class, 'store'])->name('submissions.store');
     Route::get('dashboard/submissions/{submission}/details', [AuthorSubmissionController::class, 'details'])->name('submissions.details');

@@ -1,5 +1,15 @@
 export default {
     submissionWizard: {
+        rorSearch: 'Cari universitas atau institusi di ROR',
+        rorSelected: 'Institusi terpilih (identitas ROR/tersimpan)',
+        rorSearching: 'Mencari institusi…',
+        rorUnavailable:
+            'Layanan ROR sedang tidak tersedia; Anda tetap dapat mengetik afiliasi manual.',
+        rorError: 'Institusi gagal dipilih. Coba lagi atau isi manual.',
+        manualFallback:
+            'Jika tidak menemukan institusi, nama yang diketik dapat digunakan sebagai afiliasi manual.',
+        changeInstitution: 'Ubah institusi',
+        savedInstitution: 'Tersimpan',
         navigation: 'Abstrak Saya',
         contributors: '2. Penulis dan afiliasi',
         contributorsHelp:

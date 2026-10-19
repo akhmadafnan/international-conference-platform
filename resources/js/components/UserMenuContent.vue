@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { Link, router } from '@inertiajs/vue3';
 import { LogOut, Settings } from '@lucide/vue';
+import { PhGear, PhSignOut } from '@phosphor-icons/vue';
 import { useI18n } from 'vue-i18n';
 import {
     DropdownMenuGroup,
@@ -15,6 +16,7 @@ import type { User } from '@/types';
 
 type Props = {
     user: User;
+    adminPilot?: boolean;
 };
 
 defineProps<Props>();
@@ -38,7 +40,11 @@ const handleLogout = () => {
     <DropdownMenuGroup>
         <DropdownMenuItem :as-child="true">
             <Link class="block w-full cursor-pointer" :href="edit()" prefetch>
-                <Settings class="me-2 h-4 w-4" />
+                <component
+                    :is="adminPilot ? PhGear : Settings"
+                    class="me-2 h-4 w-4"
+                    aria-hidden="true"
+                />
                 {{ t('account.settings') }}
             </Link>
         </DropdownMenuItem>
@@ -54,7 +60,11 @@ const handleLogout = () => {
             as="button"
             data-test="logout-button"
         >
-            <LogOut class="me-2 h-4 w-4" />
+            <component
+                :is="adminPilot ? PhSignOut : LogOut"
+                class="me-2 h-4 w-4"
+                aria-hidden="true"
+            />
             {{ t('account.logout') }}
         </Link>
     </DropdownMenuItem>

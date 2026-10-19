@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
 
 const { t, te } = useI18n();
 const languages = ['id', 'en', 'ar'] as const;
@@ -127,7 +128,7 @@ const submit = () => form.post('/admin/series');
                             <Label :for="`series-about-${language}`">{{
                                 t(`admin.series.languages.${language}`)
                             }}</Label>
-                            <textarea
+                            <Textarea
                                 :id="`series-about-${language}`"
                                 v-model="form.about_i18n[language]"
                                 :name="`about_i18n[${language}]`"
@@ -135,7 +136,7 @@ const submit = () => form.post('/admin/series');
                                 :dir="language === 'ar' ? 'rtl' : 'ltr'"
                                 rows="4"
                                 maxlength="10000"
-                                class="w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-xs outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 aria-invalid:border-destructive"
+                                class="w-full"
                                 :aria-invalid="
                                     !!form.errors[`about_i18n.${language}`]
                                 "
@@ -152,11 +153,7 @@ const submit = () => form.post('/admin/series');
                         </div>
                     </fieldset>
                     <div class="flex flex-wrap gap-3">
-                        <Button
-                            type="submit"
-                            :disabled="form.processing"
-                            class="bg-green-700 text-white hover:bg-green-800 dark:bg-primary dark:text-primary-foreground dark:hover:bg-primary/90"
-                        >
+                        <Button type="submit" :disabled="form.processing">
                             {{
                                 t(
                                     form.processing

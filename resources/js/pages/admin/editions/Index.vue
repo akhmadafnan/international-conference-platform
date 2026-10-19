@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Head, Link } from '@inertiajs/vue3';
-import { CalendarDays, Plus } from '@lucide/vue';
+import { PhCalendarBlank, PhPlus } from '@phosphor-icons/vue';
 import { useI18n } from 'vue-i18n';
 import DataTablePagination from '@/components/DataTablePagination.vue';
 import DeleteConferenceRecordDialog from '@/components/DeleteConferenceRecordDialog.vue';
@@ -60,12 +60,9 @@ const modeLabel = (mode: string) =>
                     {{ t('admin.editions.description') }}
                 </p>
             </div>
-            <Button
-                as-child
-                class="bg-green-700 text-white hover:bg-green-800 dark:bg-green-700 dark:hover:bg-green-800"
-            >
+            <Button as-child>
                 <Link href="/admin/editions/create"
-                    ><Plus class="size-4" aria-hidden="true" />{{
+                    ><PhPlus class="size-4" aria-hidden="true" />{{
                         t('admin.editions.create')
                     }}</Link
                 >
@@ -74,14 +71,14 @@ const modeLabel = (mode: string) =>
         <p
             v-if="created"
             role="status"
-            class="rounded-lg border border-green-200 bg-green-50 p-4 text-sm text-green-800 dark:border-green-800 dark:bg-green-950 dark:text-green-200"
+            class="border border-primary/25 bg-primary/5 p-4 text-sm text-foreground"
         >
             {{ t('admin.editions.created') }}
         </p>
         <p
             v-if="deleted"
             role="status"
-            class="rounded-lg border border-green-200 bg-green-50 p-4 text-sm text-green-800 dark:border-green-800 dark:bg-green-950 dark:text-green-200"
+            class="border border-primary/25 bg-primary/5 p-4 text-sm text-foreground"
         >
             {{ t('admin.deletion.editionDeleted') }}
         </p>
@@ -91,8 +88,8 @@ const modeLabel = (mode: string) =>
                     v-if="editions.total === 0"
                     class="flex flex-col items-center gap-3 rounded-xl border border-dashed border-border px-6 py-14 text-center"
                 >
-                    <CalendarDays
-                        class="size-10 text-green-700 dark:text-green-400"
+                    <PhCalendarBlank
+                        class="size-10 text-primary"
                         aria-hidden="true"
                     />
                     <h2 class="text-lg font-semibold">
@@ -115,7 +112,7 @@ const modeLabel = (mode: string) =>
                     class="overflow-x-auto rounded-md focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
                 >
                     <table
-                        class="w-full border-collapse text-start text-sm leading-5"
+                        class="admin-data-table w-full border-collapse text-start text-sm leading-5"
                     >
                         <caption class="sr-only">
                             {{

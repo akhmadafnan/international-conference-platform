@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { Head, Link } from '@inertiajs/vue3';
+import { PhPlus } from '@phosphor-icons/vue';
 import { useI18n } from 'vue-i18n';
 import DataTablePagination from '@/components/DataTablePagination.vue';
 import DeleteConferenceRecordDialog from '@/components/DeleteConferenceRecordDialog.vue';
@@ -42,20 +43,19 @@ const statusLabel = (status: string) => {
                     {{ t('admin.series.description') }}
                 </p>
             </div>
-            <Button
-                as-child
-                class="bg-green-700 text-white hover:bg-green-800 dark:bg-primary dark:text-primary-foreground dark:hover:bg-primary/90"
-            >
-                <Link href="/admin/series/create">{{
-                    t('admin.series.create')
-                }}</Link>
+            <Button as-child>
+                <Link href="/admin/series/create"
+                    ><PhPlus class="size-3.5" aria-hidden="true" />{{
+                        t('admin.series.create')
+                    }}</Link
+                >
             </Button>
         </header>
 
         <p
             v-if="created"
             role="status"
-            class="rounded-lg border bg-card p-4 text-sm"
+            class="border border-border bg-card p-4 text-sm"
         >
             {{ t('admin.series.created') }}
         </p>
@@ -63,7 +63,7 @@ const statusLabel = (status: string) => {
         <p
             v-if="deleted"
             role="status"
-            class="rounded-lg border border-green-200 bg-green-50 p-4 text-sm text-green-800 dark:border-green-800 dark:bg-green-950 dark:text-green-200"
+            class="border border-primary/25 bg-primary/5 p-4 text-sm text-foreground"
         >
             {{ t('admin.deletion.seriesDeleted') }}
         </p>
@@ -83,7 +83,7 @@ const statusLabel = (status: string) => {
                 </div>
                 <div v-else class="overflow-x-auto">
                     <table
-                        class="w-full border-collapse text-start text-sm leading-5"
+                        class="admin-data-table w-full border-collapse text-start text-sm leading-5"
                     >
                         <caption class="sr-only">
                             {{

@@ -6,6 +6,14 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from '@/components/ui/select';
+import { Textarea } from '@/components/ui/textarea';
 
 defineProps<{ series: { id: string; code: string; name: string }[] }>();
 const { t, te } = useI18n();
@@ -34,8 +42,6 @@ const fields = [
     { key: 'ends_at', type: 'datetime-local', required: true },
 ] as const;
 const localizedFields = ['theme_i18n', 'organizer_i18n'] as const;
-const inputClass =
-    'min-h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring';
 const errorMessage = (message: string | undefined) => {
     if (!message) return undefined;
     const key = `admin.editions.errors.${message}`;
@@ -82,26 +88,33 @@ const submit = () => form.post('/admin/editions');
                             <Label for="edition-series">{{
                                 t('admin.editions.series')
                             }}</Label>
-                            <select
-                                id="edition-series"
+                            <Select
                                 v-model="form.series_id"
                                 name="series_id"
                                 required
-                                :class="inputClass"
-                                :aria-invalid="!!form.errors.series_id"
-                                aria-describedby="edition-series-error"
                             >
-                                <option disabled value="">
-                                    {{ t('admin.editions.selectSeries') }}
-                                </option>
-                                <option
-                                    v-for="item in series"
-                                    :key="item.id"
-                                    :value="item.id"
+                                <SelectTrigger
+                                    id="edition-series"
+                                    class="w-full"
+                                    :aria-invalid="!!form.errors.series_id"
+                                    aria-describedby="edition-series-error"
                                 >
-                                    {{ item.code }} — {{ item.name }}
-                                </option>
-                            </select>
+                                    <SelectValue
+                                        :placeholder="
+                                            t('admin.editions.selectSeries')
+                                        "
+                                    />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectItem
+                                        v-for="item in series"
+                                        :key="item.id"
+                                        :value="item.id"
+                                    >
+                                        {{ item.code }} — {{ item.name }}
+                                    </SelectItem>
+                                </SelectContent>
+                            </Select>
                             <InputError
                                 id="edition-series-error"
                                 :message="errorMessage(form.errors.series_id)"
@@ -164,23 +177,25 @@ const submit = () => form.post('/admin/editions');
                             <Label for="edition-mode">{{
                                 t('admin.editions.mode')
                             }}</Label>
-                            <select
-                                id="edition-mode"
-                                v-model="form.mode"
-                                name="mode"
-                                required
-                                :class="inputClass"
-                                :aria-invalid="!!form.errors.mode"
-                                aria-describedby="edition-mode-error"
-                            >
-                                <option
-                                    v-for="mode in modes"
-                                    :key="mode"
-                                    :value="mode"
+                            <Select v-model="form.mode" name="mode" required>
+                                <SelectTrigger
+                                    id="edition-mode"
+                                    class="w-full"
+                                    :aria-invalid="!!form.errors.mode"
+                                    aria-describedby="edition-mode-error"
                                 >
-                                    {{ t(`admin.editions.modes.${mode}`) }}
-                                </option>
-                            </select>
+                                    <SelectValue />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectItem
+                                        v-for="mode in modes"
+                                        :key="mode"
+                                        :value="mode"
+                                    >
+                                        {{ t('admin.editions.modes.' + mode) }}
+                                    </SelectItem>
+                                </SelectContent>
+                            </Select>
                             <InputError
                                 id="edition-mode-error"
                                 :message="errorMessage(form.errors.mode)"
@@ -209,7 +224,7 @@ const submit = () => form.post('/admin/editions');
                                 <Label :for="`${field}-${language}`">{{
                                     t(`admin.series.languages.${language}`)
                                 }}</Label>
-                                <textarea
+                                <Textarea
                                     :id="`${field}-${language}`"
                                     v-model="form[field][language]"
                                     :name="`${field}[${language}]`"
@@ -217,7 +232,7 @@ const submit = () => form.post('/admin/editions');
                                     :dir="language === 'ar' ? 'rtl' : 'ltr'"
                                     rows="3"
                                     maxlength="10000"
-                                    :class="inputClass"
+                                    class="w-full"
                                     :aria-invalid="
                                         !!form.errors[`${field}.${language}`]
                                     "
@@ -237,16 +252,11 @@ const submit = () => form.post('/admin/editions');
                     <div
                         class="flex flex-wrap items-center gap-3 border-t border-border pt-5"
                     >
-                        <Button
-                            type="submit"
-                            :disabled="form.processing"
-                            class="bg-green-700 text-white hover:bg-green-800 dark:bg-green-700 dark:hover:bg-green-800"
-                            >{{
-                                form.processing
-                                    ? t('admin.series.saving')
-                                    : t('admin.editions.save')
-                            }}</Button
-                        >
+                        <Button type="submit" :disabled="form.processing">{{
+                            form.processing
+                                ? t('admin.series.saving')
+                                : t('admin.editions.save')
+                        }}</Button>
                         <Button as-child variant="outline"
                             ><Link href="/admin/editions">{{
                                 t('admin.series.cancel')

@@ -1,8 +1,11 @@
 <script setup lang="ts">
 import { Moon, Sun } from '@lucide/vue';
+import { PhMoon, PhSun } from '@phosphor-icons/vue';
 import { useI18n } from 'vue-i18n';
 import { Button } from '@/components/ui/button';
 import { useAppearance } from '@/composables/useAppearance';
+
+defineProps<{ adminPilot?: boolean }>();
 
 const { resolvedAppearance, updateAppearance } = useAppearance();
 
@@ -25,9 +28,19 @@ function toggleAppearance(): void {
         "
         @click="toggleAppearance"
     >
-        <Sun v-if="resolvedAppearance === 'dark'" class="size-4" />
-
-        <Moon v-else class="size-4" />
+        <component
+            :is="
+                resolvedAppearance === 'dark'
+                    ? adminPilot
+                        ? PhSun
+                        : Sun
+                    : adminPilot
+                      ? PhMoon
+                      : Moon
+            "
+            class="size-4"
+            aria-hidden="true"
+        />
 
         <span class="sr-only">
             {{

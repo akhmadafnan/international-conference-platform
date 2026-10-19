@@ -7,6 +7,7 @@
         "build:ssr": "vp build && vp build --ssr",
         "dev": "vp dev",
         "check": "vp check",
+        "check:admin-lyra": "node scripts/check-admin-lyra-contract.mjs",
         "check:fix": "vp check --fix",
         "types:check": "vue-tsc --noEmit"
     },
@@ -14,6 +15,7 @@
         "@inertiajs/vite": "^3.0.0",
         "@inertiajs/vue3": "^3.0.0",
         "@lucide/vue": "^1.17.0",
+        "@phosphor-icons/vue": "2.2.1",
         "@vueuse/core": "^12.8.2",
         "class-variance-authority": "^0.7.1",
         "clsx": "^2.1.1",

@@ -8,6 +8,7 @@ import AppLogo from '@/components/AppLogo.vue';
 import AdminNavigation from '@/components/AdminNavigation.vue';
 import NavMain from '@/components/NavMain.vue';
 import NavUser from '@/components/NavUser.vue';
+import RoleSwitchDialog from '@/components/RoleSwitchDialog.vue';
 import { Button } from '@/components/ui/button';
 import {
     Sidebar,
@@ -25,6 +26,24 @@ import type { NavItem } from '@/types';
 const page = usePage();
 const { t } = useI18n();
 const isAdmin = computed(() => page.component.startsWith('admin/'));
+const isSuperAdminView = computed(
+    () =>
+        page.props.auth.canAccessAdmin &&
+        page.props.auth.workspaceMode === 'superadmin',
+);
+const modeLanding = computed(() =>
+    [
+        'participant',
+        'non_presenting_participant',
+        'author',
+        'co_author',
+        'presenter',
+    ].includes(page.props.auth.workspaceMode)
+        ? '/dashboard'
+        : page.props.auth.canAccessAdmin && !isSuperAdminView.value
+          ? '/workspace'
+          : '/dashboard',
+);
 const { isMobile, setOpenMobile } = useSidebar();
 
 const sidebarSide = computed<'left' | 'right'>(() =>
@@ -33,13 +52,15 @@ const sidebarSide = computed<'left' | 'right'>(() =>
 
 const mainNavItems = computed<NavItem[]>(() => [
     {
-        title: page.props.auth.canAccessAdmin
+        title: isSuperAdminView.value
             ? t('admin.dashboard.title')
-            : t('navigation.dashboard'),
-        href: page.props.auth.canAccessAdmin ? '/admin/dashboard' : dashboard(),
+            : page.props.auth.canAccessAdmin && !['participant', 'non_presenting_participant', 'author', 'co_author', 'presenter'].includes(page.props.auth.workspaceMode)
+              ? t('workspace.title')
+              : t('navigation.dashboard'),
+        href: isSuperAdminView.value ? '/admin/dashboard' : modeLanding.value,
         icon: LayoutGrid,
     },
-    ...(page.props.auth.canAccessAdmin
+    ...(isSuperAdminView.value
         ? [
               {
                   title: t('admin.series.title'),
@@ -74,9 +95,9 @@ const mainNavItems = computed<NavItem[]>(() => [
                             "
                             @click="isAdmin && setOpenMobile(false)"
                             :href="
-                                page.props.auth.canAccessAdmin
+                                isSuperAdminView
                                     ? '/admin/dashboard'
-                                    : dashboard()
+                                    : modeLanding
                             "
                         >
                             <template v-if="isAdmin">
@@ -123,6 +144,7 @@ const mainNavItems = computed<NavItem[]>(() => [
         </SidebarContent>
 
         <SidebarFooter>
+            <RoleSwitchDialog v-if="page.props.auth.canAccessAdmin" />
             <NavUser />
         </SidebarFooter>
     </Sidebar>

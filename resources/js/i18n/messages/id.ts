@@ -1,4 +1,38 @@
 export default {
+    workspace: {
+        title: 'Tampilan workspace',
+        switch: 'Ganti tampilan role',
+        mode: 'Pilih tampilan role',
+        explanation:
+            'Pergantian hanya mengubah workspace yang ditampilkan, bukan identitas, role, atau izin backend.',
+        identity:
+            'Anda tetap login sebagai Superadmin. Data peserta/reviewer lain tidak ditiru; tindakan bisnis tetap mengikuti aturan aslinya.',
+        notBuilt:
+            'Fitur operasional role ini belum tersedia. Fiturnya akan muncul setelah modul bersangkutan selesai.',
+        cancel: 'Batal',
+        apply: 'Ganti',
+        modes: {
+            superadmin: 'Superadmin',
+            participant: 'Peserta',
+            non_presenting_participant: 'Peserta nonpresenter',
+            author: 'Penulis',
+            co_author: 'Penulis pendamping',
+            presenter: 'Presenter',
+            invited_speaker: 'Pembicara undangan',
+            front_office: 'Layanan peserta',
+            conference_admin: 'Admin konferensi',
+            technical_admin: 'Admin teknis',
+            finance: 'Keuangan',
+            academic_committee: 'Komite akademik',
+            reviewer: 'Reviewer',
+            academic_decision_authority: 'Pengambil keputusan akademik',
+            event_operations: 'Operasional acara',
+            session_chair: 'Ketua sesi',
+            moderator: 'Moderator',
+            publication_team: 'Tim publikasi',
+            certificate_authority: 'Otoritas sertifikat',
+        },
+    },
     dataTable: {
         showing: 'Menampilkan {from}–{to} dari {total} entri',
         pagination: 'Navigasi halaman tabel',

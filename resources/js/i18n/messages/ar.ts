@@ -1,4 +1,37 @@
 export default {
+    workspace: {
+        title: 'عرض مساحة العمل',
+        switch: 'تبديل مساحة العمل',
+        mode: 'اختر عرض الدور',
+        explanation:
+            'يغيّر هذا الاختيار واجهة العرض فقط ولا يغيّر الحساب أو الصلاحيات.',
+        identity:
+            'ستبقى مسجلاً كمسؤول أعلى دون انتحال بيانات المشاركين أو المحكّمين.',
+        notBuilt: 'وظائف هذا الدور قيد التطوير ولم تُفعّل بعد.',
+        cancel: 'إلغاء',
+        apply: 'تبديل',
+        modes: {
+            superadmin: 'المسؤول الأعلى',
+            participant: 'مشارك',
+            non_presenting_participant: 'مشارك دون عرض',
+            author: 'مؤلف',
+            co_author: 'مؤلف مشارك',
+            presenter: 'مقدم العرض',
+            invited_speaker: 'متحدث مدعو',
+            front_office: 'مكتب الاستقبال',
+            conference_admin: 'مسؤول المؤتمر',
+            technical_admin: 'المسؤول التقني',
+            finance: 'الشؤون المالية',
+            academic_committee: 'اللجنة العلمية',
+            reviewer: 'المحكّم',
+            academic_decision_authority: 'سلطة القرار الأكاديمي',
+            event_operations: 'عمليات الفعالية',
+            session_chair: 'رئيس الجلسة',
+            moderator: 'مدير الجلسة',
+            publication_team: 'فريق النشر',
+            certificate_authority: 'سلطة الشهادات',
+        },
+    },
     dataTable: {
         showing: 'عرض {from}–{to} من أصل {total} سجل',
         pagination: 'التنقل بين صفحات الجدول',

@@ -15,6 +15,8 @@ use App\Http\Controllers\Registration\ParticipantDashboardController;
 use App\Http\Controllers\Registration\ShowEventPassController;
 use App\Http\Controllers\Registration\ShowParticipantRegistrationController;
 use App\Http\Controllers\Registration\StoreParticipantRegistrationController;
+use App\Http\Controllers\Workspace\RoleOverviewController;
+use App\Http\Controllers\Workspace\SwitchSuperAdminWorkspaceController;
 use Illuminate\Support\Facades\Route;
 
 Route::post('locale', UpdateLocaleController::class)->name('locale.update');
@@ -22,6 +24,10 @@ Route::post('locale', UpdateLocaleController::class)->name('locale.update');
 Route::inertia('/', 'Welcome')->name('home');
 
 Route::middleware(['auth', 'verified'])->group(function () {
+    Route::post('workspace-mode', SwitchSuperAdminWorkspaceController::class)
+        ->middleware('throttle:12,1')->name('workspace.mode.switch');
+    Route::get('workspace', RoleOverviewController::class)
+        ->name('workspace.overview');
     Route::get('admin/dashboard', AdminDashboardController::class)
         ->name('admin.dashboard');
 

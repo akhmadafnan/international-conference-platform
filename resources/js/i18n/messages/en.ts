@@ -1,4 +1,38 @@
 export default {
+    workspace: {
+        title: 'Workspace view',
+        switch: 'Switch workspace',
+        mode: 'Select a role view',
+        explanation:
+            'Switching changes the visible workspace only; it never changes your account, roles, or backend permissions.',
+        identity:
+            'You remain signed in as Superadmin. No participant/reviewer data is impersonated; business actions still require their normal rules.',
+        notBuilt:
+            'This role workspace is not operational yet. Its functions will appear as the corresponding module is implemented.',
+        cancel: 'Cancel',
+        apply: 'Switch',
+        modes: {
+            superadmin: 'Super Administrator',
+            participant: 'Participant',
+            non_presenting_participant: 'Non-presenting participant',
+            author: 'Author',
+            co_author: 'Co-author',
+            presenter: 'Presenter',
+            invited_speaker: 'Invited speaker',
+            front_office: 'Front Office',
+            conference_admin: 'Conference administrator',
+            technical_admin: 'Technical administrator',
+            finance: 'Finance',
+            academic_committee: 'Academic committee',
+            reviewer: 'Reviewer',
+            academic_decision_authority: 'Academic decision authority',
+            event_operations: 'Event operations',
+            session_chair: 'Session chair',
+            moderator: 'Moderator',
+            publication_team: 'Publication team',
+            certificate_authority: 'Certificate authority',
+        },
+    },
     dataTable: {
         showing: 'Showing {from}–{to} of {total} entries',
         pagination: 'Table pagination',

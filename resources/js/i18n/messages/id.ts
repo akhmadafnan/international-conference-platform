@@ -10,6 +10,95 @@ export default {
         ellipsis: 'Halaman lainnya',
     },
     admin: {
+        deletion: {
+            actions: 'Aksi',
+            delete: 'Hapus',
+            cancel: 'Batal',
+            deleteIdentity: 'Hapus {code}',
+            confirm: 'Hapus permanen',
+            deleting: 'Menghapus…',
+            seriesTitle: 'Hapus Conference Series',
+            editionTitle: 'Hapus Conference Edition',
+            seriesDescription:
+                'Series akan dihapus permanen dan tidak dapat dipulihkan. Hanya series tanpa edisi yang dapat dihapus.',
+            editionDescription:
+                'Edisi akan dihapus permanen dan tidak dapat dipulihkan. Hanya edisi draf tanpa data terkait yang dapat dihapus.',
+            confirmLabel: 'Konfirmasi kode',
+            confirmHelp:
+                'Ketik {code} persis, termasuk huruf besar/kecil, untuk mengonfirmasi.',
+            seriesDeleted: 'Conference Series berhasil dihapus.',
+            editionDeleted: 'Conference Edition berhasil dihapus.',
+            errors: {
+                confirmation:
+                    'Kode harus sama persis. Periksa huruf besar/kecil dan spasi tambahan.',
+                seriesHasEditions:
+                    'Series ini masih memiliki edisi konferensi sehingga tidak dapat dihapus.',
+                editionNotDraft:
+                    'Hanya edisi yang masih berstatus draf yang dapat dihapus.',
+                editionHasData:
+                    'Edisi ini memiliki data terkait sehingga tidak dapat dihapus. Seluruh datanya tetap tersimpan.',
+                failed: 'Penghapusan belum berhasil. Tidak ada perubahan yang disimpan. Silakan coba kembali.',
+            },
+        },
+        editions: {
+            title: 'Conference Edition',
+            description:
+                'Kelola edisi konferensi, penyelenggara, tanggal, dan mode acara.',
+            create: 'Buat Conference Edition',
+            createDescription:
+                'Buat edisi berstatus draf. Registrasi dan publikasi tetap tertutup.',
+            save: 'Buat edisi',
+            created: 'Conference Edition berhasil dibuat sebagai draf.',
+            series: 'Conference Series',
+            selectSeries: 'Pilih series aktif',
+            noSeries: 'Buat Conference Series aktif sebelum membuat Edition.',
+            codeHelp:
+                'Edition Code adalah identitas edisi yang terpisah dari Series Code. Huruf disimpan sebagai huruf besar.',
+            timezoneHelp:
+                'Gunakan zona waktu IANA, misalnya Asia/Jakarta. Waktu mulai dan selesai diisi dalam zona waktu ini.',
+            identity: 'Edisi / Tuan Rumah',
+            year: 'Tahun',
+            mode: 'Mode',
+            dates: 'Tanggal acara',
+            status: 'Status',
+            number: 'Edisi {number}',
+            emptyTitle: 'Konferensi berikutnya dimulai di sini',
+            emptyDescription:
+                'Buat edisi draf untuk menentukan tuan rumah, tanggal acara, dan identitas konferensi.',
+            noPageResults:
+                'Tidak ada edisi pada halaman ini. Gunakan navigasi untuk kembali ke halaman yang tersedia.',
+            unknownMode: 'Mode tidak tersedia',
+            modes: { OFFLINE: 'Luring', ONLINE: 'Daring', HYBRID: 'Hibrida' },
+            fields: {
+                edition_code: 'Edition Code',
+                edition_number: 'Nomor Edisi',
+                year: 'Tahun',
+                host_name: 'Nama Tuan Rumah',
+                timezone: 'Zona Waktu',
+                starts_at: 'Tanggal / Waktu Mulai',
+                ends_at: 'Tanggal / Waktu Selesai',
+                theme_i18n: 'Tema',
+                organizer_i18n: 'Penyelenggara',
+            },
+            errors: {
+                required: 'Kolom ini wajib diisi.',
+                text: 'Isi kolom ini dengan teks.',
+                tooLong: 'Nilai terlalu panjang.',
+                integer: 'Masukkan bilangan bulat.',
+                range: 'Masukkan angka dalam rentang yang diizinkan.',
+                series: 'Pilih Conference Series aktif.',
+                duplicate: 'Kode edisi ini sudah digunakan.',
+                mode: 'Pilih mode acara yang tersedia.',
+                timezone: 'Masukkan zona waktu IANA yang sah.',
+                date: 'Masukkan tanggal dan waktu lokal yang sah pada zona waktu terpilih.',
+                dateRange: 'Waktu selesai harus setelah waktu mulai.',
+                languages:
+                    'Hanya bahasa Indonesia, Inggris, dan Arab yang didukung.',
+                unexpected: 'Kolom ini tidak boleh dikirim.',
+                invalid: 'Periksa nilai pada kolom ini.',
+                summary: 'Periksa kolom yang ditandai sebelum menyimpan.',
+            },
+        },
         series: {
             title: 'Conference Series',
             description: 'Kelola identitas rangkaian konferensi berkala.',
@@ -60,6 +149,15 @@ export default {
             },
         },
         dashboard: {
+            statistics: 'Statistik konferensi',
+            seriesCount: 'Jumlah Conference Series',
+            manageSeries: 'Lihat series',
+            manageEditions: 'Lihat edisi',
+            quickActions: 'Aksi cepat',
+            quickDescription: 'Siapkan dasar konferensi berikutnya.',
+            seriesActionHelp:
+                'Tentukan identitas rangkaian konferensi berkala.',
+            editionActionHelp: 'Tambahkan edisi draf pada series aktif.',
             title: 'Ringkasan administrasi',
             eyebrow: 'Ruang Superadmin ICHES',
             description:

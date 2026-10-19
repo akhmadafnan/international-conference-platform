@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Actions\Admin\CreateConferenceSeriesAction;
+use App\Actions\Admin\DeleteConferenceRecordAction;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\DeleteConferenceRecordRequest;
 use App\Http\Requests\Admin\StoreConferenceSeriesRequest;
 use App\Models\ConferenceSeries;
 use App\Models\User;
@@ -13,6 +15,7 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
 use Inertia\Response;
+use Throwable;
 
 final class ConferenceSeriesController extends Controller
 {
@@ -48,6 +51,7 @@ final class ConferenceSeriesController extends Controller
                     ->all(),
             ],
             'created' => (bool) $request->session()->get('series_created', false),
+            'deleted' => (bool) $request->session()->get('series_deleted', false),
         ]);
     }
 
@@ -72,6 +76,24 @@ final class ConferenceSeriesController extends Controller
         }
 
         return to_route('admin.series.index')->with('series_created', true);
+    }
+
+    public function destroy(DeleteConferenceRecordRequest $request, ConferenceSeries $series, DeleteConferenceRecordAction $action): RedirectResponse
+    {
+        $this->authorizeSuperAdmin($request);
+        $actor = $request->user();
+        abort_unless($actor instanceof User, 403);
+
+        try {
+            $action->handle($actor, $series, (string) $request->validated('confirmation_code'));
+        } catch (ValidationException $exception) {
+            throw $exception;
+        } catch (Throwable $exception) {
+            report($exception);
+            throw ValidationException::withMessages(['delete' => 'failed']);
+        }
+
+        return to_route('admin.series.index')->with('series_deleted', true);
     }
 
     private function authorizeSuperAdmin(Request $request): void

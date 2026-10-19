@@ -10,6 +10,96 @@ export default {
         ellipsis: 'More pages',
     },
     admin: {
+        deletion: {
+            actions: 'Actions',
+            delete: 'Delete',
+            cancel: 'Cancel',
+            deleteIdentity: 'Delete {code}',
+            confirm: 'Delete permanently',
+            deleting: 'Deleting…',
+            seriesTitle: 'Delete Conference Series',
+            editionTitle: 'Delete Conference Edition',
+            seriesDescription:
+                'This permanently deletes the series and cannot be undone. Only a series without editions can be deleted.',
+            editionDescription:
+                'This permanently deletes the edition and cannot be undone. Only a draft edition without related data can be deleted.',
+            confirmLabel: 'Confirm the code',
+            confirmHelp:
+                'Type {code} exactly, including letter case, to confirm.',
+            seriesDeleted: 'Conference Series deleted successfully.',
+            editionDeleted: 'Conference Edition deleted successfully.',
+            errors: {
+                confirmation:
+                    'The code must match exactly. Check letter case and extra spaces.',
+                seriesHasEditions:
+                    'This series has conference editions and cannot be deleted.',
+                editionNotDraft:
+                    'Only an edition that is still a draft can be deleted.',
+                editionHasData:
+                    'This edition has related data and cannot be deleted. Its records have been preserved.',
+                failed: 'Deletion could not be completed. No changes were saved. Please try again.',
+            },
+        },
+        editions: {
+            title: 'Conference Editions',
+            description:
+                'Manage conference editions, hosts, dates, and event modes.',
+            create: 'Create Conference Edition',
+            createDescription:
+                'Create a draft edition. Registration and publication remain closed.',
+            save: 'Create edition',
+            created: 'Conference edition created successfully as a draft.',
+            series: 'Conference Series',
+            selectSeries: 'Select an active series',
+            noSeries:
+                'Create an active Conference Series before creating an Edition.',
+            codeHelp:
+                'Edition Code identifies this edition independently of Series Code. Letters are saved in uppercase.',
+            timezoneHelp:
+                'Use an IANA timezone, for example Asia/Jakarta. Start and end times are entered in this timezone.',
+            identity: 'Edition / Host',
+            year: 'Year',
+            mode: 'Mode',
+            dates: 'Event dates',
+            status: 'Status',
+            number: 'Edition {number}',
+            emptyTitle: 'Your next conference starts here',
+            emptyDescription:
+                'Create a draft edition to define its host, event dates, and conference identity.',
+            noPageResults:
+                'There are no editions on this page. Use pagination to return to an available page.',
+            unknownMode: 'Mode unavailable',
+            modes: { OFFLINE: 'In person', ONLINE: 'Online', HYBRID: 'Hybrid' },
+            fields: {
+                edition_code: 'Edition Code',
+                edition_number: 'Edition Number',
+                year: 'Year',
+                host_name: 'Host Name',
+                timezone: 'Timezone',
+                starts_at: 'Start Date / Time',
+                ends_at: 'End Date / Time',
+                theme_i18n: 'Theme',
+                organizer_i18n: 'Organizer',
+            },
+            errors: {
+                required: 'This field is required.',
+                text: 'Enter text in this field.',
+                tooLong: 'The value is too long.',
+                integer: 'Enter a whole number.',
+                range: 'Enter a number within the allowed range.',
+                series: 'Choose an active Conference Series.',
+                duplicate: 'This edition code is already in use.',
+                mode: 'Choose an available event mode.',
+                timezone: 'Enter a valid IANA timezone.',
+                date: 'Enter a valid local date and time in the selected timezone.',
+                dateRange: 'End must be later than start.',
+                languages:
+                    'Only Indonesian, English, and Arabic are supported.',
+                unexpected: 'This field cannot be supplied.',
+                invalid: 'Check the value in this field.',
+                summary: 'Check the highlighted fields before saving.',
+            },
+        },
         series: {
             title: 'Conference Series',
             description: 'Manage the identity of recurring conference series.',
@@ -56,6 +146,14 @@ export default {
             },
         },
         dashboard: {
+            statistics: 'Conference statistics',
+            seriesCount: 'Total conference series',
+            manageSeries: 'View series',
+            manageEditions: 'View editions',
+            quickActions: 'Quick actions',
+            quickDescription: 'Set up the foundations of your next conference.',
+            seriesActionHelp: 'Define the identity of a recurring conference.',
+            editionActionHelp: 'Add a draft edition to an active series.',
             title: 'Administration overview',
             eyebrow: 'ICHES Superadmin workspace',
             description:

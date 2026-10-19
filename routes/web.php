@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Admin\ConferenceEditionController;
 use App\Http\Controllers\Admin\ConferenceSeriesController;
 use App\Http\Controllers\Localization\UpdateLocaleController;
 use App\Http\Controllers\Payment\DownloadPaymentProofController;
@@ -22,12 +23,23 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('admin/dashboard', AdminDashboardController::class)
         ->name('admin.dashboard');
 
+    Route::get('admin/editions', [ConferenceEditionController::class, 'index'])
+        ->name('admin.editions.index');
+    Route::get('admin/editions/create', [ConferenceEditionController::class, 'create'])
+        ->name('admin.editions.create');
+    Route::post('admin/editions', [ConferenceEditionController::class, 'store'])
+        ->name('admin.editions.store');
+    Route::delete('admin/editions/{edition}', [ConferenceEditionController::class, 'destroy'])
+        ->name('admin.editions.destroy');
+
     Route::get('admin/series', [ConferenceSeriesController::class, 'index'])
         ->name('admin.series.index');
     Route::get('admin/series/create', [ConferenceSeriesController::class, 'create'])
         ->name('admin.series.create');
     Route::post('admin/series', [ConferenceSeriesController::class, 'store'])
         ->name('admin.series.store');
+    Route::delete('admin/series/{series}', [ConferenceSeriesController::class, 'destroy'])
+        ->name('admin.series.destroy');
 
     Route::get(
         'dashboard',

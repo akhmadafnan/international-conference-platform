@@ -1,5 +1,13 @@
 export default {
     submissionWizard: {
+        rorSearch: 'ابحث عن جامعة أو مؤسسة بحثية',
+        rorSelected: 'تم اختيار المؤسسة',
+        rorSearching: 'جارٍ البحث عن المؤسسات…',
+        rorUnavailable: 'خدمة ROR غير متاحة الآن. يمكنك إدخال الانتماء يدوياً.',
+        rorError: 'تعذر اختيار المؤسسة. حاول مجدداً أو أدخلها يدوياً.',
+        manualFallback: 'إذا لم تجد المؤسسة، يمكنك كتابة اسمها يدوياً.',
+        changeInstitution: 'تغيير المؤسسة',
+        savedInstitution: 'محفوظة',
         navigation: 'ملخصاتي',
         contributors: '٢. المؤلفون والانتماءات',
         contributorsHelp:

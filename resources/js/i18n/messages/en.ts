@@ -1,5 +1,16 @@
 export default {
     submissionWizard: {
+        rorSearch: 'Search a university or research organization',
+        rorSelected: 'Organization selected (ROR/saved identity)',
+        rorSearching: 'Searching institutions…',
+        rorUnavailable:
+            'ROR is unavailable. You can still provide a truthful manual affiliation.',
+        rorError:
+            'Unable to select this institution. Retry or use manual affiliation.',
+        manualFallback:
+            'No match? Your typed organization name is accepted as a manual affiliation.',
+        changeInstitution: 'Change institution',
+        savedInstitution: 'Saved',
         navigation: 'My Abstracts',
         contributors: '2. Authors and affiliations',
         contributorsHelp:

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Admin\ConferenceEditionController;
 use App\Http\Controllers\Admin\ConferenceSeriesController;
 use App\Http\Controllers\Localization\UpdateLocaleController;
 use App\Http\Controllers\Payment\DownloadPaymentProofController;
@@ -21,6 +22,13 @@ Route::inertia('/', 'Welcome')->name('home');
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('admin/dashboard', AdminDashboardController::class)
         ->name('admin.dashboard');
+
+    Route::get('admin/editions', [ConferenceEditionController::class, 'index'])
+        ->name('admin.editions.index');
+    Route::get('admin/editions/create', [ConferenceEditionController::class, 'create'])
+        ->name('admin.editions.create');
+    Route::post('admin/editions', [ConferenceEditionController::class, 'store'])
+        ->name('admin.editions.store');
 
     Route::get('admin/series', [ConferenceSeriesController::class, 'index'])
         ->name('admin.series.index');

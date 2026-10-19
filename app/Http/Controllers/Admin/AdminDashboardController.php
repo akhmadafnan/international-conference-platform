@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\ConferenceEdition;
+use App\Models\ConferenceSeries;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -18,6 +19,7 @@ final class AdminDashboardController extends Controller
         abort_unless($user instanceof User && $user->isSuperAdmin(), 403);
 
         return Inertia::render('admin/Dashboard', [
+            'seriesCount' => ConferenceSeries::query()->count(),
             'editionCount' => ConferenceEdition::query()->count(),
             'recentEditions' => ConferenceEdition::query()
                 ->with('series:id,name')

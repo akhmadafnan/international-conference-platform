@@ -20,7 +20,7 @@ const controls = computed(() => [
     { key: 'last', url: props.pagination.lastUrl },
 ]);
 const controlClass =
-    'inline-flex min-h-9 min-w-9 items-center justify-center rounded-md border border-border px-2.5 py-1.5 text-sm font-medium leading-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background';
+    'inline-flex min-h-9 min-w-9 items-center justify-center rounded-md border px-2.5 py-1.5 text-sm font-medium leading-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background';
 </script>
 
 <template>
@@ -72,8 +72,8 @@ const controlClass =
                             controlClass,
                             'page' in control &&
                             control.page === pagination.currentPage
-                                ? 'border-primary bg-primary text-primary-foreground'
-                                : 'bg-background text-foreground hover:bg-accent hover:text-accent-foreground',
+                                ? 'border-green-700 bg-green-700 text-white dark:border-green-500 dark:bg-green-700'
+                                : 'border-border bg-background text-foreground hover:bg-accent hover:text-accent-foreground',
                         ]"
                     >
                         {{
@@ -88,7 +88,7 @@ const controlClass =
                         disabled
                         :class="[
                             controlClass,
-                            'cursor-not-allowed bg-muted text-muted-foreground opacity-60',
+                            'cursor-not-allowed border-border bg-muted text-muted-foreground opacity-60',
                         ]"
                     >
                         {{ t(`dataTable.${control.key}`) }}

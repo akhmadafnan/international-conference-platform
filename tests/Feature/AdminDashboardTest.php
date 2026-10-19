@@ -33,6 +33,7 @@ test('superadmins can access the admin dashboard with an empty database', functi
         ->assertInertia(fn (Assert $page) => $page
             ->component('admin/Dashboard')
             ->where('auth.canAccessAdmin', true)
+            ->where('seriesCount', 0)
             ->where('editionCount', 0)
             ->has('recentEditions', 0));
 });
@@ -85,6 +86,7 @@ test('the admin dashboard counts all editions and shows only the ten newest with
         ->assertOk()
         ->assertInertia(fn (Assert $page) => $page
             ->component('admin/Dashboard')
+            ->where('seriesCount', 2)
             ->where('editionCount', 12)
             ->has('recentEditions', 10)
             ->where('recentEditions.0.code', 'EDITION-12')

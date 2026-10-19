@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Link, usePage } from '@inertiajs/vue3';
-import { Layers, LayoutGrid } from '@lucide/vue';
+import { CalendarDays, Layers, LayoutGrid } from '@lucide/vue';
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 import AppLogo from '@/components/AppLogo.vue';
@@ -40,6 +40,11 @@ const mainNavItems = computed<NavItem[]>(() => [
                   href: '/admin/series',
                   icon: Layers,
               },
+              {
+                  title: t('admin.editions.title'),
+                  href: '/admin/editions',
+                  icon: CalendarDays,
+              },
           ]
         : []),
 ]);
@@ -55,7 +60,13 @@ const mainNavItems = computed<NavItem[]>(() => [
             <SidebarMenu>
                 <SidebarMenuItem>
                     <SidebarMenuButton size="lg" as-child>
-                        <Link :href="dashboard()">
+                        <Link
+                            :href="
+                                page.props.auth.canAccessAdmin
+                                    ? '/admin/dashboard'
+                                    : dashboard()
+                            "
+                        >
                             <AppLogo />
                         </Link>
                     </SidebarMenuButton>

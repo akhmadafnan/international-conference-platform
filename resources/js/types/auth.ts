@@ -13,4 +13,6 @@ export type User = {
 export type Auth = {
     user: User;
     canAccessAdmin: boolean;
+    workspaceMode: string;
+    workspaceOptions: string[];
 };

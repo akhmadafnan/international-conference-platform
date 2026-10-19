@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use App\Enums\Locale;
 use App\Models\User;
+use App\Support\Workspace\SuperAdminWorkspaceMode;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 
@@ -36,6 +37,11 @@ class HandleInertiaRequests extends Middleware
                 'user' => $request->user(),
                 'canAccessAdmin' => $request->user() instanceof User
                     && $request->user()->isSuperAdmin(),
+                'workspaceMode' => SuperAdminWorkspaceMode::current($request),
+                'workspaceOptions' => $request->user() instanceof User
+                    && $request->user()->isSuperAdmin()
+                        ? SuperAdminWorkspaceMode::available()
+                        : [],
             ],
 
             'localization' => [

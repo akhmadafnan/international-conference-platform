@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Registration;
 use App\Models\User;
 use App\Support\Registration\ParticipantRegistrationView;
+use App\Support\Workspace\SuperAdminWorkspaceMode;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -26,7 +27,7 @@ final class ParticipantDashboardController extends Controller
             );
         }
 
-        if ($user->isSuperAdmin()) {
+        if ($user->isSuperAdmin() && SuperAdminWorkspaceMode::current($request) === 'superadmin') {
             return to_route('admin.dashboard');
         }
 

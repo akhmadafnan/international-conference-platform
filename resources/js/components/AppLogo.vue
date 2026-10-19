@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { usePage } from '@inertiajs/vue3';
+import { useI18n } from 'vue-i18n';
 import AppLogoIcon from '@/components/AppLogoIcon.vue';
 
-const name = usePage().props.name;
+const { t } = useI18n();
 </script>
 
 <template>
@@ -11,9 +11,8 @@ const name = usePage().props.name;
     >
         <AppLogoIcon class="size-5 fill-current text-white dark:text-black" />
     </div>
-    <div class="ml-1 grid flex-1 text-left text-sm">
-        <span class="mb-0.5 truncate leading-tight font-semibold">{{
-            name
-        }}</span>
+    <div class="ms-1 grid min-w-0 flex-1 text-start text-sm">
+        <span class="truncate leading-tight font-semibold">ICHES</span>
+        <span class="truncate text-xs text-sidebar-foreground/70">{{ t('navigation.platform') }}</span>
     </div>
 </template>

@@ -11,14 +11,23 @@ withDefaults(defineProps<Props>(), {
     variant: 'sidebar',
 });
 
-const isOpen = usePage().props.sidebarOpen;
+const page = usePage();
+const isOpen = page.props.sidebarOpen;
 </script>
 
 <template>
-    <div v-if="variant === 'header'" class="flex min-h-screen w-full flex-col">
+    <div
+        v-if="variant === 'header'"
+        class="workspace-shell flex min-h-screen w-full flex-col"
+    >
         <slot />
     </div>
-    <SidebarProvider v-else :default-open="isOpen">
+    <SidebarProvider
+        v-else
+        class="workspace-shell"
+        :class="{ 'admin-workspace': page.component.startsWith('admin/') }"
+        :default-open="isOpen"
+    >
         <slot />
     </SidebarProvider>
 </template>

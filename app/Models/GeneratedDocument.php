@@ -84,6 +84,14 @@ class GeneratedDocument extends Model
     }
 
     /**
+     * @return BelongsTo<Submission, $this>
+     */
+    public function submission(): BelongsTo
+    {
+        return $this->belongsTo(Submission::class);
+    }
+
+    /**
      * @return MorphMany<VerificationToken, $this>
      */
     public function verificationTokens(): MorphMany

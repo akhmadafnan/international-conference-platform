@@ -1,10 +1,9 @@
 <script setup lang="ts">
 import { Link, usePage } from '@inertiajs/vue3';
-import { BookOpen, FolderGit2, LayoutGrid } from '@lucide/vue';
+import { Layers, LayoutGrid } from '@lucide/vue';
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 import AppLogo from '@/components/AppLogo.vue';
-import NavFooter from '@/components/NavFooter.vue';
 import NavMain from '@/components/NavMain.vue';
 import NavUser from '@/components/NavUser.vue';
 import {
@@ -28,28 +27,30 @@ const sidebarSide = computed<'left' | 'right'>(() =>
 
 const mainNavItems = computed<NavItem[]>(() => [
     {
-        title: t('navigation.dashboard'),
-        href: dashboard(),
+        title: page.props.auth.canAccessAdmin
+            ? t('admin.dashboard.title')
+            : t('navigation.dashboard'),
+        href: page.props.auth.canAccessAdmin ? '/admin/dashboard' : dashboard(),
         icon: LayoutGrid,
     },
-]);
-
-const footerNavItems = computed<NavItem[]>(() => [
-    {
-        title: t('navigation.repository'),
-        href: 'https://github.com/laravel/vue-starter-kit',
-        icon: FolderGit2,
-    },
-    {
-        title: t('navigation.documentation'),
-        href: 'https://laravel.com/docs/starter-kits#vue',
-        icon: BookOpen,
-    },
+    ...(page.props.auth.canAccessAdmin
+        ? [
+              {
+                  title: t('admin.series.title'),
+                  href: '/admin/series',
+                  icon: Layers,
+              },
+          ]
+        : []),
 ]);
 </script>
 
 <template>
-    <Sidebar :side="sidebarSide" collapsible="icon" variant="inset">
+    <Sidebar
+        :side="sidebarSide"
+        collapsible="icon"
+        :variant="page.component.startsWith('admin/') ? 'sidebar' : 'inset'"
+    >
         <SidebarHeader>
             <SidebarMenu>
                 <SidebarMenuItem>
@@ -67,7 +68,6 @@ const footerNavItems = computed<NavItem[]>(() => [
         </SidebarContent>
 
         <SidebarFooter>
-            <NavFooter :items="footerNavItems" />
             <NavUser />
         </SidebarFooter>
     </Sidebar>

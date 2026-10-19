@@ -1,5 +1,64 @@
 export default {
+    dataTable: {
+        showing: 'Menampilkan {from}–{to} dari {total} entri',
+        pagination: 'Navigasi halaman tabel',
+        first: 'Pertama',
+        previous: 'Sebelumnya',
+        next: 'Berikutnya',
+        last: 'Terakhir',
+        page: 'Halaman {page}',
+        ellipsis: 'Halaman lainnya',
+    },
     admin: {
+        series: {
+            title: 'Conference Series',
+            description: 'Kelola identitas rangkaian konferensi berkala.',
+            create: 'Buat Conference Series',
+            createDescription:
+                'Isi identitas series. Series baru berstatus aktif secara otomatis.',
+            code: 'Kode',
+            codeHelp:
+                'Spasi di awal dan akhir dihapus; huruf disimpan sebagai huruf besar.',
+            name: 'Nama',
+            acronym: 'Singkatan',
+            about: 'Deskripsi',
+            optional: 'opsional',
+            status: 'Status',
+            notProvided: 'Belum diisi',
+            emptyTitle: 'Belum ada conference series',
+            emptyDescription:
+                'Buat conference series pertama melalui tombol di atas.',
+            save: 'Buat series',
+            saving: 'Menyimpan…',
+            cancel: 'Batal',
+            created: 'Conference series berhasil dibuat.',
+            pagination: 'Halaman conference series',
+            previous: 'Sebelumnya',
+            next: 'Berikutnya',
+            page: 'Halaman {current} dari {last}',
+            languages: {
+                id: 'Bahasa Indonesia',
+                en: 'Bahasa Inggris',
+                ar: 'Bahasa Arab',
+            },
+            statuses: {
+                ACTIVE: 'Aktif',
+                INACTIVE: 'Tidak aktif',
+                ARCHIVED: 'Diarsipkan',
+                unknown: 'Status tidak tersedia',
+            },
+            errors: {
+                required: 'Kolom ini wajib diisi.',
+                text: 'Isi kolom ini dengan teks.',
+                shortText: 'Gunakan maksimal 255 karakter.',
+                longText: 'Gunakan maksimal 10.000 karakter.',
+                duplicate: 'Kode ini sudah digunakan.',
+                languages:
+                    'Deskripsi hanya mendukung bahasa Indonesia, Inggris, dan Arab.',
+                invalid: 'Periksa nilai pada kolom ini.',
+                summary: 'Periksa kolom yang ditandai sebelum menyimpan.',
+            },
+        },
         dashboard: {
             title: 'Ringkasan administrasi',
             eyebrow: 'Ruang Superadmin ICHES',

@@ -1,5 +1,60 @@
 export default {
+    dataTable: {
+        showing: 'Showing {from}–{to} of {total} entries',
+        pagination: 'Table pagination',
+        first: 'First',
+        previous: 'Previous',
+        next: 'Next',
+        last: 'Last',
+        page: 'Page {page}',
+        ellipsis: 'More pages',
+    },
     admin: {
+        series: {
+            title: 'Conference Series',
+            description: 'Manage the identity of recurring conference series.',
+            create: 'Create Conference Series',
+            createDescription:
+                'Enter the series identity. New series are active by default.',
+            code: 'Code',
+            codeHelp:
+                'Leading and trailing spaces are removed; letters are saved in uppercase.',
+            name: 'Name',
+            acronym: 'Acronym',
+            about: 'Description',
+            optional: 'optional',
+            status: 'Status',
+            notProvided: 'Not provided',
+            emptyTitle: 'No conference series yet',
+            emptyDescription:
+                'Create the first conference series using the button above.',
+            save: 'Create series',
+            saving: 'Saving…',
+            cancel: 'Cancel',
+            created: 'Conference series created successfully.',
+            pagination: 'Conference series pages',
+            previous: 'Previous',
+            next: 'Next',
+            page: 'Page {current} of {last}',
+            languages: { id: 'Indonesian', en: 'English', ar: 'Arabic' },
+            statuses: {
+                ACTIVE: 'Active',
+                INACTIVE: 'Inactive',
+                ARCHIVED: 'Archived',
+                unknown: 'Status unavailable',
+            },
+            errors: {
+                required: 'This field is required.',
+                text: 'Enter text in this field.',
+                shortText: 'Use no more than 255 characters.',
+                longText: 'Use no more than 10,000 characters.',
+                duplicate: 'This code is already in use.',
+                languages:
+                    'Descriptions support Indonesian, English, and Arabic only.',
+                invalid: 'Check the value in this field.',
+                summary: 'Check the highlighted fields before saving.',
+            },
+        },
         dashboard: {
             title: 'Administration overview',
             eyebrow: 'ICHES Superadmin workspace',

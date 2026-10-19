@@ -248,6 +248,23 @@ const modeLabel = (mode: string) =>
                                             }}</Link
                                         >
                                     </Button>
+                                    <Button
+                                        as-child
+                                        variant="outline"
+                                        size="sm"
+                                        class="me-2"
+                                    >
+                                        <Link
+                                            :href="
+                                                '/admin/editions/' +
+                                                edition.id +
+                                                '/academic'
+                                            "
+                                            >{{
+                                                t('admin.academic.open')
+                                            }}</Link
+                                        >
+                                    </Button>
                                     <DeleteConferenceRecordDialog
                                         kind="edition"
                                         :code="edition.code"

@@ -10,6 +10,41 @@ export default {
         ellipsis: 'Halaman lainnya',
     },
     admin: {
+        academic: {
+            title: 'Track dan Tenggat',
+            back: 'Kembali ke edisi',
+            open: 'Track & tanggal',
+            description:
+                'Atur bidang kajian dan periode setiap tahapan konferensi.',
+            saved: 'Pengaturan akademik berhasil disimpan.',
+            tracks: 'Bidang kajian (Track)',
+            tracksHelp:
+                'Track yang aktif dapat dipilih untuk klasifikasi abstrak.',
+            noTracks: 'Belum ada track konferensi.',
+            addTrack: 'Tambah track',
+            validationError: 'Periksa kembali isian yang belum sesuai.',
+            code: 'Kode',
+            trackName: 'Nama track',
+            active: 'Aktif',
+            inactive: 'Tidak aktif',
+            periods: 'Periode alur kerja',
+            periodsHelp:
+                'Gunakan zona waktu edisi. Mengubah suatu periode mengganti jadwal yang berlaku untuk tahapan tersebut.',
+            noWindows: 'Belum ada tenggat yang ditentukan.',
+            setPeriod: 'Simpan periode',
+            periodCode: 'Tahapan',
+            timezone: 'Zona waktu',
+            opens: 'Dibuka',
+            closes: 'Ditutup',
+            windows: {
+                REGISTRATION: 'Pendaftaran',
+                ABSTRACT_SUBMISSION: 'Pengiriman abstrak',
+                ACCEPTED_AUTHOR_PAYMENT: 'Pembayaran penulis yang diterima',
+                FULL_ARTICLE: 'Artikel lengkap',
+                PRESENTER_CONFIRMATION: 'Konfirmasi presenter',
+                REVISION: 'Revisi',
+            },
+        },
         configuration: {
             title: 'Konfigurasi Edisi',
             description:

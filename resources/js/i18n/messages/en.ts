@@ -10,6 +10,41 @@ export default {
         ellipsis: 'More pages',
     },
     admin: {
+        academic: {
+            title: 'Tracks and deadlines',
+            back: 'Back to editions',
+            open: 'Tracks & dates',
+            description:
+                'Configure scholarly tracks and the operating dates for each workflow.',
+            saved: 'Academic setup saved.',
+            tracks: 'Conference tracks',
+            tracksHelp:
+                'An active track is available for abstract classification.',
+            noTracks: 'No track configured yet.',
+            addTrack: 'Add track',
+            validationError: 'Please correct invalid form fields.',
+            code: 'Code',
+            trackName: 'Track name',
+            active: 'Active',
+            inactive: 'Inactive',
+            periods: 'Workflow windows',
+            periodsHelp:
+                'Use the edition time zone. Updating a period replaces the previous dates for that workflow only.',
+            noWindows: 'No specific workflow deadlines configured.',
+            setPeriod: 'Save period',
+            periodCode: 'Workflow',
+            timezone: 'Time zone',
+            opens: 'Opens at',
+            closes: 'Closes at',
+            windows: {
+                REGISTRATION: 'Registration',
+                ABSTRACT_SUBMISSION: 'Abstract submission',
+                ACCEPTED_AUTHOR_PAYMENT: 'Accepted-author payment',
+                FULL_ARTICLE: 'Full article',
+                PRESENTER_CONFIRMATION: 'Presenter confirmation',
+                REVISION: 'Revision',
+            },
+        },
         configuration: {
             title: 'Edition configuration',
             description:

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\ConferenceEditionController;
 use App\Http\Controllers\Admin\ConferenceSeriesController;
+use App\Http\Controllers\Admin\EditionAcademicSetupController;
 use App\Http\Controllers\Admin\EditionConfigurationController;
 use App\Http\Controllers\Localization\UpdateLocaleController;
 use App\Http\Controllers\Payment\DownloadPaymentProofController;
@@ -39,6 +40,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
         ->name('admin.editions.destinations.store');
     Route::post('admin/editions/{edition}/packages', [EditionConfigurationController::class, 'storePackage'])
         ->name('admin.editions.packages.store');
+    Route::get('admin/editions/{edition}/academic', [EditionAcademicSetupController::class, 'show'])
+        ->name('admin.editions.academic');
+    Route::post('admin/editions/{edition}/tracks', [EditionAcademicSetupController::class, 'storeTrack'])
+        ->name('admin.editions.tracks.store');
+    Route::post('admin/editions/{edition}/windows', [EditionAcademicSetupController::class, 'storeWindow'])
+        ->name('admin.editions.windows.store');
 
     Route::get('admin/series', [ConferenceSeriesController::class, 'index'])
         ->name('admin.series.index');

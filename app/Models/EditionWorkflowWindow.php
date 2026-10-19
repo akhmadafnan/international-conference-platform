@@ -2,10 +2,15 @@
 
 namespace App\Models;
 
+use Carbon\CarbonImmutable;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+/**
+ * @property CarbonImmutable|null $opens_at
+ * @property CarbonImmutable|null $closes_at
+ */
 class EditionWorkflowWindow extends Model
 {
     use HasUuids;

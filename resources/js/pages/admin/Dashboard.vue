@@ -35,18 +35,16 @@ const statusLabel = (status: string) => {
 <template>
     <Head :title="t('admin.dashboard.title')" />
 
-    <div
-        class="admin-dashboard mx-auto flex w-full flex-col gap-5 p-4 lg:gap-6 lg:p-6"
-    >
-        <header class="flex flex-wrap items-end justify-between gap-4">
+    <div class="admin-dashboard flex w-full min-w-0 flex-col gap-6 p-4 md:p-8">
+        <header class="flex flex-wrap items-start justify-between gap-4">
             <div class="max-w-2xl">
                 <p class="mb-1.5 text-xs text-muted-foreground">
                     {{ t('admin.dashboard.eyebrow') }}
                 </p>
-                <h1 class="text-xl leading-snug tracking-tight">
+                <h1 class="text-2xl font-semibold tracking-tight">
                     {{ t('admin.dashboard.title') }}
                 </h1>
-                <p class="mt-2 text-xs leading-relaxed text-muted-foreground">
+                <p class="mt-2 text-sm text-muted-foreground">
                     {{ t('admin.dashboard.description') }}
                 </p>
             </div>
@@ -66,7 +64,7 @@ const statusLabel = (status: string) => {
                 <CardHeader
                     class="flex flex-row items-start justify-between gap-3"
                 >
-                    <h2 class="text-xs text-muted-foreground">
+                    <h2 class="text-sm text-muted-foreground">
                         {{ t('admin.dashboard.seriesCount') }}
                     </h2>
                     <PhStack
@@ -80,7 +78,7 @@ const statusLabel = (status: string) => {
                     </p>
                     <Link
                         href="/admin/series"
-                        class="admin-text-link mt-4 text-xs"
+                        class="admin-text-link mt-4 text-sm"
                     >
                         {{ t('admin.dashboard.manageSeries') }}
                         <PhArrowRight
@@ -94,7 +92,7 @@ const statusLabel = (status: string) => {
                 <CardHeader
                     class="flex flex-row items-start justify-between gap-3"
                 >
-                    <h2 class="text-xs text-muted-foreground">
+                    <h2 class="text-sm text-muted-foreground">
                         {{ t('admin.dashboard.editionCount') }}
                     </h2>
                     <PhCalendarBlank
@@ -108,7 +106,7 @@ const statusLabel = (status: string) => {
                     </p>
                     <Link
                         href="/admin/editions"
-                        class="admin-text-link mt-4 text-xs"
+                        class="admin-text-link mt-4 text-sm"
                     >
                         {{ t('admin.dashboard.manageEditions') }}
                         <PhArrowRight
@@ -133,14 +131,14 @@ const statusLabel = (status: string) => {
                             {{ t('admin.dashboard.recentEditions') }}
                         </h2>
                         <p
-                            class="mt-1 text-xs leading-relaxed text-muted-foreground"
+                            class="mt-1 text-sm leading-relaxed text-muted-foreground"
                         >
                             {{ t('admin.dashboard.recentDescription') }}
                         </p>
                     </div>
                     <Link
                         href="/admin/editions"
-                        class="admin-text-link text-xs"
+                        class="admin-text-link text-sm"
                     >
                         {{ t('admin.dashboard.manageEditions') }}
                         <PhArrowRight
@@ -180,7 +178,7 @@ const statusLabel = (status: string) => {
                     tabindex="0"
                     class="overflow-x-auto"
                 >
-                    <table class="admin-editions-table min-w-[30rem]">
+                    <table class="admin-data-table min-w-[30rem]">
                         <caption class="sr-only">
                             {{
                                 t('admin.dashboard.recentDescription')
@@ -239,7 +237,7 @@ const statusLabel = (status: string) => {
                         {{ t('admin.dashboard.quickActions') }}
                     </h2>
                     <p
-                        class="mt-1 text-xs leading-relaxed text-muted-foreground"
+                        class="mt-1 text-sm leading-relaxed text-muted-foreground"
                     >
                         {{ t('admin.dashboard.quickDescription') }}
                     </p>
@@ -251,11 +249,11 @@ const statusLabel = (status: string) => {
                             aria-hidden="true"
                         />
                         <div class="min-w-0">
-                            <h3 class="text-xs">
+                            <h3 class="text-sm font-medium">
                                 {{ t('admin.series.create') }}
                             </h3>
                             <p
-                                class="mt-1 text-xs leading-relaxed text-muted-foreground"
+                                class="mt-1 text-sm leading-relaxed text-muted-foreground"
                             >
                                 {{ t('admin.dashboard.seriesActionHelp') }}
                             </p>
@@ -271,11 +269,11 @@ const statusLabel = (status: string) => {
                             aria-hidden="true"
                         />
                         <div class="min-w-0">
-                            <h3 class="text-xs">
+                            <h3 class="text-sm font-medium">
                                 {{ t('admin.editions.create') }}
                             </h3>
                             <p
-                                class="mt-1 text-xs leading-relaxed text-muted-foreground"
+                                class="mt-1 text-sm leading-relaxed text-muted-foreground"
                             >
                                 {{ t('admin.dashboard.editionActionHelp') }}
                             </p>

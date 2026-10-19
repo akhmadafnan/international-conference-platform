@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useForm } from '@inertiajs/vue3';
-import { LoaderCircle, Trash2 } from '@lucide/vue';
+import { PhCircleNotch, PhTrash } from '@phosphor-icons/vue';
 import { ref, useId } from 'vue';
 import { useI18n } from 'vue-i18n';
 import InputError from '@/components/InputError.vue';
@@ -65,7 +65,7 @@ const submit = () => {
                 size="sm"
                 :aria-label="t('admin.deletion.deleteIdentity', { code })"
             >
-                <Trash2 class="size-3.5" aria-hidden="true" />
+                <PhTrash class="size-3.5" aria-hidden="true" />
                 {{ t('admin.deletion.delete') }}
             </Button>
         </DialogTrigger>
@@ -87,9 +87,7 @@ const submit = () => {
                         t(`admin.deletion.${kind}Description`)
                     }}</DialogDescription>
                 </DialogHeader>
-                <div
-                    class="rounded-lg border border-border bg-muted/50 px-4 py-3"
-                >
+                <div class="border border-border bg-muted/50 px-4 py-3">
                     <p class="text-sm font-semibold">
                         <bdi>{{ code }}</bdi>
                     </p>
@@ -139,7 +137,7 @@ const submit = () => {
                             form.processing || form.confirmation_code !== code
                         "
                     >
-                        <LoaderCircle
+                        <PhCircleNotch
                             v-if="form.processing"
                             class="size-4 animate-spin"
                             aria-hidden="true"

@@ -7,6 +7,7 @@
         "build:ssr": "vp build && vp build --ssr",
         "dev": "vp dev",
         "check": "vp check",
+        "check:admin-lyra": "node scripts/check-admin-lyra-contract.mjs",
         "check:fix": "vp check --fix",
         "types:check": "vue-tsc --noEmit"
     },

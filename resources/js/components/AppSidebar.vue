@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Link, usePage } from '@inertiajs/vue3';
-import { CalendarDays, Layers, LayoutGrid } from '@lucide/vue';
+import { CalendarDays, Layers, LayoutGrid, FileText } from '@lucide/vue';
 import { PhStack, PhX } from '@phosphor-icons/vue';
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
@@ -54,12 +54,28 @@ const mainNavItems = computed<NavItem[]>(() => [
     {
         title: isSuperAdminView.value
             ? t('admin.dashboard.title')
-            : page.props.auth.canAccessAdmin && !['participant', 'non_presenting_participant', 'author', 'co_author', 'presenter'].includes(page.props.auth.workspaceMode)
+            : page.props.auth.canAccessAdmin &&
+                ![
+                    'participant',
+                    'non_presenting_participant',
+                    'author',
+                    'co_author',
+                    'presenter',
+                ].includes(page.props.auth.workspaceMode)
               ? t('workspace.title')
               : t('navigation.dashboard'),
         href: isSuperAdminView.value ? '/admin/dashboard' : modeLanding.value,
         icon: LayoutGrid,
     },
+    ...(!isSuperAdminView.value && modeLanding.value === '/dashboard'
+        ? [
+              {
+                  title: t('submissionWizard.navigation'),
+                  href: '/dashboard/submissions',
+                  icon: FileText,
+              },
+          ]
+        : []),
     ...(isSuperAdminView.value
         ? [
               {

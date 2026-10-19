@@ -1,4 +1,51 @@
 export default {
+    submissionWizard: {
+        navigation: 'My Abstracts',
+        contributors: '2. Authors and affiliations',
+        contributorsHelp:
+            'Add all authors and select exactly one corresponding author. ORCID is optional.',
+        author: 'Author',
+        name: 'Display name',
+        email: 'Email',
+        country: 'Country code (2 letters)',
+        orcid: 'ORCID (optional)',
+        single: 'Single name',
+        given: 'Given name',
+        family: 'Family name',
+        corresponding: 'Corresponding author',
+        institution: 'Institution',
+        city: 'City',
+        department: 'Department',
+        addAffiliation: 'Add affiliation',
+        removeAffiliation: 'Remove affiliation',
+        addAuthor: 'Add author',
+        remove: 'Remove',
+        saveAuthors: 'Save authors',
+        references: '3. References',
+        referencesHelp: 'One reference per entry. DOI and URL are optional.',
+        reference: 'Reference',
+        citation: 'Full citation',
+        addReference: 'Add reference',
+        saveReferences: 'Save references',
+        file: '4. Abstract document',
+        fileHelp: 'Upload PDF or DOCX up to 10 MB. Files are stored privately.',
+        version: 'Version',
+        chooseFile: 'Choose PDF/DOCX',
+        uploadFile: 'Upload file',
+        fileError: 'The file is invalid.',
+        submitHeading: '5. Readiness & official submission',
+        submitHelp:
+            'Review readiness before submission. No presenter payment is required up front.',
+        readiness: 'Readiness',
+        alreadySubmitted:
+            'This abstract was officially submitted and the draft is locked.',
+        submitError:
+            'Submission failed; check readiness, the active submission window and status.',
+        submitAction: 'Submit abstract officially',
+        submitConfirmation:
+            'Submitting locks the draft and records an immutable initial snapshot.',
+        formError: 'Some values are invalid. Please check the form.',
+    },
     workspace: {
         title: 'Workspace view',
         switch: 'Switch workspace',
@@ -45,6 +92,16 @@ export default {
     },
     admin: {
         academic: {
+            policyTitle: 'Abstract submission policy',
+            policyHelp:
+                'This policy is required before the author readiness check can allow official submission. Existing unrelated Edition settings are preserved.',
+            policyMissing:
+                'No valid abstract policy configured. Save this form to enable the readiness gate.',
+            minKeywords: 'Minimum keywords',
+            maxKeywords: 'Maximum keywords',
+            trackRequired: 'Require active academic track',
+            fileRequired: 'Require abstract manuscript file',
+            savePolicy: 'Save abstract policy',
             title: 'Tracks and deadlines',
             back: 'Back to editions',
             open: 'Tracks & dates',

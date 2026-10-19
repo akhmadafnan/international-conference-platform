@@ -15,6 +15,8 @@ use App\Http\Controllers\Registration\ParticipantDashboardController;
 use App\Http\Controllers\Registration\ShowEventPassController;
 use App\Http\Controllers\Registration\ShowParticipantRegistrationController;
 use App\Http\Controllers\Registration\StoreParticipantRegistrationController;
+use App\Http\Controllers\Submission\AuthorSubmissionController;
+use App\Http\Controllers\Submission\AuthorSubmissionStagesController;
 use App\Http\Controllers\Workspace\RoleOverviewController;
 use App\Http\Controllers\Workspace\SwitchSuperAdminWorkspaceController;
 use Illuminate\Support\Facades\Route;
@@ -52,6 +54,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         ->name('admin.editions.tracks.store');
     Route::post('admin/editions/{edition}/windows', [EditionAcademicSetupController::class, 'storeWindow'])
         ->name('admin.editions.windows.store');
+    Route::post('admin/editions/{edition}/abstract-policy', [EditionAcademicSetupController::class, 'storeAbstractPolicy'])
+        ->name('admin.editions.abstract-policy.store');
 
     Route::get('admin/series', [ConferenceSeriesController::class, 'index'])
         ->name('admin.series.index');
@@ -66,6 +70,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
         'dashboard',
         ParticipantDashboardController::class,
     )->name('dashboard');
+
+    Route::get('dashboard/submissions', [AuthorSubmissionController::class, 'index'])->name('submissions.index');
+    Route::post('dashboard/submissions', [AuthorSubmissionController::class, 'store'])->name('submissions.store');
+    Route::get('dashboard/submissions/{submission}/details', [AuthorSubmissionController::class, 'details'])->name('submissions.details');
+    Route::put('dashboard/submissions/{submission}/details', [AuthorSubmissionController::class, 'update'])->name('submissions.details.update');
+    Route::put('dashboard/submissions/{submission}/contributors', [AuthorSubmissionStagesController::class, 'contributors'])->name('submissions.contributors.update');
+    Route::put('dashboard/submissions/{submission}/references', [AuthorSubmissionStagesController::class, 'references'])->name('submissions.references.update');
+    Route::post('dashboard/submissions/{submission}/abstract-file', [AuthorSubmissionStagesController::class, 'upload'])->name('submissions.abstract-file.store');
+    Route::post('dashboard/submissions/{submission}/submit', [AuthorSubmissionStagesController::class, 'submit'])->middleware('throttle:6,1')->name('submissions.submit');
 
     Route::get(
         'editions/{edition}/registration',

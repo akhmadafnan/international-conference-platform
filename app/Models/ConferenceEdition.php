@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string $edition_code
  * @property CarbonImmutable $starts_at
  * @property CarbonImmutable $ends_at
+ * @property array<string, mixed>|null $settings_json
  */
 class ConferenceEdition extends Model
 {

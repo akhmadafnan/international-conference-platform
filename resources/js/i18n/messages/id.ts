@@ -1,4 +1,50 @@
 export default {
+    submissionWizard: {
+        navigation: 'Abstrak Saya',
+        contributors: '2. Penulis dan afiliasi',
+        contributorsHelp:
+            'Tambah semua penulis dan pilih tepat satu penulis korespondensi. ORCID opsional.',
+        author: 'Penulis',
+        name: 'Nama tampil',
+        email: 'Email',
+        country: 'Kode negara (2 huruf)',
+        orcid: 'ORCID (opsional)',
+        single: 'Nama tunggal',
+        given: 'Nama depan',
+        family: 'Nama belakang',
+        corresponding: 'Penulis korespondensi',
+        institution: 'Nama institusi',
+        city: 'Kota',
+        department: 'Program studi / fakultas',
+        addAffiliation: 'Tambah afiliasi',
+        removeAffiliation: 'Hapus afiliasi',
+        addAuthor: 'Tambah penulis',
+        remove: 'Hapus',
+        saveAuthors: 'Simpan data penulis',
+        references: '3. Daftar pustaka',
+        referencesHelp: 'Satu referensi per entri. DOI dan URL tidak wajib.',
+        reference: 'Referensi',
+        citation: 'Sitasi lengkap',
+        addReference: 'Tambah referensi',
+        saveReferences: 'Simpan referensi',
+        file: '4. File abstrak',
+        fileHelp: 'Unggah PDF atau DOCX maksimal 10 MB. File disimpan privat.',
+        version: 'Versi',
+        chooseFile: 'Pilih file PDF/DOCX',
+        uploadFile: 'Unggah file',
+        fileError: 'File tidak memenuhi persyaratan.',
+        submitHeading: '5. Pemeriksaan & pengiriman',
+        submitHelp:
+            'Periksa kesiapan data sebelum mengirim. Pengiriman resmi tidak memerlukan pembayaran di muka.',
+        readiness: 'Kesiapan',
+        alreadySubmitted:
+            'Abstrak telah dikirim secara resmi. Perubahan draft sudah dikunci.',
+        submitError: 'Gagal mengirim; periksa kesiapan, periode, atau status.',
+        submitAction: 'Kirim abstrak resmi',
+        submitConfirmation:
+            'Setelah dikirim, metadata dikunci dan tersimpan sebagai snapshot. Pastikan sudah benar.',
+        formError: 'Ada isian yang belum valid. Periksa data kembali.',
+    },
     workspace: {
         title: 'Tampilan workspace',
         switch: 'Ganti tampilan role',
@@ -45,6 +91,16 @@ export default {
     },
     admin: {
         academic: {
+            policyTitle: 'Kebijakan pengiriman abstrak',
+            policyHelp:
+                'Aturan ini harus disimpan sebelum pemeriksaan kesiapan mengizinkan submit resmi. Pengaturan Edition lainnya tetap tersimpan.',
+            policyMissing:
+                'Kebijakan abstrak belum tersedia. Simpan formulir ini agar pemeriksaan kesiapan dapat digunakan.',
+            minKeywords: 'Minimal kata kunci',
+            maxKeywords: 'Maksimal kata kunci',
+            trackRequired: 'Wajib memilih track aktif',
+            fileRequired: 'Wajib mengunggah file abstrak',
+            savePolicy: 'Simpan kebijakan abstrak',
             title: 'Track dan Tenggat',
             back: 'Kembali ke edisi',
             open: 'Track & tanggal',

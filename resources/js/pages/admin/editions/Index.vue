@@ -231,6 +231,23 @@ const modeLabel = (mode: string) =>
                                 <td
                                     class="px-4 py-4 text-end whitespace-nowrap"
                                 >
+                                    <Button
+                                        as-child
+                                        variant="outline"
+                                        size="sm"
+                                        class="me-2"
+                                    >
+                                        <Link
+                                            :href="
+                                                '/admin/editions/' +
+                                                edition.id +
+                                                '/configuration'
+                                            "
+                                            >{{
+                                                t('admin.configuration.open')
+                                            }}</Link
+                                        >
+                                    </Button>
                                     <DeleteConferenceRecordDialog
                                         kind="edition"
                                         :code="edition.code"

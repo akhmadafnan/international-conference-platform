@@ -10,6 +10,42 @@ export default {
         ellipsis: 'More pages',
     },
     admin: {
+        configuration: {
+            title: 'Edition configuration',
+            description:
+                'Configure real payment destinations and participation packages for this edition.',
+            back: 'Back to editions',
+            saved: 'Configuration saved successfully.',
+            destinations: 'Payment destinations',
+            destinationHelp:
+                'Create a bank destination first if you need an active paid package.',
+            noDestinations: 'No payment destination has been configured.',
+            createDestination: 'Add payment destination',
+            default: 'Default',
+            active: 'Active',
+            inactive: 'Inactive',
+            packages: 'Participation packages',
+            packageHelp:
+                'FREE can be created without a bank account. Active PAID needs an active destination.',
+            noPackages: 'No participation packages have been configured.',
+            createPackage: 'Add participation package',
+            validationError:
+                'Please correct the highlighted fields and try again.',
+            paidNote:
+                'An active paid package requires an active default payment destination. Authors are not charged before abstract acceptance.',
+            open: 'Configure',
+            fields: {
+                code: 'Code',
+                label: 'Display label',
+                bank_name: 'Bank',
+                account_number: 'Account number',
+                account_holder: 'Account holder',
+                package_name: 'Package name',
+                billing_mode: 'Billing mode',
+                price: 'Price',
+                currency_code: 'Currency',
+            },
+        },
         shell: {
             closeSidebar: 'Close sidebar',
             workspace: 'Administration',

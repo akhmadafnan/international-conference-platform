@@ -10,6 +10,40 @@ export default {
         ellipsis: 'المزيد من الصفحات',
     },
     admin: {
+        configuration: {
+            title: 'إعدادات نسخة المؤتمر',
+            description: 'إعداد جهات الدفع وباقات المشاركة الخاصة بهذه النسخة.',
+            back: 'العودة إلى النسخ',
+            saved: 'تم حفظ الإعدادات بنجاح.',
+            destinations: 'جهات الدفع',
+            destinationHelp: 'أضف جهة دفع أولاً إذا كنت تريد تفعيل باقة مدفوعة.',
+            noDestinations: 'لم تتم إضافة أي جهة دفع بعد.',
+            createDestination: 'إضافة جهة دفع',
+            default: 'الافتراضية',
+            active: 'نشط',
+            inactive: 'غير نشط',
+            packages: 'باقات المشاركة',
+            packageHelp:
+                'يمكن إنشاء باقة مجانية دون حساب بنكي، أما الباقة المدفوعة النشطة فتتطلب جهة دفع نشطة.',
+            noPackages: 'لم تتم إضافة باقات مشاركة بعد.',
+            createPackage: 'إضافة باقة',
+            validationError:
+                'يرجى تصحيح الحقول غير الصالحة والمحاولة مرة أخرى.',
+            paidNote:
+                'تتطلب الباقة المدفوعة جهة دفع افتراضية نشطة. لا يُطلب من المؤلف الدفع قبل قبول الملخص.',
+            open: 'الإعدادات',
+            fields: {
+                code: 'الرمز',
+                label: 'الاسم المعروض',
+                bank_name: 'البنك',
+                account_number: 'رقم الحساب',
+                account_holder: 'اسم صاحب الحساب',
+                package_name: 'اسم الباقة',
+                billing_mode: 'نوع الرسوم',
+                price: 'المبلغ',
+                currency_code: 'العملة',
+            },
+        },
         shell: {
             closeSidebar: 'إغلاق الشريط الجانبي',
             workspace: 'الإدارة',

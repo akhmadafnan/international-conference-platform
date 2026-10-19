@@ -10,6 +10,41 @@ export default {
         ellipsis: 'Halaman lainnya',
     },
     admin: {
+        configuration: {
+            title: 'Konfigurasi Edisi',
+            description:
+                'Atur rekening tujuan pembayaran dan paket partisipasi yang benar untuk edisi ini.',
+            back: 'Kembali ke daftar edisi',
+            saved: 'Konfigurasi berhasil disimpan.',
+            destinations: 'Tujuan pembayaran',
+            destinationHelp:
+                'Tambahkan tujuan pembayaran terlebih dahulu apabila akan menggunakan paket berbayar aktif.',
+            noDestinations: 'Belum ada tujuan pembayaran.',
+            createDestination: 'Tambah tujuan pembayaran',
+            default: 'Utama',
+            active: 'Aktif',
+            inactive: 'Tidak aktif',
+            packages: 'Paket partisipasi',
+            packageHelp:
+                'Paket GRATIS tidak memerlukan rekening. Paket BERBAYAR aktif memerlukan tujuan pembayaran aktif.',
+            noPackages: 'Belum ada paket partisipasi.',
+            createPackage: 'Tambah paket',
+            validationError: 'Periksa kembali isian yang belum valid.',
+            paidNote:
+                'Paket berbayar aktif memerlukan rekening utama yang aktif. Penulis tidak membayar sebelum abstraknya diterima.',
+            open: 'Konfigurasi',
+            fields: {
+                code: 'Kode',
+                label: 'Nama tampilan',
+                bank_name: 'Nama bank',
+                account_number: 'Nomor rekening',
+                account_holder: 'Nama pemilik rekening',
+                package_name: 'Nama paket',
+                billing_mode: 'Jenis pembayaran',
+                price: 'Biaya',
+                currency_code: 'Mata uang',
+            },
+        },
         shell: {
             closeSidebar: 'Tutup sidebar',
             workspace: 'Administrasi',

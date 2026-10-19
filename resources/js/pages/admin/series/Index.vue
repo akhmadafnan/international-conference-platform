@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import { Head, Link } from '@inertiajs/vue3';
 import { useI18n } from 'vue-i18n';
+import DataTablePagination from '@/components/DataTablePagination.vue';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import type { PaginationMeta } from '@/types/pagination';
 
 defineProps<{
-    series: {
+    series: PaginationMeta & {
         data: {
             id: string;
             code: string;
@@ -14,21 +16,15 @@ defineProps<{
             acronym: string | null;
             status: string;
         }[];
-        currentPage: number;
-        lastPage: number;
-        previousUrl: string | null;
-        nextUrl: string | null;
     };
     created: boolean;
 }>();
 
-const { t, te, locale } = useI18n();
+const { t, te } = useI18n();
 const statusLabel = (status: string) => {
     const key = `admin.series.statuses.${status}`;
     return te(key) ? t(key) : t('admin.series.statuses.unknown');
 };
-const formatNumber = (value: number) =>
-    new Intl.NumberFormat(locale.value).format(value);
 </script>
 
 <template>
@@ -76,35 +72,39 @@ const formatNumber = (value: number) =>
                     </p>
                 </div>
                 <div v-else class="overflow-x-auto">
-                    <table class="w-full text-start text-sm">
+                    <table
+                        class="w-full border-collapse text-start text-sm leading-5"
+                    >
                         <caption class="sr-only">
                             {{
                                 t('admin.series.title')
                             }}
                         </caption>
                         <thead>
-                            <tr class="border-b text-muted-foreground">
+                            <tr
+                                class="border-b border-border bg-muted/50 text-foreground"
+                            >
                                 <th
                                     scope="col"
-                                    class="p-3 text-start font-medium"
+                                    class="w-36 px-4 py-3 text-start font-semibold whitespace-nowrap"
                                 >
                                     {{ t('admin.series.code') }}
                                 </th>
                                 <th
                                     scope="col"
-                                    class="p-3 text-start font-medium"
+                                    class="px-4 py-3 text-start font-semibold"
                                 >
                                     {{ t('admin.series.name') }}
                                 </th>
                                 <th
                                     scope="col"
-                                    class="p-3 text-start font-medium"
+                                    class="w-36 px-4 py-3 text-start font-semibold whitespace-nowrap"
                                 >
                                     {{ t('admin.series.acronym') }}
                                 </th>
                                 <th
                                     scope="col"
-                                    class="p-3 text-start font-medium"
+                                    class="w-32 px-4 py-3 text-start font-semibold whitespace-nowrap"
                                 >
                                     {{ t('admin.series.status') }}
                                 </th>
@@ -114,24 +114,26 @@ const formatNumber = (value: number) =>
                             <tr
                                 v-for="item in series.data"
                                 :key="item.id"
-                                class="border-b last:border-0"
+                                class="h-14 border-b border-border align-middle transition-colors last:border-0 hover:bg-muted/40"
                             >
                                 <th
                                     scope="row"
-                                    class="p-3 text-start font-medium"
+                                    class="px-4 py-3 text-start font-medium whitespace-nowrap"
                                 >
                                     <bdi>{{ item.code }}</bdi>
                                 </th>
-                                <td class="min-w-48 p-3">
+                                <td class="min-w-48 px-4 py-3 text-start">
                                     <bdi>{{ item.name }}</bdi>
                                 </td>
-                                <td class="p-3">
+                                <td class="px-4 py-3 text-start">
                                     <bdi>{{
                                         item.acronym ??
                                         t('admin.series.notProvided')
                                     }}</bdi>
                                 </td>
-                                <td class="p-3">
+                                <td
+                                    class="px-4 py-3 text-start whitespace-nowrap"
+                                >
                                     <Badge variant="secondary">{{
                                         statusLabel(item.status)
                                     }}</Badge>
@@ -140,34 +142,7 @@ const formatNumber = (value: number) =>
                         </tbody>
                     </table>
                 </div>
-                <nav
-                    v-if="series.lastPage > 1"
-                    :aria-label="t('admin.series.pagination')"
-                    class="mt-6 flex flex-wrap items-center justify-between gap-3"
-                >
-                    <Button
-                        v-if="series.previousUrl"
-                        as-child
-                        variant="outline"
-                    >
-                        <Link :href="series.previousUrl">{{
-                            t('admin.series.previous')
-                        }}</Link>
-                    </Button>
-                    <span class="text-sm text-muted-foreground">
-                        {{
-                            t('admin.series.page', {
-                                current: formatNumber(series.currentPage),
-                                last: formatNumber(series.lastPage),
-                            })
-                        }}
-                    </span>
-                    <Button v-if="series.nextUrl" as-child variant="outline">
-                        <Link :href="series.nextUrl">{{
-                            t('admin.series.next')
-                        }}</Link>
-                    </Button>
-                </nav>
+                <DataTablePagination :pagination="series" />
             </CardContent>
         </Card>
     </div>

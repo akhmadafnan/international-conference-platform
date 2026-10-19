@@ -1,4 +1,14 @@
 export default {
+    dataTable: {
+        showing: 'عرض {from}–{to} من أصل {total} سجل',
+        pagination: 'التنقل بين صفحات الجدول',
+        first: 'الأولى',
+        previous: 'السابقة',
+        next: 'التالية',
+        last: 'الأخيرة',
+        page: 'الصفحة {page}',
+        ellipsis: 'المزيد من الصفحات',
+    },
     admin: {
         series: {
             title: 'سلاسل المؤتمرات',

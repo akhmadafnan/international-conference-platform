@@ -66,6 +66,59 @@ test('series list returns real Eloquent records', function () {
             ->where('series.data.0.status', 'ACTIVE'));
 });
 
+test('superadmins receive server paginated series with accurate ranges and navigation', function (
+    int $total,
+    int $currentPage,
+    int $count,
+    ?int $from,
+    ?int $to,
+    int $lastPage,
+) {
+    // Deliberately insert in reverse order to verify the query's code ordering.
+    for ($number = $total; $number >= 1; $number--) {
+        ConferenceSeries::query()->create([
+            'code' => sprintf('SERIES-%03d', $number),
+            'name' => 'Series '.$number,
+            'status' => 'ACTIVE',
+        ]);
+    }
+
+    $urlFor = fn (int $page): string => route('admin.series.index', ['page' => $page]);
+
+    $this->actingAs(User::factory()->superAdmin()->create())
+        ->get($urlFor($currentPage))->assertOk()
+        ->assertInertia(fn (Assert $page) => $page
+            ->component('admin/series/Index')
+            ->where('auth.canAccessAdmin', true)
+            ->has('series.data', $count)
+            ->where('series.total', $total)
+            ->where('series.from', $from)
+            ->where('series.to', $to)
+            ->where('series.perPage', 20)
+            ->where('series.currentPage', $currentPage)
+            ->where('series.lastPage', $lastPage)
+            ->where('series.firstUrl', $currentPage > 1 ? $urlFor(1) : null)
+            ->where('series.lastUrl', $currentPage < $lastPage ? $urlFor($lastPage) : null)
+            ->where('series.previousUrl', $currentPage > 1 ? $urlFor($currentPage - 1) : null)
+            ->where('series.nextUrl', $currentPage < $lastPage ? $urlFor($currentPage + 1) : null)
+            ->has('series.pages', $lastPage)
+            ->where('series.pages.0.page', 1)
+            ->where('series.pages.0.url', $urlFor(1))
+            ->where('series.data', function ($items) use ($count, $from) {
+                $expected = $count === 0
+                    ? []
+                    : array_map(fn (int $number): string => sprintf('SERIES-%03d', $number), range($from, $from + $count - 1));
+
+                return collect($items)->pluck('code')->all() === $expected;
+            }));
+})->with([
+    'empty' => [0, 1, 0, null, null, 1],
+    'one entry' => [1, 1, 1, 1, 1, 1],
+    'full page' => [20, 1, 20, 1, 20, 1],
+    'first of two pages' => [21, 1, 20, 1, 20, 2],
+    'last of two pages' => [21, 2, 1, 21, 21, 2],
+]);
+
 test('series creation validates required fields without writing data or audit', function () {
     $this->actingAs(User::factory()->superAdmin()->create())
         ->post(route('admin.series.store'), ['code' => '   ', 'name' => ''])

@@ -1,4 +1,14 @@
 export default {
+    dataTable: {
+        showing: 'Showing {from}–{to} of {total} entries',
+        pagination: 'Table pagination',
+        first: 'First',
+        previous: 'Previous',
+        next: 'Next',
+        last: 'Last',
+        page: 'Page {page}',
+        ellipsis: 'More pages',
+    },
     admin: {
         series: {
             title: 'Conference Series',

@@ -58,7 +58,7 @@ const statusLabel = (status: string) => {
                 </CardTitle>
             </CardHeader>
             <CardContent>
-                <p class="text-3xl font-semibold tabular-nums">
+                <p class="font-statistic text-3xl font-semibold tabular-nums">
                     {{ formatNumber(editionCount) }}
                 </p>
             </CardContent>
@@ -106,7 +106,9 @@ const statusLabel = (status: string) => {
                             <span class="me-2 text-muted-foreground">{{
                                 t('admin.dashboard.year')
                             }}</span>
-                            {{ formatNumber(edition.year) }}
+                            <span class="font-statistic">{{
+                                formatNumber(edition.year)
+                            }}</span>
                         </p>
                         <div>
                             <span class="sr-only"

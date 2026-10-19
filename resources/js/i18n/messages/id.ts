@@ -1,4 +1,14 @@
 export default {
+    dataTable: {
+        showing: 'Menampilkan {from}–{to} dari {total} entri',
+        pagination: 'Navigasi halaman tabel',
+        first: 'Pertama',
+        previous: 'Sebelumnya',
+        next: 'Berikutnya',
+        last: 'Terakhir',
+        page: 'Halaman {page}',
+        ellipsis: 'Halaman lainnya',
+    },
     admin: {
         series: {
             title: 'Conference Series',

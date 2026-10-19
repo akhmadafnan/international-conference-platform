@@ -10,6 +10,77 @@ export default {
         ellipsis: 'More pages',
     },
     admin: {
+        academic: {
+            title: 'Tracks and deadlines',
+            back: 'Back to editions',
+            open: 'Tracks & dates',
+            description:
+                'Configure scholarly tracks and the operating dates for each workflow.',
+            saved: 'Academic setup saved.',
+            tracks: 'Conference tracks',
+            tracksHelp:
+                'An active track is available for abstract classification.',
+            noTracks: 'No track configured yet.',
+            addTrack: 'Add track',
+            validationError: 'Please correct invalid form fields.',
+            code: 'Code',
+            trackName: 'Track name',
+            active: 'Active',
+            inactive: 'Inactive',
+            periods: 'Workflow windows',
+            periodsHelp:
+                'Use the edition time zone. Updating a period replaces the previous dates for that workflow only.',
+            noWindows: 'No specific workflow deadlines configured.',
+            setPeriod: 'Save period',
+            periodCode: 'Workflow',
+            timezone: 'Time zone',
+            opens: 'Opens at',
+            closes: 'Closes at',
+            windows: {
+                REGISTRATION: 'Registration',
+                ABSTRACT_SUBMISSION: 'Abstract submission',
+                ACCEPTED_AUTHOR_PAYMENT: 'Accepted-author payment',
+                FULL_ARTICLE: 'Full article',
+                PRESENTER_CONFIRMATION: 'Presenter confirmation',
+                REVISION: 'Revision',
+            },
+        },
+        configuration: {
+            title: 'Edition configuration',
+            description:
+                'Configure real payment destinations and participation packages for this edition.',
+            back: 'Back to editions',
+            saved: 'Configuration saved successfully.',
+            destinations: 'Payment destinations',
+            destinationHelp:
+                'Create a bank destination first if you need an active paid package.',
+            noDestinations: 'No payment destination has been configured.',
+            createDestination: 'Add payment destination',
+            default: 'Default',
+            active: 'Active',
+            inactive: 'Inactive',
+            packages: 'Participation packages',
+            packageHelp:
+                'FREE can be created without a bank account. Active PAID needs an active destination.',
+            noPackages: 'No participation packages have been configured.',
+            createPackage: 'Add participation package',
+            validationError:
+                'Please correct the highlighted fields and try again.',
+            paidNote:
+                'An active paid package requires an active default payment destination. Authors are not charged before abstract acceptance.',
+            open: 'Configure',
+            fields: {
+                code: 'Code',
+                label: 'Display label',
+                bank_name: 'Bank',
+                account_number: 'Account number',
+                account_holder: 'Account holder',
+                package_name: 'Package name',
+                billing_mode: 'Billing mode',
+                price: 'Price',
+                currency_code: 'Currency',
+            },
+        },
         shell: {
             closeSidebar: 'Close sidebar',
             workspace: 'Administration',

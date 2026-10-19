@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Link, usePage } from '@inertiajs/vue3';
 import { CalendarDays, Layers, LayoutGrid, FileText } from '@lucide/vue';
-import { PhStack, PhX } from '@phosphor-icons/vue';
+import { PhFiles, PhSquaresFour, PhStack, PhX } from '@phosphor-icons/vue';
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 import AppLogo from '@/components/AppLogo.vue';
@@ -22,10 +22,12 @@ import {
 } from '@/components/ui/sidebar';
 import { dashboard } from '@/routes';
 import type { NavItem } from '@/types';
+import { useWorkspaceLyra } from '@/composables/useWorkspaceLyra';
 
 const page = usePage();
 const { t } = useI18n();
 const isAdmin = computed(() => page.component.startsWith('admin/'));
+const { isLyra } = useWorkspaceLyra();
 const isSuperAdminView = computed(
     () =>
         page.props.auth.canAccessAdmin &&
@@ -65,14 +67,14 @@ const mainNavItems = computed<NavItem[]>(() => [
               ? t('workspace.title')
               : t('navigation.dashboard'),
         href: isSuperAdminView.value ? '/admin/dashboard' : modeLanding.value,
-        icon: LayoutGrid,
+        icon: isLyra.value ? PhSquaresFour : LayoutGrid,
     },
     ...(!isSuperAdminView.value && modeLanding.value === '/dashboard'
         ? [
               {
                   title: t('submissionWizard.navigation'),
                   href: '/dashboard/submissions',
-                  icon: FileText,
+                  icon: isLyra.value ? PhFiles : FileText,
               },
           ]
         : []),
@@ -97,9 +99,9 @@ const mainNavItems = computed<NavItem[]>(() => [
     <Sidebar
         :side="sidebarSide"
         collapsible="icon"
-        :variant="isAdmin ? 'sidebar' : 'inset'"
+        :variant="isLyra ? 'sidebar' : 'inset'"
     >
-        <SidebarHeader :class="{ 'flex-row items-center gap-1': isAdmin }">
+        <SidebarHeader :class="{ 'flex-row items-center gap-1': isLyra }">
             <SidebarMenu>
                 <SidebarMenuItem>
                     <SidebarMenuButton size="lg" as-child>
@@ -109,14 +111,14 @@ const mainNavItems = computed<NavItem[]>(() => [
                                     ? `ICHES — ${t('admin.shell.workspace')}`
                                     : undefined
                             "
-                            @click="isAdmin && setOpenMobile(false)"
+                            @click="isLyra && setOpenMobile(false)"
                             :href="
                                 isSuperAdminView
                                     ? '/admin/dashboard'
                                     : modeLanding
                             "
                         >
-                            <template v-if="isAdmin">
+                            <template v-if="isLyra">
                                 <span
                                     class="flex size-8 shrink-0 items-center justify-center bg-sidebar-primary text-sidebar-primary-foreground"
                                 >
@@ -133,7 +135,11 @@ const mainNavItems = computed<NavItem[]>(() => [
                                     >
                                     <span
                                         class="text-xs text-muted-foreground"
-                                        >{{ t('admin.shell.workspace') }}</span
+                                        >{{
+                                            isAdmin
+                                                ? t('admin.shell.workspace')
+                                                : t('navigation.dashboard')
+                                        }}</span
                                     >
                                 </span>
                             </template>
@@ -143,7 +149,7 @@ const mainNavItems = computed<NavItem[]>(() => [
                 </SidebarMenuItem>
             </SidebarMenu>
             <Button
-                v-if="isAdmin && isMobile"
+                v-if="isLyra && isMobile"
                 type="button"
                 variant="ghost"
                 size="icon-sm"

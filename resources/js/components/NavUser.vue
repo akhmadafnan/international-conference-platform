@@ -16,10 +16,11 @@ import {
 } from '@/components/ui/sidebar';
 import UserInfo from '@/components/UserInfo.vue';
 import UserMenuContent from '@/components/UserMenuContent.vue';
+import { useWorkspaceLyra } from '@/composables/useWorkspaceLyra';
 
 const page = usePage();
 const user = computed(() => page.props.auth.user);
-const isAdmin = computed(() => page.component.startsWith('admin/'));
+const { isLyra } = useWorkspaceLyra();
 const { isMobile, state } = useSidebar();
 </script>
 
@@ -35,7 +36,7 @@ const { isMobile, state } = useSidebar();
                     >
                         <UserInfo :user="user" />
                         <component
-                            :is="isAdmin ? PhCaretUpDown : ChevronsUpDown"
+                            :is="isLyra ? PhCaretUpDown : ChevronsUpDown"
                             class="ms-auto size-4 shrink-0"
                             aria-hidden="true"
                         />
@@ -47,7 +48,7 @@ const { isMobile, state } = useSidebar();
                         isMobile
                             ? 'bottom'
                             : state === 'collapsed'
-                              ? isAdmin &&
+                              ? isLyra &&
                                 page.props.localization.direction !== 'rtl'
                                   ? 'right'
                                   : 'left'
@@ -56,7 +57,7 @@ const { isMobile, state } = useSidebar();
                     align="end"
                     :side-offset="4"
                 >
-                    <UserMenuContent :user="user" :admin-pilot="isAdmin" />
+                    <UserMenuContent :user="user" :admin-pilot="isLyra" />
                 </DropdownMenuContent>
             </DropdownMenu>
         </SidebarMenuItem>

@@ -177,19 +177,17 @@ onBeforeUnmount(() => {
             </p>
             <ul
                 v-if="matches.length"
-                role="listbox"
+                :aria-label="t('submissionWizard.rorSearch')"
                 class="max-h-56 overflow-y-auto border border-border bg-card p-1"
             >
                 <li
                     v-for="item in matches"
                     :key="item.ror_uri ?? item.id ?? item.name"
-                    role="option"
-                    aria-selected="false"
                 >
                     <Button
                         type="button"
                         variant="ghost"
-                        class="h-auto w-full justify-start p-3 text-start"
+                        class="h-auto! w-full justify-start p-3 text-start whitespace-normal"
                         :disabled="selecting"
                         @click="choose(item)"
                     >

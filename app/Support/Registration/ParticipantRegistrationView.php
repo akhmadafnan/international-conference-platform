@@ -2,6 +2,7 @@
 
 namespace App\Support\Registration;
 
+use App\Enums\BillingMode;
 use App\Enums\PaymentStatus;
 use App\Enums\RegistrationStatus;
 use App\Models\GeneratedDocument;
@@ -19,6 +20,7 @@ final class ParticipantRegistrationView
         $registration->loadMissing([
             'membership.edition',
             'activeFeeExemption',
+            'package',
         ]);
 
         $payment = $registration->payments()
@@ -40,6 +42,43 @@ final class ParticipantRegistrationView
             ->first();
 
         $destination = $payment?->getAttribute('payment_destination_snapshot_json');
+        $submissions = $registration->submissions()->latest('created_at')->get();
+        $draft = $submissions->firstWhere('academic_status', 'DRAFT');
+        $submitted = $submissions->first(fn ($submission): bool => $submission->academic_status !== 'DRAFT');
+        $accepted = $submissions->contains(fn ($submission): bool => $submission->academic_status === 'ACCEPTED'
+            || ($submission->accepted_at !== null && $submission->academic_status !== 'REJECTED'));
+        $validContext = $registration->status !== RegistrationStatus::CANCELLED
+            && $registration->package !== null
+            && $registration->package->edition_id === $registration->membership?->edition_id;
+        $nextAction = $this->nextAction($registration, $payment, $eventPass);
+        if ($registration->status === RegistrationStatus::CANCELLED) {
+            $nextAction = 'REGISTRATION_CANCELLED';
+        } elseif (! $accepted) {
+            if ($draft !== null) {
+                $nextAction = 'CONTINUE_ABSTRACT';
+            } elseif ($submitted !== null) {
+                $nextAction = $submitted->academic_status === 'REJECTED' ? 'VIEW_ACADEMIC_STATUS' : 'WAIT_ACADEMIC_REVIEW';
+            } elseif ($eventPass === null && $payment === null && $validContext) {
+                $nextAction = 'SUBMIT_ABSTRACT';
+            }
+        }
+        if ($accepted && $payment === null && ! in_array($registration->status, [RegistrationStatus::CANCELLED, RegistrationStatus::CONFIRMED], true) && $eventPass === null) {
+            $nextAction = $registration->billing_mode === BillingMode::PAID && $registration->activeFeeExemption === null
+                ? 'WAIT_PAYMENT_SETUP' : 'WAIT_REGISTRATION_CONFIRMATION';
+        }
+        $registrationUrl = route('editions.registration.show', $registration->membership->edition);
+        $nextActionUrl = match ($nextAction) {
+            'SUBMIT_ABSTRACT' => route('submissions.index'),
+            'CONTINUE_ABSTRACT' => $draft === null ? null : route('submissions.details', $draft),
+            'WAIT_ACADEMIC_REVIEW', 'VIEW_ACADEMIC_STATUS' => $submitted === null ? null : route('submissions.details', $submitted),
+            'EVENT_PASS_AVAILABLE' => $eventPass === null ? null : route('documents.event-pass.show', $eventPass),
+            'SUBMIT_PAYMENT_PROOF', 'REPLACE_PAYMENT_PROOF' => $registrationUrl,
+            default => null,
+        };
+        $billingState = $registration->status === RegistrationStatus::CANCELLED ? 'CANCELLED'
+            : ($registration->activeFeeExemption !== null ? 'COMPLIMENTARY'
+            : ($registration->billing_mode === BillingMode::FREE ? 'FREE'
+                : ($payment !== null ? 'PAYMENT_RECORDED' : ($accepted ? 'AWAITING_PAYMENT_SETUP' : 'AFTER_ACCEPT'))));
 
         return [
             'id' => $registration->id,
@@ -54,7 +93,10 @@ final class ParticipantRegistrationView
                 $registration->getAttribute('confirmed_at'),
             ),
             'complimentary' => $registration->activeFeeExemption !== null,
-            'nextAction' => $this->nextAction($registration, $payment, $eventPass),
+            'nextAction' => $nextAction,
+            'nextActionUrl' => $nextActionUrl,
+            'billingState' => $billingState,
+            'academicStatus' => $submitted->academic_status ?? $draft?->academic_status,
             'payment' => $payment === null ? null : [
                 'id' => $payment->id,
                 'status' => $payment->status->value,
@@ -127,6 +169,6 @@ final class ParticipantRegistrationView
             return 'REGISTRATION_CONFIRMED';
         }
 
-        return 'REGISTRATION_PENDING';
+        return 'WAIT_REGISTRATION_CONFIRMATION';
     }
 }

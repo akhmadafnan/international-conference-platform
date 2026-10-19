@@ -1,9 +1,27 @@
 ﻿<script setup lang="ts">
-import { Head, Link, useForm } from '@inertiajs/vue3';
-import { computed } from 'vue';
+import { Head, Link, useForm, useRemember } from '@inertiajs/vue3';
+import { computed, ref, watch, nextTick, unref, toRef } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { submissionCopy } from '@/lib/submissionCopy';
 import SubmissionWizardSections from '@/components/submissions/SubmissionWizardSections.vue';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from '@/components/ui/select';
+import KeywordInput from '@/components/submissions/KeywordInput.vue';
+import AcademicAbstractEditor from '@/components/submissions/AcademicAbstractEditor.vue';
+import { serializeKeywords, keywordTags } from '@/lib/submissionInputs';
+import {
+    wizardSteps,
+    trackEmptyMessage,
+    type AuthorReadiness,
+} from '@/lib/authorWizard';
 
 type Track = { id: string; code: string; name: Record<string, string> | null };
 type Submission = {
@@ -22,6 +40,12 @@ type Submission = {
 const props = defineProps<{
     submission: Submission;
     tracks: Track[];
+    policy: {
+        minKeywords: number;
+        maxKeywords: number;
+        abstractFileRequired: boolean;
+        trackRequired: boolean;
+    } | null;
     contributors: {
         id: string | null;
         display_name: string;
@@ -38,6 +62,7 @@ const props = defineProps<{
             subdivision: string | null;
             city: string | null;
             country_code: string;
+            ror_uri?: string | null;
         }[];
     }[];
     references: {
@@ -47,10 +72,7 @@ const props = defineProps<{
         url: string | null;
     }[];
     files: { id: string; version: number; name: string | null }[];
-    readiness: {
-        status: string;
-        findings: { code: string; field: string; severity: string }[];
-    } | null;
+    readiness: AuthorReadiness | null;
     routes: {
         index: string;
         update: string;
@@ -61,19 +83,57 @@ const props = defineProps<{
     };
 }>();
 
-const { locale } = useI18n();
+const { locale, t } = useI18n();
 const c = computed(() => submissionCopy(String(locale.value)));
 const draft = computed(() => props.submission.status === 'DRAFT');
 const detailsError = computed(
     () => (form.errors as Record<string, string | undefined>).details,
 );
-const form = useForm({
+const form = useForm(`submission-details:${props.submission.id}`, {
     track_id: props.submission.trackId ?? '',
     title: props.submission.title,
     subtitle: props.submission.subtitle,
     abstract: props.submission.abstract,
     keywords_text: props.submission.keywordsText,
 });
+const navigation = unref(
+    useRemember(
+        { step: props.submission.status === 'DRAFT' ? 1 : 5 },
+        `submission-step:${props.submission.id}`,
+    ),
+);
+const step = toRef(navigation, 'step');
+const stages = ref<InstanceType<typeof SubmissionWizardSections>>();
+const keywords = ref<InstanceType<typeof KeywordInput>>();
+const saving = ref(false);
+const saved = ref(false);
+const busy = computed(
+    () => saving.value || form.processing || stages.value?.processing === true,
+);
+const stepKeys = wizardSteps;
+const trackNotice = computed(() =>
+    trackEmptyMessage(
+        props.tracks.length,
+        props.policy?.trackRequired === true,
+    ),
+);
+watch(draft, (value) => {
+    if (!value) step.value = 5;
+});
+watch(step, async () => {
+    await nextTick();
+    document.getElementById('wizard-step-heading')?.focus();
+});
+const reviewDetails = computed(() => ({
+    title: form.title,
+    subtitle: form.subtitle,
+    abstract: form.abstract,
+    keywords: keywordTags(form.keywords_text),
+    primaryLocale: props.submission.primaryLocale,
+    track: props.tracks.find((track) => track.id === form.track_id)
+        ? trackName(props.tracks.find((track) => track.id === form.track_id)!)
+        : c.value.noTrack,
+}));
 
 function trackName(track: Track): string {
     return (
@@ -84,18 +144,71 @@ function trackName(track: Track): string {
     );
 }
 
-function saveDraft(): void {
-    if (!draft.value || form.processing) return;
+function saveDetails(done: () => void): void {
+    keywords.value?.commit();
+    form.keywords_text = serializeKeywords(keywordTags(form.keywords_text));
     form.transform((data) => ({
         ...data,
         track_id: data.track_id || null,
-    })).put(props.routes.update, { preserveScroll: true });
+    })).put(props.routes.update, {
+        preserveScroll: true,
+        onSuccess: () => {
+            form.defaults();
+            done();
+        },
+        onError: () => failed(1),
+        onCancel: () => failed(1),
+    });
+}
+function failed(target: number) {
+    saving.value = false;
+    step.value = target;
+    saved.value = false;
+}
+function saveCurrent(done: () => void) {
+    if (step.value === 1) saveDetails(done);
+    else if (step.value === 5) saveAll(done);
+    else stages.value?.saveStep(step.value, done);
+}
+function saveAll(done: () => void) {
+    saveDetails(() => stages.value?.saveAll(done));
+}
+function saveDraft() {
+    if (!draft.value || busy.value) return;
+    saving.value = true;
+    saveCurrent(() => {
+        saving.value = false;
+        saved.value = true;
+    });
+}
+function navigate(target: number) {
+    if (busy.value || target === step.value) return;
+    if (!draft.value || target < step.value) {
+        step.value = target;
+        return;
+    }
+    saving.value = true;
+    saveCurrent(() => {
+        saving.value = false;
+        step.value = target;
+        saved.value = false;
+    });
+}
+function prepareSubmit() {
+    if (!draft.value || busy.value) return;
+    saving.value = true;
+    saveAll(async () => {
+        saving.value = false;
+        step.value = 5;
+        await nextTick();
+        stages.value?.confirmSubmission();
+    });
 }
 </script>
 
 <template>
     <Head :title="c.details" />
-    <div class="flex w-full flex-col gap-6 px-4 py-6 md:ps-14 md:pe-8">
+    <div class="participant-page flex w-full flex-col gap-6">
         <header class="space-y-1">
             <Link
                 :href="routes.index"
@@ -103,19 +216,47 @@ function saveDraft(): void {
                 >{{ c.index }}</Link
             >
             <p class="text-sm font-medium text-muted-foreground">
-                {{ c.step }}
+                {{ t('wizardUx.progress', { current: step, total: 5 }) }}
             </p>
-            <h1 class="text-2xl font-semibold tracking-tight">
-                {{ c.details }}
+            <h1
+                id="wizard-step-heading"
+                tabindex="-1"
+                class="text-2xl font-semibold tracking-tight"
+            >
+                {{ t(`wizardUx.${stepKeys[step - 1]}`) }}
             </h1>
             <p class="font-mono text-sm text-muted-foreground" dir="ltr">
-                {{ submission.paperCode }} ┬╖ {{ submission.edition }}
+                {{ submission.paperCode }} · {{ submission.edition }}
             </p>
             <p class="max-w-3xl text-sm text-muted-foreground">
-                {{ c.detailsHelp }}
+                {{ t('wizardUx.intro') }}
             </p>
         </header>
 
+        <nav :aria-label="t('wizardUx.steps')" class="w-full max-w-5xl">
+            <ol class="grid auto-rows-fr gap-2 md:grid-cols-5">
+                <li v-for="(key, index) in stepKeys" :key="key">
+                    <Button
+                        type="button"
+                        variant="outline"
+                        class="h-full! min-h-14 w-full justify-start text-start whitespace-normal"
+                        :class="
+                            step === index + 1
+                                ? 'border-primary bg-primary/10 text-primary'
+                                : ''
+                        "
+                        :aria-current="step === index + 1 ? 'step' : undefined"
+                        :disabled="busy"
+                        @click="navigate(index + 1)"
+                        ><span aria-hidden="true">{{ index + 1 }}.</span
+                        >{{ t(`wizardUx.${key}`) }}</Button
+                    >
+                </li>
+            </ol>
+        </nav>
+        <p v-if="saved" role="status" class="text-sm text-primary">
+            {{ t('wizardUx.saved') }}
+        </p>
         <div
             v-if="!draft"
             class="rounded-lg border bg-muted px-4 py-3 text-sm"
@@ -123,162 +264,198 @@ function saveDraft(): void {
         >
             {{ c.locked }}
         </div>
-        <form
-            class="max-w-5xl space-y-5 rounded-xl border bg-card p-5"
-            @submit.prevent="saveDraft"
+        <Card v-show="step === 1" class="w-full max-w-5xl"
+            ><CardContent>
+                <form class="space-y-5" @submit.prevent="saveDraft">
+                    <fieldset
+                        :disabled="!draft || saving || form.processing"
+                        class="space-y-5 disabled:opacity-80"
+                    >
+                        <div class="space-y-1">
+                            <label class="text-sm font-medium">{{
+                                c.primaryLocale
+                            }}</label>
+                            <p
+                                class="rounded-md border bg-muted px-3 py-2 text-sm"
+                            >
+                                {{ submission.primaryLocale.toUpperCase() }}
+                            </p>
+                            <p class="text-xs text-muted-foreground">
+                                {{ c.primaryLocaleHelp }}
+                            </p>
+                        </div>
+                        <div class="space-y-2">
+                            <label for="track" class="text-sm font-medium">{{
+                                c.track
+                            }}</label>
+                            <Select
+                                :model-value="form.track_id || '__no_track__'"
+                                :disabled="!draft || saving || form.processing"
+                                @update:model-value="
+                                    (value) =>
+                                        (form.track_id =
+                                            value === '__no_track__'
+                                                ? ''
+                                                : String(value))
+                                "
+                            >
+                                <SelectTrigger
+                                    id="track"
+                                    class="w-full"
+                                    :aria-invalid="!!form.errors.track_id"
+                                    aria-describedby="track-notice track-error"
+                                    ><SelectValue
+                                /></SelectTrigger>
+                                <SelectContent>
+                                    <SelectItem value="__no_track__">{{
+                                        policy?.trackRequired
+                                            ? t('wizardUx.selectTrack')
+                                            : c.noTrack
+                                    }}</SelectItem>
+                                    <SelectItem
+                                        v-for="track in tracks"
+                                        :key="track.id"
+                                        :value="track.id"
+                                    >
+                                        {{ trackName(track) }}
+                                    </SelectItem>
+                                </SelectContent>
+                            </Select>
+                            <p
+                                v-if="trackNotice"
+                                id="track-notice"
+                                role="status"
+                                class="text-sm text-muted-foreground"
+                            >
+                                {{ t(`wizardUx.${trackNotice}`) }}
+                            </p>
+                            <p
+                                v-if="form.errors.track_id"
+                                id="track-error"
+                                class="text-sm text-destructive"
+                                role="alert"
+                            >
+                                {{ form.errors.track_id }}
+                            </p>
+                        </div>
+                        <div class="space-y-2">
+                            <label for="title" class="text-sm font-medium">{{
+                                c.title
+                            }}</label>
+                            <Input
+                                id="title"
+                                v-model="form.title"
+                                required
+                                maxlength="500"
+                                :dir="
+                                    submission.primaryLocale === 'ar'
+                                        ? 'rtl'
+                                        : 'ltr'
+                                "
+                                :aria-invalid="!!form.errors.title"
+                                aria-describedby="title-error"
+                            />
+                            <p
+                                v-if="form.errors.title"
+                                id="title-error"
+                                role="alert"
+                                class="text-sm text-destructive"
+                            >
+                                {{ form.errors.title }}
+                            </p>
+                        </div>
+                        <div class="space-y-2">
+                            <label for="subtitle" class="text-sm font-medium">{{
+                                c.subtitle
+                            }}</label>
+                            <Input
+                                id="subtitle"
+                                v-model="form.subtitle"
+                                maxlength="500"
+                                :dir="
+                                    submission.primaryLocale === 'ar'
+                                        ? 'rtl'
+                                        : 'ltr'
+                                "
+                                :aria-invalid="!!form.errors.subtitle"
+                                aria-describedby="subtitle-error"
+                            />
+                            <p
+                                v-if="form.errors.subtitle"
+                                id="subtitle-error"
+                                role="alert"
+                                class="text-sm text-destructive"
+                            >
+                                {{ form.errors.subtitle }}
+                            </p>
+                        </div>
+                        <div class="space-y-2">
+                            <label for="abstract" class="text-sm font-medium">{{
+                                c.abstract
+                            }}</label>
+                            <AcademicAbstractEditor
+                                id="abstract"
+                                v-model="form.abstract"
+                                :dir="
+                                    submission.primaryLocale === 'ar'
+                                        ? 'rtl'
+                                        : 'ltr'
+                                "
+                                :disabled="!draft || saving"
+                                :invalid="!!form.errors.abstract"
+                            />
+                            <p
+                                v-if="form.errors.abstract"
+                                id="abstract-error"
+                                role="alert"
+                                class="text-sm text-destructive"
+                            >
+                                {{ form.errors.abstract }}
+                            </p>
+                        </div>
+                        <div class="space-y-2">
+                            <label for="keywords" class="text-sm font-medium">{{
+                                c.keywords
+                            }}</label>
+                            <KeywordInput
+                                ref="keywords"
+                                id="keywords"
+                                v-model="form.keywords_text"
+                                :min="policy?.minKeywords ?? null"
+                                :max="policy?.maxKeywords ?? null"
+                                :disabled="!draft || saving"
+                            />
+                            <p
+                                v-if="form.errors.keywords_text"
+                                id="keywords-error"
+                                role="alert"
+                                class="text-sm text-destructive"
+                            >
+                                {{ form.errors.keywords_text }}
+                            </p>
+                        </div>
+                    </fieldset>
+                    <p
+                        v-if="detailsError"
+                        role="alert"
+                        class="text-sm text-destructive"
+                    >
+                        {{ c.invalidDetails }}
+                    </p>
+                    <p class="text-xs text-muted-foreground">
+                        {{ draft ? c.savedHint : c.locked }}
+                    </p>
+                </form>
+            </CardContent></Card
         >
-            <fieldset
-                :disabled="!draft || form.processing"
-                class="space-y-5 disabled:opacity-80"
-            >
-                <div class="space-y-1">
-                    <label class="text-sm font-medium">{{
-                        c.primaryLocale
-                    }}</label>
-                    <p class="rounded-md border bg-muted px-3 py-2 text-sm">
-                        {{ submission.primaryLocale.toUpperCase() }}
-                    </p>
-                    <p class="text-xs text-muted-foreground">
-                        {{ c.primaryLocaleHelp }}
-                    </p>
-                </div>
-                <div class="space-y-2">
-                    <label for="track" class="text-sm font-medium">{{
-                        c.track
-                    }}</label>
-                    <select
-                        id="track"
-                        v-model="form.track_id"
-                        class="min-h-10 w-full rounded-md border bg-background px-3 text-sm"
-                    >
-                        <option value="">{{ c.noTrack }}</option>
-                        <option
-                            v-for="track in tracks"
-                            :key="track.id"
-                            :value="track.id"
-                        >
-                            {{ trackName(track) }}
-                        </option>
-                    </select>
-                    <p
-                        v-if="form.errors.track_id"
-                        class="text-sm text-destructive"
-                        role="alert"
-                    >
-                        {{ form.errors.track_id }}
-                    </p>
-                </div>
-                <div class="space-y-2">
-                    <label for="title" class="text-sm font-medium">{{
-                        c.title
-                    }}</label>
-                    <input
-                        id="title"
-                        v-model="form.title"
-                        required
-                        maxlength="500"
-                        :dir="submission.primaryLocale === 'ar' ? 'rtl' : 'ltr'"
-                        class="min-h-10 w-full rounded-md border bg-background px-3 py-2 text-sm"
-                    />
-                    <p
-                        v-if="form.errors.title"
-                        role="alert"
-                        class="text-sm text-destructive"
-                    >
-                        {{ form.errors.title }}
-                    </p>
-                </div>
-                <div class="space-y-2">
-                    <label for="subtitle" class="text-sm font-medium">{{
-                        c.subtitle
-                    }}</label>
-                    <input
-                        id="subtitle"
-                        v-model="form.subtitle"
-                        maxlength="500"
-                        :dir="submission.primaryLocale === 'ar' ? 'rtl' : 'ltr'"
-                        class="min-h-10 w-full rounded-md border bg-background px-3 py-2 text-sm"
-                    />
-                    <p
-                        v-if="form.errors.subtitle"
-                        role="alert"
-                        class="text-sm text-destructive"
-                    >
-                        {{ form.errors.subtitle }}
-                    </p>
-                </div>
-                <div class="space-y-2">
-                    <label for="abstract" class="text-sm font-medium">{{
-                        c.abstract
-                    }}</label>
-                    <textarea
-                        id="abstract"
-                        v-model="form.abstract"
-                        rows="8"
-                        required
-                        maxlength="30000"
-                        :dir="submission.primaryLocale === 'ar' ? 'rtl' : 'ltr'"
-                        class="w-full rounded-md border bg-background px-3 py-2 text-sm"
-                    />
-                    <p
-                        v-if="form.errors.abstract"
-                        role="alert"
-                        class="text-sm text-destructive"
-                    >
-                        {{ form.errors.abstract }}
-                    </p>
-                </div>
-                <div class="space-y-2">
-                    <label for="keywords" class="text-sm font-medium">{{
-                        c.keywords
-                    }}</label>
-                    <textarea
-                        id="keywords"
-                        v-model="form.keywords_text"
-                        rows="5"
-                        maxlength="2000"
-                        :dir="submission.primaryLocale === 'ar' ? 'rtl' : 'ltr'"
-                        class="w-full rounded-md border bg-background px-3 py-2 text-sm"
-                    />
-                    <p class="text-xs text-muted-foreground">
-                        {{ c.keywordsHelp }}
-                    </p>
-                    <p
-                        v-if="form.errors.keywords_text"
-                        role="alert"
-                        class="text-sm text-destructive"
-                    >
-                        {{ form.errors.keywords_text }}
-                    </p>
-                </div>
-            </fieldset>
-            <p
-                v-if="detailsError"
-                role="alert"
-                class="text-sm text-destructive"
-            >
-                {{ c.invalidDetails }}
-            </p>
-            <div class="flex flex-wrap items-center gap-3">
-                <button
-                    v-if="draft"
-                    type="submit"
-                    :disabled="form.processing"
-                    class="min-h-10 rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground disabled:opacity-50"
-                >
-                    {{ c.save }}
-                </button>
-                <Link
-                    :href="routes.index"
-                    class="min-h-10 rounded-md border px-4 py-2 text-sm leading-6 font-medium hover:bg-accent"
-                    >{{ c.index }}</Link
-                >
-            </div>
-            <p class="text-xs text-muted-foreground">
-                {{ draft ? c.savedHint : c.locked }}
-            </p>
-        </form>
         <SubmissionWizardSections
+            ref="stages"
+            :step="step"
+            :details="reviewDetails"
+            :saving="saving"
+            @edit="(target) => navigate(target)"
+            @save-error="failed"
+            @prepare-submit="prepareSubmit"
             :draft="draft"
             :contributors="contributors"
             :references="references"
@@ -286,5 +463,35 @@ function saveDraft(): void {
             :readiness="readiness"
             :routes="routes"
         />
+        <footer
+            class="flex w-full max-w-5xl flex-wrap items-center justify-between gap-3 border-t border-border pt-4"
+        >
+            <Button
+                type="button"
+                variant="outline"
+                :disabled="step === 1 || busy"
+                @click="navigate(step - 1)"
+                >{{ t('wizardUx.previous') }}</Button
+            >
+            <div class="flex flex-wrap gap-2">
+                <Button
+                    v-if="draft"
+                    type="button"
+                    variant="outline"
+                    :disabled="busy"
+                    @click="saveDraft"
+                    >{{
+                        saving ? t('wizardUx.saving') : t('wizardUx.saveDraft')
+                    }}</Button
+                >
+                <Button
+                    v-if="step < 5"
+                    type="button"
+                    :disabled="busy"
+                    @click="navigate(step + 1)"
+                    >{{ t('wizardUx.continue') }}</Button
+                >
+            </div>
+        </footer>
     </div>
 </template>

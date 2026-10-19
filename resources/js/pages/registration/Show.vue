@@ -1,7 +1,16 @@
 <script setup lang="ts">
 import { Head, Link, useForm } from '@inertiajs/vue3';
-import { CheckCircle2, Copy, CreditCard, FileUp, Ticket } from '@lucide/vue';
+import {
+    PhCheckCircle as CheckCircle2,
+    PhCopy as Copy,
+    PhCreditCard as CreditCard,
+    PhUploadSimple as FileUp,
+    PhTicket as Ticket,
+} from '@phosphor-icons/vue';
 import { computed, ref } from 'vue';
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
 import { useI18n } from 'vue-i18n';
 
 type LocalizedText = Record<string, string> | null;
@@ -49,6 +58,8 @@ type Registration = {
     confirmedAt: string | null;
     complimentary: boolean;
     nextAction: string;
+    nextActionUrl: string | null;
+    billingState: string;
     payment: Payment | null;
     eventPass: EventPass | null;
     registrationUrl: string;
@@ -70,7 +81,11 @@ const props = defineProps<{
     };
 }>();
 
-const { t, locale } = useI18n();
+const { t, locale, te } = useI18n();
+const actionLabel = (key: string) =>
+    te(`wizardUx.actions.${key}`)
+        ? t(`wizardUx.actions.${key}`)
+        : t(`phase02.nextAction.${key}`);
 
 const registrationForm = useForm({
     package_id: '',
@@ -217,7 +232,7 @@ async function copyAccount(): Promise<void> {
             </div>
         </header>
 
-        <section
+        <Card
             v-if="!registration"
             class="grid gap-4 md:grid-cols-2"
             aria-labelledby="package-heading"
@@ -234,7 +249,7 @@ async function copyAccount(): Promise<void> {
             <article
                 v-for="packageItem in packages"
                 :key="packageItem.id"
-                class="flex flex-col justify-between gap-5 rounded-xl border bg-card p-5 shadow-sm"
+                class="flex flex-col justify-between gap-5 p-4"
             >
                 <div class="space-y-2">
                     <div class="flex items-start justify-between gap-3">
@@ -259,14 +274,14 @@ async function copyAccount(): Promise<void> {
                     </p>
                 </div>
 
-                <button
+                <Button
                     type="button"
                     class="inline-flex min-h-10 items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground disabled:opacity-50"
                     :disabled="registrationForm.processing"
                     @click="choosePackage(packageItem)"
                 >
                     {{ t('phase02.registration.selectPackage') }}
-                </button>
+                </Button>
             </article>
 
             <p
@@ -282,10 +297,10 @@ async function copyAccount(): Promise<void> {
             >
                 {{ registrationError(registrationForm.errors.package_id) }}
             </p>
-        </section>
+        </Card>
 
         <template v-else>
-            <section class="rounded-xl border bg-card p-5 shadow-sm">
+            <Card class="p-4">
                 <div
                     class="flex flex-col gap-4 md:flex-row md:items-start md:justify-between"
                 >
@@ -315,16 +330,16 @@ async function copyAccount(): Promise<void> {
                         }}
                     </span>
                 </div>
-            </section>
+            </Card>
 
-            <section class="rounded-xl border bg-card p-5 shadow-sm">
+            <Card class="p-4">
                 <p
                     class="text-xs font-semibold tracking-wider text-muted-foreground uppercase"
                 >
                     {{ t('phase02.nextAction.label') }}
                 </p>
                 <h2 class="mt-2 text-xl font-semibold">
-                    {{ t(`phase02.nextAction.${registration.nextAction}`) }}
+                    {{ actionLabel(registration.nextAction) }}
                 </h2>
 
                 <Link
@@ -335,12 +350,9 @@ async function copyAccount(): Promise<void> {
                     <Ticket class="size-4" />
                     {{ t('phase02.eventPass.open') }}
                 </Link>
-            </section>
+            </Card>
 
-            <section
-                v-if="registration.payment"
-                class="rounded-xl border bg-card p-5 shadow-sm"
-            >
+            <Card v-if="registration.payment" class="p-4">
                 <div class="flex items-center gap-2">
                     <CreditCard class="size-5" />
                     <h2 class="text-lg font-semibold">
@@ -401,7 +413,7 @@ async function copyAccount(): Promise<void> {
                             >
                                 {{ destination.account_number }}
                             </code>
-                            <button
+                            <Button
                                 type="button"
                                 class="inline-flex min-h-9 items-center gap-2 rounded-md border px-3 text-sm font-medium"
                                 @click="copyAccount"
@@ -412,7 +424,7 @@ async function copyAccount(): Promise<void> {
                                         ? t('phase02.payment.copied')
                                         : t('phase02.payment.copy')
                                 }}
-                            </button>
+                            </Button>
                             <span class="sr-only" aria-live="polite">
                                 {{
                                     accountCopied
@@ -468,7 +480,7 @@ async function copyAccount(): Promise<void> {
                                 ({{ t('phase02.form.required') }})
                             </span>
                         </label>
-                        <input
+                        <Input
                             id="proof"
                             type="file"
                             accept=".pdf,.jpg,.jpeg,.png"
@@ -502,7 +514,7 @@ async function copyAccount(): Promise<void> {
                                     ({{ t('phase02.form.required') }})
                                 </span>
                             </label>
-                            <input
+                            <Input
                                 id="submitted-amount"
                                 v-model="proofForm.submitted_amount"
                                 type="number"
@@ -541,7 +553,7 @@ async function copyAccount(): Promise<void> {
                                     ({{ t('phase02.form.optional') }})
                                 </span>
                             </label>
-                            <input
+                            <Input
                                 id="sender-name"
                                 v-model="proofForm.sender_name"
                                 type="text"
@@ -573,7 +585,7 @@ async function copyAccount(): Promise<void> {
                                     ({{ t('phase02.form.optional') }})
                                 </span>
                             </label>
-                            <input
+                            <Input
                                 id="transfer-date"
                                 v-model="proofForm.transfer_date"
                                 type="date"
@@ -597,7 +609,7 @@ async function copyAccount(): Promise<void> {
                         </div>
                     </div>
 
-                    <button
+                    <Button
                         type="submit"
                         class="inline-flex min-h-10 items-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground disabled:opacity-50"
                         :disabled="proofForm.processing || !proofForm.proof"
@@ -609,22 +621,54 @@ async function copyAccount(): Promise<void> {
                                 ? t('phase02.payment.replaceProof')
                                 : t('phase02.payment.submitProof')
                         }}
-                    </button>
+                    </Button>
                 </form>
-            </section>
+            </Card>
 
-            <section v-else class="rounded-xl border bg-card p-5 shadow-sm">
+            <Card v-else class="p-4">
+                <p
+                    v-if="
+                        registration.billingMode === 'PAID' &&
+                        !registration.complimentary
+                    "
+                    class="mb-2 font-medium"
+                >
+                    {{
+                        money(registration.feeAmount, registration.currencyCode)
+                    }}
+                </p>
                 <p class="text-sm font-semibold">
                     {{
                         registration.complimentary
                             ? t('phase02.billing.complimentary')
-                            : t('phase02.billing.free')
+                            : registration.billingMode === 'FREE'
+                              ? t('phase02.billing.free')
+                              : registration.billingState === 'AFTER_ACCEPT'
+                                ? t('wizardUx.paidAfterAccept')
+                                : t('wizardUx.paidNoObligation')
                     }}
                 </p>
                 <p class="mt-1 text-sm text-muted-foreground">
-                    {{ t('phase02.billing.noPaymentRequired') }}
+                    {{
+                        registration.complimentary ||
+                        registration.billingMode === 'FREE'
+                            ? t('phase02.billing.noPaymentRequired')
+                            : registration.billingState === 'AFTER_ACCEPT'
+                              ? t('wizardUx.intro')
+                              : registration.billingState ===
+                                  'AWAITING_PAYMENT_SETUP'
+                                ? t('wizardUx.awaitingPayment')
+                                : t('wizardUx.paidNoObligation')
+                    }}
                 </p>
-            </section>
+            </Card>
+            <div v-if="registration.nextActionUrl" class="flex flex-wrap gap-3">
+                <Button as-child
+                    ><Link :href="registration.nextActionUrl">{{
+                        actionLabel(registration.nextAction)
+                    }}</Link></Button
+                >
+            </div>
         </template>
     </div>
 </template>

@@ -3,6 +3,7 @@ import { usePage } from '@inertiajs/vue3';
 import { ConfigProvider } from 'reka-ui';
 import { SidebarProvider } from '@/components/ui/sidebar';
 import type { AppVariant } from '@/types';
+import { useWorkspaceLyra } from '@/composables/useWorkspaceLyra';
 
 type Props = {
     variant?: AppVariant;
@@ -13,16 +14,13 @@ withDefaults(defineProps<Props>(), {
 });
 
 const page = usePage();
+const { isParticipant, isLyra } = useWorkspaceLyra();
 const isOpen = page.props.sidebarOpen;
 </script>
 
 <template>
     <ConfigProvider
-        :dir="
-            page.component.startsWith('admin/')
-                ? page.props.localization.direction
-                : undefined
-        "
+        :dir="isLyra ? page.props.localization.direction : undefined"
     >
         <div
             v-if="variant === 'header'"
@@ -36,10 +34,12 @@ const isOpen = page.props.sidebarOpen;
             :class="{
                 'admin-workspace admin-lyra':
                     page.component.startsWith('admin/'),
+                'participant-workspace participant-lyra': isParticipant,
             }"
             :data-admin-lyra="
                 page.component.startsWith('admin/') ? '' : undefined
             "
+            :data-participant-lyra="isParticipant ? '' : undefined"
             :dir="page.props.localization.direction"
             :default-open="isOpen"
         >

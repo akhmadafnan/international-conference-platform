@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Actions\Submission\EvaluateDraftSubmissionReadinessAction;
 use App\Actions\Submission\SubmitDraftAbstractAction;
 use App\Enums\BillingMode;
 use App\Models\ConferenceEdition;
@@ -223,9 +224,15 @@ test('snapshot freezes Edition and Track scholarly labels as of official submiss
     expect($snapshot->fresh()->metadata_json['track']['name_i18n']['id'])->toBe('Pendidikan');
 });
 
-test('WARNING readiness allows official submission without all optional translation or orcid', function () {
+test('WARNING readiness allows official submission without optional translations ORCID ROR or reference DOI', function () {
     ['actor' => $actor, 'submission' => $submission] = p03hContext();
     p03hPopulate($submission, false);
+    $submission->references()->create(['sequence' => 1, 'raw_citation' => 'A reference without a DOI.']);
+    $readiness = app(EvaluateDraftSubmissionReadinessAction::class)->handle($actor, $submission);
+    expect($readiness->status)->toBe('WARNING')
+        ->and(array_column($readiness->findings, 'code'))->toContain(
+            'OPTIONAL_TRANSLATIONS_MISSING', 'CONTRIBUTOR_ORCID_MISSING', 'AFFILIATION_ROR_MISSING', 'REFERENCE_DOI_MISSING',
+        );
     expect(p03hSubmit($actor, $submission)->academic_status)->toBe('SUBMITTED');
 });
 
@@ -299,6 +306,10 @@ test('incomplete author and invalid keyword count deny official submission', fun
         $submission->contributors()->update(['is_corresponding' => false]);
     } else {
         $submission->keywords()->where('sequence', 3)->delete();
+        $readiness = app(EvaluateDraftSubmissionReadinessAction::class)->handle($actor, $submission);
+        $keywordFinding = collect($readiness->findings)->firstWhere('code', 'KEYWORDS_COUNT_INVALID');
+        expect($readiness->status)->toBe('BLOCKED')
+            ->and($keywordFinding['context'])->toBe(['min' => 3, 'max' => 5, 'actual' => 2]);
     }
     expect(fn () => p03hSubmit($actor, $submission))->toThrow(DomainException::class);
     p03hAssertNoWrite($submission);

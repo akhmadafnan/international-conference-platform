@@ -1,9 +1,10 @@
 ﻿<script setup lang="ts">
 import { Head, Link, useForm } from '@inertiajs/vue3';
-import { computed } from 'vue';
+import { computed, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { submissionCopy } from '@/lib/submissionCopy';
 import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
 import {
     Select,
     SelectContent,
@@ -37,7 +38,29 @@ const props = defineProps<{
 
 const { locale } = useI18n();
 const c = computed(() => submissionCopy(String(locale.value)));
-const form = useForm({ registration_id: '', primary_locale: 'id' });
+const form = useForm({
+    registration_id:
+        props.registrations.length === 1 ? props.registrations[0].id : '',
+    primary_locale: 'id',
+});
+const selectedRegistration = computed(() =>
+    props.registrations.find(
+        (registration) => registration.id === form.registration_id,
+    ),
+);
+watch(
+    () => props.registrations,
+    (registrations) => {
+        if (
+            !registrations.some(
+                (registration) => registration.id === form.registration_id,
+            )
+        ) {
+            form.registration_id =
+                registrations.length === 1 ? registrations[0].id : '';
+        }
+    },
+);
 
 function createDraft(): void {
     if (form.processing || !form.registration_id) return;
@@ -47,7 +70,7 @@ function createDraft(): void {
 
 <template>
     <Head :title="c.index" />
-    <div class="flex w-full flex-col gap-6 px-4 py-6 md:ps-14 md:pe-8">
+    <div class="participant-page flex w-full flex-col gap-6">
         <header class="space-y-1">
             <Link
                 :href="routes.dashboard"
@@ -59,10 +82,7 @@ function createDraft(): void {
             <p class="text-sm text-muted-foreground">{{ c.indexHint }}</p>
         </header>
 
-        <section
-            class="rounded-xl border bg-card p-5"
-            aria-labelledby="create-draft-title"
-        >
+        <Card class="p-4" aria-labelledby="create-draft-title">
             <h2 id="create-draft-title" class="text-lg font-semibold">
                 {{ c.create }}
             </h2>
@@ -74,15 +94,17 @@ function createDraft(): void {
                     v-if="editionLinks.length > 0"
                     class="flex flex-wrap gap-2"
                 >
-                    <Link
+                    <Button
                         v-for="edition in editionLinks"
                         :key="edition.registrationUrl"
-                        :href="edition.registrationUrl"
-                        class="rounded-md border px-3 py-2 text-sm font-medium hover:bg-accent"
+                        as-child
+                        variant="outline"
                     >
-                        {{ c.editionLink }} ┬╖ {{ edition.code }}
-                        {{ edition.year }}
-                    </Link>
+                        <Link :href="edition.registrationUrl">
+                            {{ c.editionLink }} · {{ edition.code }}
+                            {{ edition.year }}
+                        </Link>
+                    </Button>
                 </div>
             </div>
             <form
@@ -97,7 +119,58 @@ function createDraft(): void {
                             class="text-sm font-medium"
                             >{{ c.chooseRegistration }}</label
                         >
-                        <Select v-model="form.registration_id"><SelectTrigger id="registration-id" class="w-full"><SelectValue :placeholder="c.chooseRegistration" /></SelectTrigger><SelectContent><SelectItem v-for="registration in registrations" :key="registration.id" :value="registration.id">{{ registration.edition }} · {{ registration.year }} · {{ registration.code }}</SelectItem></SelectContent></Select>
+                        <Select
+                            v-model="form.registration_id"
+                            name="registration_id"
+                            :disabled="form.processing"
+                        >
+                            <SelectTrigger
+                                id="registration-id"
+                                class="w-full"
+                                :aria-invalid="!!form.errors.registration_id"
+                                aria-describedby="registration-error"
+                            >
+                                <SelectValue
+                                    :placeholder="c.chooseRegistration"
+                                >
+                                    <span
+                                        v-if="selectedRegistration"
+                                        class="truncate"
+                                        ><bdi>{{
+                                            selectedRegistration.edition
+                                        }}</bdi>
+                                        ·
+                                        <bdi>{{
+                                            selectedRegistration.code
+                                        }}</bdi></span
+                                    >
+                                    <span v-else>{{
+                                        c.chooseRegistration
+                                    }}</span>
+                                </SelectValue>
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem
+                                    v-for="registration in registrations"
+                                    :key="registration.id"
+                                    :value="registration.id"
+                                    :text-value="`${registration.edition} · ${registration.code}`"
+                                >
+                                    <span class="grid gap-1 text-start"
+                                        ><span
+                                            ><bdi>{{
+                                                registration.edition
+                                            }}</bdi>
+                                            · {{ registration.year }}</span
+                                        ><span
+                                            class="text-xs text-muted-foreground"
+                                            ><bdi>{{ registration.code }}</bdi>
+                                            · {{ registration.package }}</span
+                                        ></span
+                                    >
+                                </SelectItem>
+                            </SelectContent>
+                        </Select>
                     </div>
                     <div class="space-y-2">
                         <label
@@ -105,11 +178,30 @@ function createDraft(): void {
                             class="text-sm font-medium"
                             >{{ c.chooseLocale }}</label
                         >
-                        <Select v-model="form.primary_locale"><SelectTrigger id="primary-locale" class="w-full"><SelectValue /></SelectTrigger><SelectContent><SelectItem value="id">Bahasa Indonesia</SelectItem><SelectItem value="en">English</SelectItem><SelectItem value="ar">العربية</SelectItem></SelectContent></Select>
+                        <Select
+                            v-model="form.primary_locale"
+                            name="primary_locale"
+                            :disabled="form.processing"
+                            ><SelectTrigger
+                                id="primary-locale"
+                                class="w-full"
+                                :aria-invalid="!!form.errors.primary_locale"
+                                aria-describedby="locale-error"
+                                ><SelectValue /></SelectTrigger
+                            ><SelectContent
+                                ><SelectItem value="id"
+                                    >Bahasa Indonesia</SelectItem
+                                ><SelectItem value="en">English</SelectItem
+                                ><SelectItem value="ar"
+                                    >العربية</SelectItem
+                                ></SelectContent
+                            ></Select
+                        >
                     </div>
                 </div>
                 <p
                     v-if="form.errors.registration_id"
+                    id="registration-error"
                     role="alert"
                     class="text-sm text-destructive"
                 >
@@ -122,66 +214,69 @@ function createDraft(): void {
                 </p>
                 <p
                     v-if="form.errors.primary_locale"
+                    id="locale-error"
                     role="alert"
                     class="text-sm text-destructive"
                 >
                     {{ form.errors.primary_locale }}
                 </p>
                 <div>
-                    <Button type="submit" :disabled="form.processing || !form.registration_id">{{ c.create }}</Button>
+                    <Button
+                        type="submit"
+                        :disabled="form.processing || !form.registration_id"
+                        >{{ c.create }}</Button
+                    >
                 </div>
             </form>
-        </section>
+        </Card>
 
         <section aria-labelledby="submissions-heading" class="space-y-3">
             <h2 id="submissions-heading" class="text-lg font-semibold">
                 {{ c.index }}
             </h2>
-            <div
+            <Card
                 v-if="submissions.length === 0"
-                class="rounded-xl border border-dashed bg-card p-6 text-center"
+                class="border-dashed p-4 text-center"
             >
                 <h3 class="font-semibold">{{ c.noSubmissions }}</h3>
                 <p class="mt-2 text-sm text-muted-foreground">
                     {{ c.noSubmissionsHelp }}
                 </p>
-            </div>
+            </Card>
             <ul v-else class="grid gap-3">
-                <li
-                    v-for="item in submissions"
-                    :key="item.id"
-                    class="rounded-xl border bg-card p-4"
-                >
-                    <div
-                        class="flex flex-wrap items-center justify-between gap-3"
-                    >
-                        <div class="min-w-0 space-y-1">
-                            <p
-                                class="font-mono text-xs text-muted-foreground"
-                                dir="ltr"
-                            >
-                                {{ item.paperCode }}
-                            </p>
-                            <h3 class="font-medium">
-                                {{ item.title || c.details }}
-                            </h3>
-                            <p class="text-sm text-muted-foreground">
-                                {{ item.edition }} ┬╖
-                                {{
-                                    item.status === 'DRAFT'
-                                        ? c.draft
-                                        : item.status === 'SUBMITTED'
-                                          ? c.submitted
-                                          : item.status
-                                }}
-                            </p>
-                        </div>
-                        <Link
-                            :href="item.detailsUrl"
-                            class="rounded-md border px-4 py-2 text-sm font-medium hover:bg-accent"
-                            >{{ c.open }}</Link
+                <li v-for="item in submissions" :key="item.id">
+                    <Card class="p-4">
+                        <div
+                            class="flex flex-wrap items-center justify-between gap-3"
                         >
-                    </div>
+                            <div class="min-w-0 space-y-1">
+                                <p
+                                    class="font-mono text-xs text-muted-foreground"
+                                    dir="ltr"
+                                >
+                                    {{ item.paperCode }}
+                                </p>
+                                <h3 class="font-medium">
+                                    {{ item.title || c.details }}
+                                </h3>
+                                <p class="text-sm text-muted-foreground">
+                                    {{ item.edition }} ·
+                                    {{
+                                        item.status === 'DRAFT'
+                                            ? c.draft
+                                            : item.status === 'SUBMITTED'
+                                              ? c.submitted
+                                              : item.status
+                                    }}
+                                </p>
+                            </div>
+                            <Button as-child variant="outline"
+                                ><Link :href="item.detailsUrl">{{
+                                    c.open
+                                }}</Link></Button
+                            >
+                        </div>
+                    </Card>
                 </li>
             </ul>
         </section>

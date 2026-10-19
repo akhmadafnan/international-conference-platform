@@ -1,4 +1,7 @@
+import { wizardUx } from '../wizardUx';
+
 export default {
+    wizardUx: wizardUx.id,
     submissionWizard: {
         rorSearch: 'Cari universitas atau institusi di ROR',
         rorSelected: 'Institusi terpilih (identitas ROR/tersimpan)',

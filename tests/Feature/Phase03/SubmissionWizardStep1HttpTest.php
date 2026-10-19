@@ -100,12 +100,66 @@ test('foreign registration cannot create a draft', function () {
     ['registration' => $registration] = p03iStepOneContext();
     $stranger = User::factory()->create(['email_verified_at' => now()]);
 
+    $this->actingAs($stranger)->get(route('submissions.index'))
+        ->assertOk()->assertInertia(fn ($page) => $page->has('registrations', 0));
+
     $this->actingAs($stranger)->post(route('submissions.store'), [
         'registration_id' => $registration->id,
         'primary_locale' => 'id',
     ])->assertNotFound();
 
     expect(Submission::query()->count())->toBe(0);
+});
+
+test('dashboard and draft selector expose the same owned pending registration without payment', function () {
+    ['user' => $user, 'edition' => $edition, 'registration' => $registration] = p03iStepOneContext();
+    $edition->update(['edition_code' => 'ICHES-UAT-2027']);
+    $registration->update(['status' => 'PENDING']);
+
+    $this->actingAs($user)->get(route('dashboard'))->assertOk()
+        ->assertInertia(fn ($page) => $page->where('phase02.registration.id', $registration->id));
+    $this->get(route('submissions.index'))->assertOk()
+        ->assertInertia(fn ($page) => $page->has('registrations', 1)
+            ->where('registrations.0.id', $registration->id)
+            ->where('registrations.0.code', $registration->registration_code)
+            ->where('registrations.0.edition', 'ICHES-UAT-2027'));
+    $this->post(route('submissions.store'), [
+        'registration_id' => $registration->id,
+        'primary_locale' => 'id',
+    ])->assertSessionHasNoErrors()->assertRedirect();
+
+    $this->assertDatabaseHas('submissions', ['registration_id' => $registration->id, 'academic_status' => 'DRAFT']);
+    $this->assertDatabaseHas('registrations', ['id' => $registration->id, 'status' => 'PENDING']);
+    $this->assertDatabaseCount('payments', 0);
+});
+
+test('cancelled registration is excluded from draft selector and rejected by creation', function () {
+    ['user' => $user, 'registration' => $registration] = p03iStepOneContext();
+    $registration->update(['status' => 'CANCELLED']);
+
+    $this->actingAs($user)->get(route('submissions.index'))->assertOk()
+        ->assertInertia(fn ($page) => $page->has('registrations', 0));
+    $this->post(route('submissions.store'), [
+        'registration_id' => $registration->id, 'primary_locale' => 'id',
+    ])->assertSessionHasErrors(['registration_id' => 'REGISTRATION_CONTEXT_INVALID']);
+    $this->assertDatabaseCount('submissions', 0);
+    $this->assertDatabaseCount('payments', 0);
+});
+
+test('a package outside the registration edition is never offered or accepted', function () {
+    ['user' => $user, 'edition' => $edition, 'package' => $package, 'registration' => $registration] = p03iStepOneContext();
+    $otherEdition = $edition->replicate();
+    $otherEdition->edition_code = 'OTHER-EDITION';
+    $otherEdition->save();
+    $package->update(['edition_id' => $otherEdition->id]);
+
+    $this->actingAs($user)->get(route('submissions.index'))->assertOk()
+        ->assertInertia(fn ($page) => $page->has('registrations', 0));
+    $this->post(route('submissions.store'), [
+        'registration_id' => $registration->id, 'primary_locale' => 'id',
+    ])->assertSessionHasErrors(['registration_id' => 'REGISTRATION_CONTEXT_INVALID']);
+    $this->assertDatabaseCount('submissions', 0);
+    $this->assertDatabaseCount('payments', 0);
 });
 
 test('invalid primary locale does not create a draft', function () {

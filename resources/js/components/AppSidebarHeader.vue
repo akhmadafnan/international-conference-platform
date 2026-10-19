@@ -9,6 +9,7 @@ import LocaleSwitcher from '@/components/LocaleSwitcher.vue';
 import { Button } from '@/components/ui/button';
 import { SidebarTrigger, useSidebar } from '@/components/ui/sidebar';
 import type { BreadcrumbItem } from '@/types';
+import { useWorkspaceLyra } from '@/composables/useWorkspaceLyra';
 
 const props = withDefaults(
     defineProps<{
@@ -23,6 +24,7 @@ const page = usePage();
 const { t } = useI18n();
 const { toggleSidebar } = useSidebar();
 const isAdmin = computed(() => page.component.startsWith('admin/'));
+const { isLyra } = useWorkspaceLyra();
 const adminBreadcrumbs = computed<BreadcrumbItem[]>(() => {
     if (props.breadcrumbs.length > 0) return props.breadcrumbs;
 
@@ -51,17 +53,17 @@ const adminBreadcrumbs = computed<BreadcrumbItem[]>(() => {
 <template>
     <header
         class="flex h-16 shrink-0 items-center gap-2 border-b border-sidebar-border/70 px-6 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12 md:px-4"
-        :class="{ 'admin-header': isAdmin }"
+        :class="{ 'admin-header': isLyra }"
     >
         <div
             :class="
-                isAdmin
+                isLyra
                     ? 'flex min-w-0 flex-1 items-center gap-3'
                     : 'flex items-center gap-2'
             "
         >
             <Button
-                v-if="isAdmin"
+                v-if="isLyra"
                 variant="ghost"
                 size="icon-sm"
                 type="button"
@@ -115,8 +117,8 @@ const adminBreadcrumbs = computed<BreadcrumbItem[]>(() => {
         </div>
 
         <div class="ms-auto flex items-center gap-1">
-            <AppearanceToggle :admin-pilot="isAdmin" />
-            <LocaleSwitcher :admin-pilot="isAdmin" />
+            <AppearanceToggle :admin-pilot="isLyra" />
+            <LocaleSwitcher :admin-pilot="isLyra" />
         </div>
     </header>
 </template>

@@ -67,6 +67,63 @@ test('readiness blocks a blank draft and official submission cannot invent recor
     expect($this->draft->fresh()->academic_status)->toBe('DRAFT');
 });
 
+test('wizard exposes edition keyword policy and preserves serialized chips as structured values', function () {
+    $this->actingAs($this->actor)->get(route('submissions.details', $this->draft))->assertOk()
+        ->assertInertia(fn ($page) => $page->where('policy.minKeywords', 3)->where('policy.maxKeywords', 5));
+    $this->put(route('submissions.details.update', $this->draft), [
+        'title' => 'Academic keywords', 'abstract' => 'An academic abstract.', 'track_id' => null,
+        'keywords_text' => "artificial intelligence\noutcome-based education\nhigher education",
+    ])->assertSessionHasNoErrors();
+    expect($this->draft->keywords()->orderBy('sequence')->pluck('value')->all())
+        ->toBe(['artificial intelligence', 'outcome-based education', 'higher education']);
+});
+
+test('wizard exposes empty active Tracks and the actual Edition requirement', function (bool $required) {
+    $settings = $this->edition->settings_json;
+    $settings['abstract_submission']['track_required'] = $required;
+    $this->edition->update(['settings_json' => $settings]);
+    $this->edition->tracks()->create(['code' => 'INACTIVE', 'name_i18n' => ['en' => 'Inactive'], 'active' => false]);
+
+    $this->actingAs($this->actor)->get(route('submissions.details', $this->draft))->assertOk()
+        ->assertInertia(fn ($page) => $page
+            ->has('tracks', 0)
+            ->where('policy.trackRequired', $required)
+            ->where('readiness.findings', function ($findings) use ($required) {
+                $codes = collect($findings)->pluck('code');
+
+                return $codes->contains('TRACK_REQUIRED') === $required
+                    && $codes->contains('EDITION_TRACKS_UNAVAILABLE') === $required;
+            }));
+})->with([false, true]);
+
+test('wizard lists only real active Tracks of its own Edition', function () {
+    $track = $this->edition->tracks()->create(['code' => 'ACTIVE', 'name_i18n' => ['en' => 'Active'], 'active' => true]);
+    $this->edition->tracks()->create(['code' => 'INACTIVE', 'name_i18n' => ['en' => 'Inactive'], 'active' => false]);
+
+    $this->actingAs($this->actor)->get(route('submissions.details', $this->draft))->assertOk()
+        ->assertInertia(fn ($page) => $page->has('tracks', 1)->where('tracks.0.id', $track->id));
+});
+
+test('bulk reference replacement retains persisted IDs metadata and ordering', function () {
+    $this->actingAs($this->actor)->put(route('submissions.references.update', $this->draft), [
+        'references' => [
+            ['raw_citation' => 'First citation', 'doi' => '10.1234/first', 'url' => 'https://example.com/first'],
+            ['raw_citation' => 'Second citation', 'doi' => null, 'url' => null],
+        ],
+    ])->assertSessionHasNoErrors();
+    $before = $this->draft->references()->orderBy('sequence')->get();
+    $this->put(route('submissions.references.update', $this->draft), [
+        'references' => [
+            ['id' => $before[1]->id, 'raw_citation' => 'Second citation', 'doi' => null, 'url' => null],
+            ['id' => $before[0]->id, 'raw_citation' => 'First citation', 'doi' => '10.1234/first', 'url' => 'https://example.com/first'],
+        ],
+    ])->assertSessionHasNoErrors();
+    $after = $this->draft->references()->orderBy('sequence')->get();
+    expect($after->pluck('id')->all())->toBe([$before[1]->id, $before[0]->id])
+        ->and($after[1]->doi)->toBe('10.1234/first')
+        ->and($after[1]->url)->toBe('https://example.com/first');
+});
+
 test('corresponding author can save metadata and submit a PAID-registration abstract without paying first', function () {
     $this->actingAs($this->actor)->put(route('submissions.details.update', $this->draft), [
         'track_id' => null, 'title' => 'The Impact of Community Assets',

@@ -1,17 +1,21 @@
 /*
- * Admin pilot only: a33J5lFw (Reka / Lyra / Neutral / Emerald).
+ * Shared authenticated Lyra: a33J5lFw (Reka / Lyra / Neutral / Emerald).
+ * Frozen admin tokens are reused by the participant/author workspace.
  * Shape and density: upstream apps/v4/registry/styles/style-lyra.css.
  * Palette: upstream apps/v4/registry/themes.ts, Neutral + Emerald.
  * Fonts: Bunny's JetBrains Mono, Geist Mono and Noto Sans Arabic, 400–600,
  * self-hosted by the existing Laravel Vite fonts integration.
  *
  * Reka portals escape SidebarProvider. Scope their own surfaces to the live
- * admin marker, never body/:root tokens. This also covers nested portals and
+ * workspace marker, never body/:root tokens. This also covers nested portals and
  * the existing delete dialog's workspace-shell without changing its behavior.
  * Removing the marker on Inertia navigation restores non-admin styling.
  */
 .workspace-shell.admin-workspace.admin-lyra,
-body:has([data-admin-lyra])
+.workspace-shell.participant-workspace.participant-lyra,
+:where(body:has([data-participant-lyra]))
+    [data-sidebar='sidebar'][data-mobile='true'][data-slot='sidebar'],
+body:has(:is([data-admin-lyra], [data-participant-lyra]))
     :is(
         [data-slot='dialog-content'],
         [data-slot='alert-dialog-content'],
@@ -266,7 +270,8 @@ body:has([data-admin-lyra])
     }
 }
 
-.admin-lyra {
+.admin-lyra,
+.participant-lyra {
     background: var(--background);
 
     & [data-slot='sidebar-inset'] {
@@ -345,9 +350,55 @@ body:has([data-admin-lyra])
 
 @media (pointer: coarse) {
     .admin-lyra [data-slot='button'],
-    body:has([data-admin-lyra])
+    .participant-lyra [data-slot='button'],
+    body:has(:is([data-admin-lyra], [data-participant-lyra]))
         [data-slot='dialog-content']
         [data-slot='button'] {
         min-height: 2.25rem;
+    }
+}
+
+/* Author pages share the frozen tokens above; these rules never match admin. */
+.participant-lyra {
+    & .font-mono {
+        font-family: var(--font-sans);
+    }
+
+    & .participant-page {
+        padding: 1.5rem 1rem;
+    }
+
+    & [data-slot='card'] {
+        min-width: 0;
+    }
+
+    & [data-slot='select-value'] {
+        min-width: 0;
+        text-align: start;
+    }
+}
+
+body:has([data-participant-lyra]) [data-slot='select-content'] {
+    max-width: calc(100vw - 2rem);
+
+    /* The shared popper viewport defaults to the trigger's one-line height.
+       Author registration labels need their full height, with scrolling. */
+    & [data-reka-select-viewport] {
+        height: auto;
+        max-height: min(
+            18rem,
+            calc(var(--reka-select-content-available-height, 24rem) - 3rem)
+        );
+    }
+
+    & [data-slot='select-item'] {
+        padding-inline: 0.5rem 2rem;
+        white-space: normal;
+        overflow-wrap: anywhere;
+    }
+
+    & [data-slot='select-item'] > span:first-child {
+        inset-inline-end: 0.5rem;
+        inset-inline-start: auto;
     }
 }

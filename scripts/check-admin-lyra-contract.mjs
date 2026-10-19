@@ -12,7 +12,11 @@ function collect(dir) {
     }
 }
 collect(viewRoot);
+collect(join(root, 'resources/js/pages/submissions'));
+collect(join(root, 'resources/js/components/submissions'));
 for (const path of [
+    'resources/js/pages/Dashboard.vue',
+    'resources/js/pages/registration/Show.vue',
     'resources/js/components/AdminNavigation.vue',
     'resources/js/components/DataTablePagination.vue',
     'resources/js/components/DeleteConferenceRecordDialog.vue',
@@ -36,7 +40,10 @@ for (const file of files) {
             results.push(`${name}:${line} ${rule}: ${match[0]}`);
         }
     }
-    if (name.startsWith('resources/js/pages/admin/')) {
+    if (
+        name.startsWith('resources/js/pages/admin/') ||
+        name.startsWith('resources/js/pages/submissions/')
+    ) {
         for (const match of source.matchAll(/<(?:select|textarea)(?=[\s>])/g)) {
             const line = source.slice(0, match.index).split('\n').length;
             results.push(

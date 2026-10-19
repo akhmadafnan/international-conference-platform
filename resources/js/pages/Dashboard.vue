@@ -1,8 +1,15 @@
 <script setup lang="ts">
 import { Head, Link } from '@inertiajs/vue3';
-import { ArrowRight, CheckCircle2, Clock3, Ticket } from '@lucide/vue';
+import {
+    PhArrowRight,
+    PhCheckCircle,
+    PhClock,
+    PhTicket,
+} from '@phosphor-icons/vue';
 import { useI18n } from 'vue-i18n';
 import { dashboard } from '@/routes';
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
 
 type RegistrationSummary = {
     id: string;
@@ -14,6 +21,7 @@ type RegistrationSummary = {
     currencyCode: string;
     complimentary: boolean;
     nextAction: string;
+    nextActionUrl: string | null;
     registrationUrl: string;
     eventPass: {
         showUrl: string;
@@ -26,7 +34,11 @@ defineProps<{
     };
 }>();
 
-const { t } = useI18n();
+const { t, te } = useI18n();
+const actionLabel = (key: string) =>
+    te(`wizardUx.actions.${key}`)
+        ? t(`wizardUx.actions.${key}`)
+        : t(`phase02.nextAction.${key}`);
 
 defineOptions({
     layout: {
@@ -43,7 +55,7 @@ defineOptions({
 <template>
     <Head :title="t('navigation.dashboard')" />
 
-    <div class="flex w-full flex-col gap-6 px-4 py-6 md:ps-14 md:pe-8">
+    <div class="participant-page flex w-full flex-col gap-6">
         <header>
             <p class="text-sm font-medium text-muted-foreground">
                 {{ t('phase02.dashboard.eyebrow') }}
@@ -56,9 +68,9 @@ defineOptions({
             </p>
         </header>
 
-        <section
+        <Card
             v-if="phase02.registration"
-            class="rounded-xl border bg-card p-5 shadow-sm"
+            class="p-4"
             aria-labelledby="next-action-heading"
         >
             <p
@@ -67,37 +79,41 @@ defineOptions({
                 {{ t('phase02.nextAction.label') }}
             </p>
             <h2 id="next-action-heading" class="mt-2 text-xl font-semibold">
-                {{ t(`phase02.nextAction.${phase02.registration.nextAction}`) }}
+                {{ actionLabel(phase02.registration.nextAction) }}
             </h2>
 
             <div class="mt-5 flex flex-wrap gap-3">
-                <Link
-                    :href="phase02.registration.registrationUrl"
-                    class="inline-flex min-h-10 items-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground"
-                >
-                    {{ t('phase02.dashboard.continue') }}
-                    <ArrowRight class="size-4 rtl:rotate-180" />
-                </Link>
+                <Button v-if="phase02.registration.nextActionUrl" as-child>
+                    <Link :href="phase02.registration.nextActionUrl!">
+                        {{ actionLabel(phase02.registration.nextAction) }}
+                        <PhArrowRight
+                            class="size-4 rtl:rotate-180"
+                            aria-hidden="true"
+                        />
+                    </Link>
+                </Button>
 
-                <Link
+                <Button
                     v-if="phase02.registration.eventPass"
-                    :href="phase02.registration.eventPass.showUrl"
-                    class="inline-flex min-h-10 items-center gap-2 rounded-md border px-4 py-2 text-sm font-semibold"
+                    as-child
+                    variant="outline"
                 >
-                    <Ticket class="size-4" />
-                    {{ t('phase02.eventPass.open') }}
-                </Link>
+                    <Link :href="phase02.registration.eventPass.showUrl">
+                        <PhTicket class="size-4" aria-hidden="true" />
+                        {{ t('phase02.eventPass.open') }}
+                    </Link>
+                </Button>
             </div>
-        </section>
+        </Card>
 
         <section v-if="phase02.registration" class="grid gap-4 sm:grid-cols-2">
-            <article class="rounded-xl border bg-card p-5 shadow-sm">
+            <Card class="p-4">
                 <div class="flex items-center gap-2">
-                    <CheckCircle2
+                    <PhCheckCircle
                         v-if="phase02.registration.status === 'CONFIRMED'"
                         class="size-5"
                     />
-                    <Clock3 v-else class="size-5" />
+                    <PhClock v-else class="size-5" aria-hidden="true" />
                     <h2 class="font-semibold">
                         {{ t('phase02.dashboard.registration') }}
                     </h2>
@@ -118,11 +134,11 @@ defineOptions({
                         )
                     }}
                 </p>
-            </article>
+            </Card>
 
-            <article class="rounded-xl border bg-card p-5 shadow-sm">
+            <Card class="p-4">
                 <div class="flex items-center gap-2">
-                    <Ticket class="size-5" />
+                    <PhTicket class="size-5" aria-hidden="true" />
                     <h2 class="font-semibold">
                         {{ t('phase02.eventPass.title') }}
                     </h2>
@@ -134,19 +150,16 @@ defineOptions({
                             : t('phase02.dashboard.eventPassPending')
                     }}
                 </p>
-            </article>
+            </Card>
         </section>
 
-        <section
-            v-else
-            class="rounded-xl border border-dashed bg-card p-6 text-center"
-        >
+        <Card v-else class="border-dashed p-4 text-center">
             <h2 class="text-lg font-semibold">
                 {{ t('phase02.dashboard.noRegistration') }}
             </h2>
             <p class="mx-auto mt-2 max-w-xl text-sm text-muted-foreground">
                 {{ t('phase02.dashboard.noRegistrationHelp') }}
             </p>
-        </section>
+        </Card>
     </div>
 </template>

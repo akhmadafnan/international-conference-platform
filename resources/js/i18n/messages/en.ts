@@ -1,4 +1,7 @@
+import { wizardUx } from '../wizardUx';
+
 export default {
+    wizardUx: wizardUx.en,
     submissionWizard: {
         rorSearch: 'Search a university or research organization',
         rorSelected: 'Organization selected (ROR/saved identity)',

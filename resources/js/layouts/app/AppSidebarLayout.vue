@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { usePage } from '@inertiajs/vue3';
-import { computed } from 'vue';
 import AppContent from '@/components/AppContent.vue';
 import AppShell from '@/components/AppShell.vue';
 import AppSidebar from '@/components/AppSidebar.vue';
 import AppSidebarHeader from '@/components/AppSidebarHeader.vue';
 import { Toaster } from '@/components/ui/sonner';
 import { useAppearance } from '@/composables/useAppearance';
+import { useWorkspaceLyra } from '@/composables/useWorkspaceLyra';
 import type { BreadcrumbItem } from '@/types';
 
 type Props = {
@@ -18,7 +18,7 @@ withDefaults(defineProps<Props>(), {
 });
 
 const page = usePage();
-const isAdmin = computed(() => page.component.startsWith('admin/'));
+const { isLyra } = useWorkspaceLyra();
 const { resolvedAppearance } = useAppearance();
 </script>
 
@@ -30,8 +30,8 @@ const { resolvedAppearance } = useAppearance();
             <slot />
         </AppContent>
         <Toaster
-            :theme="isAdmin ? resolvedAppearance : undefined"
-            :dir="isAdmin ? page.props.localization.direction : undefined"
+            :theme="isLyra ? resolvedAppearance : undefined"
+            :dir="isLyra ? page.props.localization.direction : undefined"
         />
     </AppShell>
 </template>

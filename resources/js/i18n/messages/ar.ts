@@ -1,4 +1,7 @@
+import { wizardUx } from '../wizardUx';
+
 export default {
+    wizardUx: wizardUx.ar,
     submissionWizard: {
         rorSearch: 'ابحث عن جامعة أو مؤسسة بحثية',
         rorSelected: 'تم اختيار المؤسسة',

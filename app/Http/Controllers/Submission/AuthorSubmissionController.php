@@ -15,6 +15,7 @@ use App\Models\Registration;
 use App\Models\Submission;
 use App\Models\SubmissionContributor;
 use App\Models\User;
+use App\Support\Submission\SubmissionReadinessPolicy;
 use DomainException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -112,7 +113,8 @@ final class AuthorSubmissionController extends Controller
     public function details(Request $request, Submission $submission, EvaluateDraftSubmissionReadinessAction $readiness): Response
     {
         $submission = $this->owned($request, $submission);
-        $submission->load(['edition', 'translations', 'keywords', 'contributors.affiliations', 'references', 'files.storedFile']);
+        $submission->load(['edition', 'translations', 'keywords', 'contributors.affiliations.institution', 'references', 'files.storedFile']);
+        $policy = SubmissionReadinessPolicy::fromEditionSettings($submission->edition->settings_json);
         $locale = (string) $submission->getRawOriginal('primary_locale');
 
         $translation = $submission->translations->first(
@@ -133,6 +135,12 @@ final class AuthorSubmissionController extends Controller
             ])->all();
 
         return Inertia::render('submissions/Details', [
+            'policy' => $policy === null ? null : [
+                'minKeywords' => $policy->minKeywords,
+                'maxKeywords' => $policy->maxKeywords,
+                'trackRequired' => $policy->trackRequired,
+                'abstractFileRequired' => $policy->abstractFileRequired,
+            ],
             'submission' => [
                 'id' => $submission->id,
                 'paperCode' => $submission->paper_code,
@@ -162,6 +170,7 @@ final class AuthorSubmissionController extends Controller
                     'subdivision' => $aff->subdivision_text,
                     'city' => $aff->city_text,
                     'country_code' => $aff->country_code,
+                    'ror_uri' => $aff->institution?->ror_uri,
                 ])->all(),
             ])->all(),
             'references' => $submission->references->map(fn ($item): array => [

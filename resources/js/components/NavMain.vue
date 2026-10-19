@@ -16,7 +16,7 @@ defineProps<{
 }>();
 
 const { t } = useI18n();
-const { isCurrentOrParentUrl } = useCurrentUrl();
+const { isCurrentOrParentUrl, isCurrentUrl } = useCurrentUrl();
 </script>
 
 <template>
@@ -29,10 +29,25 @@ const { isCurrentOrParentUrl } = useCurrentUrl();
             <SidebarMenuItem v-for="item in items" :key="item.title">
                 <SidebarMenuButton
                     as-child
-                    :is-active="isCurrentOrParentUrl(item.href)"
+                    :is-active="
+                        item.href === '/dashboard'
+                            ? isCurrentUrl(item.href)
+                            : isCurrentOrParentUrl(item.href)
+                    "
                     :tooltip="item.title"
                 >
-                    <Link :href="item.href">
+                    <Link
+                        :href="item.href"
+                        :aria-current="
+                            (
+                                item.href === '/dashboard'
+                                    ? isCurrentUrl(item.href)
+                                    : isCurrentOrParentUrl(item.href)
+                            )
+                                ? 'page'
+                                : undefined
+                        "
+                    >
                         <component :is="item.icon" />
                         <span>{{ item.title }}</span>
                     </Link>

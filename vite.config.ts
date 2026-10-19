@@ -21,6 +21,15 @@ export default defineConfig({
                 bunny('Sora', {
                     weights: [400, 500, 600],
                 }),
+                bunny('JetBrains Mono', {
+                    weights: [400, 500, 600],
+                }),
+                bunny('Geist Mono', {
+                    weights: [400, 500, 600],
+                }),
+                bunny('Noto Sans Arabic', {
+                    weights: [400, 500, 600],
+                }),
             ],
         }),
         inertia(),

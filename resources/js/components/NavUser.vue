@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { usePage } from '@inertiajs/vue3';
 import { ChevronsUpDown } from '@lucide/vue';
+import { PhCaretUpDown } from '@phosphor-icons/vue';
 import { computed } from 'vue';
 import {
     DropdownMenu,
@@ -18,6 +19,7 @@ import UserMenuContent from '@/components/UserMenuContent.vue';
 
 const page = usePage();
 const user = computed(() => page.props.auth.user);
+const isAdmin = computed(() => page.component.startsWith('admin/'));
 const { isMobile, state } = useSidebar();
 </script>
 
@@ -32,7 +34,11 @@ const { isMobile, state } = useSidebar();
                         data-test="sidebar-menu-button"
                     >
                         <UserInfo :user="user" />
-                        <ChevronsUpDown class="ml-auto size-4" />
+                        <component
+                            :is="isAdmin ? PhCaretUpDown : ChevronsUpDown"
+                            class="ms-auto size-4 shrink-0"
+                            aria-hidden="true"
+                        />
                     </SidebarMenuButton>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent
@@ -41,13 +47,16 @@ const { isMobile, state } = useSidebar();
                         isMobile
                             ? 'bottom'
                             : state === 'collapsed'
-                              ? 'left'
+                              ? isAdmin &&
+                                page.props.localization.direction !== 'rtl'
+                                  ? 'right'
+                                  : 'left'
                               : 'bottom'
                     "
                     align="end"
                     :side-offset="4"
                 >
-                    <UserMenuContent :user="user" />
+                    <UserMenuContent :user="user" :admin-pilot="isAdmin" />
                 </DropdownMenuContent>
             </DropdownMenu>
         </SidebarMenuItem>

@@ -10,6 +10,12 @@ export default {
         ellipsis: 'المزيد من الصفحات',
     },
     admin: {
+        shell: {
+            closeSidebar: 'إغلاق الشريط الجانبي',
+            workspace: 'الإدارة',
+            toggleSidebar: 'تبديل الشريط الجانبي',
+            breadcrumb: 'مسار التنقل',
+        },
         deletion: {
             actions: 'الإجراءات',
             delete: 'حذف',

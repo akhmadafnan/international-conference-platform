@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { router, usePage } from '@inertiajs/vue3';
 import { Check, Languages } from '@lucide/vue';
+import { PhCheck, PhTranslate } from '@phosphor-icons/vue';
 import { computed, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { Button } from '@/components/ui/button';
@@ -13,6 +14,8 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { applyClientLocale } from '@/i18n';
 import type { AppLocale } from '@/types';
+
+defineProps<{ adminPilot?: boolean }>();
 
 const page = usePage();
 const { t } = useI18n();
@@ -60,7 +63,11 @@ function selectLocale(locale: AppLocale): void {
                 :disabled="processing"
                 :aria-label="t('locale.label')"
             >
-                <Languages class="size-4" />
+                <component
+                    :is="adminPilot ? PhTranslate : Languages"
+                    class="size-4"
+                    aria-hidden="true"
+                />
                 <span class="text-xs font-semibold uppercase">
                     {{ currentLocale }}
                 </span>
@@ -81,7 +88,9 @@ function selectLocale(locale: AppLocale): void {
                 class="cursor-pointer"
                 @click="selectLocale(locale.code)"
             >
-                <Check
+                <component
+                    :is="adminPilot ? PhCheck : Check"
+                    aria-hidden="true"
                     class="size-4"
                     :class="
                         locale.code === currentLocale

@@ -10,6 +10,12 @@ export default {
         ellipsis: 'More pages',
     },
     admin: {
+        shell: {
+            closeSidebar: 'Close sidebar',
+            workspace: 'Administration',
+            toggleSidebar: 'Toggle sidebar',
+            breadcrumb: 'Breadcrumb',
+        },
         deletion: {
             actions: 'Actions',
             delete: 'Delete',

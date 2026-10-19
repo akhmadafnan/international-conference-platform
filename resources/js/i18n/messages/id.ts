@@ -10,6 +10,12 @@ export default {
         ellipsis: 'Halaman lainnya',
     },
     admin: {
+        shell: {
+            closeSidebar: 'Tutup sidebar',
+            workspace: 'Administrasi',
+            toggleSidebar: 'Buka/tutup sidebar',
+            breadcrumb: 'Jejak navigasi',
+        },
         deletion: {
             actions: 'Aksi',
             delete: 'Hapus',

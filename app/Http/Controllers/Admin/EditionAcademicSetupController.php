@@ -4,12 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use App\Enums\WorkflowWindowCode;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\StoreAbstractSubmissionPolicyRequest;
 use App\Http\Requests\Admin\StoreEditionTrackRequest;
 use App\Http\Requests\Admin\StoreEditionWindowRequest;
 use App\Models\ConferenceEdition;
 use App\Models\EditionWorkflowWindow;
 use App\Models\Track;
 use App\Models\User;
+use App\Support\Submission\SubmissionReadinessPolicy;
 use Carbon\CarbonImmutable;
 use Illuminate\Database\UniqueConstraintViolationException;
 use Illuminate\Http\RedirectResponse;
@@ -46,6 +48,9 @@ final class EditionAcademicSetupController extends Controller
                     'closes_at' => $window->closes_at?->setTimezone($edition->timezone)->format('Y-m-d\TH:i'),
                     'active' => $window->active,
                 ])->values()->all(),
+            'abstractPolicy' => SubmissionReadinessPolicy::fromEditionSettings($edition->settings_json) === null
+                ? null
+                : $edition->settings_json['abstract_submission'],
             'allowedCodes' => array_map(
                 fn (WorkflowWindowCode $code): string => $code->value,
                 WorkflowWindowCode::cases(),
@@ -109,6 +114,42 @@ final class EditionAcademicSetupController extends Controller
                     'code' => $window->window_code,
                     'active' => $window->active,
                 ])->log('Edition workflow window configured');
+        });
+
+        return to_route('admin.editions.academic', $edition)->with('academic_setup_saved', true);
+    }
+
+    public function storeAbstractPolicy(
+        StoreAbstractSubmissionPolicyRequest $request,
+        ConferenceEdition $edition,
+    ): RedirectResponse {
+        $actor = $this->superAdmin($request);
+        $policy = $request->validated();
+
+        DB::transaction(function () use ($edition, $actor, $policy): void {
+            $authoritative = ConferenceEdition::query()
+                ->whereKey($edition->id)->lockForUpdate()->firstOrFail();
+            $settings = $authoritative->settings_json;
+            if (! is_array($settings)) {
+                $settings = [];
+            }
+            $settings['abstract_submission'] = [
+                'min_keywords' => (int) $policy['min_keywords'],
+                'max_keywords' => (int) $policy['max_keywords'],
+                'track_required' => (bool) $policy['track_required'],
+                'abstract_file_required' => (bool) $policy['abstract_file_required'],
+            ];
+            $authoritative->update(['settings_json' => $settings]);
+            activity('academic')->causedBy($actor)->performedOn($authoritative)
+                ->event('edition_abstract_policy_configured')
+                ->withProperties([
+                    'edition_id' => $authoritative->id,
+                    'min_keywords' => $policy['min_keywords'],
+                    'max_keywords' => $policy['max_keywords'],
+                    'track_required' => (bool) $policy['track_required'],
+                    'abstract_file_required' => (bool) $policy['abstract_file_required'],
+                ])
+                ->log('Edition abstract readiness policy configured');
         });
 
         return to_route('admin.editions.academic', $edition)->with('academic_setup_saved', true);

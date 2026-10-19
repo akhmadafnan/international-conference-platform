@@ -33,6 +33,12 @@ const props = defineProps<{
     }[];
     windows: WindowRow[];
     allowedCodes: string[];
+    abstractPolicy: {
+        min_keywords: number;
+        max_keywords: number;
+        track_required: boolean;
+        abstract_file_required: boolean;
+    } | null;
     saved: boolean;
 }>();
 const { t, locale } = useI18n();
@@ -57,6 +63,17 @@ const trackSubmit = () =>
 const windowSubmit = () =>
     windowForm.post(url.value + '/windows', { preserveScroll: true });
 const windowLabel = (code: string) => t('admin.academic.windows.' + code);
+const abstractPolicyForm = useForm({
+    min_keywords: props.abstractPolicy?.min_keywords ?? 3,
+    max_keywords: props.abstractPolicy?.max_keywords ?? 5,
+    track_required: props.abstractPolicy?.track_required ?? false,
+    abstract_file_required:
+        props.abstractPolicy?.abstract_file_required ?? false,
+});
+const saveAbstractPolicy = () =>
+    abstractPolicyForm.post(url.value + '/abstract-policy', {
+        preserveScroll: true,
+    });
 </script>
 
 <template>
@@ -302,5 +319,82 @@ const windowLabel = (code: string) => t('admin.academic.windows.' + code);
                 </CardContent>
             </Card>
         </div>
+        <Card class="max-w-3xl">
+            <CardHeader>
+                <CardTitle>{{ t('admin.academic.policyTitle') }}</CardTitle>
+                <p class="text-sm text-muted-foreground">
+                    {{ t('admin.academic.policyHelp') }}
+                </p>
+            </CardHeader>
+            <CardContent>
+                <p
+                    v-if="abstractPolicy === null"
+                    role="status"
+                    class="mb-4 text-sm text-destructive"
+                >
+                    {{ t('admin.academic.policyMissing') }}
+                </p>
+                <form class="grid gap-4" @submit.prevent="saveAbstractPolicy">
+                    <div class="grid gap-4 sm:grid-cols-2">
+                        <div class="grid gap-1.5">
+                            <Label for="policy-min">{{
+                                t('admin.academic.minKeywords')
+                            }}</Label>
+                            <Input
+                                id="policy-min"
+                                v-model.number="abstractPolicyForm.min_keywords"
+                                type="number"
+                                min="1"
+                                max="20"
+                                required
+                            />
+                        </div>
+                        <div class="grid gap-1.5">
+                            <Label for="policy-max">{{
+                                t('admin.academic.maxKeywords')
+                            }}</Label>
+                            <Input
+                                id="policy-max"
+                                v-model.number="abstractPolicyForm.max_keywords"
+                                type="number"
+                                min="1"
+                                max="20"
+                                required
+                            />
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <Checkbox
+                            id="policy-track"
+                            v-model="abstractPolicyForm.track_required"
+                        />
+                        <Label for="policy-track">{{
+                            t('admin.academic.trackRequired')
+                        }}</Label>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <Checkbox
+                            id="policy-file"
+                            v-model="abstractPolicyForm.abstract_file_required"
+                        />
+                        <Label for="policy-file">{{
+                            t('admin.academic.fileRequired')
+                        }}</Label>
+                    </div>
+                    <p
+                        v-if="abstractPolicyForm.hasErrors"
+                        role="alert"
+                        class="text-sm text-destructive"
+                    >
+                        {{ t('admin.academic.validationError') }}
+                    </p>
+                    <Button
+                        type="submit"
+                        :disabled="abstractPolicyForm.processing"
+                        >{{ t('admin.academic.savePolicy') }}</Button
+                    >
+                </form>
+            </CardContent>
+        </Card>
     </div>
 </template>

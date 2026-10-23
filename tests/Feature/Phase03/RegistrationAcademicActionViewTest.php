@@ -67,7 +67,7 @@ test('academic next action reflects draft submitted and accepted states without 
         ->and($view['academicStatus'])->toBe($status)
         ->and($view['payment'])->toBeNull();
     if (in_array($status, ['DRAFT', 'SUBMITTED'], true)) {
-        expect($view['nextActionUrl'])->toBe(route('submissions.details', $submission))
+        expect($view['nextActionUrl'])->toBe(route($status === 'DRAFT' ? 'submissions.details' : 'academic.author', $submission))
             ->and($view['billingState'])->toBe('AFTER_ACCEPT');
     } else {
         expect($view['nextActionUrl'])->toBeNull()->and($view['billingState'])->toBe('AWAITING_PAYMENT_SETUP');

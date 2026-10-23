@@ -208,7 +208,9 @@ function prepareSubmit() {
 
 <template>
     <Head :title="c.details" />
-    <div class="participant-page flex w-full flex-col gap-6">
+    <div
+        class="flex w-full min-w-0 flex-col gap-6 p-4 [overflow-wrap:anywhere] md:p-8"
+    >
         <header class="space-y-1">
             <Link
                 :href="routes.index"
@@ -228,18 +230,18 @@ function prepareSubmit() {
             <p class="font-mono text-sm text-muted-foreground" dir="ltr">
                 {{ submission.paperCode }} · {{ submission.edition }}
             </p>
-            <p class="max-w-3xl text-sm text-muted-foreground">
+            <p class="text-sm text-muted-foreground">
                 {{ t('wizardUx.intro') }}
             </p>
         </header>
 
-        <nav :aria-label="t('wizardUx.steps')" class="w-full max-w-5xl">
-            <ol class="grid auto-rows-fr gap-2 md:grid-cols-5">
-                <li v-for="(key, index) in stepKeys" :key="key">
+        <nav :aria-label="t('wizardUx.steps')" class="w-full min-w-0">
+            <ol class="grid min-w-0 auto-rows-fr gap-2 md:grid-cols-5">
+                <li v-for="(key, index) in stepKeys" :key="key" class="min-w-0">
                     <Button
                         type="button"
                         variant="outline"
-                        class="h-full! min-h-14 w-full justify-start text-start whitespace-normal"
+                        class="h-full! min-h-14 w-full max-w-full min-w-0 justify-start text-start whitespace-normal"
                         :class="
                             step === index + 1
                                 ? 'border-primary bg-primary/10 text-primary'
@@ -259,19 +261,24 @@ function prepareSubmit() {
         </p>
         <div
             v-if="!draft"
-            class="rounded-lg border bg-muted px-4 py-3 text-sm"
+            class="min-w-0 rounded-lg border bg-muted px-4 py-3 text-sm"
             role="status"
         >
             {{ c.locked }}
+            <Link
+                :href="`/dashboard/submissions/${submission.id}/academic`"
+                class="ms-2 underline"
+                >{{ t('academic.academicStatus') }}</Link
+            >
         </div>
-        <Card v-show="step === 1" class="w-full max-w-5xl"
+        <Card v-show="step === 1" class="w-full min-w-0"
             ><CardContent>
-                <form class="space-y-5" @submit.prevent="saveDraft">
+                <form class="min-w-0 space-y-5" @submit.prevent="saveDraft">
                     <fieldset
                         :disabled="!draft || saving || form.processing"
-                        class="space-y-5 disabled:opacity-80"
+                        class="grid min-w-0 gap-5 disabled:opacity-80 sm:grid-cols-2"
                     >
-                        <div class="space-y-1">
+                        <div class="min-w-0 space-y-1">
                             <label class="text-sm font-medium">{{
                                 c.primaryLocale
                             }}</label>
@@ -284,7 +291,7 @@ function prepareSubmit() {
                                 {{ c.primaryLocaleHelp }}
                             </p>
                         </div>
-                        <div class="space-y-2">
+                        <div class="min-w-0 space-y-2">
                             <label for="track" class="text-sm font-medium">{{
                                 c.track
                             }}</label>
@@ -338,7 +345,7 @@ function prepareSubmit() {
                                 {{ form.errors.track_id }}
                             </p>
                         </div>
-                        <div class="space-y-2">
+                        <div class="min-w-0 space-y-2">
                             <label for="title" class="text-sm font-medium">{{
                                 c.title
                             }}</label>
@@ -364,7 +371,7 @@ function prepareSubmit() {
                                 {{ form.errors.title }}
                             </p>
                         </div>
-                        <div class="space-y-2">
+                        <div class="min-w-0 space-y-2">
                             <label for="subtitle" class="text-sm font-medium">{{
                                 c.subtitle
                             }}</label>
@@ -389,7 +396,7 @@ function prepareSubmit() {
                                 {{ form.errors.subtitle }}
                             </p>
                         </div>
-                        <div class="space-y-2">
+                        <div class="min-w-0 space-y-2 sm:col-span-2">
                             <label for="abstract" class="text-sm font-medium">{{
                                 c.abstract
                             }}</label>
@@ -413,7 +420,7 @@ function prepareSubmit() {
                                 {{ form.errors.abstract }}
                             </p>
                         </div>
-                        <div class="space-y-2">
+                        <div class="min-w-0 space-y-2 sm:col-span-2">
                             <label for="keywords" class="text-sm font-medium">{{
                                 c.keywords
                             }}</label>
@@ -464,17 +471,19 @@ function prepareSubmit() {
             :routes="routes"
         />
         <footer
-            class="flex w-full max-w-5xl flex-wrap items-center justify-between gap-3 border-t border-border pt-4"
+            class="flex w-full flex-wrap items-center justify-between gap-3 border-t border-border pt-4"
         >
             <Button
+                class="h-auto min-h-10 max-w-full min-w-0 whitespace-normal"
                 type="button"
                 variant="outline"
                 :disabled="step === 1 || busy"
                 @click="navigate(step - 1)"
                 >{{ t('wizardUx.previous') }}</Button
             >
-            <div class="flex flex-wrap gap-2">
+            <div class="flex min-w-0 flex-wrap gap-2">
                 <Button
+                    class="h-auto min-h-10 max-w-full min-w-0 whitespace-normal"
                     v-if="draft"
                     type="button"
                     variant="outline"
@@ -485,6 +494,7 @@ function prepareSubmit() {
                     }}</Button
                 >
                 <Button
+                    class="h-auto min-h-10 max-w-full min-w-0 whitespace-normal"
                     v-if="step < 5"
                     type="button"
                     :disabled="busy"

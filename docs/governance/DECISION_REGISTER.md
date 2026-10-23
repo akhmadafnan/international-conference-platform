@@ -2,9 +2,11 @@
 
 **ID:** ICHES-DECISION-REGISTER  
 **Status:** ACTIVE — PRODUCT BLUEPRINT v1  
-**Updated:** 2026-10-10
+**Updated:** 2026-10-23
 
 This register records current Product Discovery and accelerated V1 decisions.
+
+> **ICHES 2027 amendment:** [Operational Rebaseline, 2026-10-23](ICHES_2027_OPERATIONAL_REBASELINE_2026_10_23.md) is authoritative for its stated Edition scope. PD-085–PD-096 are accepted product decisions, not implementation completion or automatic coding/merge authorization. Earlier IDs and rationale remain traceable; PD-017 mandatory screening is superseded for the 2027 ordinary flow, and PD-062 configurable reviewer count is replaced by exclusive one-active-reviewer responsibility per paper/stage for ICHES 2027.
 
 Statuses:
 - ACCEPTED — concept accepted by Product Owner;
@@ -29,7 +31,7 @@ Statuses:
 | PD-014 | Affiliation is ROR-first with manual fallback | ACCEPTED |
 | PD-015 | Contributors may exist without application accounts | ACCEPTED |
 | PD-016 | References are ordered canonical scholarly metadata with raw citation preserved | ACCEPTED |
-| PD-017 | Administrative screening precedes abstract review | ACCEPTED |
+| PD-017 | Administrative screening precedes abstract review | ACCEPTED historically; SUPERSEDED FOR THE 2027 OPERATIONAL MODEL by PD-089 |
 | PD-018 | Abstract review defaults to single-anonymous | ACCEPTED |
 | PD-019 | Reviewer recommendation is advisory; authorized Academic authority decides | ACCEPTED |
 | PD-020 | Presentation LoA is issued after abstract acceptance | ACCEPTED |
@@ -74,7 +76,7 @@ Statuses:
 | PD-059 | Rejected abstract creates no presenter payment obligation. The user may continue as participant-only and pay through the participant path when permitted | ACCEPTED |
 | PD-060 | Participation packages are fixed choices but edition-configurable | ASSUMED_V1 |
 | PD-061 | Fee model is Package + optional simple Participant Category | ASSUMED_V1 |
-| PD-062 | Abstract reviewer count defaults to 1 and remains configurable | ASSUMED_V1 |
+| PD-062 | Abstract reviewer count defaults to 1 and remains configurable | ASSUMED_V1 outside designated 2027 scope; superseded for ICHES 2027 by PD-090 |
 | PD-063 | Abstract review uses one normal revision cycle with authorized exception | ASSUMED_V1 |
 | PD-064 | Slides are optional/configurable and not a V1 blocker | ASSUMED_V1 |
 | PD-065 | Accelerated first V1 is offline-first; edition mode remains conceptually configurable | ASSUMED_V1 |
@@ -97,6 +99,22 @@ Statuses:
 | PD-082 | A normally PAID Registration may receive an explicit audited fee exemption/complimentary decision from an authorized actor | ACCEPTED |
 | PD-083 | Free/waived financial resolution is a business fact distinct from VERIFIED payment; configuration changes never silently rewrite resolved financial history | ACCEPTED |
 | PD-084 | Workflow-window enforcement uses Edition-scoped `edition_workflow_windows`: missing or inactive rows impose no restriction; null bounds are open-ended; active bounds are inclusive; active `opens_at > closes_at` is invalid and must fail explicitly. `REGISTRATION` gates Registration creation. `ACCEPTED_AUTHOR_PAYMENT` is reserved for the accepted-author/presenter path and is not used for participant-only payment | ACCEPTED |
+| PD-085 | Official Edition identity is The 6th International Conference on Humanity, Education, and Society (ICHES 2027); academic theme is Islamic Values in a Changing World: Education, Accountability, and Social Resilience for Inclusive Development; promotional theme is Islamic Values in a Changing World. Series/Edition remain separate and 2027 specifics are not universal hardcoded obligations | ACCEPTED |
+| PD-086 | Official 2027 timeline: abstracts 1–20 December 2026; acceptance announcement 22 December; Full Papers 23–28 December; Registration/Presenter Payment 24–28 December; event 5 January 2027; proceedings publication target 28 January 2027. Journal editorial timelines are independent; internal recommendations are not new official dates | ACCEPTED |
+| PD-087 | ICHES 2027 uses the eight T01–T08 Topics exactly as listed in the operational rebaseline; one primary Topic is required on abstract submission, Edition-configurable. Topic interest/competency is separate from authorization; no per-Topic Spatie Reviewer roles | ACCEPTED |
+| PD-088 | One abstract per submitting owner per Edition across all states. Owned DRAFT without academic evidence may be edited/deleted; official submissions cannot be freely edited/deleted or followed by a second submission. Corrections, Full Paper, revisions and later stages retain the same Submission ID and immutable version/history. Co-authorship is unaffected | ACCEPTED |
+| PD-089 | Technically valid SUBMITTED abstracts automatically enter the Topic Review Pool. Mandatory per-paper Administrative Screening PASS and reviewer-email assignment are replaced for the ordinary 2027 workflow. Technical/scope exceptions remain reasoned and auditable without a routine Admin gate; supersedes PD-017 for this scope | ACCEPTED |
+| PD-090 | Relevant reviewers declare COI and atomically Self-Claim an unclaimed abstract. Exactly one exclusive active reviewer per paper per academic stage; concurrent claims cannot create duplicate owners. Only authorized Academic Committee releases/reassigns abstracts with audit. Preserve single-anonymous, scoped private access, final report locks and advisory recommendations; supersedes PD-062 configurable count for ICHES 2027 | ACCEPTED |
+| PD-091 | Abstract reviews run progressively during the submission window; internal decisions may be prepared early. Author-facing official results and Presentation LoA follow the 22 December 2026 announcement/release policy; no premature exposure of unreleased decisions or LoA. Academic Decision Authority retains final acceptance | ACCEPTED |
+| PD-092 | SC approves Room/Topic/Session/Presenter/Paper/Reviewer/schedule mapping; authorized Academic/Event operators enter/import it with bulk preview-before-apply. My Rooms lists assigned papers in schedule order. Preserve abstract-reviewer continuity unless SC reassigns the Full Paper/presentation stage; partition multi-reviewer room papers. Audit actor/time/old-new reviewer/paper-stage/SC reason-source; preserve prior evidence. No special SC role solely for policy-making | ACCEPTED |
+| PD-093 | Accepted Author uploads private versioned Full Paper on the existing Submission ID during 23–28 December; presenter payment follows ACCEPT in its separate 24–28 December window. The later payment opening must not block Full Paper upload on 23 December. Academic, Finance and presentation entitlements remain separate | ACCEPTED |
+| PD-094 | Deep Full Paper review occurs after presentation, not as a prerequisite to the 5 January presentation. Attendance, PRESENTED/NO_SHOW, review and final decision remain distinct. Advisory outcomes: NO_REVISION_REQUIRED, MINOR_REVISION_REQUIRED, MAJOR_REVISION_REQUIRED, NOT_RECOMMENDED. No revision requires no extra upload; required revision is versioned and Academic/Publication Authority completes Final ACC/approved-manuscript validation | ACCEPTED |
+| PD-095 | Revision outcome and publication destination are separate. Reviewer may recommend a destination/candidate journal; SC / authorized Academic or Publication Authority controls PROCEEDINGS default or SELECTED_JOURNAL override. Final ACC/readiness precede handoff; LoA is not publication acceptance, Selected Journal is not Journal Accepted, READY_FOR_PRODUCTION is not PUBLISHED. Journal/OJS owns downstream acceptance, DOI and publication; prevent misleading claims and duplicate publication | ACCEPTED |
+| PD-096 | The ten proposed journal candidates and SINTA tiers in operational rebaseline section 12 are recorded as Product Owner-supplied, not independently verified. Identity/title/ISSN/accreditation validity/OJS URL/partnership confirmation/slots remain pending for every entry; no fabricated identifiers or confirmed acceptance agreements | ACCEPTED |
+
+### ICHES 2027 supersession rationale — accepted 2026-10-23
+
+PD-017 recorded the earlier routine screening sequence; PD-062 recorded a configurable reviewer-count default. The Product Owner replaces those ordinary 2027 gates with technically valid Topic Pool routing, COI-aware exclusive Self-Claim and stage-specific SC conference mapping. Administrative exceptions and authorized reassignment remain auditable. Earlier single-anonymous, human final authority, immutable evidence and payment-after-ACCEPT principles remain binding. These changes are Edition-scoped and preserve the historical rationale outside the superseded scope. See the [operational document](ICHES_2027_OPERATIONAL_REBASELINE_2026_10_23.md) and [bounded roadmap](../project-management/ICHES_2027_EXECUTION_ROADMAP.md).
 
 ## META-001 — Scholarly Metadata Decisions
 

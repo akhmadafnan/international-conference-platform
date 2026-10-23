@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Submission;
 
 use App\Actions\Submission\CreateDraftSubmissionAction;
+use App\Actions\Submission\DeleteDraftSubmissionAction;
 use App\Actions\Submission\EvaluateDraftSubmissionReadinessAction;
 use App\Actions\Submission\UpdateDraftSubmissionDetailsAction;
 use App\Enums\RegistrationStatus;
@@ -34,6 +35,7 @@ final class AuthorSubmissionController extends Controller
         $registrations = Registration::query()
             ->whereHas('membership', fn ($query) => $query->where('user_id', $user->id))
             ->with(['membership.edition', 'package'])
+            ->withCount('submissions')
             ->latest('created_at')
             ->get()
             ->filter(static fn (Registration $registration): bool => $registration->status !== RegistrationStatus::CANCELLED
@@ -47,6 +49,7 @@ final class AuthorSubmissionController extends Controller
                 'edition' => $registration->membership->edition->edition_code,
                 'year' => $registration->membership->edition->year,
                 'package' => $registration->package_name_snapshot,
+                'canCreateDraft' => $registration->submissions_count === 0,
             ])->values()->all();
 
         $submissions = Submission::query()
@@ -60,7 +63,8 @@ final class AuthorSubmissionController extends Controller
                 'edition' => $submission->edition->edition_code,
                 'title' => $submission->primaryTranslation?->title,
                 'status' => $submission->academic_status,
-                'detailsUrl' => route('submissions.details', $submission),
+                'detailsUrl' => route($submission->academic_status === 'DRAFT' ? 'submissions.details' : 'academic.author', $submission),
+                'destroyUrl' => $submission->academic_status === 'DRAFT' ? route('submissions.destroy', $submission) : null,
             ])->all();
 
         // Link only to real, existing edition registration routes; do not
@@ -103,11 +107,24 @@ final class AuthorSubmissionController extends Controller
 
         try {
             $submission = $create->handle($user, $edition, $registration, $data['primary_locale']);
-        } catch (DomainException) {
-            throw ValidationException::withMessages(['registration_id' => 'REGISTRATION_CONTEXT_INVALID']);
+        } catch (DomainException $exception) {
+            throw ValidationException::withMessages(['registration_id' => $exception->getMessage() === 'SUBMISSION_ALREADY_EXISTS'
+                ? 'SUBMISSION_ALREADY_EXISTS' : 'REGISTRATION_CONTEXT_INVALID']);
         }
 
         return to_route('submissions.details', $submission, 303);
+    }
+
+    public function destroy(Request $request, Submission $submission, DeleteDraftSubmissionAction $delete): RedirectResponse
+    {
+        $submission = $this->owned($request, $submission);
+        try {
+            $delete->handle($this->actor($request), $submission);
+        } catch (DomainException) {
+            throw ValidationException::withMessages(['delete' => 'DRAFT_DELETE_NOT_ALLOWED']);
+        }
+
+        return to_route('submissions.index', status: 303);
     }
 
     public function details(Request $request, Submission $submission, EvaluateDraftSubmissionReadinessAction $readiness): Response

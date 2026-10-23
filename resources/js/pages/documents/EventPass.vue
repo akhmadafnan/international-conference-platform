@@ -31,7 +31,9 @@ const { t } = useI18n();
 <template>
     <Head :title="t('phase02.eventPass.title')" />
 
-    <div class="mx-auto flex w-full max-w-3xl flex-col gap-5 p-4 md:p-6">
+    <div
+        class="flex w-full min-w-0 flex-col gap-5 p-4 [overflow-wrap:anywhere] md:p-8"
+    >
         <Link
             :href="routes.dashboard"
             class="inline-flex w-fit items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground"
@@ -41,10 +43,10 @@ const { t } = useI18n();
         </Link>
 
         <article
-            class="overflow-hidden rounded-2xl border bg-card shadow-sm"
+            class="min-w-0 overflow-hidden rounded-2xl border bg-card shadow-sm"
             aria-labelledby="event-pass-title"
         >
-            <div class="border-b bg-muted/30 p-5 md:p-6">
+            <div class="min-w-0 border-b bg-muted/30 p-5 md:p-6">
                 <p class="text-sm font-semibold text-muted-foreground">
                     {{ eventPass.snapshot.edition_code }}
                     <span v-if="eventPass.snapshot.edition_year">
@@ -59,8 +61,10 @@ const { t } = useI18n();
                 </h1>
             </div>
 
-            <div class="grid gap-6 p-5 md:grid-cols-[1fr_auto] md:p-6">
-                <div class="space-y-5">
+            <div
+                class="grid min-w-0 gap-6 p-5 md:grid-cols-[minmax(0,1fr)_auto] md:p-6"
+            >
+                <div class="min-w-0 space-y-5">
                     <div>
                         <p
                             class="text-xs tracking-wider text-muted-foreground uppercase"
@@ -98,18 +102,20 @@ const { t } = useI18n();
                     </div>
 
                     <div
-                        class="inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-sm font-semibold"
+                        class="inline-flex min-w-0 items-center gap-2 rounded-full border px-3 py-1.5 text-sm font-semibold"
                     >
                         <CheckCircle2 class="size-4" />
                         {{ t('phase02.eventPass.confirmed') }}
                     </div>
                 </div>
 
-                <div class="flex flex-col items-center justify-center gap-3">
+                <div
+                    class="flex min-w-0 flex-col items-center justify-center gap-3"
+                >
                     <img
                         :src="eventPass.qrUrl"
                         :alt="t('phase02.eventPass.qrAlt')"
-                        class="size-52 rounded-lg border bg-white p-2"
+                        class="size-52 max-w-full rounded-lg border bg-white object-contain p-2"
                         width="208"
                         height="208"
                     />

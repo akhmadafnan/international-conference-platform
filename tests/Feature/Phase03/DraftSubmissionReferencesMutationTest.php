@@ -348,7 +348,8 @@ test('a reference identifier from another submission is rejected atomically', fu
 
     $own = referencesMutationSeedReference($submission, ['raw_citation' => 'Own Citation']);
 
-    $otherSubmission = referencesMutationSubmission($edition, $registration, [
+    ['registration' => $otherRegistration] = referencesMutationRegistration($edition, $registration->package);
+    $otherSubmission = referencesMutationSubmission($edition, $otherRegistration, [
         'paper_code' => 'ICHES27-P-0002',
     ]);
 

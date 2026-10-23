@@ -414,7 +414,8 @@ test('a contributor identifier from another submission is rejected atomically', 
     $own = contributorsMutationSeedContributor($submission, ['display_name' => 'Own Author']);
     contributorsMutationSeedAffiliation($own);
 
-    $otherSubmission = contributorsMutationSubmission($edition, $registration, [
+    ['registration' => $otherRegistration] = contributorsMutationRegistration($edition, $registration->package);
+    $otherSubmission = contributorsMutationSubmission($edition, $otherRegistration, [
         'paper_code' => 'ICHES27-P-0002',
     ]);
 

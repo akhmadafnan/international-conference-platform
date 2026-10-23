@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
+/** @property array<string, mixed> $metadata_json */
 class SubmissionSnapshot extends Model
 {
     use HasUuids;

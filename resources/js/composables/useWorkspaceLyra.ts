@@ -8,6 +8,8 @@ export function useWorkspaceLyra() {
         () =>
             page.component === 'Dashboard' ||
             page.component === 'registration/Show' ||
+            page.component === 'workspace/RoleOverview' ||
+            page.component.startsWith('academic/') ||
             page.component.startsWith('submissions/'),
     );
     const isLyra = computed(() => isAdmin.value || isParticipant.value);

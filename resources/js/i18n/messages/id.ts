@@ -1,6 +1,8 @@
 import { wizardUx } from '../wizardUx';
+import { academic } from '../academic';
 
 export default {
+    academic: academic.id,
     wizardUx: wizardUx.id,
     submissionWizard: {
         rorSearch: 'Cari universitas atau institusi di ROR',

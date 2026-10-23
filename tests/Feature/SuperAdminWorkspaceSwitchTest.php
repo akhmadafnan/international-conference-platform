@@ -30,17 +30,17 @@ test('verified superadmin may choose participant perspective without changing id
     expect(Activity::query()->where('event', 'superadmin_workspace_view_changed')->count())->toBe(1);
 });
 
-test('superadmin can preview a nonimplemented reviewer workspace without fake review data', function () {
+test('superadmin can open the real reviewer workspace without impersonating assignments', function () {
     $this->withoutVite();
     $admin = User::factory()->superAdmin()->create();
     $this->actingAs($admin)->post(route('workspace.mode.switch'), [
         'mode' => 'reviewer',
-    ])->assertRedirect(route('workspace.overview'));
+    ])->assertRedirect(route('academic.reviews'));
 
-    $this->actingAs($admin)->get(route('workspace.overview'))->assertOk()
+    $this->actingAs($admin)->get(route('academic.reviews'))->assertOk()
         ->assertInertia(fn (Assert $page) => $page
-            ->component('workspace/RoleOverview')
-            ->where('selectedMode', 'reviewer')
+            ->component('academic/Reviews')
+            ->has('assignments', 0)
             ->where('auth.workspaceMode', 'reviewer'));
     $this->actingAs($admin)->post(route('workspace.mode.switch'), [
         'mode' => 'superadmin',

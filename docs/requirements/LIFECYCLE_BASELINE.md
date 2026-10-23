@@ -43,7 +43,7 @@ Visitor
 3. **Global profile.** Current identity/contact/current affiliation/preferred locale may be reused; ORCID remains optional.
 4. **Edition membership.** Joining an edition creates edition-specific membership and roles, not a duplicate account.
 5. **Flexible participation path.** Participant-only may later become Author while the edition still permits submission.
-6. **Multiple submissions are policy-driven.** Edition configuration determines limits.
+6. **V1 submission limit (Product Owner corrective, 2026-10-23).** Maximum one submission per registration owner per Edition, across DRAFT and all academic states. Only an owned DRAFT without academic evidence may be deleted; a new draft may then be created with a new Paper Code. Official revision uses controlled versioning. Co-authorship on another owner's submission is unaffected; a different Edition has an independent limit.
 7. **Draft is not official.** Starting a paper creates a DRAFT submission only.
 8. **Historical integrity.** Later profile changes must not retroactively rewrite accepted historical edition/submission metadata.
 9. **No payment yet.** Account creation, profile completion, edition membership, and draft creation do not by themselves trigger payment.

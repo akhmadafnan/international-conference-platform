@@ -22,6 +22,7 @@ declare module '@inertiajs/core' {
             auth: Auth;
             localization: Localization;
             sidebarOpen: boolean;
+            academicNavigation?: { committee: boolean; reviews: boolean };
             [key: string]: unknown;
         };
     }

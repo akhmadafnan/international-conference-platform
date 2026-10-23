@@ -22,10 +22,6 @@ final class LocalConferenceUatSeeder extends Seeder
             throw new RuntimeException('Explicit local/testing demo opt-in required.');
         }
 
-        if (trim((string) config('demo_roles.password')) === '') {
-            throw new RuntimeException('A strong external demo password must be provided.');
-        }
-
         DB::transaction(function (): void {
             $series = ConferenceSeries::query()->firstOrCreate(
                 ['code' => 'ICHES-UAT'],
@@ -52,7 +48,7 @@ final class LocalConferenceUatSeeder extends Seeder
                         'abstract_submission' => [
                             'min_keywords' => 3,
                             'max_keywords' => 5,
-                            'track_required' => false,
+                            'track_required' => true,
                             'abstract_file_required' => false,
                         ],
                     ],
@@ -60,6 +56,26 @@ final class LocalConferenceUatSeeder extends Seeder
             );
             if ($edition->series_id !== $series->id || ($edition->settings_json['uat_only'] ?? false) !== true) {
                 throw new RuntimeException('Test Edition collision or modified test marker.');
+            }
+
+            // UAT fixture only. Existing operator-edited Topics are never overwritten.
+            foreach ([
+                'T01' => ['en' => 'Islamic Studies, Ethics, and Contemporary Civilization', 'id' => 'Studi Islam, Etika, dan Peradaban Kontemporer', 'ar' => 'الدراسات الإسلامية والأخلاق والحضارة المعاصرة'],
+                'T02' => ['en' => 'Education, Pedagogy, and Human Development', 'id' => 'Pendidikan, Pedagogi, dan Pengembangan Manusia', 'ar' => 'التعليم وطرائق التدريس والتنمية البشرية'],
+                'T03' => ['en' => 'Leadership, Governance, and Institutional Accountability', 'id' => 'Kepemimpinan, Tata Kelola, dan Akuntabilitas Kelembagaan', 'ar' => 'القيادة والحوكمة والمساءلة المؤسسية'],
+                'T04' => ['en' => 'Economics, Sustainable Business, and Inclusive Development', 'id' => 'Ekonomi, Bisnis Berkelanjutan, dan Pembangunan Inklusif', 'ar' => 'الاقتصاد والأعمال المستدامة والتنمية الشاملة'],
+                'T05' => ['en' => 'Law, Human Rights, Social Justice, and Public Policy', 'id' => 'Hukum, Hak Asasi Manusia, Keadilan Sosial, dan Kebijakan Publik', 'ar' => 'القانون وحقوق الإنسان والعدالة الاجتماعية والسياسات العامة'],
+                'T06' => ['en' => 'Social Sciences, Humanities, Culture, and Community Resilience', 'id' => 'Ilmu Sosial, Humaniora, Budaya, dan Ketahanan Masyarakat', 'ar' => 'العلوم الاجتماعية والإنسانية والثقافة وصمود المجتمع'],
+                'T07' => ['en' => 'Digital Transformation, Responsible Innovation, and Society', 'id' => 'Transformasi Digital, Inovasi Bertanggung Jawab, dan Masyarakat', 'ar' => 'التحول الرقمي والابتكار المسؤول والمجتمع'],
+                'T08' => ['en' => 'Environmental Sustainability, and Human Well-Being', 'id' => 'Keberlanjutan Lingkungan dan Kesejahteraan Manusia', 'ar' => 'الاستدامة البيئية ورفاه الإنسان'],
+            ] as $code => $names) {
+                $edition->tracks()->firstOrCreate(['code' => $code], ['name_i18n' => $names, 'active' => true]);
+            }
+            $settings = $edition->settings_json;
+            $settings['abstract_submission']['track_required'] = true;
+            $edition->settings_json = $settings;
+            if ($edition->isDirty()) {
+                $edition->save();
             }
 
             foreach ([
@@ -95,26 +111,25 @@ final class LocalConferenceUatSeeder extends Seeder
                     ],
                 );
             }
+            $previousCode = config('demo_roles.edition_code');
+            try {
+                config(['demo_roles.edition_code' => self::EDITION_CODE]);
+                $this->call(EditionPersonaDemoSeeder::class);
+            } finally {
+                config(['demo_roles.edition_code' => $previousCode]);
+            }
+
+            $edition = ConferenceEdition::query()->where('edition_code', self::EDITION_CODE)->sole();
+            $package = $edition->participationPackages()->where('code', 'PRESENTER-UAT')->sole();
+
+            // Registration intent is created using the actual Phase02 domain action.
+            // The demo author creates their own abstract DRAFT through the HTTP wizard.
+            $actor = User::query()->where('email', 'author@iches.test')->sole();
+
+            if (! Registration::query()->whereHas('membership', fn ($query) => $query
+                ->where('edition_id', $edition->id)->where('user_id', $actor->id))->exists()) {
+                app(CreateRegistrationIntentAction::class)->handle($actor, $edition, $package);
+            }
         });
-
-        $previousCode = config('demo_roles.edition_code');
-        try {
-            config(['demo_roles.edition_code' => self::EDITION_CODE]);
-            $this->call(EditionPersonaDemoSeeder::class);
-        } finally {
-            config(['demo_roles.edition_code' => $previousCode]);
-        }
-
-        $edition = ConferenceEdition::query()->where('edition_code', self::EDITION_CODE)->sole();
-        $package = $edition->participationPackages()->where('code', 'PRESENTER-UAT')->sole();
-
-        // Registration intent is created using the actual Phase02 domain action.
-        // The demo author creates their own abstract DRAFT through the HTTP wizard.
-        $actor = User::query()->where('email', 'demo+author.iches-uat-2027@example.test')->sole();
-
-        if (! Registration::query()->whereHas('membership', fn ($query) => $query
-            ->where('edition_id', $edition->id)->where('user_id', $actor->id))->exists()) {
-            app(CreateRegistrationIntentAction::class)->handle($actor, $edition, $package);
-        }
     }
 }

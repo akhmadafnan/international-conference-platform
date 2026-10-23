@@ -116,7 +116,8 @@ test('draft submission creation allocates an edition scoped paper id and persist
         ->and($submission->edition->is($edition))->toBeTrue()
         ->and($submission->registration->is($registration))->toBeTrue();
 
-    $second = $action->handle($user, $edition, $registration, Locale::English->value);
+    ['user' => $secondUser, 'registration' => $secondRegistration] = makeDraftSubmissionRegistration($edition, $registration->package);
+    $second = $action->handle($secondUser, $edition, $secondRegistration, Locale::English->value);
 
     $sequence = NumberSequence::query()
         ->where('edition_id', $edition->id)
@@ -239,26 +240,28 @@ test('draft creation rejects an unsupported primary scholarly locale', function 
         ->and(NumberSequence::query()->where('sequence_type', 'PAPER')->exists())->toBeFalse();
 });
 
-test('multiple draft submissions are allowed for one registration', function () {
+test('one submission per registration is enforced for every academic state without consuming numbering', function (string $status) {
     ['edition' => $edition, 'user' => $user, 'registration' => $registration] = makeDraftSubmissionContext();
 
     $action = app(CreateDraftSubmissionAction::class);
 
     $first = $action->handle($user, $edition, $registration, 'id');
-    $second = $action->handle($user, $edition, $registration, 'ar');
+    $first->update(['academic_status' => $status]);
+    expect(fn () => $action->handle($user, $edition, $registration, 'ar'))
+        ->toThrow(DomainException::class, 'SUBMISSION_ALREADY_EXISTS');
 
     expect($first->paper_code)->toBe('ICHES27-P-0001')
-        ->and($second->paper_code)->toBe('ICHES27-P-0002')
-        ->and($registration->submissions()->count())->toBe(2)
-        ->and(Submission::query()->where('edition_id', $edition->id)->count())->toBe(2);
-});
+        ->and($registration->submissions()->count())->toBe(1)
+        ->and(NumberSequence::query()->where('sequence_type', 'PAPER')->sole()->last_value)->toBe(1);
+})->with(['DRAFT', 'SUBMITTED', 'UNDER_REVIEW', 'ACCEPTED', 'REJECTED', 'REVISION_REQUIRED', 'CORRECTION_REQUIRED', 'WITHDRAWN']);
 
 test('failed draft insert rolls back the paper sequence allocation', function () {
     ['edition' => $edition, 'user' => $user, 'registration' => $registration] = makeDraftSubmissionContext();
 
+    ['registration' => $otherRegistration] = makeDraftSubmissionRegistration($edition, $registration->package);
     Submission::query()->create([
         'edition_id' => $edition->id,
-        'registration_id' => $registration->id,
+        'registration_id' => $otherRegistration->id,
         'paper_code' => 'ICHES27-P-0001',
         'primary_locale' => Locale::English->value,
         'academic_status' => 'DRAFT',

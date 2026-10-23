@@ -1,6 +1,8 @@
 import { wizardUx } from '../wizardUx';
+import { academic } from '../academic';
 
 export default {
+    academic: academic.ar,
     wizardUx: wizardUx.ar,
     submissionWizard: {
         rorSearch: 'ابحث عن جامعة أو مؤسسة بحثية',

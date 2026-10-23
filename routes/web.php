@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Academic\AcademicController;
+use App\Http\Controllers\Academic\ReviewerTopicEligibilityController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\ConferenceEditionController;
 use App\Http\Controllers\Admin\ConferenceSeriesController;
@@ -27,6 +29,28 @@ Route::post('locale', UpdateLocaleController::class)->name('locale.update');
 Route::inertia('/', 'Welcome')->name('home');
 
 Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('academic/reviewer-topics', [ReviewerTopicEligibilityController::class, 'index'])->name('academic.reviewer-topics.index');
+    Route::post('academic/reviewer-topics/edition', [ReviewerTopicEligibilityController::class, 'selectEdition'])->name('academic.reviewer-topics.edition');
+    Route::post('academic/reviewer-topics', [ReviewerTopicEligibilityController::class, 'store'])->name('academic.reviewer-topics.store');
+    Route::delete('academic/reviewer-topics/{eligibility}', [ReviewerTopicEligibilityController::class, 'destroy'])->name('academic.reviewer-topics.destroy');
+    Route::post('academic/submissions/{submission}/topic', [AcademicController::class, 'correctTopic'])->name('academic.topic.correct');
+    Route::get('academic', [AcademicController::class, 'index'])->name('academic.index');
+    Route::post('academic/edition', [AcademicController::class, 'selectEdition'])->name('academic.edition');
+    Route::get('academic/submissions/{submission}', [AcademicController::class, 'show'])->name('academic.show');
+    Route::get('academic/submissions/{submission}/file', [AcademicController::class, 'committeeFile'])->name('academic.file');
+    Route::post('academic/submissions/{submission}/screen', [AcademicController::class, 'screen'])->name('academic.screen');
+    Route::post('academic/submissions/{submission}/assign', [AcademicController::class, 'assign'])->name('academic.assign');
+    Route::post('academic/submissions/{submission}/decide', [AcademicController::class, 'decide'])->name('academic.decide');
+    Route::post('academic/assignments/{assignment}/cancel', [AcademicController::class, 'cancel'])->name('academic.cancel');
+    Route::get('reviews', [AcademicController::class, 'reviews'])->name('academic.reviews');
+    Route::get('reviews/{assignment}', [AcademicController::class, 'review'])->name('academic.review');
+    Route::get('reviews/{assignment}/file', [AcademicController::class, 'reviewFile'])->name('academic.review.file');
+    Route::post('reviews/{assignment}/respond', [AcademicController::class, 'respond'])->name('academic.respond');
+    Route::put('reviews/{assignment}', [AcademicController::class, 'saveReview'])->name('academic.review.save');
+    Route::get('dashboard/submissions/{submission}/academic', [AcademicController::class, 'author'])->name('academic.author');
+    Route::get('dashboard/submissions/{submission}/academic/file', [AcademicController::class, 'authorFile'])->name('academic.author.file');
+    Route::post('dashboard/submissions/{submission}/academic/revision', [AcademicController::class, 'revise'])->name('academic.revise');
+    Route::get('documents/presentation-loa/{document}', [AcademicController::class, 'loa'])->name('academic.loa');
     Route::post('workspace-mode', SwitchSuperAdminWorkspaceController::class)
         ->middleware('throttle:12,1')->name('workspace.mode.switch');
     Route::get('workspace', RoleOverviewController::class)
@@ -76,6 +100,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('dashboard/institutions/resolve', [InstitutionLookupController::class, 'resolve'])->middleware('throttle:12,1')->name('institutions.resolve');
     Route::get('dashboard/submissions', [AuthorSubmissionController::class, 'index'])->name('submissions.index');
     Route::post('dashboard/submissions', [AuthorSubmissionController::class, 'store'])->name('submissions.store');
+    Route::delete('dashboard/submissions/{submission}', [AuthorSubmissionController::class, 'destroy'])->name('submissions.destroy');
     Route::get('dashboard/submissions/{submission}/details', [AuthorSubmissionController::class, 'details'])->name('submissions.details');
     Route::put('dashboard/submissions/{submission}/details', [AuthorSubmissionController::class, 'update'])->name('submissions.details.update');
     Route::put('dashboard/submissions/{submission}/contributors', [AuthorSubmissionStagesController::class, 'contributors'])->name('submissions.contributors.update');

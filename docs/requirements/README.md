@@ -2,6 +2,8 @@
 
 ## Current V1 authority
 
+For the designated ICHES 2027 academic/review/scheduling/publication scope, first read the Product Owner-approved [2026-10-23 Operational Rebaseline](../governance/ICHES_2027_OPERATIONAL_REBASELINE_2026_10_23.md) and [Decision Register](../governance/DECISION_REGISTER.md) PD-085–PD-096. Later accepted decisions supersede contradictory V1 requirements only for their stated scope. Mandatory routine screening and configurable multi-reviewer responsibility are superseded by Topic Pool/Self-Claim and one exclusive active reviewer per paper/stage, with audited SC conference-stage reassignment. The [Pre-Phase 02 rebaseline](../governance/PRE_PHASE02_PRODUCT_REBASELINE.md) still governs payment-after-ACCEPT. Nonconflicting requirements below remain binding; use [CURRENT_STATE](../ai-context/CURRENT_STATE.md) for implementation evidence and the [roadmap](../project-management/ICHES_2027_EXECUTION_ROADMAP.md) for bounded future work.
+
 For current V1 behavior, read:
 
 1. `../product/PRODUCT_BLUEPRINT_V1.md`

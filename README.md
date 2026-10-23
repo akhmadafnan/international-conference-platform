@@ -4,27 +4,7 @@ This repository is the canonical product, architecture, and implementation repos
 
 ## Current state
 
-**PHASE 02 — REGISTRATION + PAYMENT — IN PROGRESS**
-
-Phase 01 Foundation is `CLOSED_GREEN` and merged into `develop` through PR #57.
-
-The Product Owner explicitly authorized Phase 02 on 2026-10-03. The active implementation branch is `phase/02-registration-payment`, with Draft phase PR #61 targeting `develop`.
-
-The bounded security regression for cross-payment proof isolation was accepted and merged through PR #77 into the active Phase 02 branch. Phase 02 is **not** yet CLOSED_GREEN: Event Pass, the participant-facing browser flow, remaining roadmap disposition, and final exit evidence are still required.
-
-Current sequence:
-
-PRODUCT / REQUIREMENTS / METADATA / ARCHITECTURE ✓
-→ TWO-WEEK DEVELOPMENT PLAN ✓
-→ IMPLEMENTATION START GATE ✓
-→ PHASE 01 FOUNDATION ✓ CLOSED_GREEN
-→ PR #57 / MERGE TO develop ✓
-→ META-AUDIT-001 ✓ CLOSED_GREEN
-→ PRE-PHASE02 REBASELINE ✓ CLOSED_GREEN
-→ PRODUCT OWNER PHASE 02 GO ✓
-→ PHASE 02 — REGISTRATION + PAYMENT ← CURRENT
-→ PHASE 02 EXIT / PR #61 HUMAN REVIEW
-→ next phase only after explicit new Product Owner GO
+Read [CURRENT_STATE](docs/ai-context/CURRENT_STATE.md) for the 2026-10-23 local checkpoint and the [ICHES 2027 Operational Rebaseline](docs/governance/ICHES_2027_OPERATIONAL_REBASELINE_2026_10_23.md) for approved product behavior. Phase03 browser UAT PASS; Phase04 Academic Core exists locally with full end-to-end UAT incomplete. The approved Self-Claim/Room model is not implemented. See the [bounded execution roadmap](docs/project-management/ICHES_2027_EXECUTION_ROADMAP.md); no automatic coding, merge or push authorization is implied.
 
 ## Frozen stack
 
@@ -53,11 +33,13 @@ See:
 Historical Phase 01 implementation branch:
 - `phase/01-foundation`
 
-Active Phase 02 implementation branch:
+Historical Phase 02 implementation branch:
 - `phase/02-registration-payment`
 - Draft phase PR: #61 → `develop`
 
 META-AUDIT work follows the normal scoped-branch → PR → `develop` integration workflow.
+
+Current local work uses `agent/phase04-academic-core` on Laptop 2; the existing uncommitted working tree must be preserved. Use CURRENT_STATE and the operational roadmap for today's gate rather than the historical plan/branches above.
 
 ## Canonical reading order
 

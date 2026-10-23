@@ -9,7 +9,9 @@ const { t } = useI18n();
 
 <template>
     <Head :title="t('workspace.title')" />
-    <div class="flex w-full flex-col gap-6 p-4 md:p-8">
+    <div
+        class="flex w-full min-w-0 flex-col gap-6 p-4 [overflow-wrap:anywhere] md:p-8"
+    >
         <header>
             <h1 class="text-2xl font-semibold tracking-tight">
                 {{ t('workspace.title') }}

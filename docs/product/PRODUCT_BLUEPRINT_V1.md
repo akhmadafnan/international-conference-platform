@@ -1,5 +1,7 @@
 # ICHES Product Blueprint v1
 
+> **ICHES 2027 scoped supersession (2026-10-23):** The Product Owner-approved [Operational Rebaseline](../governance/ICHES_2027_OPERATIONAL_REBASELINE_2026_10_23.md) and PD-085–PD-096 in the [Decision Register](../governance/DECISION_REGISTER.md) supersede conflicting 2027 screening/reviewer-assignment/count, scheduling and publication-operation assumptions below. Technically valid abstracts enter Topic Pool and exclusive reviewer Self-Claim without routine Administrative PASS; SC-approved conference-stage mapping preserves earlier review history. Payment-after-ACCEPT remains binding. This historical Blueprint retains nonconflicting reusable product principles; its dated implementation gate is not today's gate. See [CURRENT_STATE](../ai-context/CURRENT_STATE.md). Approved design is not implemented Self-Claim/Room Mapping or automatic coding authorization.
+
 **Document ID:** ICHES-PROD-BP-001  
 **Version:** 1.0  
 **Status:** APPROVED WORKING BLUEPRINT FOR ACCELERATED V1 PLANNING  

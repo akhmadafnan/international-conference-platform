@@ -70,7 +70,7 @@ final class ParticipantRegistrationView
         $nextActionUrl = match ($nextAction) {
             'SUBMIT_ABSTRACT' => route('submissions.index'),
             'CONTINUE_ABSTRACT' => $draft === null ? null : route('submissions.details', $draft),
-            'WAIT_ACADEMIC_REVIEW', 'VIEW_ACADEMIC_STATUS' => $submitted === null ? null : route('submissions.details', $submitted),
+            'WAIT_ACADEMIC_REVIEW', 'VIEW_ACADEMIC_STATUS' => $submitted === null ? null : route('academic.author', $submitted),
             'EVENT_PASS_AVAILABLE' => $eventPass === null ? null : route('documents.event-pass.show', $eventPass),
             'SUBMIT_PAYMENT_PROOF', 'REPLACE_PAYMENT_PROOF' => $registrationUrl,
             default => null,

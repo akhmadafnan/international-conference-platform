@@ -52,7 +52,9 @@ const submit = () => form.post('/admin/editions');
 
 <template>
     <Head :title="t('admin.editions.create')" />
-    <div class="flex w-full max-w-4xl flex-col gap-6 p-4 md:p-8">
+    <div
+        class="flex w-full min-w-0 flex-col gap-6 p-4 [overflow-wrap:anywhere] md:p-8"
+    >
         <header>
             <h1 class="text-2xl font-semibold tracking-tight">
                 {{ t('admin.editions.create') }}
@@ -61,21 +63,24 @@ const submit = () => form.post('/admin/editions');
                 {{ t('admin.editions.createDescription') }}
             </p>
         </header>
-        <Card v-if="series.length === 0">
-            <CardContent class="space-y-4 pt-6">
+        <Card class="min-w-0" v-if="series.length === 0">
+            <CardContent class="min-w-0 space-y-4 pt-6">
                 <p role="status" class="text-sm text-muted-foreground">
                     {{ t('admin.editions.noSeries') }}
                 </p>
-                <Button as-child variant="outline"
+                <Button
+                    class="h-auto min-h-10 max-w-full min-w-0 whitespace-normal"
+                    as-child
+                    variant="outline"
                     ><Link href="/admin/series/create">{{
                         t('admin.series.create')
                     }}</Link></Button
                 >
             </CardContent>
         </Card>
-        <Card v-else>
-            <CardContent class="pt-6">
-                <form class="space-y-6" @submit.prevent="submit">
+        <Card class="min-w-0" v-else>
+            <CardContent class="min-w-0 pt-6">
+                <form class="min-w-0 space-y-6" @submit.prevent="submit">
                     <p
                         v-if="form.hasErrors"
                         role="alert"
@@ -83,8 +88,8 @@ const submit = () => form.post('/admin/editions');
                     >
                         {{ t('admin.editions.errors.summary') }}
                     </p>
-                    <div class="grid gap-5 sm:grid-cols-2">
-                        <div class="grid gap-2 sm:col-span-2">
+                    <div class="grid min-w-0 gap-5 sm:grid-cols-2">
+                        <div class="grid min-w-0 gap-2 sm:col-span-2">
                             <Label for="edition-series">{{
                                 t('admin.editions.series')
                             }}</Label>
@@ -123,7 +128,7 @@ const submit = () => form.post('/admin/editions');
                         <div
                             v-for="field in fields"
                             :key="field.key"
-                            class="grid content-start gap-2"
+                            class="grid min-w-0 content-start gap-2"
                         >
                             <Label :for="`edition-${field.key}`"
                                 >{{ t(`admin.editions.fields.${field.key}`)
@@ -173,7 +178,7 @@ const submit = () => form.post('/admin/editions');
                                 :message="errorMessage(form.errors[field.key])"
                             />
                         </div>
-                        <div class="grid content-start gap-2">
+                        <div class="grid min-w-0 content-start gap-2">
                             <Label for="edition-mode">{{
                                 t('admin.editions.mode')
                             }}</Label>
@@ -205,7 +210,7 @@ const submit = () => form.post('/admin/editions');
                     <fieldset
                         v-for="field in localizedFields"
                         :key="field"
-                        class="space-y-4 border-t border-border pt-5"
+                        class="min-w-0 space-y-4 border-t border-border pt-5"
                     >
                         <legend class="px-1 text-sm font-semibold">
                             {{ t(`admin.editions.fields.${field}`) }} ({{
@@ -215,11 +220,11 @@ const submit = () => form.post('/admin/editions');
                         <InputError
                             :message="errorMessage(form.errors[field])"
                         />
-                        <div class="grid gap-4 lg:grid-cols-3">
+                        <div class="grid min-w-0 gap-4 lg:grid-cols-3">
                             <div
                                 v-for="language in languages"
                                 :key="language"
-                                class="grid gap-2"
+                                class="grid min-w-0 gap-2"
                             >
                                 <Label :for="`${field}-${language}`">{{
                                     t(`admin.series.languages.${language}`)
@@ -250,14 +255,22 @@ const submit = () => form.post('/admin/editions');
                         </div>
                     </fieldset>
                     <div
-                        class="flex flex-wrap items-center gap-3 border-t border-border pt-5"
+                        class="flex min-w-0 flex-wrap items-center gap-3 border-t border-border pt-5"
                     >
-                        <Button type="submit" :disabled="form.processing">{{
-                            form.processing
-                                ? t('admin.series.saving')
-                                : t('admin.editions.save')
-                        }}</Button>
-                        <Button as-child variant="outline"
+                        <Button
+                            class="h-auto min-h-10 max-w-full min-w-0 whitespace-normal"
+                            type="submit"
+                            :disabled="form.processing"
+                            >{{
+                                form.processing
+                                    ? t('admin.series.saving')
+                                    : t('admin.editions.save')
+                            }}</Button
+                        >
+                        <Button
+                            class="h-auto min-h-10 max-w-full min-w-0 whitespace-normal"
+                            as-child
+                            variant="outline"
                             ><Link href="/admin/editions">{{
                                 t('admin.series.cancel')
                             }}</Link></Button

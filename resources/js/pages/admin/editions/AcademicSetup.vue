@@ -78,7 +78,9 @@ const saveAbstractPolicy = () =>
 
 <template>
     <Head :title="t('admin.academic.title')" />
-    <div class="flex w-full min-w-0 flex-col gap-6 p-4 md:p-8">
+    <div
+        class="flex w-full min-w-0 flex-col gap-6 p-4 [overflow-wrap:anywhere] md:p-8"
+    >
         <header>
             <Link
                 href="/admin/editions"
@@ -105,14 +107,14 @@ const saveAbstractPolicy = () =>
             {{ t('admin.academic.saved') }}
         </p>
         <div class="grid min-w-0 gap-6 xl:grid-cols-2">
-            <Card>
+            <Card class="min-w-0">
                 <CardHeader>
                     <CardTitle>{{ t('admin.academic.tracks') }}</CardTitle>
                     <p class="text-sm text-muted-foreground">
                         {{ t('admin.academic.tracksHelp') }}
                     </p>
                 </CardHeader>
-                <CardContent class="space-y-5">
+                <CardContent class="min-w-0 space-y-5">
                     <p
                         v-if="!tracks.length"
                         class="text-sm text-muted-foreground"
@@ -122,7 +124,7 @@ const saveAbstractPolicy = () =>
                     <div
                         v-for="track in tracks"
                         :key="track.id"
-                        class="flex items-center justify-between gap-3 border-b border-border py-3"
+                        class="flex min-w-0 items-center justify-between gap-3 border-b border-border py-3"
                     >
                         <div>
                             <p class="text-sm font-medium">
@@ -143,7 +145,7 @@ const saveAbstractPolicy = () =>
                         }}</Badge>
                     </div>
                     <form
-                        class="grid gap-3 border-t border-border pt-4"
+                        class="grid min-w-0 gap-3 border-t border-border pt-4"
                         @submit.prevent="trackSubmit"
                     >
                         <h2 class="text-sm font-semibold">
@@ -156,7 +158,7 @@ const saveAbstractPolicy = () =>
                         >
                             {{ t('admin.academic.validationError') }}
                         </p>
-                        <div class="grid gap-1.5">
+                        <div class="grid min-w-0 gap-1.5">
                             <Label for="track-code">{{
                                 t('admin.academic.code')
                             }}</Label>
@@ -177,7 +179,7 @@ const saveAbstractPolicy = () =>
                         <div
                             v-for="language in languages"
                             :key="language"
-                            class="grid gap-1.5"
+                            class="grid min-w-0 gap-1.5"
                         >
                             <Label :for="'track-' + language"
                                 >{{ t('admin.academic.trackName') }} ·
@@ -192,7 +194,7 @@ const saveAbstractPolicy = () =>
                                 maxlength="255"
                             />
                         </div>
-                        <div class="flex items-center gap-2">
+                        <div class="flex min-w-0 items-center gap-2">
                             <Checkbox
                                 id="track-active"
                                 v-model="trackForm.active"
@@ -201,7 +203,11 @@ const saveAbstractPolicy = () =>
                                 t('admin.academic.active')
                             }}</Label>
                         </div>
-                        <Button type="submit" :disabled="trackForm.processing">
+                        <Button
+                            class="h-auto min-h-10 max-w-full min-w-0 whitespace-normal"
+                            type="submit"
+                            :disabled="trackForm.processing"
+                        >
                             <PhPlus class="size-4" aria-hidden="true" />
                             {{ t('admin.academic.addTrack') }}
                         </Button>
@@ -209,14 +215,14 @@ const saveAbstractPolicy = () =>
                 </CardContent>
             </Card>
 
-            <Card>
+            <Card class="min-w-0">
                 <CardHeader>
                     <CardTitle>{{ t('admin.academic.periods') }}</CardTitle>
                     <p class="text-sm text-muted-foreground">
                         {{ t('admin.academic.periodsHelp') }}
                     </p>
                 </CardHeader>
-                <CardContent class="space-y-5">
+                <CardContent class="min-w-0 space-y-5">
                     <p
                         v-if="!windows.length"
                         class="text-sm text-muted-foreground"
@@ -226,7 +232,7 @@ const saveAbstractPolicy = () =>
                     <div
                         v-for="window in windows"
                         :key="window.code"
-                        class="flex flex-wrap items-center justify-between gap-3 border-b border-border py-3"
+                        class="flex min-w-0 flex-wrap items-center justify-between gap-3 border-b border-border py-3"
                     >
                         <div>
                             <p class="text-sm font-medium">
@@ -244,7 +250,7 @@ const saveAbstractPolicy = () =>
                         }}</Badge>
                     </div>
                     <form
-                        class="grid gap-3 border-t border-border pt-4"
+                        class="grid min-w-0 gap-3 border-t border-border pt-4"
                         @submit.prevent="windowSubmit"
                     >
                         <h2 class="text-sm font-semibold">
@@ -257,7 +263,7 @@ const saveAbstractPolicy = () =>
                         >
                             {{ t('admin.academic.validationError') }}
                         </p>
-                        <div class="grid gap-1.5">
+                        <div class="grid min-w-0 gap-1.5">
                             <Label for="window-code">{{
                                 t('admin.academic.periodCode')
                             }}</Label>
@@ -279,7 +285,7 @@ const saveAbstractPolicy = () =>
                             {{ t('admin.academic.timezone') }} ·
                             <bdi>{{ edition.timezone }}</bdi>
                         </p>
-                        <div class="grid gap-1.5">
+                        <div class="grid min-w-0 gap-1.5">
                             <Label for="window-open">{{
                                 t('admin.academic.opens')
                             }}</Label>
@@ -291,7 +297,7 @@ const saveAbstractPolicy = () =>
                                 :aria-invalid="!!windowForm.errors.opens_at"
                             />
                         </div>
-                        <div class="grid gap-1.5">
+                        <div class="grid min-w-0 gap-1.5">
                             <Label for="window-close">{{
                                 t('admin.academic.closes')
                             }}</Label>
@@ -303,7 +309,7 @@ const saveAbstractPolicy = () =>
                                 :aria-invalid="!!windowForm.errors.closes_at"
                             />
                         </div>
-                        <div class="flex items-center gap-2">
+                        <div class="flex min-w-0 items-center gap-2">
                             <Checkbox
                                 id="window-active"
                                 v-model="windowForm.active"
@@ -312,14 +318,18 @@ const saveAbstractPolicy = () =>
                                 t('admin.academic.active')
                             }}</Label>
                         </div>
-                        <Button type="submit" :disabled="windowForm.processing">
+                        <Button
+                            class="h-auto min-h-10 max-w-full min-w-0 whitespace-normal"
+                            type="submit"
+                            :disabled="windowForm.processing"
+                        >
                             {{ t('admin.academic.setPeriod') }}
                         </Button>
                     </form>
                 </CardContent>
             </Card>
         </div>
-        <Card class="max-w-3xl">
+        <Card class="min-w-0">
             <CardHeader>
                 <CardTitle>{{ t('admin.academic.policyTitle') }}</CardTitle>
                 <p class="text-sm text-muted-foreground">
@@ -334,9 +344,12 @@ const saveAbstractPolicy = () =>
                 >
                     {{ t('admin.academic.policyMissing') }}
                 </p>
-                <form class="grid gap-4" @submit.prevent="saveAbstractPolicy">
-                    <div class="grid gap-4 sm:grid-cols-2">
-                        <div class="grid gap-1.5">
+                <form
+                    class="grid min-w-0 gap-4"
+                    @submit.prevent="saveAbstractPolicy"
+                >
+                    <div class="grid min-w-0 gap-4 sm:grid-cols-2">
+                        <div class="grid min-w-0 gap-1.5">
                             <Label for="policy-min">{{
                                 t('admin.academic.minKeywords')
                             }}</Label>
@@ -349,7 +362,7 @@ const saveAbstractPolicy = () =>
                                 required
                             />
                         </div>
-                        <div class="grid gap-1.5">
+                        <div class="grid min-w-0 gap-1.5">
                             <Label for="policy-max">{{
                                 t('admin.academic.maxKeywords')
                             }}</Label>
@@ -363,7 +376,7 @@ const saveAbstractPolicy = () =>
                             />
                         </div>
                     </div>
-                    <div class="flex items-center gap-2">
+                    <div class="flex min-w-0 items-center gap-2">
                         <Checkbox
                             id="policy-track"
                             v-model="abstractPolicyForm.track_required"
@@ -372,7 +385,7 @@ const saveAbstractPolicy = () =>
                             t('admin.academic.trackRequired')
                         }}</Label>
                     </div>
-                    <div class="flex items-center gap-2">
+                    <div class="flex min-w-0 items-center gap-2">
                         <Checkbox
                             id="policy-file"
                             v-model="abstractPolicyForm.abstract_file_required"
@@ -389,6 +402,7 @@ const saveAbstractPolicy = () =>
                         {{ t('admin.academic.validationError') }}
                     </p>
                     <Button
+                        class="h-auto min-h-10 max-w-full min-w-0 whitespace-normal"
                         type="submit"
                         :disabled="abstractPolicyForm.processing"
                         >{{ t('admin.academic.savePolicy') }}</Button

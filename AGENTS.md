@@ -1,12 +1,14 @@
 # ICHES Platform — Agent Instructions
 
-> **Latest gate / Product Owner rebaseline (2026-10-15):** Phase03 integrated P03-A–P03-H on `phase/03-submission-metadata @ 472ddf6`; PR #101 to develop stays Draft; Phase04 not authorized. Laptop 1 `D:\PROJEKKU\international-conference-platform` is canonical and VSCode-first; Laptop 2 backup, local DB data independent. New work is **authenticated Views & User Interaction**, preserving the integrated backend. UI-00 Issue #125 (neutral starter-kit workspace, Draft PRs #127/#128) and P03-I Issue #126 (real five-step wizard). Earlier P03-G and Laptop 2 "current gate" paragraphs are historical. Remote Desktop/OpenCode optional, NOT mandatory. Do not assume Draft UI PRs are merged. See `docs/frontend/AUTHENTICATED_WORKSPACE_VIEW_BASELINE_V1.md` in Draft PR #127.
+> **Current checkpoint / Product Owner operational rebaseline (2026-10-23):** Read [CURRENT_STATE](docs/ai-context/CURRENT_STATE.md), the [ICHES 2027 Operational Rebaseline](docs/governance/ICHES_2027_OPERATIONAL_REBASELINE_2026_10_23.md) and [Decision Register](docs/governance/DECISION_REGISTER.md). Phase03 browser UAT PASS at local checkpoint `d845d24`; active Laptop 2 branch is `agent/phase04-academic-core`. Phase04 Academic Core exists in a large uncommitted working tree; full end-to-end UAT is not complete. Phase04 MySQL migration batch 2 and UNIQUE submission registration batch 3 RAN. Lyra V1.1 fluid workspace UAT PASS. Self-Claim/Room Mapping are APPROVED DESIGN, NOT IMPLEMENTED; current code still requires screening/email assignment. No remote merge/push, production readiness, destructive reset or automatic feature authorization is implied. Preserve local edits. Remote Desktop/OpenCode remains optional.
 
 This repository is documentation-governed. AI agents and developers must not invent product policy.
 
 ## Mandatory first read
 
 Before proposing implementation, read in order:
+
+**Required for ICHES 2027 academic/review/scheduling/publication work:** first read the [2026-10-23 operational rebaseline](docs/governance/ICHES_2027_OPERATIONAL_REBASELINE_2026_10_23.md) and its [bounded execution roadmap](docs/project-management/ICHES_2027_EXECUTION_ROADMAP.md), then the ordered sources below. Design approval does not automatically authorize implementation.
 
 1. `docs/product/PRODUCT_BLUEPRINT_V1.md`
 2. `docs/governance/ACCELERATED_V1_DOMAIN_DECISIONS.md`
@@ -52,13 +54,15 @@ When sources conflict:
 
 **Supersession rule:** Source-of-truth order applies to non-conflicting requirements. Later explicit Product Owner-accepted rebaselines and Decision Register amendments supersede conflicting historical Blueprint/V1 lifecycle statements for their stated scope. In particular, `docs/governance/PRE_PHASE02_PRODUCT_REBASELINE.md` supersedes the earlier pay-before-abstract requirement. Do not silently resolve other contradictions.
 
+For ICHES 2027, the [2026-10-23 operational rebaseline](docs/governance/ICHES_2027_OPERATIONAL_REBASELINE_2026_10_23.md) and PD-085–PD-096 supersede conflicting screening, reviewer-count/assignment, stage mapping and publication-operation assumptions. Payment-after-ACCEPT remains binding. Historical requirements remain provenance outside that designated scope.
+
 ## Current gate
 
 The live implementation gate is determined by `docs/ai-context/CURRENT_STATE.md` plus current Git/GitHub evidence.
 
-Phase 01 and Phase 02 are **CLOSED_GREEN** and integrated into `develop`. Phase 03 — Submission + Scholarly Metadata is **AUTHORIZED / IN PROGRESS** under Issue #63; Phase 03 child tasks integrate into `phase/03-submission-metadata` and aggregate PR #101 stays **OPEN / DRAFT**. Phase 04 is **NOT AUTHORIZED**.
+The 2026-10-23 current checkpoint is authoritative: Phase03 Product Owner browser UAT PASS; Phase04 Academic Core full end-to-end UAT remains incomplete. Local Paper #0001 is SUBMITTED, legacy DRAFT #0002 was explicitly removed, and MySQL duplicate registration groups are zero. Academic Workspace and Paper #0001 screening UAT PASS describes existing code, not delivery of the new model.
 
-Phase 03 A–F are integrated through P03-F Issue #114 / PR #115 (merge `4f74b67`). Next: P03-G Issue #116 has Product Owner-accepted readiness policies but awaits technical BUILD gate; documentation reconciliation is Issue #117. Do not infer authorization for Phase 04 or for aggregate PR #101 merge.
+This task is documentation-only on `agent/phase04-academic-core`; no branch switch, code, migration execution, reset, commit, push, merge or PR. Next bounded design-to-implementation unit is Reviewer Topic Pool + exclusive atomic Self-Claim, including removal of routine mandatory screening dependency, subject to its explicit scoped plan/ready gate. Do not reopen Phase03 UAT or infer authorization to implement the roadmap automatically. Previous phase-progress gates in CURRENT_STATE are clearly marked historical.
 
 Do not:
 - code from historical superseded lifecycle rules;

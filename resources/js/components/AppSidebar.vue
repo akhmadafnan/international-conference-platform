@@ -78,6 +78,12 @@ const mainNavItems = computed<NavItem[]>(() => [
               },
           ]
         : []),
+    ...(!isSuperAdminView.value && page.props.academicNavigation?.committee
+        ? [{ title: t('academic.title'), href: '/academic', icon: PhFiles }]
+        : []),
+    ...(!isSuperAdminView.value && page.props.academicNavigation?.reviews
+        ? [{ title: t('academic.myReviews'), href: '/reviews', icon: PhFiles }]
+        : []),
     ...(isSuperAdminView.value
         ? [
               {

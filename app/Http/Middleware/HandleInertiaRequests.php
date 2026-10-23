@@ -3,9 +3,12 @@
 namespace App\Http\Middleware;
 
 use App\Enums\Locale;
+use App\Models\ReviewAssignment;
 use App\Models\User;
+use App\Support\Academic\AcademicAccess;
 use App\Support\Workspace\SuperAdminWorkspaceMode;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Schema;
 use Inertia\Middleware;
 
 class HandleInertiaRequests extends Middleware
@@ -60,6 +63,14 @@ class HandleInertiaRequests extends Middleware
 
             'sidebarOpen' => ! $request->hasCookie('sidebar_state')
                 || $request->cookie('sidebar_state') === 'true',
+            'academicNavigation' => function () use ($request): array {
+                $actor = $request->user();
+                if (! $actor instanceof User || ! $actor->hasVerifiedEmail() || ! Schema::hasTable('academic_decisions')) {
+                    return ['committee' => false, 'reviews' => false];
+                }
+
+                return ['committee' => app(AcademicAccess::class)->editions($actor) !== [], 'reviews' => ReviewAssignment::query()->where('reviewer_id', $actor->id)->exists()];
+            },
         ];
     }
 }

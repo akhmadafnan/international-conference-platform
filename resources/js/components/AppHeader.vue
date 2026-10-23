@@ -77,10 +77,10 @@ const rightNavItems: NavItem[] = [
 
 <template>
     <div>
-        <div class="border-b border-sidebar-border/80">
-            <div class="mx-auto flex h-16 items-center px-4 md:max-w-7xl">
+        <div class="min-w-0 border-b border-sidebar-border/80">
+            <div class="flex h-16 w-full min-w-0 items-center px-4 md:px-8">
                 <!-- Mobile Menu -->
-                <div class="lg:hidden">
+                <div class="min-w-0 lg:hidden">
                     <Sheet>
                         <SheetTrigger :as-child="true">
                             <Button
@@ -101,7 +101,7 @@ const rightNavItems: NavItem[] = [
                                 />
                             </SheetHeader>
                             <div
-                                class="flex h-full flex-1 flex-col justify-between space-y-4 py-6"
+                                class="flex h-full min-w-0 flex-1 flex-col justify-between space-y-4 py-6"
                             >
                                 <nav class="-mx-3 space-y-1">
                                     <Link
@@ -124,7 +124,7 @@ const rightNavItems: NavItem[] = [
                                         {{ item.title }}
                                     </Link>
                                 </nav>
-                                <div class="flex flex-col space-y-4">
+                                <div class="flex min-w-0 flex-col space-y-4">
                                     <a
                                         v-for="item in rightNavItems"
                                         :key="item.title"
@@ -151,7 +151,7 @@ const rightNavItems: NavItem[] = [
                 </Link>
 
                 <!-- Desktop Menu -->
-                <div class="hidden h-full lg:flex lg:flex-1">
+                <div class="hidden h-full min-w-0 lg:flex lg:flex-1">
                     <NavigationMenu class="ml-10 flex h-full items-stretch">
                         <NavigationMenuList
                             class="flex h-full items-stretch space-x-2"
@@ -181,15 +181,15 @@ const rightNavItems: NavItem[] = [
                                 </Link>
                                 <div
                                     v-if="isCurrentUrl(item.href)"
-                                    class="absolute bottom-0 left-0 h-0.5 w-full translate-y-px bg-black dark:bg-white"
+                                    class="absolute bottom-0 left-0 h-0.5 w-full min-w-0 translate-y-px bg-black dark:bg-white"
                                 ></div>
                             </NavigationMenuItem>
                         </NavigationMenuList>
                     </NavigationMenu>
                 </div>
 
-                <div class="ml-auto flex items-center space-x-2">
-                    <div class="relative flex items-center space-x-1">
+                <div class="ml-auto flex min-w-0 items-center space-x-2">
+                    <div class="relative flex min-w-0 items-center space-x-1">
                         <Button
                             variant="ghost"
                             size="icon"
@@ -200,7 +200,7 @@ const rightNavItems: NavItem[] = [
                             />
                         </Button>
 
-                        <div class="hidden space-x-1 lg:flex">
+                        <div class="hidden min-w-0 space-x-1 lg:flex">
                             <template
                                 v-for="item in rightNavItems"
                                 :key="item.title"
@@ -274,7 +274,7 @@ const rightNavItems: NavItem[] = [
             class="flex w-full border-b border-sidebar-border/70"
         >
             <div
-                class="mx-auto flex h-12 w-full items-center justify-start px-4 text-neutral-500 md:max-w-7xl"
+                class="flex h-12 w-full min-w-0 items-center justify-start px-4 text-neutral-500 md:px-8"
             >
                 <Breadcrumbs :breadcrumbs="breadcrumbs" />
             </div>

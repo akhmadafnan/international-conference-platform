@@ -43,6 +43,8 @@ final class SuperAdminWorkspaceMode
         return match ($mode) {
             'superadmin' => 'admin.dashboard',
             'participant', 'non_presenting_participant', 'author', 'co_author', 'presenter' => 'dashboard',
+            'academic_committee', 'academic_decision_authority' => 'academic.index',
+            'reviewer' => 'academic.reviews',
             default => 'workspace.overview',
         };
     }

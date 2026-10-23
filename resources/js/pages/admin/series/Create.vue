@@ -27,7 +27,9 @@ const submit = () => form.post('/admin/series');
 <template>
     <Head :title="t('admin.series.create')" />
 
-    <div class="flex w-full max-w-3xl flex-col gap-6 p-4 md:p-8">
+    <div
+        class="flex w-full min-w-0 flex-col gap-6 p-4 [overflow-wrap:anywhere] md:p-8"
+    >
         <header>
             <h1 class="text-2xl font-semibold tracking-tight">
                 {{ t('admin.series.create') }}
@@ -37,17 +39,20 @@ const submit = () => form.post('/admin/series');
             </p>
         </header>
 
-        <Card>
-            <CardContent class="pt-6">
-                <form class="space-y-6" @submit.prevent="submit">
+        <Card class="min-w-0">
+            <CardContent class="min-w-0 pt-6">
+                <form
+                    class="grid min-w-0 gap-6 sm:grid-cols-2"
+                    @submit.prevent="submit"
+                >
                     <p
                         v-if="form.hasErrors"
                         role="alert"
-                        class="text-sm text-destructive"
+                        class="text-sm text-destructive sm:col-span-2"
                     >
                         {{ t('admin.series.errors.summary') }}
                     </p>
-                    <div class="grid gap-2">
+                    <div class="grid min-w-0 gap-2">
                         <Label for="series-code">{{
                             t('admin.series.code')
                         }}</Label>
@@ -72,7 +77,7 @@ const submit = () => form.post('/admin/series');
                             :message="errorMessage(form.errors.code)"
                         />
                     </div>
-                    <div class="grid gap-2">
+                    <div class="grid min-w-0 gap-2">
                         <Label for="series-name">{{
                             t('admin.series.name')
                         }}</Label>
@@ -91,7 +96,7 @@ const submit = () => form.post('/admin/series');
                             :message="errorMessage(form.errors.name)"
                         />
                     </div>
-                    <div class="grid gap-2">
+                    <div class="grid min-w-0 gap-2">
                         <Label for="series-acronym"
                             >{{ t('admin.series.acronym') }} ({{
                                 t('admin.series.optional')
@@ -111,19 +116,22 @@ const submit = () => form.post('/admin/series');
                             :message="errorMessage(form.errors.acronym)"
                         />
                     </div>
-                    <fieldset class="space-y-4">
+                    <fieldset
+                        class="grid min-w-0 gap-4 sm:col-span-2 lg:grid-cols-3"
+                    >
                         <legend class="mb-2 text-sm font-medium">
                             {{ t('admin.series.about') }} ({{
                                 t('admin.series.optional')
                             }})
                         </legend>
                         <InputError
+                            class="lg:col-span-3"
                             :message="errorMessage(form.errors.about_i18n)"
                         />
                         <div
                             v-for="language in languages"
                             :key="language"
-                            class="grid gap-2"
+                            class="grid min-w-0 gap-2"
                         >
                             <Label :for="`series-about-${language}`">{{
                                 t(`admin.series.languages.${language}`)
@@ -152,8 +160,12 @@ const submit = () => form.post('/admin/series');
                             />
                         </div>
                     </fieldset>
-                    <div class="flex flex-wrap gap-3">
-                        <Button type="submit" :disabled="form.processing">
+                    <div class="flex min-w-0 flex-wrap gap-3 sm:col-span-2">
+                        <Button
+                            class="h-auto min-h-10 max-w-full min-w-0 whitespace-normal"
+                            type="submit"
+                            :disabled="form.processing"
+                        >
                             {{
                                 t(
                                     form.processing
@@ -162,7 +174,10 @@ const submit = () => form.post('/admin/series');
                                 )
                             }}
                         </Button>
-                        <Button as-child variant="outline"
+                        <Button
+                            class="h-auto min-h-10 max-w-full min-w-0 whitespace-normal"
+                            as-child
+                            variant="outline"
                             ><Link href="/admin/series">{{
                                 t('admin.series.cancel')
                             }}</Link></Button

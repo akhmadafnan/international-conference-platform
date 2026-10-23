@@ -211,7 +211,9 @@ async function copyAccount(): Promise<void> {
 <template>
     <Head :title="t('phase02.registration.title')" />
 
-    <div class="mx-auto flex w-full max-w-5xl flex-col gap-6 p-4 md:p-6">
+    <div
+        class="flex w-full min-w-0 flex-col gap-6 p-4 [overflow-wrap:anywhere] md:p-8"
+    >
         <header class="flex flex-col gap-2">
             <Link
                 :href="routes.dashboard"
@@ -234,10 +236,10 @@ async function copyAccount(): Promise<void> {
 
         <Card
             v-if="!registration"
-            class="grid gap-4 md:grid-cols-2"
+            class="grid min-w-0 gap-4 md:grid-cols-2"
             aria-labelledby="package-heading"
         >
-            <div class="md:col-span-2">
+            <div class="min-w-0 md:col-span-2">
                 <h2 id="package-heading" class="text-lg font-semibold">
                     {{ t('phase02.registration.choosePackage') }}
                 </h2>
@@ -249,10 +251,10 @@ async function copyAccount(): Promise<void> {
             <article
                 v-for="packageItem in packages"
                 :key="packageItem.id"
-                class="flex flex-col justify-between gap-5 p-4"
+                class="flex min-w-0 flex-col justify-between gap-5 p-4"
             >
-                <div class="space-y-2">
-                    <div class="flex items-start justify-between gap-3">
+                <div class="min-w-0 space-y-2">
+                    <div class="flex min-w-0 items-start justify-between gap-3">
                         <h3 class="font-semibold">
                             {{ localized(packageItem.name) }}
                         </h3>
@@ -276,7 +278,7 @@ async function copyAccount(): Promise<void> {
 
                 <Button
                     type="button"
-                    class="inline-flex min-h-10 items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground disabled:opacity-50"
+                    class="inline-flex h-auto min-h-10 max-w-full min-w-0 items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-semibold whitespace-normal text-primary-foreground disabled:opacity-50"
                     :disabled="registrationForm.processing"
                     @click="choosePackage(packageItem)"
                 >
@@ -300,9 +302,9 @@ async function copyAccount(): Promise<void> {
         </Card>
 
         <template v-else>
-            <Card class="p-4">
+            <Card class="min-w-0 p-4">
                 <div
-                    class="flex flex-col gap-4 md:flex-row md:items-start md:justify-between"
+                    class="flex min-w-0 flex-col gap-4 md:flex-row md:items-start md:justify-between"
                 >
                     <div>
                         <p class="text-sm text-muted-foreground">
@@ -332,7 +334,7 @@ async function copyAccount(): Promise<void> {
                 </div>
             </Card>
 
-            <Card class="p-4">
+            <Card class="min-w-0 p-4">
                 <p
                     class="text-xs font-semibold tracking-wider text-muted-foreground uppercase"
                 >
@@ -352,15 +354,15 @@ async function copyAccount(): Promise<void> {
                 </Link>
             </Card>
 
-            <Card v-if="registration.payment" class="p-4">
-                <div class="flex items-center gap-2">
+            <Card v-if="registration.payment" class="min-w-0 p-4">
+                <div class="flex min-w-0 items-center gap-2">
                     <CreditCard class="size-5" />
                     <h2 class="text-lg font-semibold">
                         {{ t('phase02.payment.title') }}
                     </h2>
                 </div>
 
-                <div class="mt-4 grid gap-4 sm:grid-cols-2">
+                <div class="mt-4 grid min-w-0 gap-4 sm:grid-cols-2">
                     <div>
                         <p class="text-xs text-muted-foreground">
                             {{ t('phase02.payment.amount') }}
@@ -402,11 +404,13 @@ async function copyAccount(): Promise<void> {
                             {{ destination.account_holder }}
                         </p>
                     </div>
-                    <div class="sm:col-span-2">
+                    <div class="min-w-0 sm:col-span-2">
                         <p class="text-xs text-muted-foreground">
                             {{ t('phase02.payment.accountNumber') }}
                         </p>
-                        <div class="mt-1 flex flex-wrap items-center gap-2">
+                        <div
+                            class="mt-1 flex min-w-0 flex-wrap items-center gap-2"
+                        >
                             <code
                                 dir="ltr"
                                 class="rounded bg-muted px-2 py-1 text-base"
@@ -415,7 +419,7 @@ async function copyAccount(): Promise<void> {
                             </code>
                             <Button
                                 type="button"
-                                class="inline-flex min-h-9 items-center gap-2 rounded-md border px-3 text-sm font-medium"
+                                class="inline-flex h-auto min-h-10 max-w-full min-w-0 items-center gap-2 rounded-md border px-3 text-sm font-medium whitespace-normal"
                                 @click="copyAccount"
                             >
                                 <Copy class="size-4" />
@@ -438,7 +442,7 @@ async function copyAccount(): Promise<void> {
 
                 <div
                     v-if="paymentInstructions"
-                    class="mt-5 rounded-lg border bg-muted/30 p-4"
+                    class="mt-5 min-w-0 rounded-lg border bg-muted/30 p-4"
                 >
                     <p class="text-sm font-semibold">
                         {{ t('phase02.payment.instructions') }}
@@ -455,7 +459,7 @@ async function copyAccount(): Promise<void> {
                         registration.payment.status === 'CORRECTION_REQUIRED' &&
                         registration.payment.correctionReason
                     "
-                    class="mt-5 rounded-lg border border-destructive/30 bg-destructive/5 p-4"
+                    class="mt-5 min-w-0 rounded-lg border border-destructive/30 bg-destructive/5 p-4"
                 >
                     <p class="text-sm font-semibold text-destructive">
                         {{ t('phase02.payment.correctionRequired') }}
@@ -470,7 +474,7 @@ async function copyAccount(): Promise<void> {
                         registration.payment.status === 'PENDING' ||
                         registration.payment.status === 'CORRECTION_REQUIRED'
                     "
-                    class="mt-6 space-y-4"
+                    class="mt-6 min-w-0 space-y-4"
                     @submit.prevent="submitProof"
                 >
                     <div>
@@ -503,7 +507,7 @@ async function copyAccount(): Promise<void> {
                         </p>
                     </div>
 
-                    <div class="grid gap-4 sm:grid-cols-2">
+                    <div class="grid min-w-0 gap-4 sm:grid-cols-2">
                         <div>
                             <label
                                 class="text-sm font-medium"
@@ -611,7 +615,7 @@ async function copyAccount(): Promise<void> {
 
                     <Button
                         type="submit"
-                        class="inline-flex min-h-10 items-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground disabled:opacity-50"
+                        class="inline-flex h-auto min-h-10 max-w-full min-w-0 items-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-semibold whitespace-normal text-primary-foreground disabled:opacity-50"
                         :disabled="proofForm.processing || !proofForm.proof"
                     >
                         <FileUp class="size-4" />
@@ -625,7 +629,7 @@ async function copyAccount(): Promise<void> {
                 </form>
             </Card>
 
-            <Card v-else class="p-4">
+            <Card v-else class="min-w-0 p-4">
                 <p
                     v-if="
                         registration.billingMode === 'PAID' &&
@@ -662,8 +666,13 @@ async function copyAccount(): Promise<void> {
                     }}
                 </p>
             </Card>
-            <div v-if="registration.nextActionUrl" class="flex flex-wrap gap-3">
-                <Button as-child
+            <div
+                v-if="registration.nextActionUrl"
+                class="flex min-w-0 flex-wrap gap-3"
+            >
+                <Button
+                    class="h-auto min-h-10 max-w-full min-w-0 whitespace-normal"
+                    as-child
                     ><Link :href="registration.nextActionUrl">{{
                         actionLabel(registration.nextAction)
                     }}</Link></Button

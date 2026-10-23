@@ -307,8 +307,8 @@ function fixLabel(item: ReadinessFinding) {
 </script>
 
 <template>
-    <div class="grid w-full max-w-5xl gap-6">
-        <Card v-show="step === 3">
+    <div class="grid w-full min-w-0 gap-6 [overflow-wrap:anywhere]">
+        <Card class="min-w-0" v-show="step === 3">
             <CardHeader
                 ><CardTitle>{{ t('wizardUx.contributors') }}</CardTitle>
                 <p class="text-sm text-muted-foreground">
@@ -317,26 +317,27 @@ function fixLabel(item: ReadinessFinding) {
             </CardHeader>
             <CardContent>
                 <form
-                    class="grid gap-4"
+                    class="grid min-w-0 gap-4"
                     novalidate
                     @submit.prevent="saveAuthors()"
                 >
                     <fieldset
                         :disabled="!draft || saving || processing"
-                        class="grid gap-5"
+                        class="grid min-w-0 gap-5"
                     >
                         <div
                             v-for="(author, i) in contributorForm.contributors"
                             :key="author.id ?? i"
-                            class="grid gap-4 border border-border p-4"
+                            class="grid min-w-0 gap-4 border border-border p-4"
                         >
                             <div
-                                class="flex items-center justify-between gap-2"
+                                class="flex min-w-0 items-center justify-between gap-2"
                             >
                                 <h3 class="font-semibold">
                                     {{ c('author') }} {{ i + 1 }}
                                 </h3>
                                 <Button
+                                    class="h-auto min-h-10 max-w-full min-w-0 whitespace-normal"
                                     v-if="
                                         draft &&
                                         contributorForm.contributors.length > 1
@@ -366,8 +367,9 @@ function fixLabel(item: ReadinessFinding) {
                                     >{{ c('corresponding') }}</span
                                 >
                             </p>
-                            <div class="flex flex-wrap gap-2">
+                            <div class="flex min-w-0 flex-wrap gap-2">
                                 <Button
+                                    class="h-auto min-h-10 max-w-full min-w-0 whitespace-normal"
                                     type="button"
                                     size="sm"
                                     variant="outline"
@@ -408,9 +410,12 @@ function fixLabel(item: ReadinessFinding) {
                                         aria-hidden="true"
                                 /></Button>
                             </div>
-                            <div v-show="activeAuthor === i" class="grid gap-4">
-                                <div class="grid gap-4 sm:grid-cols-2">
-                                    <div class="grid gap-1">
+                            <div
+                                v-show="activeAuthor === i"
+                                class="grid min-w-0 gap-4"
+                            >
+                                <div class="grid min-w-0 gap-4 sm:grid-cols-2">
+                                    <div class="grid min-w-0 gap-1">
                                         <Label :for="'author-name-' + i">{{
                                             c('name')
                                         }}</Label>
@@ -421,7 +426,7 @@ function fixLabel(item: ReadinessFinding) {
                                             maxlength="255"
                                         />
                                     </div>
-                                    <div class="grid gap-1">
+                                    <div class="grid min-w-0 gap-1">
                                         <Label :for="'author-email-' + i">{{
                                             c('email')
                                         }}</Label>
@@ -432,7 +437,7 @@ function fixLabel(item: ReadinessFinding) {
                                             type="email"
                                         />
                                     </div>
-                                    <div class="grid gap-1">
+                                    <div class="grid min-w-0 gap-1">
                                         <Label :for="'author-country-' + i">{{
                                             c('country')
                                         }}</Label>
@@ -443,7 +448,7 @@ function fixLabel(item: ReadinessFinding) {
                                             maxlength="2"
                                         />
                                     </div>
-                                    <div class="grid gap-1">
+                                    <div class="grid min-w-0 gap-1">
                                         <Label :for="'author-orcid-' + i">{{
                                             c('orcid')
                                         }}</Label>
@@ -460,7 +465,7 @@ function fixLabel(item: ReadinessFinding) {
                                         />
                                     </div>
                                 </div>
-                                <div class="flex items-center gap-2">
+                                <div class="flex min-w-0 items-center gap-2">
                                     <Checkbox
                                         :id="'single-' + i"
                                         v-model="author.single_name"
@@ -479,9 +484,9 @@ function fixLabel(item: ReadinessFinding) {
                                 </div>
                                 <div
                                     v-if="!author.single_name"
-                                    class="grid gap-4 sm:grid-cols-2"
+                                    class="grid min-w-0 gap-4 sm:grid-cols-2"
                                 >
-                                    <div class="grid gap-1">
+                                    <div class="grid min-w-0 gap-1">
                                         <Label :for="'given-' + i">{{
                                             c('given')
                                         }}</Label>
@@ -499,7 +504,7 @@ function fixLabel(item: ReadinessFinding) {
                                             maxlength="255"
                                         />
                                     </div>
-                                    <div class="grid gap-1">
+                                    <div class="grid min-w-0 gap-1">
                                         <Label :for="'family-' + i">{{
                                             c('family')
                                         }}</Label>
@@ -518,7 +523,7 @@ function fixLabel(item: ReadinessFinding) {
                                         />
                                     </div>
                                 </div>
-                                <div class="flex items-center gap-2">
+                                <div class="flex min-w-0 items-center gap-2">
                                     <Checkbox
                                         :id="'corresponding-' + i"
                                         :model-value="author.is_corresponding"
@@ -535,10 +540,12 @@ function fixLabel(item: ReadinessFinding) {
                                 <div
                                     v-for="(aff, j) in author.affiliations"
                                     :key="j"
-                                    class="grid gap-3 border-s-2 border-border ps-3"
+                                    class="grid min-w-0 gap-3 border-s-2 border-border ps-3"
                                 >
-                                    <div class="grid gap-4 sm:grid-cols-2">
-                                        <div class="grid gap-1">
+                                    <div
+                                        class="grid min-w-0 gap-4 sm:grid-cols-2"
+                                    >
+                                        <div class="grid min-w-0 gap-1">
                                             <Label
                                                 :for="'inst-' + i + '-' + j"
                                                 >{{ c('institution') }}</Label
@@ -576,7 +583,7 @@ function fixLabel(item: ReadinessFinding) {
                                                 "
                                             />
                                         </div>
-                                        <div class="grid gap-1">
+                                        <div class="grid min-w-0 gap-1">
                                             <Label
                                                 :for="
                                                     'aff-country-' + i + '-' + j
@@ -592,7 +599,7 @@ function fixLabel(item: ReadinessFinding) {
                                                 maxlength="2"
                                             />
                                         </div>
-                                        <div class="grid gap-1">
+                                        <div class="grid min-w-0 gap-1">
                                             <Label
                                                 :for="'city-' + i + '-' + j"
                                                 >{{ c('city') }}</Label
@@ -609,7 +616,7 @@ function fixLabel(item: ReadinessFinding) {
                                                 maxlength="255"
                                             />
                                         </div>
-                                        <div class="grid gap-1">
+                                        <div class="grid min-w-0 gap-1">
                                             <Label
                                                 :for="'dept-' + i + '-' + j"
                                                 >{{ c('department') }}</Label
@@ -630,6 +637,7 @@ function fixLabel(item: ReadinessFinding) {
                                         </div>
                                     </div>
                                     <Button
+                                        class="h-auto min-h-10 max-w-full min-w-0 whitespace-normal"
                                         v-if="
                                             draft &&
                                             author.affiliations.length > 1
@@ -644,6 +652,7 @@ function fixLabel(item: ReadinessFinding) {
                                     >
                                 </div>
                                 <Button
+                                    class="h-auto min-h-10 max-w-full min-w-0 whitespace-normal"
                                     v-if="draft"
                                     type="button"
                                     size="sm"
@@ -656,6 +665,7 @@ function fixLabel(item: ReadinessFinding) {
                             </div>
                         </div>
                         <Button
+                            class="h-auto min-h-10 max-w-full min-w-0 whitespace-normal"
                             v-if="draft"
                             type="button"
                             variant="outline"
@@ -672,6 +682,7 @@ function fixLabel(item: ReadinessFinding) {
                         {{ c('formError') }}
                     </p>
                     <Button
+                        class="h-auto min-h-10 max-w-full min-w-0 whitespace-normal"
                         v-if="draft"
                         type="submit"
                         :disabled="
@@ -684,7 +695,7 @@ function fixLabel(item: ReadinessFinding) {
             </CardContent>
         </Card>
 
-        <Card v-show="step === 4">
+        <Card class="min-w-0" v-show="step === 4">
             <CardHeader
                 ><CardTitle>{{ t('wizardUx.references') }}</CardTitle>
                 <p class="text-sm text-muted-foreground">
@@ -693,15 +704,18 @@ function fixLabel(item: ReadinessFinding) {
             >
             <CardContent>
                 <form
-                    class="grid gap-4"
+                    class="grid min-w-0 gap-4"
                     novalidate
                     @submit.prevent="saveReferences()"
                 >
                     <fieldset
                         :disabled="!draft || saving || processing"
-                        class="grid gap-4"
+                        class="grid min-w-0 gap-4"
                     >
-                        <div v-if="!individualReferences" class="grid gap-2">
+                        <div
+                            v-if="!individualReferences"
+                            class="grid min-w-0 gap-2"
+                        >
                             <Label for="bulk-references">{{
                                 t('wizardUx.bulkReferences')
                             }}</Label>
@@ -720,22 +734,29 @@ function fixLabel(item: ReadinessFinding) {
                             </p>
                         </div>
                         <Button
+                            class="h-auto min-h-10 max-w-full min-w-0 whitespace-normal"
                             type="button"
                             variant="outline"
                             @click="toggleReferences"
                             >{{ t('wizardUx.individualReferences') }}</Button
                         >
-                        <div v-show="individualReferences" class="grid gap-4">
+                        <div
+                            v-show="individualReferences"
+                            class="grid min-w-0 gap-4"
+                        >
                             <div
                                 v-for="(ref, i) in referenceForm.references"
                                 :key="ref.id ?? i"
-                                class="grid gap-3 border border-border p-4"
+                                class="grid min-w-0 gap-3 border border-border p-4"
                             >
-                                <div class="flex items-center justify-between">
+                                <div
+                                    class="flex min-w-0 items-center justify-between"
+                                >
                                     <h3 class="font-semibold">
                                         {{ c('reference') }} {{ i + 1 }}
                                     </h3>
                                     <Button
+                                        class="h-auto min-h-10 max-w-full min-w-0 whitespace-normal"
                                         v-if="draft"
                                         size="sm"
                                         type="button"
@@ -783,6 +804,7 @@ function fixLabel(item: ReadinessFinding) {
                                 />
                             </div>
                             <Button
+                                class="h-auto min-h-10 max-w-full min-w-0 whitespace-normal"
                                 v-if="draft"
                                 type="button"
                                 variant="outline"
@@ -808,6 +830,7 @@ function fixLabel(item: ReadinessFinding) {
                         {{ c('formError') }}
                     </p>
                     <Button
+                        class="h-auto min-h-10 max-w-full min-w-0 whitespace-normal"
                         v-if="draft"
                         type="submit"
                         :disabled="referenceForm.processing"
@@ -817,26 +840,26 @@ function fixLabel(item: ReadinessFinding) {
             </CardContent>
         </Card>
 
-        <Card v-show="step === 2">
+        <Card class="min-w-0" v-show="step === 2">
             <CardHeader
                 ><CardTitle>{{ t('wizardUx.files') }}</CardTitle>
                 <p class="text-sm text-muted-foreground">
                     {{ c('fileHelp') }}
                 </p></CardHeader
             >
-            <CardContent class="grid gap-4">
+            <CardContent class="grid min-w-0 gap-4">
                 <ul class="text-sm">
                     <li
                         v-for="file in files"
                         :key="file.id"
-                        class="border-b py-2"
+                        class="min-w-0 border-b py-2"
                     >
                         {{ c('version') }} {{ file.version }} · {{ file.name }}
                     </li>
                 </ul>
                 <form
                     v-if="draft"
-                    class="grid gap-3"
+                    class="grid min-w-0 gap-3"
                     @submit.prevent="saveFile()"
                 >
                     <Label for="abstract-document">{{ c('chooseFile') }}</Label>
@@ -855,6 +878,7 @@ function fixLabel(item: ReadinessFinding) {
                         {{ c('fileError') }}
                     </p>
                     <Button
+                        class="h-auto min-h-10 max-w-full min-w-0 whitespace-normal"
                         type="submit"
                         :disabled="!fileForm.file || fileForm.processing"
                     >
@@ -865,18 +889,22 @@ function fixLabel(item: ReadinessFinding) {
             </CardContent>
         </Card>
 
-        <Card v-show="step === 5">
+        <Card class="min-w-0" v-show="step === 5">
             <CardHeader
                 ><CardTitle>{{ t('wizardUx.review') }}</CardTitle>
                 <p class="text-sm text-muted-foreground">
                     {{ c('submitHelp') }}
                 </p></CardHeader
             >
-            <CardContent class="grid gap-4">
-                <section class="grid gap-4" :aria-label="t('wizardUx.review')">
-                    <div class="flex justify-between gap-3">
+            <CardContent class="grid min-w-0 gap-4">
+                <section
+                    class="grid min-w-0 gap-4"
+                    :aria-label="t('wizardUx.review')"
+                >
+                    <div class="flex min-w-0 justify-between gap-3">
                         <h3 class="font-medium">{{ t('wizardUx.details') }}</h3>
                         <Button
+                            class="h-auto min-h-10 max-w-full min-w-0 whitespace-normal"
                             v-if="draft"
                             type="button"
                             variant="outline"
@@ -894,7 +922,7 @@ function fixLabel(item: ReadinessFinding) {
                     <p class="leading-7 whitespace-pre-wrap" dir="auto">
                         {{ details.abstract }}
                     </p>
-                    <div class="flex flex-wrap gap-2">
+                    <div class="flex min-w-0 flex-wrap gap-2">
                         <Badge
                             v-for="keyword in details.keywords"
                             :key="keyword"
@@ -907,9 +935,10 @@ function fixLabel(item: ReadinessFinding) {
                         <span aria-hidden="true"> · </span>
                         {{ details.track }}
                     </p>
-                    <div class="flex justify-between gap-3">
+                    <div class="flex min-w-0 justify-between gap-3">
                         <h3 class="font-medium">{{ t('wizardUx.files') }}</h3>
                         <Button
+                            class="h-auto min-h-10 max-w-full min-w-0 whitespace-normal"
                             v-if="draft"
                             type="button"
                             variant="outline"
@@ -923,11 +952,12 @@ function fixLabel(item: ReadinessFinding) {
                         <span aria-hidden="true"> · </span>{{ c('version') }}
                         {{ file.version }}
                     </p>
-                    <div class="flex justify-between gap-3">
+                    <div class="flex min-w-0 justify-between gap-3">
                         <h3 class="font-medium">
                             {{ t('wizardUx.contributors') }}
                         </h3>
                         <Button
+                            class="h-auto min-h-10 max-w-full min-w-0 whitespace-normal"
                             v-if="draft"
                             type="button"
                             variant="outline"
@@ -936,11 +966,11 @@ function fixLabel(item: ReadinessFinding) {
                             >{{ t('wizardUx.edit') }}</Button
                         >
                     </div>
-                    <ol class="grid gap-3">
+                    <ol class="grid min-w-0 gap-3">
                         <li
                             v-for="(author, i) in contributorForm.contributors"
                             :key="author.id ?? i"
-                            class="border-s-2 border-border ps-3"
+                            class="min-w-0 border-s-2 border-border ps-3"
                         >
                             <p>
                                 <bdi>{{ author.display_name }}</bdi
@@ -978,11 +1008,12 @@ function fixLabel(item: ReadinessFinding) {
                             </p>
                         </li>
                     </ol>
-                    <div class="flex justify-between gap-3">
+                    <div class="flex min-w-0 justify-between gap-3">
                         <h3 class="font-medium">
                             {{ t('wizardUx.references') }}
                         </h3>
                         <Button
+                            class="h-auto min-h-10 max-w-full min-w-0 whitespace-normal"
                             v-if="draft"
                             type="button"
                             variant="outline"
@@ -991,7 +1022,7 @@ function fixLabel(item: ReadinessFinding) {
                             >{{ t('wizardUx.edit') }}</Button
                         >
                     </div>
-                    <ol class="list-inside list-decimal space-y-2">
+                    <ol class="min-w-0 list-inside list-decimal space-y-2">
                         <li
                             v-for="(reference, i) in individualReferences
                                 ? referenceForm.references
@@ -1000,7 +1031,7 @@ function fixLabel(item: ReadinessFinding) {
                                       referenceForm.references,
                                   )"
                             :key="reference.id ?? i"
-                            class="break-words"
+                            class="min-w-0 break-words"
                         >
                             <bdi>{{ reference.raw_citation }}</bdi
                             ><span v-if="reference.doi">
@@ -1016,7 +1047,7 @@ function fixLabel(item: ReadinessFinding) {
                 <div
                     v-if="readiness"
                     role="status"
-                    class="border border-border p-4 text-sm"
+                    class="min-w-0 border border-border p-4 text-sm"
                 >
                     <p class="font-semibold">
                         {{ c('readiness') }}:
@@ -1042,7 +1073,7 @@ function fixLabel(item: ReadinessFinding) {
                         <li
                             v-for="(item, i) in blockers"
                             :key="i"
-                            class="text-destructive"
+                            class="min-w-0 text-destructive"
                         >
                             {{ finding(item) }}
                             <Button
@@ -1050,7 +1081,7 @@ function fixLabel(item: ReadinessFinding) {
                                 type="button"
                                 variant="outline"
                                 size="sm"
-                                class="ms-2 mt-2"
+                                class="ms-2 mt-2 h-auto min-h-10 max-w-full min-w-0 whitespace-normal"
                                 :disabled="saving || processing"
                                 @click="emit('edit', findingStep(item)!)"
                                 >{{ fixLabel(item) }}</Button
@@ -1070,6 +1101,7 @@ function fixLabel(item: ReadinessFinding) {
                 </p>
                 <form v-if="draft" @submit.prevent="emit('prepare-submit')">
                     <Button
+                        class="h-auto min-h-10 max-w-full min-w-0 whitespace-normal"
                         type="submit"
                         :disabled="blocked || saving || processing"
                         >{{ c('submitAction') }}</Button
@@ -1104,12 +1136,14 @@ function fixLabel(item: ReadinessFinding) {
                 </p>
                 <DialogFooter
                     ><Button
+                        class="h-auto min-h-10 max-w-full min-w-0 whitespace-normal"
                         type="button"
                         variant="outline"
                         :disabled="submitForm.processing"
                         @click="confirmOpen = false"
                         >{{ t('wizardUx.cancel') }}</Button
                     ><Button
+                        class="h-auto min-h-10 max-w-full min-w-0 whitespace-normal"
                         type="button"
                         :disabled="blocked || submitForm.processing"
                         @click="officialSubmit"
@@ -1149,11 +1183,13 @@ function fixLabel(item: ReadinessFinding) {
                 </ul>
                 <DialogFooter
                     ><Button
+                        class="h-auto min-h-10 max-w-full min-w-0 whitespace-normal"
                         type="button"
                         variant="outline"
                         @click="resolveReferences(false)"
                         >{{ t('wizardUx.cancel') }}</Button
                     ><Button
+                        class="h-auto min-h-10 max-w-full min-w-0 whitespace-normal"
                         type="button"
                         variant="destructive"
                         @click="resolveReferences(true)"

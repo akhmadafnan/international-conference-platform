@@ -1,5 +1,41 @@
 # Current Project State
 
+## Current operational checkpoint — 2026-10-23
+
+**Status:** Phase03 Product Owner browser UAT PASS; Phase04 Academic Core exists, full end-to-end UAT NOT YET COMPLETE.
+**Active local branch:** `agent/phase04-academic-core`, Laptop 2, `D:\PINJAM-AFNAN\Herd\international-conference-platform`.
+**Phase03 local checkpoint:** `d845d24`.
+**Evidence provenance:** Product Owner-supplied verified local checkpoint from the external documentation/code/MySQL audit; this documentation-only task does not repeat that audit or mutate MySQL.
+
+Current product authority is the [ICHES 2027 Operational Rebaseline](../governance/ICHES_2027_OPERATIONAL_REBASELINE_2026_10_23.md) and PD-085–PD-096 in the [Decision Register](../governance/DECISION_REGISTER.md). Apply the [execution roadmap](../project-management/ICHES_2027_EXECUTION_ROADMAP.md) as bounded future work, not as proof of delivery or automatic coding authorization.
+
+Verified known facts at this checkpoint:
+
+- Phase03 Product Owner browser UAT PASS remains accepted; do not reopen it.
+- Phase04 Academic Core MySQL migration **batch 2 RAN**.
+- UNIQUE submission registration migration **batch 3 RAN**.
+- One Abstract Policy: MySQL duplicate registration groups **0**; `ICHES-UAT-2027-P-0001` remains **SUBMITTED** and legacy DRAFT `ICHES-UAT-2027-P-0002` was explicitly removed.
+- UI Lyra V1.1 fluid workspace browser UAT **PASS**.
+- Academic Workspace and Paper #0001 Administrative Screening browser UAT **PASS** for existing code. This is partial Phase04 evidence, not full end-to-end UAT.
+- Existing code still implements mandatory screening and per-email reviewer assignment. The new Topic Pool/exclusive Self-Claim and SC Room model is **APPROVED DESIGN BUT NOT IMPLEMENTED**. Publication roadmap items are not claimed implemented.
+- The large Phase04 working tree is **uncommitted**. No merged, pushed, remotely integrated or production-ready state is inferred from local code/UAT evidence.
+- No authorization for destructive database resets, Git merge/push, branch switching or automatic roadmap implementation. This task changes documentation only; preserve all existing local edits, credentials and independent workstation database data.
+
+Next bounded work unit: plan Reviewer Topic Pool + exclusive atomic Self-Claim, including removal of the routine mandatory screening dependency, against the approved operational model and its scoped ready gate. Preserve single-anonymous/COI, assignment-specific private access, immutable history and human final authority. Google Login remains postponed until near-production; authentication is unchanged.
+
+## HISTORICAL — superseded checkpoints, not active instructions
+
+The chronology below is retained as provenance. Older “latest”, “current”, “next”, Phase04 prohibition and migration-pending statements do not override the 2026-10-23 checkpoint above. Earlier local acceptance and phase integration claims keep their historical scope; no new remote status is inferred.
+
+<details>
+<summary>Historical Phase01–Phase04 chronology and earlier workstation/gate assumptions</summary>
+
+## Product Owner local checkpoint — 2026-10-19
+
+Phase 03 browser UAT was accepted PASS by the Product Owner; approved local code/tests are checkpointed at `d845d24` on `uat/iches-48h-unified-local` (Laptop 2). The Product Owner explicitly authorized Phase 04 Academic Core implementation on the child branch `agent/phase04-academic-core`, preserving this checkpoint. This supersedes the older local “Phase 04 NOT AUTHORIZED” gate below for this bounded task only; it does not claim any remote integration or PR merge.
+
+Phase 04 browser UAT remains pending. Its new academic migration has not been applied to the main MySQL database; tests use isolated SQLite. Existing MySQL conference/UAT data must remain unchanged. Push, merge, and PR retargeting remain unauthorized.
+
 ## Latest operational checkpoint — 2026-10-15 (supersedes older phase-progress paragraphs below)
 
 **Canonical workstation:** Laptop 1 `D:\PROJEKKU\international-conference-platform` (VSCode-first), Laptop 2 backup. Both use independently populated local MySQL databases; do not transfer `.env` or database data between them.
@@ -276,3 +312,5 @@ Current bounded action:
 - After approved handoff, review the P03-G technical scope/quality matrix, then authorize a separate bounded implementation branch. Later P03-H covers official DRAFT → SUBMITTED + snapshot/window; P03-I covers five-step author wizard with id/en/ar RTL.
 - Each child returns to `phase/03-submission-metadata` only after required gates are GREEN and separate Product Owner merge approval; do not merge Phase 03 aggregate PR #101 to `develop` without its exit GREEN and explicit Product Owner approval.
 - Phase 04 screening/review/decision/LoA is NOT AUTHORIZED.
+
+</details>

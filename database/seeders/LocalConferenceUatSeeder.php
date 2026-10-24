@@ -16,6 +16,17 @@ final class LocalConferenceUatSeeder extends Seeder
 {
     public const EDITION_CODE = 'ICHES-UAT-2027';
 
+    public const TOPICS = [
+        'T01' => ['en' => 'Islamic Studies, Ethics, and Contemporary Civilization', 'id' => 'Studi Islam, Etika, dan Peradaban Kontemporer', 'ar' => 'الدراسات الإسلامية والأخلاق والحضارة المعاصرة'],
+        'T02' => ['en' => 'Education, Pedagogy, and Human Development', 'id' => 'Pendidikan, Pedagogi, dan Pengembangan Manusia', 'ar' => 'التعليم وطرائق التدريس والتنمية البشرية'],
+        'T03' => ['en' => 'Leadership, Governance, and Institutional Accountability', 'id' => 'Kepemimpinan, Tata Kelola, dan Akuntabilitas Kelembagaan', 'ar' => 'القيادة والحوكمة والمساءلة المؤسسية'],
+        'T04' => ['en' => 'Economics, Sustainable Business, and Inclusive Development', 'id' => 'Ekonomi, Bisnis Berkelanjutan, dan Pembangunan Inklusif', 'ar' => 'الاقتصاد والأعمال المستدامة والتنمية الشاملة'],
+        'T05' => ['en' => 'Law, Human Rights, Social Justice, and Public Policy', 'id' => 'Hukum, Hak Asasi Manusia, Keadilan Sosial, dan Kebijakan Publik', 'ar' => 'القانون وحقوق الإنسان والعدالة الاجتماعية والسياسات العامة'],
+        'T06' => ['en' => 'Social Sciences, Humanities, Culture, and Community Resilience', 'id' => 'Ilmu Sosial, Humaniora, Budaya, dan Ketahanan Masyarakat', 'ar' => 'العلوم الاجتماعية والإنسانية والثقافة وصمود المجتمع'],
+        'T07' => ['en' => 'Digital Transformation, Responsible Innovation, and Society', 'id' => 'Transformasi Digital, Inovasi Bertanggung Jawab, dan Masyarakat', 'ar' => 'التحول الرقمي والابتكار المسؤول والمجتمع'],
+        'T08' => ['en' => 'Environmental Sustainability, and Human Well-Being', 'id' => 'Keberlanjutan Lingkungan dan Kesejahteraan Manusia', 'ar' => 'الاستدامة البيئية ورفاه الإنسان'],
+    ];
+
     public function run(): void
     {
         if (! app()->environment(['local', 'testing']) || ! config('demo_roles.enabled')) {
@@ -59,16 +70,7 @@ final class LocalConferenceUatSeeder extends Seeder
             }
 
             // UAT fixture only. Existing operator-edited Topics are never overwritten.
-            foreach ([
-                'T01' => ['en' => 'Islamic Studies, Ethics, and Contemporary Civilization', 'id' => 'Studi Islam, Etika, dan Peradaban Kontemporer', 'ar' => 'الدراسات الإسلامية والأخلاق والحضارة المعاصرة'],
-                'T02' => ['en' => 'Education, Pedagogy, and Human Development', 'id' => 'Pendidikan, Pedagogi, dan Pengembangan Manusia', 'ar' => 'التعليم وطرائق التدريس والتنمية البشرية'],
-                'T03' => ['en' => 'Leadership, Governance, and Institutional Accountability', 'id' => 'Kepemimpinan, Tata Kelola, dan Akuntabilitas Kelembagaan', 'ar' => 'القيادة والحوكمة والمساءلة المؤسسية'],
-                'T04' => ['en' => 'Economics, Sustainable Business, and Inclusive Development', 'id' => 'Ekonomi, Bisnis Berkelanjutan, dan Pembangunan Inklusif', 'ar' => 'الاقتصاد والأعمال المستدامة والتنمية الشاملة'],
-                'T05' => ['en' => 'Law, Human Rights, Social Justice, and Public Policy', 'id' => 'Hukum, Hak Asasi Manusia, Keadilan Sosial, dan Kebijakan Publik', 'ar' => 'القانون وحقوق الإنسان والعدالة الاجتماعية والسياسات العامة'],
-                'T06' => ['en' => 'Social Sciences, Humanities, Culture, and Community Resilience', 'id' => 'Ilmu Sosial, Humaniora, Budaya, dan Ketahanan Masyarakat', 'ar' => 'العلوم الاجتماعية والإنسانية والثقافة وصمود المجتمع'],
-                'T07' => ['en' => 'Digital Transformation, Responsible Innovation, and Society', 'id' => 'Transformasi Digital, Inovasi Bertanggung Jawab, dan Masyarakat', 'ar' => 'التحول الرقمي والابتكار المسؤول والمجتمع'],
-                'T08' => ['en' => 'Environmental Sustainability, and Human Well-Being', 'id' => 'Keberlanjutan Lingkungan dan Kesejahteraan Manusia', 'ar' => 'الاستدامة البيئية ورفاه الإنسان'],
-            ] as $code => $names) {
+            foreach (self::TOPICS as $code => $names) {
                 $edition->tracks()->firstOrCreate(['code' => $code], ['name_i18n' => $names, 'active' => true]);
             }
             $settings = $edition->settings_json;

@@ -66,12 +66,16 @@ final class AcademicWorkflow
             $same = $this->access->sameAffiliation($reviewer, $s);
             $this->ensure(! $same || ($data['same_affiliation_acknowledged'] ?? false), 'affiliation');
             $snapshot = $this->snapshot($s);
-            $existing = ReviewAssignment::query()->where('snapshot_id', $snapshot->id)->where('reviewer_id', $reviewer->id)->first();
+            $existing = ReviewAssignment::query()->where('snapshot_id', $snapshot->id)->where('reviewer_id', $reviewer->id)
+                ->where('academic_stage', ReviewAssignment::ABSTRACT_STAGE)->first();
             if ($existing !== null) {
                 $this->ensure(in_array($existing->status, ['INVITED', 'ACCEPTED', 'COMPLETED'], true), 'duplicate');
 
                 return $existing;
             }
+            $this->ensure(! ReviewAssignment::query()->where('submission_id', $s->id)
+                ->where('academic_stage', ReviewAssignment::ABSTRACT_STAGE)
+                ->whereIn('status', ReviewAssignment::ACTIVE_STATUSES)->exists(), 'claimed');
             $assignment = ReviewAssignment::query()->create(['submission_id' => $s->id, 'snapshot_id' => $snapshot->id, 'reviewer_id' => $reviewer->id, 'assigned_by' => $actor->id, 'status' => 'INVITED', 'anonymity' => 'SINGLE_ANONYMOUS', 'same_affiliation' => $same, 'screening_note' => $data['screening_note']]);
             $s->update(['academic_status' => 'UNDER_REVIEW']);
             $this->audit($actor, $s, 'reviewer_assigned', ['assignment_id' => $assignment->id, 'reviewer_id' => $reviewer->id, 'same_affiliation' => $same]);
@@ -87,6 +91,7 @@ final class AcademicWorkflow
             $this->access->authorize($actor, 'review.assign', $s);
             $this->access->unconflicted($actor, $s);
             $a = ReviewAssignment::query()->lockForUpdate()->findOrFail($assignment->id);
+            $this->ensure($a->academic_stage === ReviewAssignment::ABSTRACT_STAGE, 'stage');
             $this->ensure(trim($reason) !== '' && mb_strlen($reason) <= 8000, 'reason');
             if ($a->status === 'CANCELLED') {
                 return;
@@ -235,6 +240,8 @@ final class AcademicWorkflow
     {
         $this->access->verified($actor);
         abort_unless($assignment->reviewer_id === $actor->id, 404);
+        $this->ensure($assignment->academic_stage === ReviewAssignment::ABSTRACT_STAGE
+            && $assignment->submission_id === $submission->id && $assignment->snapshot->submission_id === $submission->id, 'stage');
         $this->access->unconflicted($actor, $submission);
         $this->ensure($assignment->anonymity === 'SINGLE_ANONYMOUS', 'anonymity');
         $this->ensure(! in_array($assignment->status, ['CANCELLED', 'DECLINED', 'COI'], true), 'state');
@@ -261,7 +268,8 @@ final class AcademicWorkflow
     /** @return Builder<ReviewAssignment> */
     public function assignments(Submission $s): Builder
     {
-        return ReviewAssignment::query()->where('submission_id', $s->id)->where('snapshot_id', $this->snapshot($s)->id);
+        return ReviewAssignment::query()->where('submission_id', $s->id)->where('snapshot_id', $this->snapshot($s)->id)
+            ->where('academic_stage', ReviewAssignment::ABSTRACT_STAGE);
     }
 
     private function lock(Submission $s): Submission

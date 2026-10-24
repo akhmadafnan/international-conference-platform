@@ -11,7 +11,13 @@ class ReviewAssignment extends Model
 {
     use HasUuids;
 
-    protected $guarded = ['id'];
+    public const ABSTRACT_STAGE = 'ABSTRACT';
+
+    public const ACTIVE_STATUSES = ['INVITED', 'ACCEPTED'];
+
+    protected $attributes = ['academic_stage' => self::ABSTRACT_STAGE, 'assignment_source' => 'MANUAL'];
+
+    protected $guarded = ['id', 'active_owner_slot'];
 
     protected function casts(): array
     {

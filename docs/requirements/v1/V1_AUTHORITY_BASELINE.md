@@ -24,6 +24,10 @@ May manage academic process, record final abstract decisions, record final post-
 ### Reviewer
 May access only assigned papers/versions and submit assigned review/assessment.
 
+Phase 04D.1-B.1 (Product Owner corrective, 2026-10-24): account selection for Topic management uses one Edition-scoped Spatie `reviewer` designation with no permissions. A demo workspace persona alone is not this designation. The picker lists only verified designated accounts for the selected Edition, excluding reviewers already present in its Topic eligibility history. Save uses the immutable User ID and revalidates verification/designation; Edit retains that identity. Legacy Topic grants also require the designation. No per-Topic roles are introduced. Designation grants no manuscript access or broad Academic authority; Topic eligibility and stage-specific paper assignments remain separate facts.
+
+`LocalConferenceUatReviewerSeeder` is a manual, local/testing, demo-opt-in bootstrap for the existing verified `reviewer@iches.test` demo identity in the existing marked `ICHES-UAT-2027` Edition. It adds only the permission-free designation, preserves users/passwords, unrelated roles and academic records, and refuses an existing Reviewer role with permissions. Execution against local MySQL requires separate Product Owner approval.
+
 ### Event / Program Authority
 May manage sessions/rooms/slots, publish schedule, and record operational attendance/presentation facts within scope. Does not receive Finance or Academic authority automatically.
 

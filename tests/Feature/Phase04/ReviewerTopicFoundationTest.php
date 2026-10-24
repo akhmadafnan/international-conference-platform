@@ -10,6 +10,7 @@ use App\Models\Permission;
 use App\Models\Registration;
 use App\Models\ReviewAssignment;
 use App\Models\ReviewerTopicEligibility;
+use App\Models\Role;
 use App\Models\Submission;
 use App\Models\User;
 use App\Support\Academic\AbstractPoolEligibility;
@@ -44,6 +45,7 @@ beforeEach(function () {
     $this->reviewer = User::factory()->create();
     $this->author = User::factory()->create();
     topicFoundationContext($this->edition);
+    $this->reviewer->assignRole(Role::create(['name' => 'reviewer', 'guard_name' => 'web', 'conference_edition_id' => $this->edition->id]));
     $this->committee->givePermissionTo(Permission::findOrCreate('review.assign', 'web'));
     $this->withSession([ActiveConferenceEditionContext::SESSION_KEY => $this->edition->id]);
     $membership = EditionMembership::query()->create([
@@ -87,10 +89,12 @@ test('Committee grants multiple Topics idempotently and can deactivate and react
     $this->delete(route('academic.reviewer-topics.destroy', $record))->assertSessionHasNoErrors();
     expect($record->fresh()->active)->toBeFalse();
     $this->post(route('academic.reviewer-topics.store'), $data)->assertSessionHasNoErrors();
+    topicFoundationContext($this->edition);
+    $this->reviewer->unsetRelation('roles')->unsetRelation('permissions');
     expect($record->fresh()->active)->toBeTrue()->and(ReviewerTopicEligibility::query()->count())->toBe(2)
         ->and(DB::table('activity_log')->where('event', 'reviewer_topic_deactivated')->count())->toBe(1)
         ->and(DB::table('activity_log')->where('event', 'reviewer_topic_reactivated')->count())->toBe(1)
-        ->and($this->reviewer->getRoleNames())->toBeEmpty()->and($this->reviewer->getDirectPermissions())->toBeEmpty();
+        ->and($this->reviewer->getRoleNames()->all())->toBe(['reviewer'])->and($this->reviewer->getAllPermissions())->toBeEmpty();
     $this->get(route('academic.reviewer-topics.index'))->assertOk()->assertInertia(fn ($page) => $page
         ->component('academic/ReviewerTopics')->has('editions', 1)->has('tracks', 2)->has('eligibilities', 2));
 });
@@ -129,6 +133,7 @@ test('permission and Edition context are enforced on management and foreign elig
 test('the same reviewer may have independent eligibility in a second authorized Edition', function () {
     $this->manage->grant($this->committee, $this->edition, ['reviewer_email' => $this->reviewer->email, 'track_ids' => [$this->track->id]]);
     topicFoundationContext($this->otherEdition);
+    $this->reviewer->unsetRelation('roles')->assignRole(Role::create(['name' => 'reviewer', 'guard_name' => 'web', 'conference_edition_id' => $this->otherEdition->id]));
     $this->committee->unsetRelation('permissions')->givePermissionTo(Permission::findOrCreate('review.assign', 'web'));
     $this->manage->grant($this->committee, $this->otherEdition, ['reviewer_email' => $this->reviewer->email, 'track_ids' => [$this->foreignTrack->id]]);
     expect(ReviewerTopicEligibility::query()->where('reviewer_id', $this->reviewer->id)->count())->toBe(2);

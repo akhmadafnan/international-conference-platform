@@ -43,12 +43,33 @@ test('Topic management and routing templates compile with Lyra primitives and fl
     }
 });
 
-test('multiple Topic grants and confirmed deactivation/reactivation do not create Claim or download controls', () => {
+test('one reviewer row and one editor save the complete Topic set without repeated confirmations', () => {
     const source = read('pages/academic/ReviewerTopics.vue');
     assert.match(source, /form\.track_ids\.includes\(track.id\)/);
     assert.match(source, /<DialogDescription>/);
-    assert.match(source, /change\.delete/);
-    assert.match(source, /change\.processing/);
+    assert.match(source, /v-for="reviewer in reviewers"/);
+    assert.match(source, /:key="reviewer.id"/);
+    assert.match(source, /reviewer_id: null as string \| null/);
+    assert.match(source, /reviewer\?\.stateToken/);
+    assert.match(source, /expected_state/);
+    assert.match(source, /\.put\(/);
+    assert.match(source, /form\.processing/);
+    assert.match(source, /@submit.prevent="save"/);
+    assert.match(source, /v-model="form.reviewer_id"/);
+    assert.match(source, /v-for="account in reviewerOptions"/);
+    assert.match(source, /account.name/);
+    assert.match(source, /account.email/);
+    assert.match(source, /v-if="editing"/);
+    assert.match(source, /c.noReviewers/);
+    assert.doesNotMatch(source, /reviewer_email|type="email"|<Input/);
+    assert.match(source, /<DataTablePagination :pagination="pagination"/);
+    assert.match(source, /locale.startsWith\('ar'\)/);
+    assert.match(source, /scope="row"/);
+    assert.match(source, /role="alert"/);
+    assert.doesNotMatch(
+        source,
+        /confirmGrant|confirmDisable|change\.delete|v-for="row in eligibilities"/,
+    );
     assert.doesNotMatch(source, /\/claim|fileUrl|confidential_comments/);
     const routing = read('components/academic/TopicRoutingEditor.vue');
     assert.match(routing, /v-if="routing.canCorrect"/);

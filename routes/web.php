@@ -32,6 +32,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('academic/reviewer-topics', [ReviewerTopicEligibilityController::class, 'index'])->name('academic.reviewer-topics.index');
     Route::post('academic/reviewer-topics/edition', [ReviewerTopicEligibilityController::class, 'selectEdition'])->name('academic.reviewer-topics.edition');
     Route::post('academic/reviewer-topics', [ReviewerTopicEligibilityController::class, 'store'])->name('academic.reviewer-topics.store');
+    Route::put('academic/reviewer-topics', [ReviewerTopicEligibilityController::class, 'sync'])->name('academic.reviewer-topics.sync');
     Route::delete('academic/reviewer-topics/{eligibility}', [ReviewerTopicEligibilityController::class, 'destroy'])->name('academic.reviewer-topics.destroy');
     Route::post('academic/submissions/{submission}/topic', [AcademicController::class, 'correctTopic'])->name('academic.topic.correct');
     Route::get('academic', [AcademicController::class, 'index'])->name('academic.index');

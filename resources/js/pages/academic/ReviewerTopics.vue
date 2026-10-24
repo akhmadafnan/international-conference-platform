@@ -1,18 +1,11 @@
-<script setup lang="ts">
-import { Head, Link, useForm } from '@inertiajs/vue3';
+﻿<script setup lang="ts">
+import { Head, Link, router, useForm } from '@inertiajs/vue3';
 import { computed, ref, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
-import {
-    PhSpinnerGap,
-    PhPlus,
-    PhProhibit,
-    PhArrowCounterClockwise,
-} from '@phosphor-icons/vue';
+import { PhSpinnerGap, PhPlus, PhPencilSimple } from '@phosphor-icons/vue';
 import { reviewerTopicCopy } from '@/i18n/reviewerTopics';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Checkbox } from '@/components/ui/checkbox';
 import {
@@ -33,40 +26,38 @@ import {
 import DataTablePagination from '@/components/DataTablePagination.vue';
 import type { PaginationMeta } from '@/types/pagination';
 
-type Eligibility = {
+type Reviewer = {
     id: string;
-    reviewer: string;
+    name: string;
     email: string;
     verified: boolean;
-    trackId: string;
-    trackCode: string;
-    trackName: Record<string, string>;
-    trackActive: boolean;
-    active: boolean;
+    topics: { id: string; code: string }[];
+    hasHistoricalTopics: boolean;
+    stateToken: string;
 };
 const props = defineProps<{
     editions: { id: string; code: string }[];
     editionId: string | null;
     tracks: { id: string; code: string; name_i18n: Record<string, string> }[];
-    eligibilities: Eligibility[];
+    reviewers: Reviewer[];
+    reviewerOptions: { id: string; name: string; email: string }[];
     pagination: PaginationMeta;
     saved: boolean;
 }>();
 const { locale, t } = useI18n();
 const c = computed(() => reviewerTopicCopy(locale.value));
 const selection = useForm({ edition_id: props.editionId ?? '' });
-const form = useForm({ reviewer_email: '', track_ids: [] as string[] });
-const change = useForm({});
-const pending = ref<Eligibility | null>(null);
-const confirmGrant = ref(false);
-const selectedCodes = computed(() =>
-    props.tracks
-        .filter((track) => form.track_ids.includes(track.id))
-        .map((track) => track.code)
-        .join(', '),
-);
-const busy = computed(
-    () => form.processing || change.processing || selection.processing,
+const form = useForm({
+    reviewer_id: null as string | null,
+    track_ids: [] as string[],
+    expected_state: 'new',
+});
+const editorOpen = ref(false);
+const editing = ref<Reviewer | null>(null);
+const busy = computed(() => form.processing || selection.processing);
+const stale = computed(() => !!form.errors.expected_state);
+const topicError = computed(() =>
+    Object.keys(form.errors).some((key) => key.startsWith('track_ids')),
 );
 watch(
     () => props.editionId,
@@ -74,67 +65,45 @@ watch(
         selection.edition_id = id ?? '';
         form.reset();
         form.clearErrors();
-        pending.value = null;
-        confirmGrant.value = false;
+        editorOpen.value = false;
+        editing.value = null;
     },
 );
 function topicName(names: Record<string, string>) {
     return names[locale.value] ?? names.en ?? '';
 }
-function toggleTopic(id: string, active: boolean) {
-    form.track_ids = active
+function openEditor(reviewer: Reviewer | null = null) {
+    if (busy.value) return;
+    form.reset();
+    form.clearErrors();
+    editing.value = reviewer;
+    form.reviewer_id = reviewer?.id ?? null;
+    form.track_ids = reviewer?.topics.map((topic) => topic.id) ?? [];
+    form.expected_state = reviewer?.stateToken ?? 'new';
+    editorOpen.value = true;
+}
+function toggleTopic(id: string, selected: boolean) {
+    form.track_ids = selected
         ? [...new Set([...form.track_ids, id])]
         : form.track_ids.filter((value) => value !== id);
 }
-function grant() {
-    if (busy.value || !props.editionId) return;
-    form.transform((data) => ({ ...data, edition_id: props.editionId })).post(
+function save() {
+    if (busy.value || stale.value || !props.editionId || !form.reviewer_id)
+        return;
+    form.transform((data) => ({ ...data, edition_id: props.editionId })).put(
         '/academic/reviewer-topics',
         {
             preserveScroll: true,
             onSuccess: () => {
-                form.reset();
-                confirmGrant.value = false;
+                editorOpen.value = false;
             },
         },
     );
 }
-function confirm(row: Eligibility) {
-    if (!busy.value) {
-        change.clearErrors();
-        pending.value = row;
-    }
-}
-function applyChange() {
-    const row = pending.value;
-    if (!row || busy.value || !props.editionId) return;
-    const options = {
-        preserveScroll: true,
-        onSuccess: () => {
-            pending.value = null;
-        },
-    };
-    if (row.active)
-        change.delete(`/academic/reviewer-topics/${row.id}`, options);
-    else
-        change
-            .transform(() => ({
-                edition_id: props.editionId,
-                reviewer_email: row.email,
-                track_ids: [row.trackId],
-                eligibility_id: row.id,
-            }))
-            .post('/academic/reviewer-topics', options);
-}
-function prepareGrant() {
-    if (!busy.value && props.editionId && form.track_ids.length)
-        confirmGrant.value = true;
-}
-function closeConfirmation() {
-    if (!busy.value) {
-        pending.value = null;
-        confirmGrant.value = false;
-    }
+function reload() {
+    if (busy.value) return;
+    editorOpen.value = false;
+    router.reload();
 }
 </script>
 
@@ -152,33 +121,28 @@ function closeConfirmation() {
             class="grid min-w-0 gap-3 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-end"
             :aria-busy="selection.processing"
             @submit.prevent="
-                selection.post('/academic/reviewer-topics/edition')
+                !busy && selection.post('/academic/reviewer-topics/edition')
             "
         >
             <div class="grid min-w-0 gap-2">
                 <Label for="topic-edition">{{ c.edition }}</Label>
-                <Select v-model="selection.edition_id" :disabled="busy"
-                    ><SelectTrigger id="topic-edition" class="w-full"
-                        ><SelectValue :placeholder="c.edition" /></SelectTrigger
-                    ><SelectContent>
-                        <SelectItem
+                <Select v-model="selection.edition_id" :disabled="busy">
+                    <SelectTrigger id="topic-edition" class="w-full"
+                        ><SelectValue :placeholder="c.edition"
+                    /></SelectTrigger>
+                    <SelectContent
+                        ><SelectItem
                             v-for="edition in editions"
                             :key="edition.id"
                             :value="edition.id"
                             >{{ edition.code }}</SelectItem
-                        >
-                    </SelectContent></Select
-                >
+                        ></SelectContent
+                    >
+                </Select>
             </div>
-            <Button
-                :disabled="busy || !selection.edition_id"
-                class="h-auto min-h-10 whitespace-normal"
-                ><PhSpinnerGap
-                    v-if="selection.processing"
-                    class="size-4 animate-spin motion-reduce:animate-none"
-                    aria-hidden="true"
-                />{{ c.open }}</Button
-            >
+            <Button :disabled="busy || !selection.edition_id">{{
+                c.open
+            }}</Button>
         </form>
         <p
             v-if="selection.hasErrors"
@@ -193,237 +157,286 @@ function closeConfirmation() {
         <p v-if="!editionId" class="text-sm text-muted-foreground">
             {{ c.chooseEdition }}
         </p>
-        <template v-else>
-            <Card class="min-w-0"
-                ><CardHeader
-                    ><CardTitle>{{ c.grant }}</CardTitle></CardHeader
-                ><CardContent>
-                    <p
-                        v-if="!tracks.length"
-                        class="text-sm text-muted-foreground"
-                    >
-                        {{ c.noTopics }}
-                    </p>
-                    <form
-                        v-else
-                        class="grid w-full min-w-0 gap-5"
-                        :aria-busy="form.processing"
-                        @submit.prevent="prepareGrant"
-                    >
-                        <div class="grid min-w-0 gap-2">
-                            <Label for="reviewer-topic-email">{{
-                                c.email
-                            }}</Label>
-                            <Input
-                                id="reviewer-topic-email"
-                                v-model="form.reviewer_email"
-                                type="email"
-                                required
-                                maxlength="255"
-                                autocomplete="off"
-                                :disabled="busy"
-                                :aria-invalid="!!form.errors.reviewer_email"
-                                aria-describedby="reviewer-topic-error"
-                            />
-                            <p
-                                v-if="form.errors.reviewer_email"
-                                id="reviewer-topic-error"
-                                role="alert"
-                                class="text-sm text-destructive"
-                            >
-                                {{ c.reviewerInvalid }}
-                            </p>
-                        </div>
-                        <fieldset
-                            class="grid min-w-0 gap-3 md:grid-cols-2 xl:grid-cols-3"
-                            :disabled="busy"
-                        >
-                            <legend class="mb-3 text-sm font-medium">
+        <section v-else class="min-w-0 space-y-4" :aria-label="c.reviewer">
+            <div class="flex flex-wrap items-center justify-between gap-3">
+                <h2 class="text-lg font-semibold">{{ c.reviewer }}</h2>
+                <Button
+                    type="button"
+                    :disabled="busy || !tracks.length"
+                    @click="openEditor()"
+                    ><PhPlus class="size-4" aria-hidden="true" />{{
+                        c.addReviewer
+                    }}</Button
+                >
+            </div>
+            <p v-if="!tracks.length" class="text-sm text-muted-foreground">
+                {{ c.noTopics }}
+            </p>
+            <p v-if="!reviewers.length" class="text-sm text-muted-foreground">
+                {{ c.empty }}
+            </p>
+            <div v-else class="overflow-x-auto">
+                <table class="admin-data-table w-full text-start text-sm">
+                    <caption class="sr-only">
+                        {{
+                            c.title
+                        }}
+                    </caption>
+                    <thead>
+                        <tr>
+                            <th scope="col" class="p-3 text-start">
+                                {{ c.reviewer }}
+                            </th>
+                            <th scope="col" class="p-3 text-start">
                                 {{ c.topics }}
-                            </legend>
-                            <label
-                                v-for="track in tracks"
-                                :key="track.id"
-                                class="flex min-h-12 min-w-0 items-start gap-3 rounded-lg border p-3"
-                            >
-                                <Checkbox
-                                    :model-value="
-                                        form.track_ids.includes(track.id)
-                                    "
-                                    :disabled="busy"
-                                    :aria-label="track.code"
-                                    @update:model-value="
-                                        (value) =>
-                                            toggleTopic(
-                                                track.id,
-                                                value === true,
-                                            )
-                                    "
-                                />
-                                <span class="min-w-0 text-sm"
-                                    ><bdi class="font-semibold">{{
-                                        track.code
-                                    }}</bdi>
-                                    · {{ topicName(track.name_i18n) }}</span
+                            </th>
+                            <th scope="col" class="p-3 text-end">
+                                <span class="sr-only">{{ c.edit }}</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr
+                            v-for="reviewer in reviewers"
+                            :key="reviewer.id"
+                            class="border-t"
+                        >
+                            <th scope="row" class="p-3 text-start font-normal">
+                                <bdi class="font-medium">{{
+                                    reviewer.name
+                                }}</bdi>
+                                <div class="text-muted-foreground">
+                                    <bdi>{{ reviewer.email }}</bdi>
+                                </div>
+                                <Badge
+                                    v-if="!reviewer.verified"
+                                    variant="destructive"
+                                    >{{ c.unverified }}</Badge
                                 >
-                            </label>
-                        </fieldset>
+                            </th>
+                            <td class="p-3">
+                                <div class="flex flex-wrap gap-2">
+                                    <Badge
+                                        v-for="topic in reviewer.topics"
+                                        :key="topic.id"
+                                        variant="secondary"
+                                        ><bdi>{{ topic.code }}</bdi></Badge
+                                    ><span
+                                        v-if="!reviewer.topics.length"
+                                        class="text-muted-foreground"
+                                        >{{ c.noActiveTopics }}</span
+                                    >
+                                </div>
+                            </td>
+                            <td class="p-3 text-end">
+                                <Button
+                                    type="button"
+                                    variant="outline"
+                                    :disabled="busy"
+                                    :aria-label="`${c.edit}: ${reviewer.name}`"
+                                    @click="openEditor(reviewer)"
+                                    ><PhPencilSimple
+                                        class="size-4"
+                                        aria-hidden="true"
+                                    />{{ c.edit }}</Button
+                                >
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <DataTablePagination :pagination="pagination" />
+        </section>
+        <Dialog
+            :open="editorOpen"
+            @update:open="
+                (open) => {
+                    if (!busy) editorOpen = open;
+                }
+            "
+        >
+            <DialogContent
+                class="max-h-[90dvh] overflow-y-auto"
+                :dir="locale.startsWith('ar') ? 'rtl' : 'ltr'"
+                :show-close-button="!busy"
+                @escape-key-down="
+                    (event) => {
+                        if (busy) event.preventDefault();
+                    }
+                "
+                @interact-outside="
+                    (event) => {
+                        if (busy) event.preventDefault();
+                    }
+                "
+            >
+                <DialogHeader
+                    ><DialogTitle>{{
+                        editing ? c.editReviewer : c.addReviewer
+                    }}</DialogTitle
+                    ><DialogDescription>{{
+                        c.editorHelp
+                    }}</DialogDescription></DialogHeader
+                >
+                <form
+                    class="grid min-w-0 gap-5"
+                    :aria-busy="form.processing"
+                    @submit.prevent="save"
+                >
+                    <div class="grid gap-2">
+                        <template v-if="editing">
+                            <p class="text-sm font-medium">{{ c.reviewer }}</p>
+                            <p class="text-sm">
+                                <bdi>{{ editing.name }}</bdi> ·
+                                <bdi>{{ editing.email }}</bdi>
+                            </p>
+                        </template>
+                        <template v-else-if="reviewerOptions.length">
+                            <Label for="reviewer-topic-account">{{
+                                c.account
+                            }}</Label>
+                            <Select
+                                v-model="form.reviewer_id"
+                                :disabled="busy || stale"
+                            >
+                                <SelectTrigger
+                                    id="reviewer-topic-account"
+                                    class="w-full"
+                                    :aria-invalid="!!form.errors.reviewer_id"
+                                    aria-describedby="reviewer-topic-error"
+                                >
+                                    <SelectValue
+                                        :placeholder="c.chooseReviewer"
+                                    />
+                                </SelectTrigger>
+                                <SelectContent
+                                    :dir="
+                                        locale.startsWith('ar') ? 'rtl' : 'ltr'
+                                    "
+                                >
+                                    <SelectItem
+                                        v-for="account in reviewerOptions"
+                                        :key="account.id"
+                                        :value="account.id"
+                                        class="[overflow-wrap:anywhere] whitespace-normal"
+                                    >
+                                        <bdi>{{ account.name }}</bdi> ·
+                                        <bdi>{{ account.email }}</bdi>
+                                    </SelectItem>
+                                </SelectContent>
+                            </Select>
+                        </template>
                         <p
-                            v-if="form.hasErrors && !form.errors.reviewer_email"
+                            v-else
+                            role="status"
+                            class="text-sm text-muted-foreground"
+                        >
+                            {{ c.noReviewers }}
+                        </p>
+                        <p
+                            v-if="form.errors.reviewer_id"
+                            id="reviewer-topic-error"
                             role="alert"
                             class="text-sm text-destructive"
                         >
-                            {{ c.topicInvalid }}
+                            {{ c.reviewerInvalid }}
                         </p>
+                    </div>
+                    <p
+                        v-if="editing?.hasHistoricalTopics"
+                        class="text-sm text-muted-foreground"
+                    >
+                        {{ c.historicalHelp }}
+                    </p>
+                    <fieldset
+                        class="grid min-w-0 gap-3"
+                        :disabled="busy || stale"
+                        :aria-invalid="topicError"
+                        aria-describedby="reviewer-topics-error"
+                    >
+                        <legend class="mb-3 text-sm font-medium">
+                            {{ c.topics }}
+                        </legend>
+                        <label
+                            v-for="track in tracks"
+                            :key="track.id"
+                            class="flex min-h-10 min-w-0 items-start gap-3"
+                        >
+                            <Checkbox
+                                :id="`reviewer-topic-${track.id}`"
+                                :model-value="form.track_ids.includes(track.id)"
+                                :disabled="busy || stale"
+                                @update:model-value="
+                                    (value) =>
+                                        toggleTopic(track.id, value === true)
+                                "
+                            />
+                            <span class="min-w-0 text-sm"
+                                ><bdi class="font-semibold">{{
+                                    track.code
+                                }}</bdi>
+                                · {{ topicName(track.name_i18n) }}</span
+                            >
+                        </label>
+                    </fieldset>
+                    <p
+                        v-if="topicError"
+                        id="reviewer-topics-error"
+                        role="alert"
+                        class="text-sm text-destructive"
+                    >
+                        {{ c.topicInvalid }}
+                    </p>
+                    <p
+                        v-if="stale"
+                        role="alert"
+                        class="text-sm text-destructive"
+                    >
+                        {{ c.stale }}
+                    </p>
+                    <p
+                        v-else-if="
+                            form.hasErrors &&
+                            !form.errors.reviewer_id &&
+                            !topicError
+                        "
+                        role="alert"
+                        class="text-sm text-destructive"
+                    >
+                        {{ c.invalid }}
+                    </p>
+                    <DialogFooter>
                         <Button
-                            :disabled="busy || form.track_ids.length === 0"
-                            class="h-auto min-h-10 max-w-full justify-self-start whitespace-normal"
+                            type="button"
+                            variant="outline"
+                            :disabled="busy"
+                            @click="editorOpen = false"
+                            >{{ c.cancel }}</Button
+                        >
+                        <Button
+                            v-if="stale"
+                            type="button"
+                            :disabled="busy"
+                            @click="reload"
+                            >{{ c.reload }}</Button
+                        >
+                        <Button
+                            v-else
+                            type="submit"
+                            :disabled="
+                                busy ||
+                                !form.reviewer_id ||
+                                (!editing && !form.track_ids.length)
+                            "
                             ><PhSpinnerGap
                                 v-if="form.processing"
                                 class="size-4 animate-spin motion-reduce:animate-none"
                                 aria-hidden="true"
-                            /><PhPlus
-                                v-else
-                                class="size-4"
-                                aria-hidden="true"
-                            />{{
-                                form.processing ? c.loading : c.grant
-                            }}</Button
+                            />{{ form.processing ? c.loading : c.save }}</Button
                         >
-                    </form>
-                </CardContent></Card
-            >
-            <Card class="min-w-0"
-                ><CardHeader
-                    ><CardTitle>{{ c.reviewer }}</CardTitle></CardHeader
-                ><CardContent class="min-w-0 space-y-4">
-                    <p
-                        v-if="!eligibilities.length"
-                        class="text-sm text-muted-foreground"
-                    >
-                        {{ c.empty }}
-                    </p>
-                    <ul v-else class="grid min-w-0 gap-3 lg:grid-cols-2">
-                        <li
-                            v-for="row in eligibilities"
-                            :key="row.id"
-                            class="grid min-w-0 gap-3 rounded-lg border p-4"
-                        >
-                            <h3 class="text-sm font-semibold">
-                                <bdi>{{ row.trackCode }}</bdi> ·
-                                {{ topicName(row.trackName) }}
-                            </h3>
-                            <p class="text-sm">
-                                <bdi>{{ row.reviewer }}</bdi> ·
-                                <bdi>{{ row.email }}</bdi>
-                            </p>
-                            <div class="flex flex-wrap gap-2">
-                                <Badge variant="secondary">{{
-                                    row.active ? c.active : c.inactive
-                                }}</Badge
-                                ><Badge
-                                    v-if="!row.verified"
-                                    variant="destructive"
-                                    >{{ c.unverified }}</Badge
-                                ><Badge
-                                    v-if="!row.trackActive"
-                                    variant="outline"
-                                    >{{ c.topicInvalid }}</Badge
-                                >
-                            </div>
-                            <Button
-                                type="button"
-                                variant="outline"
-                                class="h-auto min-h-10 max-w-full justify-self-start whitespace-normal"
-                                :disabled="
-                                    busy ||
-                                    (!row.active &&
-                                        (!row.verified || !row.trackActive))
-                                "
-                                @click="confirm(row)"
-                                ><PhProhibit
-                                    v-if="row.active"
-                                    class="size-4"
-                                    aria-hidden="true"
-                                /><PhArrowCounterClockwise
-                                    v-else
-                                    class="size-4"
-                                    aria-hidden="true"
-                                />{{
-                                    row.active ? c.disable : c.reactivate
-                                }}</Button
-                            >
-                        </li>
-                    </ul>
-                    <DataTablePagination
-                        :pagination="pagination"
-                    /> </CardContent
-            ></Card>
-        </template>
-        <Dialog
-            :open="pending !== null || confirmGrant"
-            @update:open="
-                (open) => {
-                    if (!open) closeConfirmation();
-                }
-            "
-            ><DialogContent :aria-busy="busy">
-                <DialogHeader
-                    ><DialogTitle>{{
-                        confirmGrant
-                            ? c.grant
-                            : pending?.active
-                              ? c.confirmDisable
-                              : c.confirmReactivate
-                    }}</DialogTitle
-                    ><DialogDescription>{{
-                        c.confirmDescription
-                    }}</DialogDescription></DialogHeader
-                >
-                <p class="text-sm [overflow-wrap:anywhere]">
-                    <bdi>{{
-                        confirmGrant ? form.reviewer_email : pending?.email
-                    }}</bdi>
-                    ·
-                    <bdi>{{
-                        confirmGrant ? selectedCodes : pending?.trackCode
-                    }}</bdi>
-                </p>
-                <p
-                    v-if="change.hasErrors || (confirmGrant && form.hasErrors)"
-                    role="alert"
-                    class="text-sm text-destructive"
-                >
-                    {{ c.invalid }}
-                </p>
-                <DialogFooter
-                    ><Button
-                        type="button"
-                        variant="outline"
-                        :disabled="busy"
-                        @click="closeConfirmation"
-                        >{{ c.cancel }}</Button
-                    ><Button
-                        type="button"
-                        :disabled="busy"
-                        class="h-auto min-h-10 whitespace-normal"
-                        @click="confirmGrant ? grant() : applyChange()"
-                        ><PhSpinnerGap
-                            v-if="busy"
-                            class="size-4 animate-spin motion-reduce:animate-none"
-                            aria-hidden="true"
-                        />{{
-                            busy
-                                ? c.loading
-                                : confirmGrant
-                                  ? c.grant
-                                  : pending?.active
-                                    ? c.disable
-                                    : c.reactivate
-                        }}</Button
-                    ></DialogFooter
-                >
-            </DialogContent></Dialog
-        >
+                    </DialogFooter>
+                </form>
+            </DialogContent>
+        </Dialog>
     </div>
 </template>

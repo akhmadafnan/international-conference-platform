@@ -1,5 +1,9 @@
 # Current Project State
 
+## Bounded backend checkpoint — 2026-10-24, Phase 04D.2-A
+
+Product Owner authorized Abstract Pool/exclusive Self-Claim backend only on `agent/phase04-academic-core` at HEAD `805541e7f27df9637a8ab677c2af34cc966d97fb`, preserving local 04D.1-A/B/B.1 edits. See [backend contract and verification boundary](../architecture/ABSTRACT_SELF_CLAIM_BACKEND_04D2A.md). New stage-scoped database exclusivity migration is NOT applied to existing local MySQL; isolated MySQL concurrency remains unverified. No Pool UI/routes or Committee reassignment UI, Full Paper/Room work, full Phase04 UAT, commit/push or production readiness is implied. Historical statements below that Self-Claim is entirely unimplemented now describe the earlier checkpoint; only this bounded backend foundation has been added locally. Legacy decision/screening paths outside the new claim-to-review flow remain unchanged.
+
 ## Current operational checkpoint — 2026-10-23
 
 **Status:** Phase03 Product Owner browser UAT PASS; Phase04 Academic Core exists, full end-to-end UAT NOT YET COMPLETE.
